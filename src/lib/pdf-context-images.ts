@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import sharp from "sharp";
 import { detectFigureCrops } from "@/lib/ai/crop-figure-images";
+import { contextsNeedingImages, PLACEHOLDER_RE } from "@/lib/bank-image-needs";
 import { getAssetFilePath, getAssetsDir } from "@/lib/paths";
 import {
   extractPageScreenshots,
@@ -9,11 +10,7 @@ import {
   type PdfEmbeddedImage,
   type PdfPageText,
 } from "@/lib/pdf-extract";
-import type { QuestionBank, QuestionContext } from "@/types/exam";
-
-const VISUAL_CONTEXT_TYPES = new Set(["diagram", "graph", "image", "table"]);
-const PLACEHOLDER_RE =
-  /not included in the extracted text|actual diagram is not|actual graph is not/i;
+import type { QuestionBank } from "@/types/exam";
 
 function normalizeFigureLabel(title?: string, id?: string): string | null {
   const source = title ?? id ?? "";
@@ -34,16 +31,6 @@ function mapFiguresToPages(pageTexts: PdfPageText[]): Map<string, number> {
   }
 
   return map;
-}
-
-function contextsNeedingImages(bank: QuestionBank): QuestionContext[] {
-  if (!bank.contexts) return [];
-
-  return Object.values(bank.contexts).filter((ctx) => {
-    if (ctx.imageData || ctx.imagePath) return false;
-    if (!VISUAL_CONTEXT_TYPES.has(ctx.type)) return false;
-    return PLACEHOLDER_RE.test(ctx.content) || ctx.type !== "table";
-  });
 }
 
 function pickPageImage(
@@ -201,6 +188,4 @@ export async function attachPdfImagesToBank(
   };
 }
 
-export function bankNeedsImageExtraction(bank: QuestionBank): boolean {
-  return contextsNeedingImages(bank).length > 0;
-}
+export { bankNeedsImageExtraction } from "@/lib/bank-image-needs";
