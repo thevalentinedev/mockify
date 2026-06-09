@@ -23,11 +23,7 @@ import { extractQuestionsFromText, toQuestionBank } from "@/lib/ai-extract";
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
 import { getExamSpec } from "@/lib/exam-config";
 import { findSubjectPdf } from "@/lib/find-subject-pdf";
-import {
-  attachPdfImagesToBank,
-  bankNeedsImageExtraction,
-} from "@/lib/pdf-context-images";
-import { extractPdfBundle } from "@/lib/pdf-extract";
+import { bankNeedsImageExtraction } from "@/lib/bank-image-needs";
 import type { QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
 export interface SubjectEnsureResult {
@@ -89,6 +85,12 @@ export async function ensureSubjectBank(
 
   // ── 1. Bootstrap from PDF if empty ──
   if (!bank?.questions.length) {
+    if (process.env.VERCEL) {
+      throw new Error(
+        `Question bank for ${subjectId} is not available on this deployment. Commit data/banks/${schoolId}/${subjectId}.json and redeploy, or run npm run db:migrate with DATABASE_URL.`
+      );
+    }
+
     const pdfPath = await findSubjectPdf(schoolId, subjectId);
     if (!pdfPath) {
       throw new Error(
@@ -102,6 +104,7 @@ export async function ensureSubjectBank(
       target,
       message: "Reading sample PDF…",
     });
+    const { extractPdfBundle } = await import("@/lib/pdf-extract");
     const pdfBundle = await extractPdfBundle(pdfPath);
     report(jobId, subjectId, {
       phase: "extracting",
@@ -123,6 +126,7 @@ export async function ensureSubjectBank(
         message: "Extracting diagrams and figures…",
       });
       actions.push("Extracting diagrams from PDF");
+      const { attachPdfImagesToBank } = await import("@/lib/pdf-context-images");
       const { bank: withImages, attached } = await attachPdfImagesToBank(
         bank,
         pdfPath
@@ -159,6 +163,7 @@ export async function ensureSubjectBank(
           message: "Extracting diagrams and figures…",
         });
         actions.push("Extracting diagrams from PDF");
+        const { attachPdfImagesToBank } = await import("@/lib/pdf-context-images");
         const { bank: withImages, attached } = await attachPdfImagesToBank(
           bank,
           pdfPath

@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 import path from "path";
+import { getStaticQuestionBank } from "@/data/question-banks/static";
 import {
   getBankFromDb,
   listBanksFromDb,
@@ -10,24 +11,32 @@ import { ensureContextImagesPersisted } from "@/lib/blob-assets";
 import { getBankPath, getBanksDir } from "@/lib/paths";
 import type { QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
-/** Loads question bank — Neon DB when configured, else local JSON files */
+function hasQuestions(bank: QuestionBank | null | undefined): bank is QuestionBank {
+  return (bank?.questions.length ?? 0) > 0;
+}
+
+/** Loads question bank — Neon DB, bundled JSON, then static seed banks */
 export async function getQuestionBank(
   schoolId: SchoolId,
   subjectId: SubjectId
 ): Promise<QuestionBank | null> {
   if (isDbEnabled()) {
-    const bank = await getBankFromDb(schoolId, subjectId);
-    if (bank) return bank;
+    const fromDb = await getBankFromDb(schoolId, subjectId);
+    if (hasQuestions(fromDb)) return fromDb;
   }
 
   const jsonPath = getBankPath(schoolId, subjectId);
 
   try {
     const raw = await readFile(jsonPath, "utf-8");
-    return JSON.parse(raw) as QuestionBank;
+    const fromJson = JSON.parse(raw) as QuestionBank;
+    if (hasQuestions(fromJson)) return fromJson;
   } catch {
-    return null;
+    // fall through to bundled seed bank
   }
+
+  const fromStatic = getStaticQuestionBank(schoolId, subjectId);
+  return hasQuestions(fromStatic) ? fromStatic : null;
 }
 
 function shouldMirrorToJson(): boolean {
