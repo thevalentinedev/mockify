@@ -2,6 +2,10 @@ import { openai } from "@ai-sdk/openai";
 import { generateText, Output } from "ai";
 import { z } from "zod";
 import { AI_MODEL } from "@/lib/ai/model";
+import {
+  getUnenrichedQuestions,
+  isQuestionEnriched,
+} from "@/lib/question-enrichment";
 import type { BankMeta, Question, QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
 const CHUNK_SIZE = 8;
@@ -106,15 +110,89 @@ ${JSON.stringify(payload, null, 2)}`,
   return output.questions;
 }
 
-export async function enrichQuestionBank(bank: QuestionBank): Promise<QuestionBank> {
+function applyEnrichmentResult(
+  original: Question,
+  enriched: z.infer<typeof enrichChunkSchema>["questions"][number]
+): Question {
+  const wrongAnswerHints: Record<string, string> = {};
+  for (const hint of enriched.wrongAnswerHints) {
+    if (hint.optionIndex !== enriched.correctIndex) {
+      wrongAnswerHints[String(hint.optionIndex)] = hint.hint;
+    }
+  }
+
+  return {
+    ...original,
+    correctIndex: enriched.correctIndex,
+    explanation: enriched.explanation,
+    wrongAnswerHints,
+    meta: {
+      topics: enriched.topics,
+      difficulty: enriched.difficulty,
+      source: original.meta?.source === "generated" ? "generated" : "verified",
+      verifiedAt: new Date().toISOString(),
+      answerConfidence: enriched.answerConfidence,
+    },
+  };
+}
+
+export interface EnrichQuestionBankResult {
+  bank: QuestionBank;
+  enrichedCount: number;
+  skippedCount: number;
+}
+
+/** Enrich only questions missing explanations — saved banks skip repeat AI calls */
+export interface EnrichOptions {
+  force?: boolean;
+  onProgress?: (bank: QuestionBank) => void | Promise<void>;
+}
+
+export async function enrichQuestionBank(
+  bank: QuestionBank,
+  options?: EnrichOptions
+): Promise<QuestionBank> {
+  const result = await enrichQuestionBankDetailed(bank, options);
+  return result.bank;
+}
+
+export async function enrichQuestionBankDetailed(
+  bank: QuestionBank,
+  options?: EnrichOptions
+): Promise<EnrichQuestionBankResult> {
+  const force = options?.force ?? false;
+  const toEnrich = force
+    ? bank.questions
+    : getUnenrichedQuestions(bank.questions);
+  const skippedCount = bank.questions.length - toEnrich.length;
+
+  if (toEnrich.length === 0) {
+    const meta = bank.meta?.topicsCovered?.length
+      ? bank.meta
+      : await analyzeExamBlueprint(bank);
+
+    return {
+      bank: {
+        ...bank,
+        meta: {
+          ...meta,
+          lastEnrichedAt: bank.meta?.lastEnrichedAt ?? new Date().toISOString(),
+          totalGenerated: meta.totalGenerated ?? 0,
+        },
+      },
+      enrichedCount: 0,
+      skippedCount,
+    };
+  }
+
   const meta = bank.meta?.topicsCovered?.length
     ? bank.meta
     : await analyzeExamBlueprint(bank);
 
-  const enrichedQuestions: Question[] = [];
+  const enrichedById = new Map<string, Question>();
 
-  for (let i = 0; i < bank.questions.length; i += CHUNK_SIZE) {
-    const chunk = bank.questions.slice(i, i + CHUNK_SIZE);
+  for (let i = 0; i < toEnrich.length; i += CHUNK_SIZE) {
+    const chunk = toEnrich.slice(i, i + CHUNK_SIZE);
     const results = await enrichQuestionChunk(
       chunk,
       bank.schoolId,
@@ -125,40 +203,44 @@ export async function enrichQuestionBank(bank: QuestionBank): Promise<QuestionBa
     for (const original of chunk) {
       const enriched = results.find((r) => r.id === original.id);
       if (!enriched) {
-        enrichedQuestions.push(original);
+        enrichedById.set(original.id, original);
         continue;
       }
+      enrichedById.set(original.id, applyEnrichmentResult(original, enriched));
+    }
 
-      const wrongAnswerHints: Record<string, string> = {};
-      for (const hint of enriched.wrongAnswerHints) {
-        if (hint.optionIndex !== enriched.correctIndex) {
-          wrongAnswerHints[String(hint.optionIndex)] = hint.hint;
-        }
-      }
-
-      enrichedQuestions.push({
-        ...original,
-        correctIndex: enriched.correctIndex,
-        explanation: enriched.explanation,
-        wrongAnswerHints,
+    if (options?.onProgress) {
+      const questions = bank.questions.map((question) => {
+        if (!force && isQuestionEnriched(question)) return question;
+        return enrichedById.get(question.id) ?? question;
+      });
+      await options.onProgress({
+        ...bank,
+        questions,
         meta: {
-          topics: enriched.topics,
-          difficulty: enriched.difficulty,
-          source: original.meta?.source === "generated" ? "generated" : "verified",
-          verifiedAt: new Date().toISOString(),
-          answerConfidence: enriched.answerConfidence,
+          ...meta,
+          totalGenerated: meta.totalGenerated ?? 0,
         },
       });
     }
   }
 
+  const questions = bank.questions.map((question) => {
+    if (!force && isQuestionEnriched(question)) return question;
+    return enrichedById.get(question.id) ?? question;
+  });
+
   return {
-    ...bank,
-    questions: enrichedQuestions,
-    meta: {
-      ...meta,
-      lastEnrichedAt: new Date().toISOString(),
-      totalGenerated: meta.totalGenerated ?? 0,
+    bank: {
+      ...bank,
+      questions,
+      meta: {
+        ...meta,
+        lastEnrichedAt: new Date().toISOString(),
+        totalGenerated: meta.totalGenerated ?? 0,
+      },
     },
+    enrichedCount: toEnrich.length,
+    skippedCount,
   };
 }

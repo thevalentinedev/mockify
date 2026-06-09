@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { QuestionContextCard } from "@/components/question-context-card";
 import { useIsClient } from "@/hooks/use-is-client";
 import { SUBJECTS } from "@/lib/exam-config";
 import {
@@ -45,6 +46,7 @@ function ExamRunnerInner({ session, initialProgress }: ExamRunnerProps) {
     initialProgress?.showReview ?? false
   );
   const [submitted, setSubmitted] = useState(false);
+  const [openContexts, setOpenContexts] = useState<Record<string, boolean>>({});
   const resumed =
     (initialProgress?.answers.length ?? 0) > 0 ||
     (initialProgress?.currentIndex ?? 0) > 0;
@@ -196,6 +198,19 @@ function ExamRunnerInner({ session, initialProgress }: ExamRunnerProps) {
       <Progress value={progress} className="h-1.5" />
 
       <BentoCard className="space-y-6 p-6 sm:p-8">
+        {current.context && (
+          <QuestionContextCard
+            context={current.context}
+            open={openContexts[current.contextKey ?? current.id] ?? false}
+            onOpenChange={(open) =>
+              setOpenContexts((prev) => ({
+                ...prev,
+                [current.contextKey ?? current.id]: open,
+              }))
+            }
+          />
+        )}
+
         <div className="space-y-2">
           <span className="exam-label">Question {currentIndex + 1}</span>
           <h2 className="exam-question">{current.text}</h2>

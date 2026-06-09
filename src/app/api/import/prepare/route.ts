@@ -1,6 +1,6 @@
 import path from "path";
 import { NextResponse } from "next/server";
-import { enrichQuestionBank } from "@/lib/ai/enrich-bank";
+import { enrichQuestionBankDetailed } from "@/lib/ai/enrich-bank";
 import { generatePracticeQuestions } from "@/lib/ai/generate-questions";
 import { extractQuestionsFromText, toQuestionBank } from "@/lib/ai-extract";
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
@@ -57,7 +57,8 @@ export async function POST(request: Request) {
     const spec = getExamSpec(school, subject);
     const examConfig = spec ?? { ...bank.config };
 
-    bank = await enrichQuestionBank(bank);
+    const enrichResult = await enrichQuestionBankDetailed(bank);
+    bank = enrichResult.bank;
     bank.config = examConfig;
 
     let added = 0;
@@ -80,6 +81,8 @@ export async function POST(request: Request) {
       examQuestionCount: examConfig.questionCount,
       poolSize: bank.questions.length,
       added,
+      enrichedCount: enrichResult.enrichedCount,
+      skippedCount: enrichResult.skippedCount,
       topics: bank.meta?.topicsCovered ?? [],
       path: `data/banks/${school}/${subject}.json`,
     });

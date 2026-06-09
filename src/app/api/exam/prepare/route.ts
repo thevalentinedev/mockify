@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import { ensureBanksForSubjects } from "@/lib/bank-manager";
-import { buildExamSession } from "@/lib/build-exam-session";
 import {
   completePrepareJob,
   initPrepareJob,
 } from "@/lib/prepare-progress";
-import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
+import type { SchoolId, SubjectId } from "@/types/exam";
 
-/** Legacy combined prepare + build — prefer /api/exam/prepare then /api/exam/build */
+/** Allow long first-time bank builds (Hobby max 10s; Pro up to 300s) */
+export const maxDuration = 300;
+
 export async function POST(request: Request) {
   try {
     if (!process.env.OPENAI_API_KEY) {
@@ -15,14 +16,13 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { school, subjects, mode, jobId } = body as {
+    const { school, subjects, jobId } = body as {
       school: SchoolId;
       subjects: SubjectId[];
-      mode: ExamMode;
       jobId?: string;
     };
 
-    if (!school || !subjects?.length || !mode) {
+    if (!school || !subjects?.length) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
@@ -32,14 +32,9 @@ export async function POST(request: Request) {
     const bankResults = await ensureBanksForSubjects(school, subjects, id);
     completePrepareJob(id);
 
-    const session = await buildExamSession(school, subjects, mode);
-    if (!session) {
-      return NextResponse.json({ error: "No questions available" }, { status: 404 });
-    }
-
-    return NextResponse.json({ session, bankResults, jobId: id });
+    return NextResponse.json({ jobId: id, bankResults });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Failed to start exam";
+    const message = error instanceof Error ? error.message : "Failed to prepare exam";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

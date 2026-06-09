@@ -1,9 +1,11 @@
 "use client";
 
-import { SUBJECTS } from "@/lib/exam-config";
-import type { SubjectId } from "@/types/exam";
+import { useAnimatedCount } from "@/hooks/use-animated-count";
+import { getExamSpec, SUBJECTS } from "@/lib/exam-config";
+import { getReadyCount, type PrepareProgress } from "@/lib/prepare-progress";
+import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
 import { Loader2, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const TIPS = [
   "Read each question fully before looking at the options.",
@@ -15,37 +17,79 @@ const TIPS = [
 ];
 
 interface ExamPreparingProps {
+  jobId: string;
+  schoolId: SchoolId;
   subjects: SubjectId[];
-  mode: string;
+  mode: ExamMode;
 }
 
-export function ExamPreparing({ subjects, mode }: ExamPreparingProps) {
+export function ExamPreparing({ jobId, schoolId, subjects, mode }: ExamPreparingProps) {
   const [tipIndex, setTipIndex] = useState(0);
-  const [stepIndex, setStepIndex] = useState(0);
+  const [progress, setProgress] = useState<PrepareProgress | null>(null);
 
   const subjectNames = subjects
     .map((id) => SUBJECTS.find((s) => s.id === id)?.name ?? id)
     .join(", ");
 
-  const steps = [
-    "Checking question bank",
-    "Preparing your questions",
-    "Building your exam",
-    "Almost ready",
-  ];
+  const totals = useMemo(() => {
+    if (!progress?.subjects.length) return null;
+    const ready = progress.subjects.reduce((sum, s) => sum + getReadyCount(s), 0);
+    const target = progress.subjects.reduce((sum, s) => sum + s.target, 0);
+    const message = progress.subjects.map((s) => s.message).find(Boolean);
+    return { ready, target, message };
+  }, [progress]);
+
+  const singleSubject = progress?.subjects.length === 1 ? progress.subjects[0] : null;
+
+  const rawReady = singleSubject
+    ? getReadyCount(singleSubject)
+    : (totals?.ready ?? 0);
+  const fallbackTarget = useMemo(
+    () =>
+      subjects.reduce(
+        (sum, subjectId) => sum + (getExamSpec(schoolId, subjectId)?.questionCount ?? 0),
+        0
+      ),
+    [schoolId, subjects]
+  );
+
+  const rawTarget = singleSubject?.target ?? totals?.target ?? fallbackTarget;
+
+  const animatedReady = useAnimatedCount(rawReady, 1);
+  const statusMessage =
+    singleSubject?.message ?? totals?.message ?? "Preparing your questions…";
 
   useEffect(() => {
     const tipTimer = setInterval(() => {
       setTipIndex((i) => (i + 1) % TIPS.length);
     }, 4000);
-    const stepTimer = setInterval(() => {
-      setStepIndex((i) => Math.min(i + 1, steps.length - 1));
-    }, 8000);
+    return () => clearInterval(tipTimer);
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function poll() {
+      try {
+        const res = await fetch(
+          `/api/exam/prepare-progress?jobId=${encodeURIComponent(jobId)}`,
+          { cache: "no-store" }
+        );
+        if (!res.ok || cancelled) return;
+        const data = (await res.json()) as PrepareProgress;
+        if (!cancelled) setProgress(data);
+      } catch {
+        // keep last known progress
+      }
+    }
+
+    poll();
+    const pollTimer = setInterval(poll, 400);
     return () => {
-      clearInterval(tipTimer);
-      clearInterval(stepTimer);
+      cancelled = true;
+      clearInterval(pollTimer);
     };
-  }, [steps.length]);
+  }, [jobId]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">
@@ -61,9 +105,29 @@ export function ExamPreparing({ subjects, mode }: ExamPreparingProps) {
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <Loader2 className="size-4 animate-spin" />
-          <span>{steps[stepIndex]}…</span>
+        <div className="space-y-2">
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <Loader2 className="size-4 animate-spin" />
+            <span>{statusMessage}</span>
+          </div>
+          {rawTarget > 0 && (
+            <p className="text-2xl font-semibold tabular-nums tracking-tight">
+              {animatedReady}/{rawTarget}
+            </p>
+          )}
+          {subjects.length > 1 && progress?.subjects && (
+            <div className="space-y-1 text-xs text-muted-foreground">
+              {progress.subjects.map((s) => {
+                const name =
+                  SUBJECTS.find((sub) => sub.id === s.subjectId)?.name ?? s.subjectId;
+                return (
+                  <p key={s.subjectId}>
+                    {name}: {getReadyCount(s)}/{s.target}
+                  </p>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <div className="rounded-2xl border bg-card/80 p-5 text-left min-h-[5rem] flex items-center">

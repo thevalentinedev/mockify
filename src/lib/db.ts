@@ -2,12 +2,20 @@ import { neon, neonConfig } from "@neondatabase/serverless";
 
 neonConfig.fetchConnectionCache = true;
 
+function getDatabaseUrl(): string | undefined {
+  return (
+    process.env.DATABASE_URL ??
+    process.env.POSTGRES_URL ??
+    process.env.POSTGRES_PRISMA_URL
+  );
+}
+
 export function getDb() {
-  const url = process.env.DATABASE_URL;
+  const url = getDatabaseUrl();
   if (!url) return null;
   return neon(url);
 }
 
 export function isDbEnabled(): boolean {
-  return Boolean(process.env.DATABASE_URL);
+  return Boolean(getDatabaseUrl());
 }

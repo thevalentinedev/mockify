@@ -1,5 +1,6 @@
 import { getQuestionBank } from "@/lib/bank-loader";
 import { getExamSpec } from "@/lib/exam-config";
+import { getContextKey, resolveQuestionContext } from "@/lib/question-context";
 import { remapWrongAnswerHints, shuffle, shuffleQuestionOptions } from "@/lib/shuffle";
 import type {
   ExamMode,
@@ -44,6 +45,7 @@ export async function buildExamSession(
           )
         : undefined;
 
+      const context = resolveQuestionContext(question, bank.contexts);
       questions.push({
         id: `${subjectId}-${question.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         originalId: question.id,
@@ -54,6 +56,8 @@ export async function buildExamSession(
         explanation: question.explanation,
         wrongAnswerHints: wrongHints,
         topic: question.meta?.topics?.[0],
+        context,
+        contextKey: context ? getContextKey(context, question.id) : undefined,
       });
     }
 

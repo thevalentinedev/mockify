@@ -73,6 +73,7 @@ export function ExamSetup() {
   const [stats, setStats] = useState<SessionStats | null>(null);
   const [starting, setStarting] = useState(false);
   const [preparing, setPreparing] = useState(false);
+  const [prepareJobId, setPrepareJobId] = useState<string | null>(null);
   const [startError, setStartError] = useState<string | null>(null);
   const isClient = useIsClient();
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0);
@@ -126,28 +127,70 @@ export function ExamSetup() {
 
   async function startExam() {
     if (!schoolId || subjects.length === 0 || !mode || starting) return;
+    const jobId = crypto.randomUUID();
     setStarting(true);
+    setPrepareJobId(jobId);
     setPreparing(true);
     setStartError(null);
 
     try {
-      const res = await fetch("/api/exam/start", {
+      const prepareRes = await fetch("/api/exam/prepare", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ school: schoolId, subjects, jobId }),
+      });
+
+      let prepareData: { error?: string; jobId?: string } = {};
+      try {
+        prepareData = await prepareRes.json();
+      } catch {
+        setStartError(
+          prepareRes.status === 504
+            ? "Preparation timed out — first-time subjects need Pro plan or pre-built banks in Neon."
+            : `Server error (${prepareRes.status}). Check /api/health on your deployment.`
+        );
+        return;
+      }
+
+      if (!prepareRes.ok) {
+        setStartError(prepareData.error ?? "Could not prepare exam. Try again.");
+        return;
+      }
+
+      const buildRes = await fetch("/api/exam/build", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ school: schoolId, subjects, mode }),
       });
-      const data = await res.json();
-      if (!res.ok || !data.session) {
-        setStartError(data.error ?? "Could not start exam. Try again.");
+
+      let buildData: { error?: string; session?: import("@/types/exam").ExamSession } =
+        {};
+      try {
+        buildData = await buildRes.json();
+      } catch {
+        setStartError(`Could not start exam (server error ${buildRes.status}).`);
         return;
       }
-      startNewExam(data.session);
+
+      if (!buildRes.ok || !buildData.session) {
+        setStartError(buildData.error ?? "Could not start exam. Try again.");
+        return;
+      }
+
+      startNewExam(buildData.session);
       router.push("/exam");
-    } catch {
-      setStartError("Connection issue. Your progress is safe — try again.");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Connection issue. Try again.";
+      setStartError(
+        message.includes("fetch")
+          ? "Connection issue. Your progress is safe — try again."
+          : message
+      );
     } finally {
       setStarting(false);
       setPreparing(false);
+      setPrepareJobId(null);
     }
   }
 
@@ -160,8 +203,13 @@ export function ExamSetup() {
 
   return (
     <div className="mx-auto w-full max-w-4xl space-y-8">
-      {preparing && mode && (
-        <ExamPreparing subjects={subjects} mode={mode} />
+      {preparing && mode && prepareJobId && schoolId && (
+        <ExamPreparing
+          jobId={prepareJobId}
+          schoolId={schoolId}
+          subjects={subjects}
+          mode={mode}
+        />
       )}
 
       {startError && (

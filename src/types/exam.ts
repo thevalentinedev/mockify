@@ -40,6 +40,22 @@ export interface QuestionMeta {
   answerConfidence?: AnswerConfidence;
 }
 
+/** Passage, graph, table, etc. shown above the question */
+export type QuestionContextType =
+  | "passage"
+  | "comprehension"
+  | "graph"
+  | "table"
+  | "diagram"
+  | "image";
+
+export interface QuestionContext {
+  id?: string;
+  type: QuestionContextType;
+  title?: string;
+  content: string;
+}
+
 export interface Question {
   id: string;
   text: string;
@@ -48,6 +64,10 @@ export interface Question {
   explanation?: string;
   /** Why each wrong option is incorrect — keyed by option index */
   wrongAnswerHints?: Record<string, string>;
+  /** Inline reference material (passage, graph description, etc.) */
+  context?: QuestionContext;
+  /** Shared material — resolved from bank.contexts when set */
+  contextId?: string;
   meta?: QuestionMeta;
 }
 
@@ -80,6 +100,8 @@ export interface QuestionBank {
   subjectId: SubjectId;
   config: SubjectExamConfig;
   questions: Question[];
+  /** Shared passages/graphs referenced by question contextId */
+  contexts?: Record<string, QuestionContext>;
   meta?: BankMeta;
 }
 
@@ -93,6 +115,8 @@ export interface ShuffledQuestion {
   explanation?: string;
   wrongAnswerHints?: Record<string, string>;
   topic?: string;
+  context?: QuestionContext;
+  contextKey?: string;
 }
 
 export interface ExamSession {

@@ -29,12 +29,20 @@ export async function getQuestionBank(
   }
 }
 
+function shouldMirrorToJson(): boolean {
+  // Vercel's filesystem is read-only except /tmp — skip JSON mirror in production
+  if (process.env.VERCEL) return false;
+  return true;
+}
+
 export async function saveQuestionBank(bank: QuestionBank): Promise<void> {
   if (isDbEnabled()) {
     await saveBankToDb(bank);
   }
 
-  // Always mirror to JSON for local backup / dev without DB
+  if (!shouldMirrorToJson()) return;
+
+  // Local dev backup when DB is configured, or primary store without DB
   const dir = getBanksDir(bank.schoolId);
   await mkdir(dir, { recursive: true });
   await writeFile(

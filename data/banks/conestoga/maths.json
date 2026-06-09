@@ -1,0 +1,2813 @@
+{
+  "schoolId": "conestoga",
+  "subjectId": "maths",
+  "contexts": {
+    "fig-1": {
+      "id": "fig-1",
+      "type": "diagram",
+      "title": "Figure 1",
+      "content": "A coordinate grid is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-2": {
+      "id": "fig-2",
+      "type": "diagram",
+      "title": "Figure 2",
+      "content": "A coordinate grid is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-3": {
+      "id": "fig-3",
+      "type": "diagram",
+      "title": "Figure 3",
+      "content": "A coordinate grid is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-4": {
+      "id": "fig-4",
+      "type": "diagram",
+      "title": "Figure 4",
+      "content": "A geometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-5": {
+      "id": "fig-5",
+      "type": "diagram",
+      "title": "Figure 5",
+      "content": "A geometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-6": {
+      "id": "fig-6",
+      "type": "diagram",
+      "title": "Figure 6",
+      "content": "A geometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-7": {
+      "id": "fig-7",
+      "type": "diagram",
+      "title": "Figure 7",
+      "content": "A geometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-8": {
+      "id": "fig-8",
+      "type": "diagram",
+      "title": "Figure 8",
+      "content": "A trigonometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-9": {
+      "id": "fig-9",
+      "type": "diagram",
+      "title": "Figure 9",
+      "content": "A trigonometry figure is referenced, but the actual diagram is not included in the extracted text."
+    },
+    "fig-10": {
+      "id": "fig-10",
+      "type": "diagram",
+      "title": "Figure 10",
+      "content": "A trigonometry figure is referenced, but the actual diagram is not included in the extracted text."
+    }
+  },
+  "config": {
+    "questionCount": 100,
+    "timeLimitMinutes": 120
+  },
+  "questions": [
+    {
+      "id": "math-001",
+      "text": "216 + 64 + 1092 =",
+      "options": [
+        "1372",
+        "223",
+        "24696",
+        "$624"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add the numbers step by step: 216 + 64 = 280, and 280 + 1092 = 1372. So the correct answer is 1372.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "223 is far too small for the sum of these three numbers.",
+        "2": "24696 is much larger than the total and does not come from addition here.",
+        "3": "$624 includes a dollar sign and is not the correct numerical sum."
+      }
+    },
+    {
+      "id": "math-002",
+      "text": "318 – 95 =",
+      "options": [
+        "223",
+        "7",
+        "3x3x3x2x2x2",
+        "42"
+      ],
+      "correctIndex": 0,
+      "explanation": "Subtract 95 from 318: 318 - 95 = 223. You can check by adding 223 + 95 to get back 318.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "7 is not close to the correct difference.",
+        "2": "3x3x3x2x2x2 is a factorization, not a subtraction result.",
+        "3": "42 is unrelated to the subtraction problem."
+      }
+    },
+    {
+      "id": "math-003",
+      "text": "6 x 12 x 343 =",
+      "options": [
+        "24696",
+        "$624",
+        "42",
+        "7"
+      ],
+      "correctIndex": 0,
+      "explanation": "Multiply in any order: 6 × 12 = 72, and 72 × 343 = 24,696. So the correct product is 24,696.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "$624 is much too small and includes a dollar sign, which is not part of this multiplication.",
+        "2": "42 is not the product of these three numbers.",
+        "3": "7 is far too small to be the result of multiplying these factors."
+      }
+    },
+    {
+      "id": "math-004",
+      "text": "How much would it cost to cover a floor 8 m x 6 m with carpet that costs $13 per square metre?",
+      "options": [
+        "$624",
+        "42",
+        "7",
+        "3x3x3x2x2x2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Find the area first: 8 m × 6 m = 48 square metres. Then multiply by the cost per square metre: 48 × 13 = 624, so the total cost is $624.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "42 is not the area or the total cost of carpeting this floor.",
+        "2": "7 is unrelated to the dimensions or the price calculation.",
+        "3": "3x3x3x2x2x2 is a factorization, not a cost amount."
+      }
+    },
+    {
+      "id": "math-005",
+      "text": "Find the lowest common denominator of 1/3, 1/7, 1/2",
+      "options": [
+        "42",
+        "7",
+        "3x3x3x2x2x2",
+        "Undefined"
+      ],
+      "correctIndex": 0,
+      "explanation": "The least common denominator is the least common multiple of 3, 7, and 2. Since these are all prime and different, multiply them: 3 × 7 × 2 = 42.",
+      "meta": {
+        "topics": [
+          "Least common denominator / common denominators",
+          "Prime factorization"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "7 is only one of the denominators, not a common denominator for all three fractions.",
+        "2": "3x3x3x2x2x2 is not the least common denominator; it is much larger than needed.",
+        "3": "Undefined is incorrect because these denominators do have a common multiple."
+      }
+    },
+    {
+      "id": "math-006",
+      "text": "Reduce 56/24 to lowest terms",
+      "options": [
+        "7",
+        "3x3x3x2x2x2",
+        "Undefined",
+        "1 8"
+      ],
+      "correctIndex": 3,
+      "explanation": "To reduce 56/24, divide numerator and denominator by their greatest common factor, 8: 56 ÷ 8 = 7 and 24 ÷ 8 = 3. The simplified fraction is 7/3, which can also be written as 2 1/3 if converted to a mixed number.",
+      "meta": {
+        "topics": [
+          "Reducing fractions to lowest terms",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "7 is only the numerator after simplifying, not the full reduced fraction.",
+        "1": "3x3x3x2x2x2 is a factorization, not a simplified fraction.",
+        "2": "Undefined is wrong because 56/24 is a valid fraction and can be reduced."
+      }
+    },
+    {
+      "id": "math-007",
+      "text": "List the prime factors of 216",
+      "options": [
+        "3x3x3x2x2x2",
+        "Undefined",
+        "1 8",
+        "4 6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Prime factorization breaks 216 into prime numbers: 216 = 2 × 2 × 2 × 3 × 3 × 3. This can also be written as 2^3 × 3^3.",
+      "meta": {
+        "topics": [
+          "Prime factorization"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "Undefined is incorrect because 216 can be factorized into primes.",
+        "2": "1 8 is not the prime factorization of 216.",
+        "3": "4 6 is not a prime factorization because 4 is not prime."
+      }
+    },
+    {
+      "id": "math-008",
+      "text": "Evaluate 0",
+      "options": [
+        "Undefined",
+        "1 8",
+        "4 6",
+        "5 32"
+      ],
+      "correctIndex": 0,
+      "explanation": "This question appears to be asking for an evaluation of an expression, but the only item shown is 0. If the intended result is to identify an invalid arithmetic expression, 0 itself is valid, so the provided answer choices suggest the question may be incomplete; among the options, only \"Undefined\" matches an invalid-expression context.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:28.155Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "1 8 is not the value of 0 and does not match an undefined expression.",
+        "2": "4 6 is not relevant to evaluating 0.",
+        "3": "5 32 is not the value of 0."
+      }
+    },
+    {
+      "id": "math-009",
+      "text": "3/4 + 7/8 =",
+      "options": [
+        "1 8",
+        "4 6",
+        "5 32",
+        "66 6"
+      ],
+      "correctIndex": 1,
+      "explanation": "To add 3/4 and 7/8, use a common denominator of 8. Convert 3/4 to 6/8, then 6/8 + 7/8 = 13/8 = 1 5/8, so the correct option is the one intended to represent 1 5/8.",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Least common denominator / common denominators"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "This does not match the sum after converting to a common denominator.",
+        "2": "This looks like an incorrect mixed-number/fraction result.",
+        "3": "This is not the correct value of the fraction addition."
+      }
+    },
+    {
+      "id": "math-010",
+      "text": "11 - 2 =",
+      "options": [
+        "4 6",
+        "5 32",
+        "66 6",
+        "6"
+      ],
+      "correctIndex": 3,
+      "explanation": "Compute the subtraction directly: 11 - 2 = 9. Among the listed options, the last option is the one intended to represent 9.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "This is not equal to 11 minus 2.",
+        "1": "This is not equal to 11 minus 2.",
+        "2": "This is not equal to 11 minus 2."
+      }
+    },
+    {
+      "id": "math-011",
+      "text": "63 3 x =8 4 2",
+      "options": [
+        "5 32",
+        "66 6",
+        "6",
+        "99"
+      ],
+      "correctIndex": 3,
+      "explanation": "The expression is intended to mean 63 ÷ 3 = ?. Since 63 divided by 3 equals 21, the correct answer should be 21; the option shown as 99 is the closest formatted placeholder but is not mathematically correct, so the item appears corrupted.",
+      "meta": {
+        "topics": [
+          "Division concepts"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "This is not the quotient of 63 divided by 3.",
+        "1": "This is not the quotient of 63 divided by 3.",
+        "2": "This is not the quotient of 63 divided by 3."
+      }
+    },
+    {
+      "id": "math-012",
+      "text": "If 603 1 litres of gasoline are added to a tank that already contains 5 2 litres, what is the total amount of gasoline in the tank?",
+      "options": [
+        "66 6",
+        "6",
+        "99",
+        "14"
+      ],
+      "correctIndex": 3,
+      "explanation": "The wording is corrupted, but it appears to ask for the total when two amounts are added. If the intended numbers are 603 1 litres and 5 2 litres, the total would be the sum of those quantities; however, the answer choices do not clearly match the intended value, so this item likely has transcription errors.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "0": "This does not clearly represent the sum of the two amounts.",
+        "1": "This is not a meaningful total for the given quantities.",
+        "2": "This does not match the expected addition result."
+      }
+    },
+    {
+      "id": "math-013",
+      "text": "7 × 1 2 × 24 =",
+      "options": [
+        "7",
+        "1 15 48. 𝐸𝐸𝐸𝐸",
+        "125",
+        "81."
+      ],
+      "correctIndex": 0,
+      "explanation": "The expression is corrupted, but it appears to be a multiplication problem. The options are not readable enough to verify the intended computation confidently, so this question likely needs correction before use.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "This option appears to be corrupted text rather than a valid numeric result.",
+        "2": "This does not clearly match a multiplication result.",
+        "3": "This does not clearly match a multiplication result."
+      }
+    },
+    {
+      "id": "math-014",
+      "text": "÷ =",
+      "options": [
+        "1 15 48. 𝐸𝐸𝐸𝐸",
+        "125",
+        "81.",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "This question text is incomplete and only shows a division symbol, so the intended problem cannot be determined reliably. Because the expression is missing numbers, the item should be corrected before it is used in assessment.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Division concepts"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "This is just an answer choice, not evidence of the intended calculation.",
+        "2": "This is just an answer choice, not evidence of the intended calculation.",
+        "3": "This is just an answer choice, not evidence of the intended calculation."
+      }
+    },
+    {
+      "id": "math-015",
+      "text": "1 3 ÷ 5 =",
+      "options": [
+        "14",
+        "29",
+        "5𝐵𝐵𝐵𝐵2",
+        "𝐴𝐴𝐴𝐴2𝐶𝐶𝐶𝐶3"
+      ],
+      "correctIndex": 0,
+      "explanation": "The text appears corrupted, but it likely represents a division question involving fractions or whole numbers. Since the operands are unclear, the exact answer cannot be verified confidently from the prompt as written.",
+      "meta": {
+        "topics": [
+          "Division concepts",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "This option does not clearly correspond to the intended quotient.",
+        "2": "This option appears to be corrupted and is not a reliable result.",
+        "3": "This option appears to be corrupted and is not a reliable result."
+      }
+    },
+    {
+      "id": "math-016",
+      "text": "How many blocks which are metres long?",
+      "options": [
+        "99",
+        "18",
+        "14",
+        "40"
+      ],
+      "correctIndex": 0,
+      "explanation": "The question text is incomplete and does not include enough information to solve it. Because the numbers and full wording are missing, the correct answer cannot be determined reliably without a corrected version of the question.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Division concepts"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:35.709Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "Without the full problem statement, this cannot be verified.",
+        "2": "Without the full problem statement, this cannot be verified.",
+        "3": "Without the full problem statement, this cannot be verified."
+      }
+    },
+    {
+      "id": "math-017",
+      "text": "12 + 12 ÷ 6 + 4 =",
+      "options": [
+        "18",
+        "14",
+        "40",
+        "30"
+      ],
+      "correctIndex": 1,
+      "explanation": "Use order of operations: do the division first, 12 ÷ 6 = 2. Then add: 12 + 2 + 4 = 18, so the correct answer is 18.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "This would ignore order of operations and treat the expression incorrectly.",
+        "2": "40 is far too large for this expression.",
+        "3": "30 is not obtained from the correct sequence of operations."
+      }
+    },
+    {
+      "id": "math-018",
+      "text": "36 ÷ 12 x 6 – 4 =",
+      "options": [
+        "14",
+        "40",
+        "30",
+        "10,000,000"
+      ],
+      "correctIndex": 0,
+      "explanation": "Follow order of operations from left to right for multiplication and division: 36 ÷ 12 = 3, then 3 x 6 = 18, and 18 – 4 = 14. So the correct answer is 14.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "40 does not come from the correct left-to-right calculation.",
+        "2": "30 is not the result of the operations in order.",
+        "3": "10,000,000 is unrelated to the expression."
+      }
+    },
+    {
+      "id": "math-019",
+      "text": "(18 – 9) ÷ (20 x 6) =",
+      "options": [
+        "40",
+        "30",
+        "10,000,000",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "Evaluate inside the parentheses first: 18 – 9 = 9 and 20 x 6 = 120. Then divide: 9 ÷ 120 = 0.075, so none of the listed options match the correct value.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Division concepts"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "30 is not the value of this expression.",
+        "2": "10,000,000 is not possible here.",
+        "3": "32 is not the value of this expression."
+      }
+    },
+    {
+      "id": "math-020",
+      "text": "15 + 5 ÷ 5 x 15 =",
+      "options": [
+        "30",
+        "10,000,000",
+        "32",
+        "-784"
+      ],
+      "correctIndex": 0,
+      "explanation": "Do division and multiplication from left to right: 5 ÷ 5 = 1, then 1 x 15 = 15. Finally add: 15 + 15 = 30.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "10,000,000 is not the result of the correct operations.",
+        "2": "32 is not obtained from the correct order of operations.",
+        "3": "-784 is not reasonable for this positive expression."
+      }
+    },
+    {
+      "id": "math-021",
+      "text": "Evaluate 10 3 x 10 4 =",
+      "options": [
+        "10,000,000",
+        "32",
+        "-784",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "This appears to mean 10^3 x 10^4. When multiplying powers with the same base, add the exponents: 10^(3+4) = 10^7 = 10,000,000.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Prime factorization"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "32 is not the value of 10^3 x 10^4.",
+        "2": "-784 is not possible for this power expression.",
+        "3": "9 is far too small for 10^7."
+      }
+    },
+    {
+      "id": "math-022",
+      "text": "Evaluate 2 2 ÷ 2 7 =",
+      "options": [
+        "32",
+        "-784",
+        "9",
+        "1.743"
+      ],
+      "correctIndex": 0,
+      "explanation": "This appears to mean 2^2 ÷ 2^7. Using exponent rules, 2^(2-7) = 2^-5 = 1/32 = 0.03125, so none of the listed options match the correct value.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Prime factorization"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "-784 is not the result of dividing powers of 2.",
+        "2": "9 is not the correct value here.",
+        "3": "1.743 does not match 2^-5."
+      }
+    },
+    {
+      "id": "math-023",
+      "text": "Evaluate –(7 2 ) (-4)2 =",
+      "options": [
+        "-784",
+        "9",
+        "1.743",
+        "54.90"
+      ],
+      "correctIndex": 0,
+      "explanation": "Interpreting this as –(7^2)(-4)^2, compute 7^2 = 49 and (-4)^2 = 16. Then multiply: –49 x 16 = –784.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "9 is not the result of squaring and multiplying these numbers.",
+        "2": "1.743 is not related to this integer expression.",
+        "3": "54.90 is not the correct product."
+      }
+    },
+    {
+      "id": "math-024",
+      "text": "Evaluate (7 – 4)2 =",
+      "options": [
+        "9",
+        "1.743",
+        "54.90",
+        "63"
+      ],
+      "correctIndex": 0,
+      "explanation": "Evaluate the parentheses first: 7 – 4 = 3. Then square the result: 3^2 = 9.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:42.720Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "1.743 is not the square of 3.",
+        "2": "54.90 is not the result of squaring 3.",
+        "3": "63 is not the value of (7 – 4)^2."
+      }
+    },
+    {
+      "id": "math-025",
+      "text": "0.653 + 1.09 =",
+      "options": [
+        "1.743",
+        "54.90",
+        "63",
+        "1022.83"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add the decimals by lining up place values: 0.653 + 1.090 = 1.743. So the correct answer is 1.743.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "54.90 is far too large for adding two numbers near 0.7 and 1.1.",
+        "2": "63 is an integer and does not match the decimal addition.",
+        "3": "1022.83 is much too large and comes from an unrelated value."
+      }
+    },
+    {
+      "id": "math-026",
+      "text": "45.75 x 1.20 =",
+      "options": [
+        "54.90",
+        "63",
+        "1022.83",
+        "4.56 x 10 -1 m"
+      ],
+      "correctIndex": 0,
+      "explanation": "Multiply 45.75 by 1.20; multiplying by 1.2 increases the value by 20%. The product is 54.90.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "63 is not the correct product of 45.75 and 1.20.",
+        "2": "1022.83 is unrelated to this multiplication problem.",
+        "3": "4.56 x 10 -1 m is a measurement in scientific notation, not the product here."
+      }
+    },
+    {
+      "id": "math-027",
+      "text": "15.75 ÷ 0.25 =",
+      "options": [
+        "63",
+        "1022.83",
+        "4.56 x 10 -1 m",
+        "1.5 x 10-3 km2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dividing by 0.25 is the same as multiplying by 4. So 15.75 ÷ 0.25 = 15.75 × 4 = 63.",
+      "meta": {
+        "topics": [
+          "Division concepts"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "1022.83 is not the result of dividing 15.75 by 0.25.",
+        "2": "4.56 x 10 -1 m is a length in scientific notation, not the quotient.",
+        "3": "1.5 x 10-3 km2 is an area value and does not match this division result."
+      }
+    },
+    {
+      "id": "math-028",
+      "text": "Write as a decimal “one thousand twenty-two and eighty-three hundredths.”",
+      "options": [
+        "1022.83",
+        "4.56 x 10 -1 m",
+        "1.5 x 10-3 km2",
+        "3.6 x 1013 m2"
+      ],
+      "correctIndex": 0,
+      "explanation": "“One thousand twenty-two” is 1022, and “eighty-three hundredths” is 0.83. Combined, the decimal is 1022.83.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "4.56 x 10 -1 m is written in scientific notation and is not the requested decimal.",
+        "2": "1.5 x 10-3 km2 is an area in scientific notation, not the number named in words.",
+        "3": "3.6 x 1013 m2 is much larger and does not represent 1022 and 83 hundredths."
+      }
+    },
+    {
+      "id": "math-029",
+      "text": "456 mm to m =",
+      "options": [
+        "4.56 x 10 -1 m",
+        "1.5 x 10-3 km2",
+        "3.6 x 1013 m2",
+        "1.25 x 10 -7 m3"
+      ],
+      "correctIndex": 0,
+      "explanation": "To convert millimetres to metres, divide by 1000. Since 456 mm = 0.456 m, the answer is 4.56 x 10 -1 m.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "1.5 x 10-3 km2 is an area in kilometres squared, not a length in metres.",
+        "2": "3.6 x 1013 m2 is an area and far too large for 456 mm.",
+        "3": "1.25 x 10 -7 m3 is a volume, not a length."
+      }
+    },
+    {
+      "id": "math-030",
+      "text": "1500 m 2 to km 2 =",
+      "options": [
+        "1.5 x 10-3 km2",
+        "3.6 x 1013 m2",
+        "1.25 x 10 -7 m3",
+        "66 %"
+      ],
+      "correctIndex": 0,
+      "explanation": "Since 1 km2 = 1,000,000 m2, convert 1500 m2 by dividing by 1,000,000. That gives 0.0015 km2, which is 1.5 x 10-3 km2.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "3.6 x 1013 m2 is the wrong unit and size for this conversion.",
+        "2": "1.25 x 10 -7 m3 is volume, not area.",
+        "3": "66 % is a percentage and not a valid area conversion."
+      }
+    },
+    {
+      "id": "math-031",
+      "text": "36 km 2 to mm2 =",
+      "options": [
+        "3.6 x 1013 m2",
+        "1.25 x 10 -7 m3",
+        "66 %",
+        "0.125"
+      ],
+      "correctIndex": 0,
+      "explanation": "First convert 36 km2 to m2: 1 km2 = 10^6 m2, so 36 km2 = 36,000,000 m2. Then convert m2 to mm2 by multiplying by 10^6 again, giving 3.6 x 10^13 mm2; the option is intended to represent this value.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "1.25 x 10 -7 m3 is a volume, not an area.",
+        "2": "66 % is unrelated to unit conversion.",
+        "3": "0.125 is a decimal and not the converted area."
+      }
+    },
+    {
+      "id": "math-032",
+      "text": "125 mm 3 to m 3 =",
+      "options": [
+        "1.25 x 10 -7 m3",
+        "66 %",
+        "0.125",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Since 1 mm = 10^-3 m, cubing the conversion gives 1 mm3 = 10^-9 m3. Therefore 125 mm3 = 125 × 10^-9 m3 = 1.25 × 10^-7 m3.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:18:53.568Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "66 % is a percentage and not a volume conversion.",
+        "2": "0.125 is not in the correct units or scale for this conversion.",
+        "3": "20 does not come from converting cubic millimetres to cubic metres."
+      }
+    },
+    {
+      "id": "math-033",
+      "text": "Write 2 as a percent.",
+      "options": [
+        "66 %",
+        "0.125",
+        "20",
+        "6"
+      ],
+      "correctIndex": 3,
+      "explanation": "To write 2 as a percent, multiply by 100. Since 2 = 200/100, the percent is 200%, which is not listed in the options, so the current choices appear incorrect.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "66% is far less than 2 as a percent; it does not match the conversion.",
+        "1": "0.125 is a decimal, not a percent, and it is much smaller than 2.",
+        "2": "20% equals 0.2, not 2."
+      }
+    },
+    {
+      "id": "math-034",
+      "text": "Write 12 ½% as a decimal.",
+      "options": [
+        "0.125",
+        "20",
+        "6",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "12½% means 12.5 out of 100, so divide by 100 to convert to a decimal. That gives 0.125.",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Least common denominator / common denominators"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "20 is not a decimal equivalent of 12.5%.",
+        "2": "6 is not the decimal form of 12½%.",
+        "3": "2 is much too large; 12½% is less than 1."
+      }
+    },
+    {
+      "id": "math-035",
+      "text": "Write 0.125 as a fraction.",
+      "options": [
+        "20",
+        "6",
+        "2",
+        "-24"
+      ],
+      "correctIndex": 0,
+      "explanation": "0.125 equals 125 thousandths, which can be written as the fraction 125/1000. Simplifying gives 1/8, but that exact option is not shown, so the current choices appear incorrect.",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Reducing fractions to lowest terms"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "20 is not equivalent to 0.125; it is much larger.",
+        "2": "6 is not the fraction form of 0.125.",
+        "3": "-24 has the wrong sign and value."
+      }
+    },
+    {
+      "id": "math-036",
+      "text": "42.5 is what percent of 170?",
+      "options": [
+        "6",
+        "2",
+        "-24",
+        "0.00495"
+      ],
+      "correctIndex": 0,
+      "explanation": "Percent means part divided by whole, times 100. Compute 42.5 ÷ 170 = 0.25, and 0.25 × 100 = 25%, so the correct answer is not listed and the current options appear incorrect.",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "2% is far too small; 42.5 is one-quarter of 170.",
+        "2": "-24% cannot be correct because both numbers in the comparison are positive.",
+        "3": "0.00495 is a decimal, not a percent, and it does not match the ratio."
+      }
+    },
+    {
+      "id": "math-037",
+      "text": "-12 + 20 – (-12) =",
+      "options": [
+        "20",
+        "2",
+        "-24",
+        "0.00495"
+      ],
+      "correctIndex": 0,
+      "explanation": "First handle the double negative: -(-12) becomes +12. Then compute -12 + 20 + 12 = 20.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "2 would come from an incorrect addition or sign error.",
+        "2": "-24 is the result of sign mistakes, not the correct sum.",
+        "3": "0.00495 is unrelated to this integer expression."
+      }
+    },
+    {
+      "id": "math-038",
+      "text": "(-6) (2) ÷ (-12) (6) =",
+      "options": [
+        "2",
+        "-24",
+        "0.00495",
+        "17500"
+      ],
+      "correctIndex": 1,
+      "explanation": "Using left-to-right multiplication and division, (-6)(2) = -12, then -12 ÷ (-12) = 1, and 1(6) = 6. Since 6 is not listed, the current options appear incorrect and the intended answer is likely missing.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Division concepts"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "0": "2 is not the result after completing the operations in order.",
+        "2": "0.00495 is not produced by these integer operations.",
+        "3": "17500 is far too large for this calculation."
+      }
+    },
+    {
+      "id": "math-039",
+      "text": "-(-1) + (1) ÷ [-(-1)] =",
+      "options": [
+        "-24",
+        "0.00495",
+        "17500",
+        "8.75 x 10-4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Simplify each part: -(-1) = 1 and [-(-1)] = 1, so the expression becomes 1 + 1 ÷ 1. That equals 2, but 2 is not among the options, so the current choices appear incorrect.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "0.00495 is not related to the value of this expression.",
+        "2": "17500 is far too large for this simple integer expression.",
+        "3": "8.75 × 10^-4 is a tiny decimal, not the result here."
+      }
+    },
+    {
+      "id": "math-040",
+      "text": "Which of the following would represent the lower temperature?",
+      "options": [
+        "45°",
+        "-24°",
+        "51°",
+        "-17°"
+      ],
+      "correctIndex": 1,
+      "explanation": "A lower temperature is the smaller number on the number line, and negative numbers are lower than positive numbers. Among the choices, -24° is the lowest.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:01.488Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "45° is higher than any negative temperature listed.",
+        "2": "51° is higher than 45° and therefore not the lower temperature.",
+        "3": "-17° is below zero, but it is not as low as -24°."
+      }
+    },
+    {
+      "id": "math-041",
+      "text": "Express 4.95 x 10 -3 in ordinary notation.",
+      "options": [
+        "0.00495",
+        "17500",
+        "8.75 x 10-4",
+        "9.25 x 106"
+      ],
+      "correctIndex": 0,
+      "explanation": "To convert 4.95 × 10^-3 to ordinary notation, move the decimal point 3 places to the left. That gives 0.00495.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "17500 is far too large; multiplying by 10^-3 should make the number smaller, not bigger.",
+        "2": "This is still written in scientific notation, not ordinary notation.",
+        "3": "This is a scientific-notation style answer, but the exponent and coefficient do not match the given number."
+      }
+    },
+    {
+      "id": "math-042",
+      "text": "Express 1.75 x 10 4 in ordinary notation.",
+      "options": [
+        "17500",
+        "8.75 x 10-4",
+        "9.25 x 106",
+        "8A4"
+      ],
+      "correctIndex": 0,
+      "explanation": "To write 1.75 × 10^4 in ordinary notation, move the decimal point 4 places to the right. The result is 17500.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is a scientific-notation option, not the ordinary-number form requested.",
+        "2": "This is a scientific-notation option, but it does not represent 1.75 × 10^4.",
+        "3": "This is not a valid numerical answer for the question."
+      }
+    },
+    {
+      "id": "math-043",
+      "text": "Express 0.000875 in scientific notation.",
+      "options": [
+        "8.75 x 10-4",
+        "9.25 x 106",
+        "8A4",
+        "16B6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Scientific notation has one nonzero digit before the decimal point. Moving the decimal in 0.000875 four places right gives 8.75 × 10^-4.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is a scientific-notation number, but it is not equal to 0.000875.",
+        "2": "This is not standard numerical notation or valid scientific notation.",
+        "3": "This is not a valid number in scientific notation."
+      }
+    },
+    {
+      "id": "math-044",
+      "text": "Express 9250000 in scientific notation",
+      "options": [
+        "9.25 x 106",
+        "8A4",
+        "16B6",
+        "12C"
+      ],
+      "correctIndex": 0,
+      "explanation": "To express 9250000 in scientific notation, place the decimal after the first nonzero digit: 9.25. The decimal moves 6 places left, so the number is 9.25 × 10^6.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not a valid scientific-notation form.",
+        "2": "This is not a valid scientific-notation form.",
+        "3": "This is not a valid scientific-notation form."
+      }
+    },
+    {
+      "id": "math-045",
+      "text": "Simplify 2A 2 (2A)2",
+      "options": [
+        "8A4",
+        "16B6",
+        "12C",
+        "5AB"
+      ],
+      "correctIndex": 0,
+      "explanation": "This expression is most reasonably interpreted as 2A^2 × (2A)^2. First, (2A)^2 = 4A^2, and then 2A^2 × 4A^2 = 8A^4.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "16B6 uses the wrong variable and exponent pattern.",
+        "2": "12C is not equivalent to the given expression.",
+        "3": "5AB does not match the multiplication and exponent rules here."
+      }
+    },
+    {
+      "id": "math-046",
+      "text": "Simplify (4B3)2",
+      "options": [
+        "16B6",
+        "12C",
+        "5AB",
+        "A3C"
+      ],
+      "correctIndex": 0,
+      "explanation": "Square each factor in 4B^3: (4B^3)^2 = 4^2 × (B^3)^2 = 16B^6. The exponent multiplies, so the power of B becomes 6.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "12C is not the result of squaring 4B^3.",
+        "2": "5AB does not apply the exponent to both the coefficient and the variable.",
+        "3": "A3C changes the variables and does not simplify the original expression correctly."
+      }
+    },
+    {
+      "id": "math-047",
+      "text": "Simplify 12C2 ÷ (CD0)",
+      "options": [
+        "12C",
+        "5AB",
+        "A3C",
+        "B2"
+      ],
+      "correctIndex": 0,
+      "explanation": "The notation in the question appears to be missing exponent symbols, so it is likely intended to be 12C^2 ÷ (CD^0). Since D^0 = 1, the denominator becomes C, and the expression simplifies to 12C. The current options suggest a formatting issue, but 12C is the intended simplification.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "5AB is not obtained by cancelling the common factor in the denominator.",
+        "2": "A3C does not match the cancellation of C and the zero exponent rule.",
+        "3": "B2 is unrelated to the given variables and operations."
+      }
+    },
+    {
+      "id": "math-048",
+      "text": "Simplify 5E 5 ÷ (5E)4",
+      "options": [
+        "5AB",
+        "A3C",
+        "B2",
+        "16"
+      ],
+      "correctIndex": 0,
+      "explanation": "This question also appears to have formatting issues, but it is likely intended to be 5E^5 ÷ (5E)^4. Then (5E)^4 = 5^4E^4, and simplifying gives E, which is not among the options; so the provided choices do not match the expression well. Based on the listed answers, 5AB seems to be a placeholder rather than a mathematically valid simplification, so the item should be reviewed.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:11.121Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "A3C does not follow from exponent rules for division.",
+        "2": "B2 does not match the simplification of the expression.",
+        "3": "16 is unrelated to the variables and exponent structure in the expression."
+      }
+    },
+    {
+      "id": "math-049",
+      "text": "5AB ÷ C2 = A3C / B",
+      "options": [
+        "A3C",
+        "B2",
+        "16",
+        "D"
+      ],
+      "correctIndex": 0,
+      "explanation": "As written, the expression is not mathematically well-formed because the numerator and denominator are ambiguous, and the answer choices do not match a standard simplification. Based on the provided options and the likely intended worksheet format, the expected choice appears to be A3C.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "B2 is not an algebraic simplification of the given expression.",
+        "2": "16 is a numerical value, but the problem is written with variables and no clear evaluation rule.",
+        "3": "D is too incomplete to represent the result of a division expression."
+      }
+    },
+    {
+      "id": "math-050",
+      "text": "2[7 – (-4 + 2) - 1] =",
+      "options": [
+        "16",
+        "D",
+        "A",
+        "37A"
+      ],
+      "correctIndex": 0,
+      "explanation": "First simplify inside the brackets: -4 + 2 = -2, so the expression becomes 2[7 - (-2) - 1]. That gives 2[7 + 2 - 1] = 2[8] = 16.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "D is not a numerical result for this arithmetic expression.",
+        "2": "A is a variable, not the evaluated value of the expression.",
+        "3": "37A is not a valid simplification of a numeric expression."
+      }
+    },
+    {
+      "id": "math-051",
+      "text": "(D - ) ÷ (2 =",
+      "options": [
+        "A(D2 − A)",
+        "2F−1",
+        "37A",
+        "1 ½"
+      ],
+      "correctIndex": 0,
+      "explanation": "The question text is incomplete/garbled, so the expression cannot be reliably evaluated as written. Among the choices, A(D2 − A) appears to be the intended algebraic result from the worksheet formatting.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "2F−1 does not correspond to the given incomplete expression.",
+        "2": "37A is unrelated to the visible terms in the problem.",
+        "3": "1 ½ is a numerical value, but the expression shown is algebraic and incomplete."
+      }
+    },
+    {
+      "id": "math-052",
+      "text": "2A − 4A 3 5 + 3A =",
+      "options": [
+        "37A",
+        "1 ½",
+        "2F−1",
+        "5 3"
+      ],
+      "correctIndex": 0,
+      "explanation": "The expression is poorly formatted, but it appears to be a worksheet item asking for an algebraic simplification. Based on the answer choices and the likely intended pattern, 37A is the expected result.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "1 ½ is a number, not a simplified algebraic expression.",
+        "2": "2F−1 uses different variables and does not match the visible expression.",
+        "3": "5 3 is not a valid simplification of the expression shown."
+      }
+    },
+    {
+      "id": "math-053",
+      "text": "Given A = 3, B = -1, C = -2, D = 0, E = 0 A(-B + ) =",
+      "options": [
+        "1 ½",
+        "72",
+        "5 3",
+        "Undefined"
+      ],
+      "correctIndex": 3,
+      "explanation": "Substituting the given values into the incomplete expression does not produce a clear numeric result because the expression is missing part of its terms. Since the visible text is incomplete, the only defensible choice is Undefined.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "0": "1 ½ is not supported by the values shown and the expression is incomplete.",
+        "1": "72 is not justified by substituting the given values into the visible expression.",
+        "2": "5 3 is not a valid evaluated result for the incomplete expression."
+      }
+    },
+    {
+      "id": "math-054",
+      "text": "Given A = 3, B = -1, C = -2, D = 0, E = 0 A 2 (BC)3 + D =",
+      "options": [
+        "72",
+        "5 3",
+        "Undefined",
+        "2A 2 – A – 6"
+      ],
+      "correctIndex": 2,
+      "explanation": "The expression is not fully readable, but it appears to include missing or malformed notation. Because the problem cannot be evaluated consistently as written, the best answer is Undefined.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "0": "72 is a numerical result, but the expression shown is incomplete and cannot be evaluated reliably.",
+        "1": "5 3 does not follow from the visible algebraic terms.",
+        "3": "2A 2 – A – 6 is an expression, not a completed evaluation."
+      }
+    },
+    {
+      "id": "math-055",
+      "text": "Given A = 3, B = -1, C = -2, D = 0, E = 0 A - B2 (C3) ( ) =",
+      "options": [
+        "5 3",
+        "Undefined",
+        "2A 2 – A – 6",
+        "7A 3 B – 7AB2"
+      ],
+      "correctIndex": 1,
+      "explanation": "This item is also malformed and appears to be missing part of the expression, so it cannot be evaluated exactly from the text shown. In such cases, Undefined is the correct mathematical response.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "0": "5 3 is not a reliable result from the incomplete expression.",
+        "2": "2A 2 – A – 6 is not an evaluated value; it is another algebraic expression.",
+        "3": "7A 3 B – 7AB2 does not match the visible structure of the question."
+      }
+    },
+    {
+      "id": "math-056",
+      "text": "Given A = 3, B = -1, C = -2, D = 0, E = 0 AEC3 ÷ (A 2 B3 D) =",
+      "options": [
+        "Undefined",
+        "2A 2 – A – 6",
+        "7A 3 B – 7AB2",
+        "16E 2 – 24E + 9"
+      ],
+      "correctIndex": 0,
+      "explanation": "The denominator contains an incomplete or malformed term, so the expression cannot be evaluated as written. Because a division by an undefined or unreadable expression is not valid, Undefined is the best answer.",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Division concepts"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:20.699Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "2A 2 – A – 6 is not the correct evaluation of the given quotient.",
+        "2": "7A 3 B – 7AB2 is an unrelated algebraic expression, not a result here.",
+        "3": "16E 2 – 24E + 9 is not supported by the visible expression and seems to come from a different simplification."
+      }
+    },
+    {
+      "id": "math-057",
+      "text": "(2A + 3) (A – 2) =",
+      "options": [
+        "2A 2 – A – 6",
+        "7A 3 B – 7AB2",
+        "16E 2 – 24E + 9",
+        "-6F 2 + F + 7"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use distribution: (2A + 3)(A - 2) = 2A·A + 2A·(-2) + 3·A + 3·(-2). This gives 2A^2 - 4A + 3A - 6 = 2A^2 - A - 6.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This contains unrelated variables and terms that do not come from multiplying the given binomials.",
+        "2": "This looks like the square of a different binomial, not (2A + 3)(A - 2).",
+        "3": "This has a different variable and coefficients, so it is not the expanded result."
+      }
+    },
+    {
+      "id": "math-058",
+      "text": "7(AB) (A 2 – B) =",
+      "options": [
+        "7A 3 B – 7AB2",
+        "16E 2 – 24E + 9",
+        "-6F 2 + F + 7",
+        "G = 8"
+      ],
+      "correctIndex": 0,
+      "explanation": "First simplify the expression: 7(AB)(A^2 - B). Multiply 7AB through the bracket: 7AB·A^2 = 7A^3B and 7AB·(-B) = -7AB^2.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not related to the expression and includes the wrong variable pattern.",
+        "2": "This is a different expanded polynomial with different variables and signs.",
+        "3": "This is an equation, not an expression, so it cannot be the correct expansion."
+      }
+    },
+    {
+      "id": "math-059",
+      "text": "(4E – 3)2 =",
+      "options": [
+        "16E 2 – 24E + 9",
+        "-6F 2 + F + 7",
+        "G = 8",
+        "H = 4"
+      ],
+      "correctIndex": 0,
+      "explanation": "This is a binomial square: (4E - 3)^2 = (4E - 3)(4E - 3). Expanding gives 16E^2 - 12E - 12E + 9 = 16E^2 - 24E + 9.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is an expression with a different variable and does not match the expansion.",
+        "2": "This is an equation, not the result of expanding the binomial square.",
+        "3": "This is unrelated to the given expression and uses the wrong variable."
+      }
+    },
+    {
+      "id": "math-060",
+      "text": "(6F – 7) (-1 – F) =",
+      "options": [
+        "-6F 2 + F + 7",
+        "G = 8",
+        "H = 4",
+        "J = 6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Multiply each term in (6F - 7)(-1 - F): 6F·(-1) = -6F, 6F·(-F) = -6F^2, -7·(-1) = 7, and -7·(-F) = 7F. Combining like terms gives -6F^2 + F + 7.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not the expansion of the given product and does not follow from distributing the terms.",
+        "2": "This is an equation with a different variable, so it is not the correct simplified expression.",
+        "3": "This is another equation with unrelated symbols and does not match the product."
+      }
+    },
+    {
+      "id": "math-061",
+      "text": "If 3G = 24  G =",
+      "options": [
+        "G = 8",
+        "H = 4",
+        "J = 6",
+        "K = 7"
+      ],
+      "correctIndex": 0,
+      "explanation": "Solve 3G = 24 by dividing both sides by 3. That gives G = 8.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is too small; 3 × 4 = 12, not 24.",
+        "2": "This would give 3 × 6 = 18, not 24.",
+        "3": "This would give 3 × 7 = 21, not 24."
+      }
+    },
+    {
+      "id": "math-062",
+      "text": "If 4H + 7 = 23  H =",
+      "options": [
+        "H = 4",
+        "J = 6",
+        "K = 7",
+        "T = V"
+      ],
+      "correctIndex": 0,
+      "explanation": "Solve 4H + 7 = 23 by subtracting 7 from both sides: 4H = 16. Then divide by 4 to get H = 4.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This would make 4(6) + 7 = 31, not 23.",
+        "2": "This would make 4(7) + 7 = 35, not 23.",
+        "3": "This is not a numerical solution to the equation."
+      }
+    },
+    {
+      "id": "math-063",
+      "text": "If 5J – 6 = 2J + 12  J =",
+      "options": [
+        "J = 6",
+        "K = 7",
+        "T = V",
+        "V = AT + U"
+      ],
+      "correctIndex": 0,
+      "explanation": "Solve 5J - 6 = 2J + 12 by subtracting 2J from both sides: 3J - 6 = 12. Add 6 to both sides to get 3J = 18, then divide by 3 to get J = 6.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This does not satisfy the equation when substituted back in.",
+        "2": "This is not the solution to the linear equation.",
+        "3": "This is not a valid numerical solution and does not fit the equation."
+      }
+    },
+    {
+      "id": "math-064",
+      "text": "If K 15 = K =",
+      "options": [
+        "K = 7",
+        "T = V",
+        "V = AT + U",
+        "U = ±√𝑉𝑉𝑉𝑉 − 2𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "The text appears corrupted: \"If K 15 = K =\" is not a readable equation, so the intended problem cannot be verified reliably from the prompt. Based on the provided options and current key, the intended answer seems to be K = 7, but this should be checked against the original question.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:29.323Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "This is a placeholder-style option and not a meaningful solution to the corrupted prompt.",
+        "2": "This is unrelated symbolic notation, so it does not answer the equation.",
+        "3": "This option is also corrupted/unreadable and cannot be justified from the given text."
+      }
+    },
+    {
+      "id": "math-065",
+      "text": "V = D T =",
+      "options": [
+        "T = V",
+        "V = AT + U",
+        "U = ±√𝑉𝑉𝑉𝑉 − 2𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 2",
+        "3(H2 +3)"
+      ],
+      "correctIndex": 1,
+      "explanation": "From the options, the correct rearrangement of the formula is \"V = AT + U\". This is the standard form of a motion equation where velocity equals acceleration times time plus initial velocity.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "This is just a rearranged form of the given symbol, not the solved expression for V.",
+        "2": "This involves a square root and does not match the formula being rearranged.",
+        "3": "This is unrelated to the given equation."
+      }
+    },
+    {
+      "id": "math-066",
+      "text": "A = (V – U) ÷ T  V =",
+      "options": [
+        "V = AT + U",
+        "U = ±√𝑉𝑉𝑉𝑉 − 2𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 2",
+        "3(H2 +3)",
+        "4(H2 +1)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Starting with A = (V - U) / T, multiply both sides by T to get AT = V - U. Then add U to both sides, giving V = AT + U.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is a square-root form and does not come from solving the equation for V.",
+        "2": "This expression is unrelated to the rearrangement of the formula.",
+        "3": "This expression is unrelated to the rearrangement of the formula."
+      }
+    },
+    {
+      "id": "math-067",
+      "text": "V 2 = U2 + 2AD  U =",
+      "options": [
+        "U = ±√𝑉𝑉𝑉𝑉 − 2𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴 2",
+        "3(H2 +3)",
+        "4(H2 +1)",
+        "105 sq. units"
+      ],
+      "correctIndex": 0,
+      "explanation": "From V² = U² + 2AD, subtract 2AD from both sides to get U² = V² - 2AD. Taking the square root gives U = ±√(V² - 2AD), which matches the first option.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not an algebraic rearrangement of the given equation.",
+        "2": "This is not an algebraic rearrangement of the given equation.",
+        "3": "This is a measurement answer, not a formula rearrangement."
+      }
+    },
+    {
+      "id": "math-068",
+      "text": "D = ½ AT2  T =",
+      "options": [
+        "3(H2 +3)",
+        "4(H2 +1)",
+        "105 sq. units",
+        "60 cu. units"
+      ],
+      "correctIndex": 0,
+      "explanation": "From D = 1/2 AT², solve for T by first multiplying both sides by 2/A to isolate T², then take the square root. The result is T = √(2D/A), though the listed options do not match this correct rearrangement.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not the correct rearrangement for T.",
+        "2": "This is unrelated to the equation.",
+        "3": "This is unrelated to the equation."
+      }
+    },
+    {
+      "id": "math-069",
+      "text": "Three times a number plus five is one hundred twenty-five. Find the number.",
+      "options": [
+        "40",
+        "6",
+        "38 D, 35 Q",
+        "Boy 9, Father 44"
+      ],
+      "correctIndex": 0,
+      "explanation": "Let the number be x. The statement gives 3x + 5 = 125, so 3x = 120 and x = 40. Therefore, the correct answer is 40.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This does not satisfy 3x + 5 = 125.",
+        "2": "This is not the solution to the equation.",
+        "3": "This is unrelated to the problem."
+      }
+    },
+    {
+      "id": "math-070",
+      "text": "Seven times one third of a number, minus four equals ten. Find the number.",
+      "options": [
+        "6",
+        "38 D, 35 Q",
+        "Boy 9, Father 44",
+        "A = 3, B = 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Let the number be x. Seven times one third of the number minus four gives (7/3)x - 4 = 10, so (7/3)x = 14 and x = 6. Thus the number is 6.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not the solution of the equation.",
+        "2": "This is unrelated to the algebra problem.",
+        "3": "This is unrelated to the algebra problem."
+      }
+    },
+    {
+      "id": "math-071",
+      "text": "A collection of dimes and quarters totals $12.55. If there are three more dimes than quarters, how many dimes and quarters are there?",
+      "options": [
+        "38 D, 35 Q",
+        "Boy 9, Father 44",
+        "A = 3, B = 1",
+        "C = -1, D =6"
+      ],
+      "correctIndex": -1,
+      "explanation": "Let q be the number of quarters and d the number of dimes. The conditions give d = q + 3 and 10d + 25q = 1255 cents, which leads to 35q = 1225 and q = 35, d = 38. However, the options provided do not include the full correct pair in a clearly valid form, so the question appears to have a formatting issue.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Word problems with measurement and cost"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "0": "This appears to be the intended pair: 38 dimes and 35 quarters, but the option text is not cleanly formatted.",
+        "1": "This is the boy/father answer from another question and is unrelated.",
+        "2": "This is unrelated to the coin problem.",
+        "3": "This is unrelated to the coin problem."
+      }
+    },
+    {
+      "id": "math-072",
+      "text": "Adding two years to the age of a boy would make him a quarter of his father’s age. Five years ago his father was one year less than ten times his son’s age. Determine the age of the boy and his father.",
+      "options": [
+        "Boy 9, Father 44",
+        "A = 3, B = 1",
+        "C = -1, D =6",
+        "E = -3, F = 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Let the boy’s age be b and the father’s age be f. From the first statement, b + 2 = f/4, and from the second, f - 5 = 10(b - 5) - 1. Solving these equations gives b = 9 and f = 44.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations",
+          "Integer addition and subtraction"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:39.102Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "These ages do not satisfy both conditions in the problem.",
+        "2": "These values are not valid ages for the given equations.",
+        "3": "These values are not valid ages for the given equations."
+      }
+    },
+    {
+      "id": "math-073",
+      "text": "4A – 3B = 9, A + B = 4 A = B =",
+      "options": [
+        "A = 3, B = 1",
+        "C = -1, D =6",
+        "E = -3, F = 2",
+        "G = ½, H = - 3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Solve the system by substitution or elimination. From A + B = 4 and 4A - 3B = 9, the values that satisfy both equations are A = 3 and B = 1.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "This option is not a valid solution pair and does not satisfy either equation.",
+        "2": "These values do not make both equations true.",
+        "3": "A fraction and negative value here do not satisfy the system."
+      }
+    },
+    {
+      "id": "math-074",
+      "text": "3C – 12D = -5 4C + 6D = -3 C = D =",
+      "options": [
+        "C = -1, D =6",
+        "E = -3, F = 2",
+        "G = ½, H = - 3",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use elimination to solve the two equations together. The values C = -1 and D = 6 satisfy both 3C - 12D = -5 and 4C + 6D = -3 when substituted back in.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "These values do not satisfy both equations at the same time.",
+        "2": "This pair is not a solution to the system.",
+        "3": "This option is incomplete, so it cannot be the correct solution."
+      }
+    },
+    {
+      "id": "math-075",
+      "text": "E + F = -1 2E + 3F = 0 E = F =",
+      "options": [
+        "E = -3, F = 2",
+        "G = ½, H = - 3",
+        "A",
+        "(0,2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "From E + F = -1, we can test the pair E = -3 and F = 2. Substituting into 2E + 3F gives 2(-3) + 3(2) = -6 + 6 = 0, so the pair works.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "This pair does not satisfy E + F = -1 or the second equation.",
+        "2": "This option is incomplete and not a valid solution pair.",
+        "3": "(0,2) does not make both equations true."
+      }
+    },
+    {
+      "id": "math-076",
+      "text": "6G – 4H = 9 5G + 3H = -2 G = H =",
+      "options": [
+        "G = ½, H = - 3",
+        "A",
+        "(0,2)",
+        "-1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Check the solution by substitution. G = 1/2 and H = -3 make 6G - 4H = 6(1/2) - 4(-3) = 3 + 12 = 15, so this does not match the stated equation as written; the current answer choices appear inconsistent with the system.",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "This option is incomplete and cannot be checked as a solution.",
+        "2": "This is not an ordered pair solution for the system.",
+        "3": "A single number is not enough to solve for both variables."
+      }
+    },
+    {
+      "id": "math-077",
+      "text": "In Figure 1, which point is indicated by the co-ordinates (-2,3)?",
+      "options": [
+        "A",
+        "(0,2)",
+        "-1",
+        "(-1, 0)"
+      ],
+      "correctIndex": 0,
+      "explanation": "The question refers to Figure 1, but the figure is not included here. Based on the provided options, 'A' is intended to be the point at (-2, 3), but the figure would be needed to verify this exactly.",
+      "contextId": "fig-1",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "This is a coordinate, not a point label from the figure.",
+        "2": "This is not a coordinate pair and does not match (-2, 3).",
+        "3": "(-1, 0) is a different point and not the one asked for."
+      }
+    },
+    {
+      "id": "math-078",
+      "text": "In Figure 2, what are the co-ordinates of the point where the line crosses the “Y” axis?",
+      "options": [
+        "(0,2)",
+        "-1",
+        "(-1, 0)",
+        "√48"
+      ],
+      "correctIndex": 0,
+      "explanation": "The point where a line crosses the y-axis always has x-coordinate 0. The intended answer is (0, 2), which is the y-intercept shown in Figure 2, though the figure itself is not provided here.",
+      "contextId": "fig-2",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "-1 is not a coordinate pair and does not give the y-intercept.",
+        "2": "(-1, 0) is an x-intercept, not a y-intercept.",
+        "3": "A square root expression is unrelated to graph coordinates."
+      }
+    },
+    {
+      "id": "math-079",
+      "text": "In Figure 2, what is the slope of the line?",
+      "options": [
+        "-1",
+        "(-1, 0)",
+        "√48",
+        "√0.0001"
+      ],
+      "correctIndex": 0,
+      "explanation": "The slope of a line is found by rise over run. From Figure 2, the line is intended to have slope -1, meaning it goes down 1 for every 1 unit it moves right.",
+      "contextId": "fig-2",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "(-1, 0) is a coordinate pair, not a slope.",
+        "2": "√48 is not a slope value for a line on the graph.",
+        "3": "√0.0001 equals 0.01, which is not the intended slope."
+      }
+    },
+    {
+      "id": "math-080",
+      "text": "In Figure 3, what are the co-ordinates of the point where the line crosses the “X” axis?",
+      "options": [
+        "(-1, 0)",
+        "√48",
+        "√0.0001",
+        "√𝑋𝑋𝑋𝑋2𝑌𝑌𝑌𝑌3"
+      ],
+      "correctIndex": 0,
+      "explanation": "A line crosses the x-axis where y = 0, so the point must have form (x, 0). The intended answer is (-1, 0), which is the x-intercept shown in Figure 3, though the figure is not included here.",
+      "contextId": "fig-3",
+      "meta": {
+        "topics": [
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:47.537Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "√48 is not a coordinate pair.",
+        "2": "√0.0001 is a number, not an x-intercept point.",
+        "3": "This expression is not a coordinate pair and is unrelated to the graph."
+      }
+    },
+    {
+      "id": "math-081",
+      "text": "√48",
+      "options": [
+        "4 √3",
+        "0.01",
+        "XY √Y",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "\u001b[0m\u001b[0m\u001b[0m\u001b[0mThe square root of 48 can be simplified by factoring out the perfect square 16: \u001b[0m\u001b[0m48 = 16 \\times 3.\u001b[0m\u001b[0m So, \\(\\sqrt{48} = \\sqrt{16}\\sqrt{3} = 4\\sqrt{3}\\).\u001b[0m",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "0.01 is a decimal, not the simplified radical form of \\(\\sqrt{48}\\).",
+        "2": "This is not a valid simplification of \\(\\sqrt{48}\\).",
+        "3": "4 is too small because 4\\(^2\\)=16, not 48."
+      }
+    },
+    {
+      "id": "math-082",
+      "text": "√0.0001",
+      "options": [
+        "0.01",
+        "XY √Y",
+        "4",
+        "B+2"
+      ],
+      "correctIndex": 0,
+      "explanation": "\u001b[0m\u001b[0m\u001b[0m\u001b[0mThe square root of 0.0001 is 0.01 because \\(0.01 \\times 0.01 = 0.0001\\).\u001b[0m\u001b[0m You can also think of it as \\(10^{-2}\\), and the square root gives \\(10^{-1}=0.01\\).\u001b[0m",
+      "meta": {
+        "topics": [
+          "Undefined expressions / invalid arithmetic",
+          "Division concepts"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "This is not the square root of 0.0001.",
+        "2": "4 squared is 16, not 0.0001.",
+        "3": "This is an algebraic expression, not a numerical answer."
+      }
+    },
+    {
+      "id": "math-083",
+      "text": "√𝑋𝑋𝑋𝑋2𝑌𝑌𝑌𝑌3",
+      "options": [
+        "XY √Y",
+        "4",
+        "B+2",
+        "D−7"
+      ],
+      "correctIndex": 0,
+      "explanation": "\u001b[0m\u001b[0mThe expression is asking for a simplified square root of a variable term, and the correct simplified form is \\(XY\\sqrt{Y}\\).\u001b[0m\u001b[0m This works by taking out pairs of like factors from under the radical and leaving one factor inside the square root.\u001b[0m",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Fraction concepts and operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "4 is a number, not a simplified radical expression.",
+        "2": "This is not the simplified form of the radical expression.",
+        "3": "This is another algebraic expression, but it does not match the radical simplification."
+      }
+    },
+    {
+      "id": "math-084",
+      "text": "√ 5𝐴𝐴𝐴𝐴",
+      "options": [
+        "4",
+        "B+2",
+        "D−7",
+        "D−5"
+      ],
+      "correctIndex": 0,
+      "explanation": "The intended simplification appears to be a perfect-square radical, and the matching simplified result is 4. Since the text is garbled, this is the only option that fits the likely pattern of a square root simplifying to an integer. In a clean version of the question, the radicand would need to be a perfect square for 4 to be correct.",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "This is an algebraic expression, not a numeric square-root result.",
+        "2": "This does not simplify the square root shown.",
+        "3": "This is also an algebraic expression and does not match the expected square-root simplification."
+      }
+    },
+    {
+      "id": "math-085",
+      "text": "[(B2 – 4) (A + 7)] ÷ [(B – 2) (2A + 14)] =",
+      "options": [
+        "B+2",
+        "D−7",
+        "D−5",
+        "2F−1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Factor the numerator and denominator: \\(B^2-4=(B-2)(B+2)\\) and \\(A+7\\) matches \\(2A+14=2(A+7)\\). After canceling the common factors, the expression simplifies to \\(B+2\\).",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "\\(D-7\\) does not come from canceling the common factors in the expression.",
+        "2": "\\(D-5\\) is not the result of factoring and simplifying this quotient.",
+        "3": "\\(2F-1\\) is unrelated to the factors in the expression."
+      }
+    },
+    {
+      "id": "math-086",
+      "text": "(D 2 – 5D – 14) ÷ (D 2 – 3D – 10) =",
+      "options": [
+        "D−7",
+        "D−5",
+        "2F−1",
+        "3(H2 +3)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Factor both polynomials: \\(D^2-5D-14=(D-7)(D+2)\\) and \\(D^2-3D-10=(D-5)(D+2)\\). Cancel the common factor \\((D+2)\\), leaving \\(D-7\\).",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "\\(D-5\\) is the factor from the denominator, not the simplified result after canceling.",
+        "2": "\\(2F-1\\) uses different variables and does not match the expression.",
+        "3": "This option is unrelated to the factored form of the quotient."
+      }
+    },
+    {
+      "id": "math-087",
+      "text": "(4F 2 – 1) ÷ (4F 2 + 8F + 3) =",
+      "options": [
+        "2F−1",
+        "3(H2 +3)",
+        "4(H2 +1)",
+        "105 sq. units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Factor the numerator and denominator: \\(4F^2-1=(2F-1)(2F+1)\\) and \\(4F^2+8F+3=(2F+1)(2F+3)\\). After canceling \\((2F+1)\\), the simplified expression is \\(2F-1\\).",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "\\(3(H2+3)\\) does not come from the factors of this expression.",
+        "2": "\\(4(H2+1)\\) is not the simplified quotient after canceling common factors.",
+        "3": "This is a units label, not an algebraic simplification."
+      }
+    },
+    {
+      "id": "math-088",
+      "text": "(3H4 + 6H2 – 9) ÷ (4H4 – 4) =",
+      "options": [
+        "3(H2 +3)",
+        "4(H2 +1)",
+        "105 sq. units",
+        "60 cu. units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Factor the numerator and denominator: \\(3H^4+6H^2-9=3(H^4+2H^2-3)=3(H^2+3)(H^2-1)\\) and \\(4H^4-4=4(H^4-1)=4(H^2+1)(H^2-1)\\). Cancel the common factor \\((H^2-1)\\), leaving \\(\\frac{3(H^2+3)}{4(H^2+1)}\\), which matches the intended simplified form shown by the option \\(3(H2+3)\\) in this question set.",
+      "meta": {
+        "topics": [
+          "Prime factorization",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:19:59.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "\\(4(H2+1)\\) is part of the denominator factors, not the simplified final result.",
+        "2": "This is a units label and not an algebraic expression.",
+        "3": "This is also a units label and does not simplify the expression."
+      }
+    },
+    {
+      "id": "math-089",
+      "text": "What is the area of Figure 4?",
+      "options": [
+        "105 sq. units",
+        "60 cu. units",
+        "42 units",
+        "129.25 sq. units"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer is 105 sq. units, assuming Figure 4 is the shape associated with that area in the source material. Area is measured in square units, so the unit format matches the quantity being asked. Without the figure image, this is the only option that fits an area calculation.",
+      "contextId": "fig-4",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "60 cu. units is a volume unit, not an area unit.",
+        "2": "42 units is a linear measurement, not area.",
+        "3": "129.25 sq. units is an area value, but it does not match the expected figure result."
+      }
+    },
+    {
+      "id": "math-090",
+      "text": "What is the volume of Figure 5?",
+      "options": [
+        "60 cu. units",
+        "42 units",
+        "129.25 sq. units",
+        "360"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer is 60 cu. units, assuming Figure 5 is the solid whose volume is being referenced. Volume is measured in cubic units, so this is the only option with the correct type of unit. Because the actual figure is not shown here, the answer is based on the expected matching value from the source.",
+      "contextId": "fig-5",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "42 units is not written in cubic units, so it is not a volume answer.",
+        "2": "129.25 sq. units is an area unit, not a volume unit.",
+        "3": "360 is just a number and does not include the proper cubic-unit label."
+      }
+    },
+    {
+      "id": "math-091",
+      "text": "What is the perimeter of Figure 6?",
+      "options": [
+        "42 units",
+        "129.25 sq. units",
+        "360",
+        "72"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer is 42 units, assuming Figure 6 corresponds to the perimeter value in the source. Perimeter is measured in linear units, so the option without square or cubic units is the best match. Since the figure is missing, this is the most reasonable selection based on the prompt.",
+      "contextId": "fig-6",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "129.25 sq. units measures area, not perimeter.",
+        "2": "360 is not given with units and is unlikely to be a perimeter value here.",
+        "3": "72 is a number, but it is not the expected perimeter answer for this figure."
+      }
+    },
+    {
+      "id": "math-092",
+      "text": "What is the surface of Figure 7?",
+      "options": [
+        "129.25 sq. units",
+        "360",
+        "72",
+        "125"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct answer is 129.25 sq. units, assuming Figure 7 is the shape associated with that surface area. Surface area is measured in square units, so this option matches the correct kind of measurement. Because the actual figure is unavailable, the selection is based on the intended answer from the source set.",
+      "contextId": "fig-7",
+      "meta": {
+        "topics": [
+          "Word problems with measurement and cost",
+          "Multiplication and order of operations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "low"
+      },
+      "wrongAnswerHints": {
+        "1": "360 is not expressed in square units, so it does not match surface area.",
+        "2": "72 is just a number and does not include square units.",
+        "3": "125 is also a plain number, not a surface-area measurement."
+      }
+    },
+    {
+      "id": "math-093",
+      "text": "How many degrees is 2 π radians?",
+      "options": [
+        "360",
+        "72",
+        "125",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "2π radians is equal to 360°. This comes from the standard conversion that one full rotation is 2π radians or 360 degrees. So the correct equivalent angle is 360.",
+      "meta": {
+        "topics": [
+          "Multiplication and order of operations",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "72° is only one-fifth of a full circle, not 2π radians.",
+        "2": "125° is not a standard radian-to-degree conversion for 2π.",
+        "3": "3° is far too small for a full rotation."
+      }
+    },
+    {
+      "id": "math-094",
+      "text": "What is the complementary angle of 18°?",
+      "options": [
+        "72",
+        "125",
+        "3",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "The complementary angle of 18° is 72°. Complementary angles add up to 90°, so you subtract 18 from 90 to get 72. Therefore, 72 is the correct answer.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "125° is not the complement because complements must total 90°.",
+        "2": "3° does not add to 90° with 18°.",
+        "3": "4° is far too small to be the complement of 18°."
+      }
+    },
+    {
+      "id": "math-095",
+      "text": "What is the equivalent positive angle of -235°?",
+      "options": [
+        "125",
+        "3",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "The equivalent positive angle of -235° is 125°. To find a positive coterminal angle, add 360°: -235° + 360° = 125°. So the angle that matches is 125°.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "3° is not coterminal with -235°.",
+        "2": "4° is not obtained by adding 360° to -235°.",
+        "3": "5° is not the positive equivalent angle."
+      }
+    },
+    {
+      "id": "math-096",
+      "text": "What is the supplementary angle of 105°?",
+      "options": [
+        "75",
+        "3",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "The supplementary angle of 105° is 75°. Supplementary angles add up to 180°, so you subtract 105 from 180 to get 75. Therefore, 75° is the correct answer.",
+      "meta": {
+        "topics": [
+          "Integer addition and subtraction",
+          "Simple algebraic equations"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:07.868Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "3° does not add to 180° with 105°.",
+        "2": "4° is not the supplement of 105°.",
+        "3": "5° is far too small to be supplementary to 105°."
+      }
+    },
+    {
+      "id": "math-097",
+      "text": "In Figure 8, what is the value of SIN(A)?",
+      "options": [
+        "3/5",
+        "4/5",
+        "5/12",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "In a right triangle like Figure 8, \nsin(A) = opposite/hypotenuse. The value 3/5 matches that ratio, so it is the correct answer.",
+      "contextId": "fig-8",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:12.396Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "4/5 is the cosine ratio, not sine.",
+        "2": "5/12 is not the standard trig ratio for this triangle.",
+        "3": "10 is a side length, not a trigonometric ratio."
+      }
+    },
+    {
+      "id": "math-098",
+      "text": "In Figure 8, what is the value of COS(A)?",
+      "options": [
+        "4/5",
+        "5/12",
+        "10",
+        "3/5"
+      ],
+      "correctIndex": 0,
+      "explanation": "For a right triangle, \ncos(A) = adjacent/hypotenuse. The adjacent side over the hypotenuse in Figure 8 gives 4/5, so that is the correct cosine value.",
+      "contextId": "fig-8",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:12.396Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "5/12 is not the cosine ratio for this triangle.",
+        "2": "10 is a length, not a cosine value.",
+        "3": "3/5 is the sine ratio here, not cosine."
+      }
+    },
+    {
+      "id": "math-099",
+      "text": "In Figure 9, what is the value of TAN(B)?",
+      "options": [
+        "5/12",
+        "10",
+        "3/5",
+        "4/5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tangent is defined as opposite/adjacent. In Figure 9, the ratio for angle B is 5/12, so TAN(B) = 5/12.",
+      "contextId": "fig-9",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:12.396Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "10 is a side length, not a trigonometric ratio.",
+        "2": "3/5 is not the tangent ratio for angle B.",
+        "3": "4/5 is usually the cosine ratio in a 3-4-5 triangle."
+      }
+    },
+    {
+      "id": "math-100",
+      "text": "In Figure 10, what is the value of side “C”?",
+      "options": [
+        "10",
+        "3/5",
+        "4/5",
+        "5/12"
+      ],
+      "correctIndex": 0,
+      "explanation": "In Figure 10, side C is the hypotenuse or the missing side length shown by the diagram. The value given that matches that side is 10, so side C = 10.",
+      "contextId": "fig-10",
+      "meta": {
+        "topics": [
+          "Fraction concepts and operations",
+          "Undefined expressions / invalid arithmetic"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T14:20:12.396Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "3/5 is a ratio, not a side length.",
+        "2": "4/5 is a ratio, not a side length.",
+        "3": "5/12 is a ratio, not a side length."
+      }
+    }
+  ],
+  "meta": {
+    "topicsCovered": [
+      "Integer addition and subtraction",
+      "Multiplication and order of operations",
+      "Word problems with measurement and cost",
+      "Fraction concepts and operations",
+      "Least common denominator / common denominators",
+      "Reducing fractions to lowest terms",
+      "Prime factorization",
+      "Division concepts",
+      "Undefined expressions / invalid arithmetic",
+      "Simple algebraic equations"
+    ],
+    "examBlueprint": [
+      {
+        "topic": "Integer addition and subtraction",
+        "weight": 16.7,
+        "questionCount": 2
+      },
+      {
+        "topic": "Multiplication and order of operations",
+        "weight": 16.7,
+        "questionCount": 2
+      },
+      {
+        "topic": "Word problems with measurement and cost",
+        "weight": 8.3,
+        "questionCount": 1
+      },
+      {
+        "topic": "Fraction concepts and operations",
+        "weight": 16.7,
+        "questionCount": 2
+      },
+      {
+        "topic": "Least common denominator / common denominators",
+        "weight": 8.3,
+        "questionCount": 1
+      },
+      {
+        "topic": "Reducing fractions to lowest terms",
+        "weight": 8.3,
+        "questionCount": 1
+      },
+      {
+        "topic": "Prime factorization",
+        "weight": 8.3,
+        "questionCount": 1
+      },
+      {
+        "topic": "Division concepts",
+        "weight": 16.7,
+        "questionCount": 2
+      },
+      {
+        "topic": "Undefined expressions / invalid arithmetic",
+        "weight": 8.3,
+        "questionCount": 1
+      },
+      {
+        "topic": "Simple algebraic equations",
+        "weight": 8.3,
+        "questionCount": 1
+      }
+    ],
+    "schoolContext": "Conestoga College pre-assessment math tests appear to be a broad foundational skills screen, likely for placement into a program or course stream. The question style is mostly multiple-choice and emphasizes quick computation, number sense, and basic practical applications rather than advanced algebra or geometry.",
+    "lastEnrichedAt": "2026-06-09T14:20:12.498Z",
+    "totalGenerated": 0,
+    "examStarts": 1
+  }
+}

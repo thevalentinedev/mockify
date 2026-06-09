@@ -18,6 +18,7 @@ export async function getBankFromDb(
   return rows[0].data;
 }
 
+/** Persists full bank JSONB — includes per-question explanation + wrongAnswerHints */
 export async function saveBankToDb(bank: QuestionBank): Promise<void> {
   const sql = getDb();
   if (!sql) throw new Error("DATABASE_URL is not configured");

@@ -49,7 +49,7 @@ GitHub Actions runs **lint**, **typecheck**, and **build** on every push/PR to `
    uploads/conestoga/biology/
    uploads/conestoga/chemistry/
    ```
-3. Select school + subject, pick a PDF, click **Extract questions with AI** (uses `gpt-4o-mini`)
+3. Select school + subject, pick a PDF, click **Extract questions with AI** (uses `gpt-5.4-mini`)
 4. Review the preview, set time limit / question count if needed, then **Save to question bank**
 
 Saved banks go to `data/banks/{school}/{subject}.json` and override the placeholder questions.
@@ -67,6 +67,8 @@ All AI runs in **admin/batch** on the Import page — results are saved to JSON.
 Recommended workflow: `Import PDF → Save → Enrich → Generate`
 
 Students get pre-built explanations on the results page and topic-based study focus — no per-user AI cost.
+
+Explanations and wrong-answer hints are saved on each question in the bank (Neon `question_banks.data` JSONB when `DATABASE_URL` is set, plus local JSON mirror). Enrichment only calls AI for questions that are still missing hints — already-saved questions are reused.
 
 ## Adding questions manually
 
