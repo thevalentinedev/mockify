@@ -1,0 +1,824 @@
+{
+  "schoolId": "conestoga",
+  "subjectId": "english",
+  "config": {
+    "questionCount": 108,
+    "timeLimitMinutes": 110
+  },
+  "questions": [
+    {
+      "id": "engl-001",
+      "text": "What time of day is it in the story?",
+      "options": [
+        "Morning",
+        "Noon",
+        "Afternoon",
+        "Evening"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct answer is 'Evening' since the context of the story suggests that events are unfolding towards the end of the day, making evening the appropriate choice. Additionally, any references to darkness or the setting sun would further affirm this timing.",
+      "meta": {
+        "topics": [
+          "Reading Comprehension",
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'Morning' is incorrect as it refers to the beginning of the day, which does not align with the events described.",
+        "1": "'Noon' is incorrect because noon is the middle of the day, while the story implies it is later.",
+        "2": "'Afternoon' is not suitable as the story indicates a transition towards evening."
+      }
+    },
+    {
+      "id": "engl-002",
+      "text": "What kind of stories did Uncle Sal tell?",
+      "options": [
+        "Peaceful",
+        "Scary",
+        "Sad",
+        "Funny"
+      ],
+      "correctIndex": 3,
+      "explanation": "Uncle Sal told 'Funny' stories, which are known for their humor and lightheartedness. This choice aligns with common storytelling styles that engage listeners, especially in a familial context.",
+      "meta": {
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'Peaceful' stories may not provide the entertainment typically associated with storytelling like Uncle Sal's.",
+        "1": "'Scary' stories are often not the main focus in a familial storytelling context.",
+        "2": "'Sad' stories are less likely to be the engaging style Uncle Sal would use to entertain."
+      }
+    },
+    {
+      "id": "engl-003",
+      "text": "If an annual energy bill was $1,500, approximately how much of it was for heating water?",
+      "options": [
+        "$500",
+        "$100",
+        "$300",
+        "$200"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct estimate for heating water from an annual bill of $1,500 is likely around $200 based on averages for household energy consumption. This figure aligns with typical allocation for water heating relative to other household energy needs.",
+      "meta": {
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'$500' is too high, representing a significant portion of the total bill that would be unusual for just water heating.",
+        "1": "'$100' does not adequately account for typical water heating usage in households.",
+        "2": "'$300' overestimates the usual costs associated with heating water annually."
+      }
+    },
+    {
+      "id": "engl-004",
+      "text": "Presently your annual electric bill is $2,000. If you install an air conditioner, approx. how much more could your annual electric bill be?",
+      "options": [
+        "$150 - $200",
+        "$250 - $300",
+        "$350 - $400",
+        "$450 - $500"
+      ],
+      "correctIndex": 1,
+      "explanation": "The additional cost of installing an air conditioner is generally estimated to increase your electric bill by '$250 - $300', making this the correct answer. This additional cost reflects both the operational requirements and potential usage patterns during warmer months.",
+      "meta": {
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'$150 - $200' is too low for the expected increase because of the energy demands of air conditioning.",
+        "2": "'$350 - $400' is higher than typical additional costs observed in similar installations.",
+        "3": "'$450 - $500' is an exaggerated estimate that exceeds realistic expectations for air conditioning impact."
+      }
+    },
+    {
+      "id": "engl-005",
+      "text": "What factor would be least likely to affect your annual electric bill?",
+      "options": [
+        "Square footage of house",
+        "Seasonal changes",
+        "Age of furnace and appliances",
+        "The North American costs of energy"
+      ],
+      "correctIndex": 3,
+      "explanation": "The factor least likely to affect your annual electric bill is 'The North American costs of energy,' as these external factors generally influence market rates rather than individual consumption patterns directly. The other options have a more direct impact on household electricity usage.",
+      "meta": {
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "0": "'Square footage of house' directly correlates with energy needs, affecting bills significantly.",
+        "1": "'Seasonal changes' have a clear impact on heating and cooling costs, thus influencing the bill.",
+        "2": "'Age of furnace and appliances' affects efficiency and energy consumption rates directly."
+      }
+    },
+    {
+      "id": "engl-006",
+      "text": "If your blue box has been run over by the garbage truck, to receive a new one you should:",
+      "options": [
+        "Collect the pieces and take them to the nearest Operation Centre/Works Yard",
+        "Go to the nearest Operation Centre/Works Yard to order a new blue box",
+        "Phone (519) 883-5100 to request that a new one be sent to you",
+        "Take your damaged box to any of the Operation Centres/Works Yards on the weekend to pick up a new one."
+      ],
+      "correctIndex": 1,
+      "explanation": "To receive a new blue box after it has been damaged, you should go to the nearest Operation Centre/Works Yard to order a new one. This approach is most direct and ensures that the proper process for replacement is followed.",
+      "meta": {
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "Collecting pieces does not help in getting a new box and could lead to unnecessary hassle.",
+        "2": "Calling does not guarantee the same level of service and clarity as visiting in person.",
+        "3": "Taking the damaged box to any site on the weekend may not align with operational procedures for replacement."
+      }
+    },
+    {
+      "id": "engl-007",
+      "text": "You work from 8:00 a.m. – 5:00 p.m. every Monday – Friday. Where is the only location you can pick up a new blue box?",
+      "options": [
+        "Kitchener",
+        "Waterloo",
+        "Cambridge",
+        "North Dumfries Township"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kitchener is the correct location to pick up a new blue box as indicated by the operation guidance for residents. It reflects where residents are required to go specifically within their service area.",
+      "meta": {
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "Waterloo is not the designated location for blue box pickups, which is crucial for accurate information.",
+        "2": "Cambridge does not serve this specific purpose, causing potential confusion.",
+        "3": "North Dumfries Township is also not applicable for services related to blue box pickups."
+      }
+    },
+    {
+      "id": "engl-008",
+      "text": "According to the poet, which of the following is most important:",
+      "options": [
+        "Wealth",
+        "Love",
+        "Health",
+        "Knowledge"
+      ],
+      "correctIndex": 2,
+      "explanation": "The most important factor according to the poet is 'Health,' highlighting its fundamental role in overall well-being and life quality. This reflects the idea that without health, other factors lose significance.",
+      "meta": {
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'Wealth' although important, does not equate to the necessity of health for a fulfilling life.",
+        "1": "'Love' is essential, but health underpins the ability to experience and share love fully.",
+        "3": "'Knowledge' is valuable, yet it cannot substitute for the essential state of being healthy."
+      }
+    },
+    {
+      "id": "engl-009",
+      "text": "“Tis the root of all that’s evil” refers to",
+      "options": [
+        "Fear",
+        "Pain",
+        "Wealth",
+        "Bleeding hearts"
+      ],
+      "correctIndex": 2,
+      "explanation": "The phrase 'Tis the root of all that’s evil refers to the belief that wealth or the pursuit of material riches is the source of various evils in society. This concept is often discussed in literature and philosophy, suggesting that greed can lead to unethical behavior.",
+      "meta": {
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "Fear can lead to negative actions, but it is not traditionally described as the root of all evil.",
+        "1": "Pain is a consequence of suffering rather than the primary cause of evil actions.",
+        "3": "Bleeding hearts represent compassion or sympathy, which are generally seen as positive qualities."
+      }
+    },
+    {
+      "id": "engl-010",
+      "text": "Choose the sentence with the correct capitalization: He is a student in __.",
+      "options": [
+        "high school",
+        "High school",
+        "High School",
+        "high School"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct capitalization is 'High school' because it refers to a specific level of schooling. In this case, 'High school' is treated as a proper noun when it can be part of a specific program or title.",
+      "meta": {
+        "topics": [
+          "Capitalization Rules"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'high school' does not capitalize 'high', which is incorrect for the context.",
+        "2": "'High School' is overly capitalized and is not the standard format.",
+        "3": "'high School' incorrectly capitalizes 'School', which is unnecessary."
+      }
+    },
+    {
+      "id": "engl-011",
+      "text": "Choose the sentence with the correct capitalization: I’m taking __.",
+      "options": [
+        "geography, mathematics, law and french",
+        "Geography, Mathematics, Law and French",
+        "geography, Mathematics, law and French",
+        "geography, mathematics, law and French"
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer is 'Geography, Mathematics, Law and French' as all the subjects mentioned are proper nouns and should be capitalized. Capitalizing each subject ensures proper grammar and clarity.",
+      "meta": {
+        "topics": [
+          "Capitalization Rules"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "None of the subjects are capitalized, which is incorrect.",
+        "2": "While 'Mathematics' and 'French' are capitalized, 'geography' and 'law' should also be.",
+        "3": "Only 'French' is capitalized correctly, but others should be as well."
+      }
+    },
+    {
+      "id": "engl-012",
+      "text": "Choose the sentence with the correct punctuation: My brother carried the boxes into the __ unpacked them.",
+      "options": [
+        "house I",
+        "house; I",
+        "house, I",
+        "house: I"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct punctuation here is 'house, I' because it separates two independent clauses and requires a comma. This clarifies the relationship between the two ideas in the sentence.",
+      "meta": {
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'house I' omits necessary punctuation, making the sentence confusing.",
+        "1": "'house; I' incorrectly uses a semicolon, which is not needed between these clauses.",
+        "3": "'house: I' uses a colon incorrectly, as colons are used to introduce lists or additional information."
+      }
+    },
+    {
+      "id": "engl-013",
+      "text": "Choose the sentence with the correct punctuation: __ it was raining on Saturday we decided to go to the park.",
+      "options": [
+        "Although,",
+        "Although",
+        "Although it was raining,",
+        "Although it was raining,"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct option is 'Although it was raining,' which properly introduces the dependent clause with a comma. Using a comma after 'raining' indicates a pause before the main clause of the sentence.",
+      "meta": {
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'Although,' is incomplete and lacks the necessary clause following it.",
+        "1": "'Although' is also incomplete and lacks context.",
+        "3": "'Although it was raining,' is a repeat of the correct answer but written incorrectly (extra comma)."
+      }
+    },
+    {
+      "id": "engl-014",
+      "text": "Choose the sentence with the correct punctuation: __ you like me to take care of the problem?",
+      "options": [
+        "asked, “Would",
+        "asked “Would",
+        "asked, “Would you like me to take care of the problem”?",
+        "asked “if she should take care of the problem.”"
+      ],
+      "correctIndex": 0,
+      "explanation": "The correct form is 'asked, “Would' because it places a comma before the quotation, which is standard punctuation in dialogue. This indicates that direct speech is following the reporting verb 'asked.'",
+      "meta": {
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "hard",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "medium"
+      },
+      "wrongAnswerHints": {
+        "1": "Omitting the comma results in a grammatically incorrect structure.",
+        "2": "Missing punctuation after ‘problem’ leads to an incomplete thought.",
+        "3": "Incorrectly phrases the indirect speech without the question marks necessary."
+      }
+    },
+    {
+      "id": "engl-015",
+      "text": "Choose the sentence with the correct punctuation: __ the children’s toys filled the room.",
+      "options": [
+        "The childrens toys",
+        "The childrens’ toys",
+        "The children’s toys",
+        "The children’s toy’s"
+      ],
+      "correctIndex": 2,
+      "explanation": "The correct form is 'The children’s toys' which uses the correct possessive form for plural nouns. 'Children’s' indicates that the toys belong to the children, aligning with standard grammatical rules.",
+      "meta": {
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "'The childrens toys' lacks the apostrophe needed to show possession.",
+        "1": "'The childrens’ toys' incorrectly uses the apostrophe, as 'children' is already plural.",
+        "3": "'The children’s toy’s' incorrectly adds an apostrophe to 'toy', suggesting possession of a single toy."
+      }
+    },
+    {
+      "id": "engl-016",
+      "text": "Decide which word or group of words belongs in the blank: The wind __ through the trees.",
+      "options": [
+        "rustles",
+        "are rustling",
+        "do rustle",
+        "rustle"
+      ],
+      "correctIndex": 0,
+      "explanation": "The verb 'rustles' correctly describes the ongoing action of the wind as it moves through the trees. This singular form matches the subject 'wind' appropriately.",
+      "meta": {
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "'are rustling' is incorrectly plural and does not align with the subject 'wind'.",
+        "2": "'do rustle' is grammatically sound but does not match the context as well as 'rustles'.",
+        "3": "'rustle' is incorrect because it does not correctly match the subject with the singular verb form."
+      }
+    },
+    {
+      "id": "engl-017",
+      "text": "Decide which word or group of words belongs in the blank: The car belongs to __.",
+      "options": [
+        "he and I",
+        "him and I",
+        "he and me",
+        "him and me"
+      ],
+      "correctIndex": 3,
+      "explanation": "The correct phrase is 'him and me' because when using pronouns in this context, the objective case is required. 'Me' is the correct object pronoun to use after the preposition 'to' in this sentence.",
+      "meta": {
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "The phrase 'he and I' is incorrect here because it uses the subjective case instead of the objective case.",
+        "1": "The phrase 'him and I' is incorrect; 'I' should not be used in this context.",
+        "2": "The phrase 'he and me' is incorrect because 'he' is not in the correct case for this sentence."
+      }
+    },
+    {
+      "id": "engl-018",
+      "text": "Choose the correct sentence: __ found an excellent job after I graduated from college.",
+      "options": [
+        "I",
+        "I find",
+        "I have",
+        "I will have"
+      ],
+      "correctIndex": 0,
+      "explanation": "The sentence uses 'I' as the subject pronoun, which is appropriate here because it indicates who found the job. The other options imply different tenses or subjects that do not fit the context.",
+      "meta": {
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "1": "The phrase 'I find' is incorrect because it implies present tense, which doesn't align with the past event.",
+        "2": "The phrase 'I have' suggests a current possession instead of a past action.",
+        "3": "The phrase 'I will have' indicates a future tense, not applicable in this context."
+      }
+    },
+    {
+      "id": "engl-019",
+      "text": "Choose the correct sentence: That movie was one of the __.",
+      "options": [
+        "excitingest that I have ever seen",
+        "excitinger that I have ever seen",
+        "most exciting that I have ever seen",
+        "most excitable that I have ever seen"
+      ],
+      "correctIndex": 2,
+      "explanation": "The phrase 'most exciting that I have ever seen' correctly uses the superlative form of 'exciting' to describe the movie. The other options either misuse comparative forms or use non-standard English.",
+      "meta": {
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "The word 'excitingest' is not a valid word in English; it should be 'most exciting'.",
+        "1": "The word 'excitinger' is also incorrect, as 'exciting' doesn't take the comparative suffix '-er'.",
+        "3": "The word 'excitable' has a different meaning and does not properly convey the excitement level of the movie."
+      }
+    },
+    {
+      "id": "engl-020",
+      "text": "Choose the answer that best combines these sentences without changing their meaning: Ed went at the mall to the shoe store.",
+      "options": [
+        "Ed’s shoe store is at the mall.",
+        "Ed went to the shoe store at the mall.",
+        "To the shoe store at the mall went Ed.",
+        "Ed went at the mall to the shoe store."
+      ],
+      "correctIndex": 1,
+      "explanation": "The correct answer, 'Ed went to the shoe store at the mall,' combines the two sentences clearly and maintains their original meaning. The other options either change the meaning or fail to convey the information effectively.",
+      "meta": {
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "medium",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high"
+      },
+      "wrongAnswerHints": {
+        "0": "The phrase 'Ed’s shoe store is at the mall' changes the meaning of the original sentences.",
+        "2": "The phrase 'To the shoe store at the mall went Ed' uses an awkward structure that complicates the meaning unnecessarily.",
+        "3": "The phrase 'Ed went at the mall to the shoe store' is a repetitive and incorrect structure, similar to the original sentence."
+      }
+    },
+    {
+      "id": "engl-gen-021",
+      "text": "What is the main idea of the passage discussing climate change?",
+      "options": [
+        "It affects global temperature",
+        "It has no major impact on weather patterns",
+        "It's primarily caused by natural cycles",
+        "It's only a concern for future generations"
+      ],
+      "correctIndex": 0,
+      "explanation": "The main idea is emphasizing that climate change significantly affects global temperatures, which is a pressing issue today.",
+      "wrongAnswerHints": {
+        "1": "This perspective downplays the substantial evidence of climate effects.",
+        "2": "Natural cycles are a factor, but human activities play a major role.",
+        "3": "Climate change is an immediate concern for us, not just future generations."
+      },
+      "meta": {
+        "topics": [
+          "Reading Comprehension",
+          "Environmental Awareness"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-022",
+      "text": "In the story, how does the main character feel about moving to a new city?",
+      "options": [
+        "Excited",
+        "Indifferent",
+        "Angry",
+        "Sad"
+      ],
+      "correctIndex": 0,
+      "explanation": "The main character expresses excitement about new opportunities and experiences in the new city.",
+      "wrongAnswerHints": {
+        "1": "Indifference suggests lack of interest, which contradicts the character's enthusiasm.",
+        "2": "Anger is not a key emotion expressed in the context of the move.",
+        "3": "Although sad feelings can arise, excitement is predominant."
+      },
+      "meta": {
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-023",
+      "text": "If your monthly grocery bill is $600, how much are you expected to spend on fruits and vegetables, assuming they make up 20% of your bill?",
+      "options": [
+        "$120",
+        "$180",
+        "$200",
+        "$240"
+      ],
+      "correctIndex": 0,
+      "explanation": "20% of $600 is calculated as $600 x 0.20 = $120, which indicates the expected spending on fruits and vegetables.",
+      "wrongAnswerHints": {
+        "1": "This is too high for 20% of the total bill amount.",
+        "2": "This amount exceeds the percentage calculated.",
+        "3": "This suggests spending more than one-third of your grocery budget."
+      },
+      "meta": {
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-024",
+      "text": "Which item is typically not considered a part of household management?",
+      "options": [
+        "Budgeting for groceries",
+        "Maintaining home appliances",
+        "Planning vacations",
+        "Organizing meal prep"
+      ],
+      "correctIndex": 2,
+      "explanation": "Though planning vacations can be part of personal organization, it is not a direct aspect of typical household management tasks.",
+      "wrongAnswerHints": {
+        "0": "Budgeting is crucial in managing household expenses.",
+        "1": "Maintaining appliances is essential for a smoothly running household.",
+        "3": "Meal prep organization affects household efficiency and health."
+      },
+      "meta": {
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-025",
+      "text": "Which of the following is an example of renewable energy?",
+      "options": [
+        "Natural gas",
+        "Coal",
+        "Solar power",
+        "Nuclear energy"
+      ],
+      "correctIndex": 2,
+      "explanation": "Solar power is a renewable energy source that can regenerate naturally, unlike fossil fuels.",
+      "wrongAnswerHints": {
+        "0": "Natural gas is a non-renewable fossil fuel.",
+        "1": "Coal is also a non-renewable resource.",
+        "3": "Nuclear energy is not renewable as it relies on finite uranium resources."
+      },
+      "meta": {
+        "topics": [
+          "Environmental Awareness"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-026",
+      "text": "Select the sentence that uses correct punctuation:",
+      "options": [
+        "He said that, I would be there soon.",
+        "Lets go to the mall later.",
+        "Its going to rain today.",
+        "I have two cats, dogs, and a parrot."
+      ],
+      "correctIndex": 3,
+      "explanation": "The sentence correctly uses commas to separate items in a list, indicating clear structure.",
+      "wrongAnswerHints": {
+        "0": "This sentence misuses a comma, making the meaning unclear.",
+        "1": "The word 'Lets' needs an apostrophe to indicate possession.",
+        "2": "'Its' should use an apostrophe to indicate a contraction for 'it is'."
+      },
+      "meta": {
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-027",
+      "text": "What is the rule for capitalizing proper nouns?",
+      "options": [
+        "Capitalize only the first word of a title",
+        "Capitalize all the words in a title",
+        "Capitalize specific names and places",
+        "Capitalize common nouns in a sentence"
+      ],
+      "correctIndex": 2,
+      "explanation": "Proper nouns refer to specific names or places and should always be capitalized to distinguish them from common nouns.",
+      "wrongAnswerHints": {
+        "0": "Titles require different capitalization rules; not just the first word.",
+        "1": "Not all words in a title should be capitalized; only specific ones follow that rule.",
+        "3": "Common nouns should remain lowercase unless starting a sentence."
+      },
+      "meta": {
+        "topics": [
+          "Capitalization Rules"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-028",
+      "text": "Identify the sentence with a grammatical error in structure:",
+      "options": [
+        "The dog barked loudly at the stranger.",
+        "She likes swimming and to run.",
+        "They went to the store yesterday.",
+        "He finished his meal quickly."
+      ],
+      "correctIndex": 1,
+      "explanation": "The word 'to' should be replaced with 'running' for parallel structure with 'swimming.'",
+      "wrongAnswerHints": {
+        "0": "This sentence is correctly structured and clear.",
+        "2": "This sentence has no grammatical issues.",
+        "3": "This sentence also follows proper grammatical structure."
+      },
+      "meta": {
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "hard",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "engl-gen-029",
+      "text": "Which of the following is not an example of a household management task?",
+      "options": [
+        "Creating a meal plan",
+        "Scheduling appliance maintenance",
+        "Choosing a movie to watch",
+        "Setting a budget for utilities"
+      ],
+      "correctIndex": 2,
+      "explanation": "Choosing a movie is a leisure activity, not a task related to managing a household.",
+      "wrongAnswerHints": {
+        "0": "Meal planning is an essential task in household management.",
+        "1": "Maintenance scheduling is crucial for appliance longevity.",
+        "3": "Budgeting is fundamental in managing household finances."
+      },
+      "meta": {
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "medium",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T13:56:27.778Z",
+        "answerConfidence": "high"
+      }
+    }
+  ],
+  "meta": {
+    "schoolContext": "Conestoga College emphasizes practical and applied learning, focusing on essential skills in communication and comprehension necessary for professional and academic settings. Assessments aim to evaluate students' understanding of both everyday topics and academic concepts through multiple-choice formats.",
+    "topicsCovered": [
+      "Reading Comprehension",
+      "Understanding Narrative Elements",
+      "Financial Literacy",
+      "Household Management",
+      "Environmental Awareness",
+      "Sentence Structure",
+      "Capitalization Rules",
+      "Punctuation Rules"
+    ],
+    "examBlueprint": [
+      {
+        "topic": "Reading Comprehension",
+        "weight": 15,
+        "questionCount": 2
+      },
+      {
+        "topic": "Understanding Narrative Elements",
+        "weight": 15,
+        "questionCount": 2
+      },
+      {
+        "topic": "Financial Literacy",
+        "weight": 20,
+        "questionCount": 3
+      },
+      {
+        "topic": "Household Management",
+        "weight": 15,
+        "questionCount": 2
+      },
+      {
+        "topic": "Environmental Awareness",
+        "weight": 15,
+        "questionCount": 1
+      },
+      {
+        "topic": "Sentence Structure",
+        "weight": 10,
+        "questionCount": 5
+      },
+      {
+        "topic": "Capitalization Rules",
+        "weight": 10,
+        "questionCount": 4
+      },
+      {
+        "topic": "Punctuation Rules",
+        "weight": 10,
+        "questionCount": 5
+      }
+    ],
+    "totalGenerated": 9,
+    "lastEnrichedAt": "2026-06-09T13:56:03.382Z",
+    "lastGeneratedAt": "2026-06-09T13:56:27.778Z"
+  }
+}
