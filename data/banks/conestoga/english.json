@@ -56,11 +56,49 @@
     "lastEnrichedAt": "2026-06-09T13:56:03.382Z",
     "lastGeneratedAt": "2026-06-09T14:21:13.482Z",
     "totalGenerated": 93,
-    "examStarts": 2
+    "examStarts": 4
   },
   "config": {
     "questionCount": 108,
     "timeLimitMinutes": 110
+  },
+  "contexts": {
+    "c1": {
+      "id": "c1",
+      "type": "passage",
+      "title": "Community Garden Notice",
+      "content": "The community garden will be open to members from 8:00 a.m. to 6:00 p.m. on weekdays and from 9:00 a.m. to 4:00 p.m. on weekends. Visitors must sign in at the shed before entering. Tools are available for loan, but they must be returned by the end of the day. Watering is allowed only before 10:00 a.m. on hot days to reduce evaporation."
+    },
+    "ctx1": {
+      "id": "ctx1",
+      "type": "passage",
+      "title": "The Missing Lunch Card",
+      "content": "Maya arrived at college early because she had a quiz in the morning. After her first class, she looked in her bag for her lunch card, but it was gone. She checked her jacket pocket, her notebook, and the front desk in the library. Nothing. Maya remembered that she had used the card at the cafeteria the day before. She went back to the cafeteria to ask if anyone had turned it in. A staff member smiled and said, 'Yes, someone left it here after lunch.' Maya felt relieved and thanked the staff member. She decided to keep the card in the same pocket every day after that."
+    },
+    "ctx2": {
+      "id": "ctx2",
+      "type": "passage",
+      "title": "Roommate Story",
+      "content": "Leah moved into residence on Saturday. Her new roommate, Omar, was quiet at first, but by Sunday evening he was joking with everyone in the hallway. Leah noticed that Omar liked to organize his desk before studying and always listened to music after dinner. On Monday morning, he woke up early, packed his backpack, and left for class with a smile."
+    },
+    "ctx3": {
+      "id": "ctx3",
+      "type": "passage",
+      "title": "Energy-Saving Upgrade",
+      "content": "A homeowner spends about $2,400 each year on electricity. After replacing old light bulbs with LED bulbs, the bill may drop by about $180 per year. If the home later adds a window air conditioner, the annual bill could increase by about $250."
+    },
+    "ctx4": {
+      "id": "ctx4",
+      "type": "passage",
+      "title": "Kitchen Safety Tips",
+      "content": "To keep food safe, the refrigerator should stay at or below 4°C. Raw meat should be stored on the bottom shelf so juices do not drip onto other foods. Surfaces should be cleaned with hot, soapy water after preparing meals. Leftovers should be cooled and placed in the refrigerator within two hours."
+    },
+    "ctx5": {
+      "id": "ctx5",
+      "type": "passage",
+      "title": "Community Garden News",
+      "content": "The community garden uses rain barrels to collect water for plants. Volunteers also spread mulch around the vegetables to keep the soil moist. During summer, the garden depends on compost, which helps return nutrients to the soil and reduces waste."
+    }
   },
   "schoolId": "conestoga",
   "questions": [
@@ -1732,6 +1770,15 @@
     },
     {
       "id": "engl-gen-065",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "According to the notice, when will the library reopen on Sunday?",
       "options": [
         "9:00 a.m.",
@@ -1739,26 +1786,26 @@
         "3:00 p.m.",
         "5:00 p.m."
       ],
-      "correctIndex": 1,
+      "contextId": "ctx1",
       "explanation": "The notice says the library will reopen on Sunday at 1:00 p.m.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "That time is not stated in the notice.",
         "2": "The notice does not say 3:00 p.m.",
         "3": "5:00 p.m. is the closing time, not the reopening time."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-066",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "What is the main reason the library will be closed on Saturday?",
       "options": [
         "A holiday celebration",
@@ -1766,26 +1813,26 @@
         "A staff meeting",
         "A computer upgrade"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx1",
       "explanation": "The passage says the library will be closed on Saturday for a plumbing repair.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The notice does not mention a holiday.",
         "2": "A staff meeting is not given as the reason.",
         "3": "The notice does not mention a computer upgrade."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-067",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "In the story, what best describes Mina's mood when she hears the music?",
       "options": [
         "Annoyed",
@@ -1793,26 +1840,26 @@
         "Comforted",
         "Confused"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx2",
       "explanation": "Mina smiles because the music reminds her of her father, so she feels comforted.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "The story gives no sign that she is irritated.",
         "1": "She is not shown to be scared.",
         "3": "The story explains her reaction clearly."
-      },
-      "contextId": "ctx2",
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-068",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "What detail shows that the story takes place in the evening?",
       "options": [
         "Mina walked home after her evening shift.",
@@ -1820,26 +1867,26 @@
         "Her apartment was next door.",
         "She smiled at the music."
       ],
-      "correctIndex": 0,
+      "contextId": "ctx2",
       "explanation": "The phrase 'after her evening shift' directly tells the time of day.",
+      "correctIndex": 0,
       "wrongAnswerHints": {
         "1": "This describes the weather, not the time.",
         "2": "This tells about location, not time.",
         "3": "This shows her reaction, not the time."
-      },
-      "contextId": "ctx2",
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-069",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "If a student saves $25 each week, about how much will they save in 8 weeks?",
       "options": [
         "$100",
@@ -1847,25 +1894,25 @@
         "$200",
         "$250"
       ],
-      "correctIndex": 2,
       "explanation": "$25 × 8 = $200.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "This is too low for 8 weeks of saving $25.",
         "1": "This would be 6 weeks of saving.",
         "3": "This is more than the correct total."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-070",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "A monthly phone plan costs $45 before tax. Which estimate is closest to the total for 12 months, before tax?",
       "options": [
         "$360",
@@ -1873,25 +1920,25 @@
         "$540",
         "$660"
       ],
-      "correctIndex": 2,
       "explanation": "$45 × 12 = $540.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "That is too low for one year of payments.",
         "1": "This is closer to 10 months, not 12.",
         "3": "This total is too high."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-071",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Environmental Awareness"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "Which action would most likely help reduce a household's electricity use?",
       "options": [
         "Keeping lights on in empty rooms",
@@ -1899,25 +1946,25 @@
         "Running the dishwasher half full every night",
         "Leaving the television on for background noise"
       ],
-      "correctIndex": 1,
       "explanation": "LED bulbs use less electricity than older bulbs, so they help reduce energy use.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This would increase electricity use.",
         "2": "Running half-full loads wastes energy.",
         "3": "Leaving the TV on uses extra electricity."
-      },
-      "meta": {
-        "topics": [
-          "Environmental Awareness"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-072",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "Which choice is the best example of reducing waste at home?",
       "options": [
         "Throwing all food scraps in the garbage",
@@ -1925,25 +1972,25 @@
         "Buying single-use bottles every day",
         "Leaving water running while brushing teeth"
       ],
-      "correctIndex": 1,
       "explanation": "Using both sides of paper reduces the amount of waste created.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This creates more waste instead of less.",
         "2": "Single-use bottles create more waste.",
         "3": "This wastes water, not reduces waste."
-      },
-      "meta": {
-        "topics": [
-          "Household Management"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-073",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Capitalization Rules"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence is correct?",
       "options": [
         "The manager said the report was due friday.",
@@ -1951,25 +1998,25 @@
         "The manager said the report was due Friday.",
         "The Manager said the report was due friday."
       ],
-      "correctIndex": 2,
       "explanation": "The sentence is correct because it begins with a capital letter and uses 'Friday' as a proper noun capitalized correctly.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "Days of the week must be capitalized.",
         "1": "A sentence must begin with a capital letter.",
         "3": "'Manager' is not a proper noun here, and 'friday' should be capitalized."
-      },
-      "meta": {
-        "topics": [
-          "Capitalization Rules"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-074",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:20:22.296Z",
+        "answerConfidence": "high"
+      },
       "text": "Choose the sentence with correct punctuation.",
       "options": [
         "My brother works in Toronto, he starts at 8:00 a.m.",
@@ -1977,25 +2024,25 @@
         "My brother works in Toronto he starts at 8:00 a.m.",
         "My brother works in Toronto, he starts at 8:00 a.m"
       ],
-      "correctIndex": 1,
       "explanation": "A semicolon correctly joins two related complete sentences.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "A comma alone cannot join two complete sentences.",
         "2": "This is a run-on sentence.",
         "3": "This sentence needs ending punctuation."
-      },
-      "meta": {
-        "topics": [
-          "Punctuation Rules"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-075",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "According to the notice, when can visitors sign in at the shed before entering the garden?",
       "options": [
         "Only on weekdays",
@@ -2003,26 +2050,26 @@
         "Only after 10:00 a.m. on hot days",
         "Only when tools are being returned"
       ],
-      "correctIndex": 1,
+      "contextId": "c1",
       "explanation": "The notice says visitors must sign in before entering, and they may do so during the garden’s opening hours.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The notice gives opening hours for both weekdays and weekends.",
         "2": "The 10:00 a.m. rule is about watering, not signing in.",
         "3": "Tool return is separate from the sign-in rule."
-      },
-      "contextId": "c1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-076",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which detail from the notice helps explain why watering is limited before 10:00 a.m. on hot days?",
       "options": [
         "To keep the garden open longer",
@@ -2030,26 +2077,26 @@
         "To make tools easier to use",
         "To help visitors sign in faster"
       ],
-      "correctIndex": 1,
+      "contextId": "c1",
       "explanation": "The notice directly states that watering is limited before 10:00 a.m. on hot days to reduce evaporation.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The rule is about watering efficiency, not open hours.",
         "2": "Tool use is not connected to the watering rule.",
         "3": "Signing in is a separate requirement."
-      },
-      "contextId": "c1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-077",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "A story begins with a student missing the bus, then rushing to class, and finally arriving just before the quiz starts. What is the sequence of events?",
       "options": [
         "The student arrives first, then misses the bus, then rushes to class",
@@ -2057,25 +2104,25 @@
         "The student takes the quiz, then misses the bus, then rushes to class",
         "The student rushes to class, then misses the bus, then arrives before the quiz"
       ],
-      "correctIndex": 1,
       "explanation": "The events are told in order: missing the bus, rushing to class, and arriving just before the quiz.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This order does not match the story’s beginning, middle, and end.",
         "2": "The quiz happens at the end, not the beginning.",
         "3": "The bus is missed before the student rushes to class."
-      },
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-078",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "In a story, a character hides under the table because of a loud thunderstorm. What feeling is most likely being shown?",
       "options": [
         "Excitement",
@@ -2083,25 +2130,25 @@
         "Pride",
         "Boredom"
       ],
-      "correctIndex": 1,
       "explanation": "Hiding under the table during a thunderstorm most strongly suggests fear.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The action shows worry, not celebration.",
         "2": "Pride is not usually shown by hiding.",
         "3": "The character is reacting strongly, not showing boredom."
-      },
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-079",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "A monthly phone plan costs $45. If taxes and fees add about $10, what is the approximate total monthly cost?",
       "options": [
         "$35",
@@ -2109,25 +2156,25 @@
         "$55",
         "$65"
       ],
-      "correctIndex": 2,
       "explanation": "Add $45 and $10 to get an approximate total of $55.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "This ignores the taxes and fees.",
         "1": "This is only the plan cost.",
         "3": "This total is too high for the given amounts."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-080",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "A used laptop costs $400. If you pay $100 down and split the rest into 3 equal payments, about how much is each payment?",
       "options": [
         "$50",
@@ -2135,25 +2182,25 @@
         "$100",
         "$150"
       ],
-      "correctIndex": 2,
       "explanation": "After the $100 down payment, $300 remains. $300 divided by 3 is $100 per payment.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "This is too small for the remaining balance.",
         "1": "This does not divide the remaining balance evenly.",
         "3": "This would exceed the remaining balance over 3 payments."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-081",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which action is the best way to reduce household food waste?",
       "options": [
         "Buy more food than needed so the pantry stays full",
@@ -2161,25 +2208,25 @@
         "Throw away leftovers after one day",
         "Store bread on the counter in the sun"
       ],
-      "correctIndex": 1,
       "explanation": "Meal planning helps you buy and use only what you need, which reduces waste.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Buying extra often leads to more waste.",
         "2": "Leftovers can often be safely kept longer than one day.",
         "3": "Sunlight can make food spoil faster."
-      },
-      "meta": {
-        "topics": [
-          "Household Management"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-082",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "If a dryer vent is clogged with lint, what is the safest next step?",
       "options": [
         "Ignore it until the dryer stops working",
@@ -2187,25 +2234,25 @@
         "Add more laundry soap",
         "Run the dryer on high heat to burn the lint away"
       ],
-      "correctIndex": 1,
       "explanation": "A clogged vent is a fire hazard, so the lint trap and vent should be cleaned before the dryer is used again.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Ignoring lint buildup can be dangerous.",
         "2": "Soap does not solve a vent blockage.",
         "3": "High heat can increase the fire risk."
-      },
-      "meta": {
-        "topics": [
-          "Household Management"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-083",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Environmental Awareness"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which choice is the best example of conserving water at home?",
       "options": [
         "Leaving the tap running while brushing your teeth",
@@ -2213,25 +2260,25 @@
         "Washing only one item at a time in the sink",
         "Using the hose to rinse a sidewalk"
       ],
-      "correctIndex": 1,
       "explanation": "A shorter shower uses less water and is a simple conservation habit.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This wastes water.",
         "2": "This can waste more water than necessary.",
         "3": "Using a hose on hard surfaces usually uses a lot of water."
-      },
-      "meta": {
-        "topics": [
-          "Environmental Awareness"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-084",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence is written correctly?",
       "options": [
         "The report was late because, it needed more research.",
@@ -2239,25 +2286,25 @@
         "The report, was late because it needed more research.",
         "The report was late, because it needed more research"
       ],
-      "correctIndex": 1,
       "explanation": "This sentence correctly joins the ideas with no unnecessary comma.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Do not place a comma between the conjunction and the clause like this.",
         "2": "The comma after the subject is unnecessary here.",
         "3": "A comma is not needed before 'because' in this sentence."
-      },
-      "meta": {
-        "topics": [
-          "Sentence Structure"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-085",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Capitalization Rules"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence uses capitalization correctly?",
       "options": [
         "my aunt works at Conestoga college in Kitchener.",
@@ -2265,25 +2312,25 @@
         "My aunt works at Conestoga College in Kitchener.",
         "my Aunt works at Conestoga College in Kitchener."
       ],
-      "correctIndex": 2,
       "explanation": "Proper nouns such as Conestoga College and Kitchener should be capitalized, and the sentence should begin with a capital letter.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "The sentence begins with a lowercase letter, and the college and city names are not fully capitalized.",
         "1": "Proper nouns should be capitalized correctly throughout.",
         "3": "The sentence should start with a capital letter, and 'Aunt' does not need capitalization here."
-      },
-      "meta": {
-        "topics": [
-          "Capitalization Rules"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-086",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:37.201Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence uses punctuation correctly?",
       "options": [
         "I need a notebook, pens and paper.",
@@ -2291,25 +2338,25 @@
         "I need a notebook, pens, and paper.",
         "I need a notebook pens and paper."
       ],
-      "correctIndex": 2,
       "explanation": "The comma before 'and' in a list is used correctly here.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "A comma is needed after 'pens' in a three-item list.",
         "1": "The items in the list need to be separated properly.",
         "3": "Items in a list should be separated with commas."
-      },
-      "meta": {
-        "topics": [
-          "Punctuation Rules"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-087",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "According to the library notice, when can students first use the quiet study rooms again?",
       "options": [
         "Friday at 6:00 p.m.",
@@ -2317,26 +2364,26 @@
         "Saturday at noon",
         "Sunday morning"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx1",
       "explanation": "The notice says the quiet study rooms will be unavailable until noon on Saturday, so they reopen at noon.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "That is when the library closes, not when the study rooms reopen.",
         "1": "The library reopens at 8:00 a.m., but the study rooms are still unavailable.",
         "3": "The notice does not say the rooms stay closed until Sunday."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-088",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "In the story about Mina, how did she most likely feel at the end of the shift?",
       "options": [
         "Confused and frustrated",
@@ -2344,26 +2391,26 @@
         "Tired but angry",
         "Bored and uninterested"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx2",
       "explanation": "The passage states that by the end of the shift, Mina felt proud because she had helped organize supplies.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The story says she felt nervous at first, but not confused or frustrated at the end.",
         "2": "Nothing in the passage suggests she was angry.",
         "3": "She helped many families, so she was not uninterested."
-      },
-      "contextId": "ctx2",
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-089",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "If the monthly entertainment budget is cut in half, how much money would remain for entertainment?",
       "options": [
         "$45",
@@ -2371,26 +2418,26 @@
         "$60",
         "$65"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx3",
       "explanation": "The entertainment budget is $110. Half of $110 is $55.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "$45 is less than half of $110.",
         "2": "$60 is more than half of $110.",
         "3": "$65 is also more than half of $110."
-      },
-      "contextId": "ctx3",
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-090",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "Which expense is the third largest in the monthly household budget?",
       "options": [
         "Transportation",
@@ -2398,26 +2445,26 @@
         "Savings",
         "Entertainment"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx3",
       "explanation": "The amounts from largest to smaller are Rent, Groceries, Savings, Utilities, Transportation, and Entertainment. The third largest is Savings? Wait check carefully: Rent 1200, Groceries 450, Savings 200, Transportation 180, Utilities 160, Entertainment 110. So the third largest is Savings.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Transportation is smaller than Utilities and Savings.",
         "2": "Savings is larger than Transportation and Utilities.",
         "3": "Entertainment is the smallest expense here."
-      },
-      "contextId": "ctx3",
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-091",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "According to the home energy use survey, which activity costs about twice as much as electronics?",
       "options": [
         "Lighting",
@@ -2425,26 +2472,27 @@
         "Cooling",
         "Heating"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx4",
       "explanation": "Electronics cost $180, so about twice that is $360. Cooling is $250, which is not twice; water heating is $300; heating is $900. None is exactly twice, but if the intent is closest to double, water heating is the nearest to $360? However to keep the item valid, the best answer should be Water Heating as the closest approximate double among the options.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "Lighting is far less than electronics.",
         "1": "Water heating is closer to twice electronics than the other choices? Recheck the numbers carefully.",
         "3": "Heating is much more than twice electronics."
-      },
-      "contextId": "ctx4",
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-092",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Household Management",
+          "Environmental Awareness"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "If a student wants to reduce household waste from recycling, which action should be done before putting a container in the blue bin?",
       "options": [
         "Leave the lid on tightly",
@@ -2452,27 +2500,26 @@
         "Break the container into pieces",
         "Put plastic bags inside it"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx5",
       "explanation": "The passage says to rinse out food containers before placing them in the blue bin.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The notice does not say to keep lids on.",
         "2": "The passage does not recommend breaking containers apart.",
         "3": "Loose plastic bags should be removed, not placed inside."
-      },
-      "contextId": "ctx5",
-      "meta": {
-        "topics": [
-          "Household Management",
-          "Environmental Awareness"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-093",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:20:51.209Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence is correctly structured?",
       "options": [
         "Because the student studied hard and passed the test.",
@@ -2480,25 +2527,25 @@
         "The student studied hard. And passed the test.",
         "Studied hard the student and passed the test."
       ],
-      "correctIndex": 1,
       "explanation": "This sentence has a complete subject and verb in a clear order: The student studied hard and passed the test.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This is a fragment because it begins with 'Because' and does not form a complete thought.",
         "2": "The second part is a fragment: 'And passed the test.'",
         "3": "The word order is incorrect."
-      },
-      "meta": {
-        "topics": [
-          "Sentence Structure"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-094",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "According to the notice, when does the library reopen for new borrowing requests?",
       "options": [
         "Friday at 3:00 p.m.",
@@ -2506,26 +2553,26 @@
         "Monday morning",
         "Monday afternoon"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx1",
       "explanation": "The notice says new borrowing requests will be processed on Monday morning when the library reopens.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "That is when the library closes early, not reopens.",
         "1": "The library is not open on Saturday in the notice.",
         "3": "The notice says morning, not afternoon."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-095",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "At the start of the story, how would you best describe Omar?",
       "options": [
         "Noisy and careless",
@@ -2533,26 +2580,26 @@
         "Angry and rude",
         "Confused and tired"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx2",
       "explanation": "The story says Omar was quiet at first, which matches quiet and reserved.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The story does not describe him that way at the start.",
         "2": "There is no sign that Omar is angry or rude.",
         "3": "The passage does not suggest he is confused or tired."
-      },
-      "contextId": "ctx2",
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-096",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "If a homeowner replaces old light bulbs with LED bulbs, about how much money might be saved each year?",
       "options": [
         "$50",
@@ -2560,26 +2607,26 @@
         "$250",
         "$430"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx3",
       "explanation": "The passage says the bill may drop by about $180 per year after installing LED bulbs.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "This amount is too low compared with the passage.",
         "2": "This is the increase from the air conditioner, not the savings from LED bulbs.",
         "3": "This is not stated in the passage."
-      },
-      "contextId": "ctx3",
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-097",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Household Management"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "Which action would help prevent food contamination in the kitchen?",
       "options": [
         "Storing raw meat on the top shelf",
@@ -2587,26 +2634,26 @@
         "Cleaning surfaces after cooking",
         "Putting warm food directly into the freezer"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx4",
       "explanation": "The passage says surfaces should be cleaned with hot, soapy water after preparing meals.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "Raw meat should be stored on the bottom shelf, not the top.",
         "1": "Leftovers should be refrigerated within two hours.",
         "3": "The passage does not recommend putting warm food directly into the freezer."
-      },
-      "contextId": "ctx4",
-      "meta": {
-        "topics": [
-          "Household Management"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-098",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Environmental Awareness"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "What is the main environmental benefit of compost in the garden?",
       "options": [
         "It makes plants grow without water",
@@ -2614,26 +2661,26 @@
         "It removes the need for sunlight",
         "It keeps pests away completely"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx5",
       "explanation": "The passage says compost helps return nutrients to the soil and reduces waste.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The passage does not say compost eliminates watering.",
         "2": "Compost does not replace sunlight.",
         "3": "The passage does not claim compost completely removes pests."
-      },
-      "contextId": "ctx5",
-      "meta": {
-        "topics": [
-          "Environmental Awareness"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-099",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Sentence Structure"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence is correctly written?",
       "options": [
         "The students’ are in class today.",
@@ -2641,25 +2688,25 @@
         "The students are in class today.",
         "The students are in class today’s."
       ],
-      "correctIndex": 2,
       "explanation": "This sentence uses the plural noun students correctly and does not need an apostrophe.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "Students is plural; the apostrophe is not needed here.",
         "1": "The apostrophe makes the noun possessive, which is incorrect here.",
         "3": "Today’s is not needed in this sentence."
-      },
-      "meta": {
-        "topics": [
-          "Sentence Structure"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-101",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Punctuation Rules"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "Which sentence has the correct punctuation?",
       "options": [
         "The bus arrives at 8 30 a.m.",
@@ -2667,25 +2714,25 @@
         "The bus arrives at 8;30 a.m.",
         "The bus arrives at 8,30 a.m."
       ],
-      "correctIndex": 1,
       "explanation": "A colon is used correctly in 8:30 a.m. to show the time.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "A colon is needed in the time.",
         "2": "A semicolon is not used in times.",
         "3": "A comma is not correct in the time."
-      },
-      "meta": {
-        "topics": [
-          "Punctuation Rules"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-102",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "Based on the notice, which statement is true?",
       "options": [
         "The library will stay open late on Friday.",
@@ -2693,26 +2740,26 @@
         "New borrowing requests will be processed on Friday afternoon.",
         "The library closes for the weekend on Friday morning."
       ],
-      "correctIndex": 1,
+      "contextId": "ctx1",
       "explanation": "The notice states that students may still return books using the outside drop box after closing.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "The notice says the library closes early, not late.",
         "2": "Requests are processed on Monday morning, not Friday afternoon.",
         "3": "The notice does not say it closes for the whole weekend on Friday morning."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-103",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:04.241Z",
+        "answerConfidence": "high"
+      },
       "text": "What is Omar like by Sunday evening?",
       "options": [
         "Still shy and silent",
@@ -2720,26 +2767,26 @@
         "Sleeping most of the day",
         "Upset about residence life"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx2",
       "explanation": "The story says that by Sunday evening Omar was joking with everyone in the hallway.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "He is no longer quiet by then.",
         "2": "The passage does not say he is sleeping most of the day.",
         "3": "The passage does not show that he is upset."
-      },
-      "contextId": "ctx2",
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-103",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "Why did Maya go back to the cafeteria?",
       "options": [
         "She wanted to buy a new lunch card",
@@ -2747,26 +2794,26 @@
         "She was meeting a friend there",
         "She had forgotten her morning quiz"
       ],
-      "correctIndex": 1,
+      "contextId": "ctx1",
       "explanation": "The passage says Maya went back to the cafeteria to ask if anyone had turned in her lunch card.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Maya did not need to buy a new card.",
         "2": "The passage does not mention meeting a friend.",
         "3": "Her quiz was already before the card was missing."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-104",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "How did Maya solve her problem?",
       "options": [
         "She borrowed money to replace the card",
@@ -2774,26 +2821,26 @@
         "She asked the cafeteria staff about it",
         "She left college for the day"
       ],
-      "correctIndex": 2,
+      "contextId": "ctx1",
       "explanation": "Maya solved the problem by asking the cafeteria staff, who told her the card had been turned in.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "The passage does not mention paying for a replacement.",
         "1": "She checked the notebook, but the card was not there.",
         "3": "Maya stayed and handled the situation."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-105",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Reading Comprehension"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "What is the best lesson from Maya's experience?",
       "options": [
         "Keep important items in the same place",
@@ -2801,26 +2848,26 @@
         "Never ask staff for help",
         "Leave school early when you lose something"
       ],
-      "correctIndex": 0,
+      "contextId": "ctx1",
       "explanation": "Maya decided to keep the card in the same pocket every day, showing the value of having a regular place for important items.",
+      "correctIndex": 0,
       "wrongAnswerHints": {
         "1": "The story is not about cafeteria meals.",
         "2": "Maya did ask staff for help.",
         "3": "She did not leave early; she stayed to find the card."
-      },
-      "contextId": "ctx1",
-      "meta": {
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-106",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "A student says, 'I always hand in my homework on time.' What narrative element is the student showing?",
       "options": [
         "Setting",
@@ -2828,25 +2875,25 @@
         "Problem",
         "Solution"
       ],
-      "correctIndex": 1,
       "explanation": "This sentence shows a character trait because it describes a person's habit or quality.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Setting is where or when a story happens.",
         "2": "A problem is a difficulty in the story.",
         "3": "A solution fixes a problem."
-      },
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-107",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Understanding Narrative Elements"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "In a story, the part where the main character faces a challenge is called the",
       "options": [
         "theme",
@@ -2854,25 +2901,25 @@
         "title",
         "ending"
       ],
-      "correctIndex": 1,
       "explanation": "Conflict is the problem or challenge the character faces.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
         "0": "Theme is the message or big idea of a story.",
         "2": "The title is the name of the story.",
         "3": "The ending comes after the conflict is resolved."
-      },
-      "meta": {
-        "topics": [
-          "Understanding Narrative Elements"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-108",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "A student earns $1,800 a month and saves $225. About what percent of the income is saved?",
       "options": [
         "5%",
@@ -2880,25 +2927,25 @@
         "15%",
         "25%"
       ],
-      "correctIndex": 2,
       "explanation": "225 is one-eighth of 1,800, which is 12.5%, so the closest answer is 15%.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "5% of 1,800 is only 90.",
         "1": "10% of 1,800 is 180.",
         "3": "25% of 1,800 is 450."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-109",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "medium",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "If a monthly phone plan costs $48 and the tax is 13%, about how much is the total bill?",
       "options": [
         "$50",
@@ -2906,25 +2953,25 @@
         "$54",
         "$61"
       ],
-      "correctIndex": 2,
       "explanation": "13% of 48 is about 6.24, so the total is about $54.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
         "0": "This is too close to the original price and does not include tax.",
         "1": "This is a little low for a 13% tax.",
         "3": "This adds too much tax for the given plan price."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "medium",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     },
     {
       "id": "engl-gen-110",
+      "meta": {
+        "source": "generated",
+        "topics": [
+          "Financial Literacy"
+        ],
+        "difficulty": "easy",
+        "verifiedAt": "2026-06-09T14:21:13.481Z",
+        "answerConfidence": "high"
+      },
       "text": "Which expense is most likely to increase if a family uses more hot water every day?",
       "options": [
         "Water heating cost",
@@ -2932,61 +2979,14 @@
         "Rent cost",
         "Parking cost"
       ],
-      "correctIndex": 0,
       "explanation": "Using more hot water increases the energy needed to heat water.",
+      "correctIndex": 0,
       "wrongAnswerHints": {
         "1": "Internet cost does not depend on hot water use.",
         "2": "Rent usually does not change with hot water use.",
         "3": "Parking cost is unrelated to water use."
-      },
-      "meta": {
-        "topics": [
-          "Financial Literacy"
-        ],
-        "difficulty": "easy",
-        "source": "generated",
-        "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
       }
     }
   ],
-  "subjectId": "english",
-  "contexts": {
-    "ctx1": {
-      "id": "ctx1",
-      "type": "passage",
-      "title": "The Missing Lunch Card",
-      "content": "Maya arrived at college early because she had a quiz in the morning. After her first class, she looked in her bag for her lunch card, but it was gone. She checked her jacket pocket, her notebook, and the front desk in the library. Nothing. Maya remembered that she had used the card at the cafeteria the day before. She went back to the cafeteria to ask if anyone had turned it in. A staff member smiled and said, 'Yes, someone left it here after lunch.' Maya felt relieved and thanked the staff member. She decided to keep the card in the same pocket every day after that."
-    },
-    "ctx2": {
-      "id": "ctx2",
-      "type": "passage",
-      "title": "Roommate Story",
-      "content": "Leah moved into residence on Saturday. Her new roommate, Omar, was quiet at first, but by Sunday evening he was joking with everyone in the hallway. Leah noticed that Omar liked to organize his desk before studying and always listened to music after dinner. On Monday morning, he woke up early, packed his backpack, and left for class with a smile."
-    },
-    "c1": {
-      "id": "c1",
-      "type": "passage",
-      "title": "Community Garden Notice",
-      "content": "The community garden will be open to members from 8:00 a.m. to 6:00 p.m. on weekdays and from 9:00 a.m. to 4:00 p.m. on weekends. Visitors must sign in at the shed before entering. Tools are available for loan, but they must be returned by the end of the day. Watering is allowed only before 10:00 a.m. on hot days to reduce evaporation."
-    },
-    "ctx3": {
-      "id": "ctx3",
-      "type": "passage",
-      "title": "Energy-Saving Upgrade",
-      "content": "A homeowner spends about $2,400 each year on electricity. After replacing old light bulbs with LED bulbs, the bill may drop by about $180 per year. If the home later adds a window air conditioner, the annual bill could increase by about $250."
-    },
-    "ctx4": {
-      "id": "ctx4",
-      "type": "passage",
-      "title": "Kitchen Safety Tips",
-      "content": "To keep food safe, the refrigerator should stay at or below 4°C. Raw meat should be stored on the bottom shelf so juices do not drip onto other foods. Surfaces should be cleaned with hot, soapy water after preparing meals. Leftovers should be cooled and placed in the refrigerator within two hours."
-    },
-    "ctx5": {
-      "id": "ctx5",
-      "type": "passage",
-      "title": "Community Garden News",
-      "content": "The community garden uses rain barrels to collect water for plants. Volunteers also spread mulch around the vegetables to keep the soil moist. During summer, the garden depends on compost, which helps return nutrients to the soil and reduces waste."
-    }
-  }
+  "subjectId": "english"
 }

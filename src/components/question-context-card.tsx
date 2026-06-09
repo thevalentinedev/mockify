@@ -1,8 +1,9 @@
 "use client";
 
+import { getContextImageSrc } from "@/lib/context-image";
 import { getContextLabel } from "@/lib/question-context";
 import { cn } from "@/lib/utils";
-import type { QuestionContext, QuestionContextType } from "@/types/exam";
+import type { QuestionContext, QuestionContextType, SchoolId, SubjectId } from "@/types/exam";
 import {
   BarChart3,
   BookOpen,
@@ -12,6 +13,7 @@ import {
   Shapes,
   Table2,
 } from "lucide-react";
+import { useMemo, useState } from "react";
 
 const ICONS: Record<QuestionContextType, typeof BookOpen> = {
   passage: BookOpen,
@@ -22,19 +24,40 @@ const ICONS: Record<QuestionContextType, typeof BookOpen> = {
   image: ImageIcon,
 };
 
+const PASSAGE_CHUNK = 1200;
+
 interface QuestionContextCardProps {
   context: QuestionContext;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  schoolId?: SchoolId;
+  subjectId?: SubjectId;
 }
 
 export function QuestionContextCard({
   context,
   open,
   onOpenChange,
+  schoolId,
+  subjectId,
 }: QuestionContextCardProps) {
   const Icon = ICONS[context.type];
   const label = getContextLabel(context.type, context.title);
+  const imageSrc = getContextImageSrc(context, schoolId, subjectId);
+  const isLongPassage =
+    (context.type === "passage" || context.type === "comprehension") &&
+    context.content.length > PASSAGE_CHUNK;
+  const chunks = useMemo(() => {
+    if (!isLongPassage) return [context.content];
+    const parts: string[] = [];
+    let cursor = 0;
+    while (cursor < context.content.length) {
+      parts.push(context.content.slice(cursor, cursor + PASSAGE_CHUNK));
+      cursor += PASSAGE_CHUNK;
+    }
+    return parts;
+  }, [context.content, isLongPassage]);
+  const [chunkIndex, setChunkIndex] = useState(0);
 
   return (
     <div className="rounded-xl border border-border/80 bg-muted/25 overflow-hidden">
@@ -64,10 +87,49 @@ export function QuestionContextCard({
       </button>
 
       {open && (
-        <div className="border-t border-border/60 bg-background/50 px-4 py-4">
-          <div className="exam-passage max-h-72 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-foreground/90">
-            {context.content}
-          </div>
+        <div className="border-t border-border/60 bg-background/50 px-4 py-4 space-y-3">
+          {imageSrc && (
+            <div className="overflow-hidden rounded-lg border border-border/60 bg-white dark:bg-zinc-900 dark:border-zinc-700 p-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imageSrc}
+                alt={label}
+                className="mx-auto max-h-80 w-full object-contain dark:brightness-95"
+              />
+            </div>
+          )}
+          {context.content && (
+            <div className="space-y-2">
+              <div className="exam-passage max-h-72 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-foreground/90">
+                {chunks[chunkIndex]}
+              </div>
+              {chunks.length > 1 && (
+                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                  <button
+                    type="button"
+                    className="underline disabled:opacity-40"
+                    disabled={chunkIndex === 0}
+                    onClick={() => setChunkIndex((i) => Math.max(0, i - 1))}
+                  >
+                    Previous section
+                  </button>
+                  <span>
+                    Part {chunkIndex + 1} of {chunks.length}
+                  </span>
+                  <button
+                    type="button"
+                    className="underline disabled:opacity-40"
+                    disabled={chunkIndex >= chunks.length - 1}
+                    onClick={() =>
+                      setChunkIndex((i) => Math.min(chunks.length - 1, i + 1))
+                    }
+                  >
+                    Next section
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

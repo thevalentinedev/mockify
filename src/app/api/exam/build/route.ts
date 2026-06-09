@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { buildExamSession } from "@/lib/build-exam-session";
+import { parseBuildOptionsFromBody } from "@/lib/parse-build-options";
 import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
 
 export async function POST(request: Request) {
@@ -15,7 +16,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    const session = await buildExamSession(school, subjects, mode);
+    const options = parseBuildOptionsFromBody(mode, body);
+    const session = await buildExamSession(school, subjects, mode, options);
     if (!session) {
       return NextResponse.json({ error: "No questions available" }, { status: 404 });
     }

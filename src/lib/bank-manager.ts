@@ -9,11 +9,25 @@ import {
   updateSubjectPrepareProgress,
 } from "@/lib/prepare-progress";
 import { generatePracticeQuestions } from "@/lib/ai/generate-questions";
+import { twistPracticeQuestions } from "@/lib/ai/twist-questions";
+import {
+  GENERATE_ON_REFRESH,
+  nextAttemptNumber,
+  pickQuestionsToTwist,
+  POOL_CAP_MULTIPLIER,
+  shouldGenerateRefresh,
+  shouldTwistQuestions,
+  TWIST_BATCH_SIZE,
+} from "@/lib/exam-variety";
 import { extractQuestionsFromText, toQuestionBank } from "@/lib/ai-extract";
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
 import { getExamSpec } from "@/lib/exam-config";
 import { findSubjectPdf } from "@/lib/find-subject-pdf";
-import { extractTextFromPdf } from "@/lib/pdf-extract";
+import {
+  attachPdfImagesToBank,
+  bankNeedsImageExtraction,
+} from "@/lib/pdf-context-images";
+import { extractPdfBundle } from "@/lib/pdf-extract";
 import type { QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
 export interface SubjectEnsureResult {
@@ -26,12 +40,12 @@ export interface SubjectEnsureResult {
 
 /**
  * Ensures a subject bank is ready before an exam.
- * Rules (cheap path first — AI only when needed):
- * - No bank → extract PDF, enrich, generate initial batch
- * - Not enriched → enrich once
- * - Pool < exam size → generate gap (+ small buffer)
- * - Every 5th exam start → light top-up if pool could grow
- * - Pool full & enriched → skip AI entirely
+ *
+ * Variety strategy (retakes should feel fresh without AI on every click):
+ * - Every start → smart rotation at build time (avoid last 3 exam sets)
+ * - Every 3rd start → generate ~12 new questions (pool cap = 2× exam size)
+ * - Every 5th start → AI-twist ~8 overused questions into new scenarios
+ * - First-time / incomplete pool → extract, enrich, generate as before
  */
 function report(
   jobId: string | undefined,
@@ -51,7 +65,8 @@ function report(
 export async function ensureSubjectBank(
   schoolId: SchoolId,
   subjectId: SubjectId,
-  jobId?: string
+  jobId?: string,
+  userAttempt?: number
 ): Promise<SubjectEnsureResult> {
   const spec = getExamSpec(schoolId, subjectId);
   if (!spec) {
@@ -87,16 +102,37 @@ export async function ensureSubjectBank(
       target,
       message: "Reading sample PDF…",
     });
-    const text = await extractTextFromPdf(pdfPath);
+    const pdfBundle = await extractPdfBundle(pdfPath);
     report(jobId, subjectId, {
       phase: "extracting",
       message: "Extracting questions from PDF…",
     });
     actions.push("Reading sample PDF");
     actions.push("Extracting questions");
-    const extraction = await extractQuestionsFromText(text, schoolId, subjectId);
+    const extraction = await extractQuestionsFromText(
+      pdfBundle.text,
+      schoolId,
+      subjectId
+    );
     bank = toQuestionBank(extraction, schoolId, subjectId);
     bank.config = spec;
+
+    if (bankNeedsImageExtraction(bank)) {
+      report(jobId, subjectId, {
+        phase: "extracting",
+        message: "Extracting diagrams and figures…",
+      });
+      actions.push("Extracting diagrams from PDF");
+      const { bank: withImages, attached } = await attachPdfImagesToBank(
+        bank,
+        pdfPath
+      );
+      bank = withImages;
+      if (attached > 0) {
+        actions.push(`Attached ${attached} figure(s) from PDF`);
+      }
+    }
+
     await saveQuestionBank(bank);
     poolSize = bank.questions.length;
     report(jobId, subjectId, {
@@ -115,17 +151,69 @@ export async function ensureSubjectBank(
   const poolReady = poolSize >= target;
 
   if (allEnriched && poolReady) {
-    // Light top-up every 5 exam starts to keep pool fresh
-    if (examStarts > 0 && examStarts % 5 === 0 && poolSize < target * 2) {
+    if (bankNeedsImageExtraction(bank)) {
+      const pdfPath = await findSubjectPdf(schoolId, subjectId);
+      if (pdfPath) {
+        report(jobId, subjectId, {
+          phase: "extracting",
+          message: "Extracting diagrams and figures…",
+        });
+        actions.push("Extracting diagrams from PDF");
+        const { bank: withImages, attached } = await attachPdfImagesToBank(
+          bank,
+          pdfPath
+        );
+        bank = withImages;
+        bank.config = spec;
+        await saveQuestionBank(bank);
+        if (attached > 0) {
+          actions.push(`Attached ${attached} figure(s) from PDF`);
+        }
+      }
+    }
+
+    const nextAttempt = nextAttemptNumber(userAttempt ?? examStarts);
+    const runTwist = shouldTwistQuestions(nextAttempt);
+    const runGenerate =
+      !runTwist && shouldGenerateRefresh(nextAttempt, poolSize, target);
+
+    if (runTwist) {
+      const sources = pickQuestionsToTwist(
+        bank.questions,
+        bank.meta?.recentExamSets ?? [],
+        TWIST_BATCH_SIZE
+      );
+      report(jobId, subjectId, {
+        phase: "twisting",
+        poolSize,
+        target,
+        enrichedCount: countEnrichedQuestions(bank.questions),
+        message: `Creating fresh variations (${sources.length} questions)…`,
+      });
+      actions.push(`Twisting ${sources.length} questions into new scenarios`);
+      bank = await twistPracticeQuestions(bank, sources, sources.length);
+      bank.config = spec;
+      const twistedUnenriched = getUnenrichedQuestions(bank.questions);
+      if (twistedUnenriched.length > 0) {
+        bank = await enrichQuestionBank(bank);
+        bank.config = spec;
+      }
+      await saveQuestionBank(bank);
+      poolSize = bank.questions.length;
+    } else if (runGenerate) {
+      const batch = Math.min(
+        GENERATE_ON_REFRESH,
+        target * POOL_CAP_MULTIPLIER - poolSize
+      );
       report(jobId, subjectId, {
         phase: "generating",
         poolSize,
         target,
         enrichedCount: countEnrichedQuestions(bank.questions),
-        message: "Refreshing practice pool…",
+        message: `Adding new practice questions (attempt ${nextAttempt})…`,
       });
-      actions.push("Refreshing practice pool");
-      bank = await generatePracticeQuestions(bank, 10);
+      actions.push(`Generating ${batch} new questions`);
+      bank = await generatePracticeQuestions(bank, batch);
       bank.config = spec;
       const newUnenriched = getUnenrichedQuestions(bank.questions);
       if (newUnenriched.length > 0) {
@@ -135,13 +223,13 @@ export async function ensureSubjectBank(
       await saveQuestionBank(bank);
       poolSize = bank.questions.length;
     } else {
-      actions.push("Using saved question bank");
+      actions.push("Rotating question selection");
       report(jobId, subjectId, {
-        phase: "done",
+        phase: "finishing",
         poolSize: Math.min(poolSize, target),
         target,
         enrichedCount: countEnrichedQuestions(bank.questions),
-        message: "Using saved question bank",
+        message: "Picking fresh questions for this attempt…",
       });
     }
 
@@ -159,7 +247,7 @@ export async function ensureSubjectBank(
       actions,
       poolSize: bank.questions.length,
       examQuestionCount: target,
-      skippedAi: actions.length === 1 && actions[0] === "Using saved question bank",
+      skippedAi: actions.length === 1 && actions[0] === "Rotating question selection",
     };
   }
 
@@ -257,11 +345,19 @@ export async function ensureSubjectBank(
 export async function ensureBanksForSubjects(
   schoolId: SchoolId,
   subjects: SubjectId[],
-  jobId?: string
+  jobId?: string,
+  userAttempts?: Partial<Record<SubjectId, number>>
 ): Promise<SubjectEnsureResult[]> {
   const results: SubjectEnsureResult[] = [];
   for (const subjectId of subjects) {
-    results.push(await ensureSubjectBank(schoolId, subjectId, jobId));
+    results.push(
+      await ensureSubjectBank(
+        schoolId,
+        subjectId,
+        jobId,
+        userAttempts?.[subjectId]
+      )
+    );
   }
   return results;
 }
@@ -273,6 +369,9 @@ async function incrementExamStarts(bank: QuestionBank): Promise<void> {
     schoolContext: bank.meta?.schoolContext,
     lastEnrichedAt: bank.meta?.lastEnrichedAt,
     lastGeneratedAt: bank.meta?.lastGeneratedAt,
+    lastTwistedAt: bank.meta?.lastTwistedAt,
+    lastExamBuiltAt: bank.meta?.lastExamBuiltAt,
+    recentExamSets: bank.meta?.recentExamSets,
     totalGenerated: bank.meta?.totalGenerated ?? 0,
     examStarts: (bank.meta?.examStarts ?? 0) + 1,
   };

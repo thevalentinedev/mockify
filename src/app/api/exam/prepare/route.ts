@@ -16,10 +16,11 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { school, subjects, jobId } = body as {
+    const { school, subjects, jobId, userAttempts } = body as {
       school: SchoolId;
       subjects: SubjectId[];
       jobId?: string;
+      userAttempts?: Partial<Record<SubjectId, number>>;
     };
 
     if (!school || !subjects?.length) {
@@ -29,7 +30,12 @@ export async function POST(request: Request) {
     const id = jobId ?? crypto.randomUUID();
     initPrepareJob(id, school, subjects);
 
-    const bankResults = await ensureBanksForSubjects(school, subjects, id);
+    const bankResults = await ensureBanksForSubjects(
+      school,
+      subjects,
+      id,
+      userAttempts
+    );
     completePrepareJob(id);
 
     return NextResponse.json({ jobId: id, bankResults });

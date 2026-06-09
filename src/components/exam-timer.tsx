@@ -38,14 +38,21 @@ export function ExamTimer({ startedAt, timeLimitMinutes, onTimeUp }: ExamTimerPr
   }, [startedAt, totalSeconds, onTimeUp]);
 
   const isLow = remaining <= 300;
+  const timeLabel = formatTime(remaining);
 
   return (
-    <Badge
-      variant={isLow ? "destructive" : "secondary"}
-      className="gap-1.5 px-3 py-1 text-sm font-mono tabular-nums"
-    >
-      <Clock className="size-3.5" />
-      {formatTime(remaining)}
-    </Badge>
+    <>
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {isLow ? `Warning: ${timeLabel} remaining` : `${timeLabel} remaining`}
+      </div>
+      <Badge
+        variant={isLow ? "destructive" : "secondary"}
+        className="gap-1.5 px-3 py-1 text-sm font-mono tabular-nums"
+        aria-label={`${timeLabel} remaining`}
+      >
+        <Clock className="size-3.5" />
+        {timeLabel}
+      </Badge>
+    </>
   );
 }

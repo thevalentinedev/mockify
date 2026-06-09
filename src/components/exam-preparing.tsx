@@ -3,6 +3,7 @@
 import { useAnimatedCount } from "@/hooks/use-animated-count";
 import { getExamSpec, SUBJECTS } from "@/lib/exam-config";
 import { getReadyCount, type PrepareProgress } from "@/lib/prepare-progress";
+import type { SubjectEnsureResult } from "@/lib/bank-manager";
 import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
 import { Loader2, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -12,7 +13,7 @@ const TIPS = [
   "In mock mode, keep an eye on the timer — don't rush the early questions.",
   "If you're stuck, mark it and come back via Review.",
   "Wrong answers show explanations after you finish — use them to learn.",
-  "Retakes shuffle questions and options — real mastery beats memorizing order.",
+  "Retakes rotate questions — every 3rd attempt adds new ones, every 5th twists familiar topics.",
   "Practice mode has no timer — great for learning new topics first.",
 ];
 
@@ -21,9 +22,16 @@ interface ExamPreparingProps {
   schoolId: SchoolId;
   subjects: SubjectId[];
   mode: ExamMode;
+  prepareAudit?: SubjectEnsureResult[] | null;
 }
 
-export function ExamPreparing({ jobId, schoolId, subjects, mode }: ExamPreparingProps) {
+export function ExamPreparing({
+  jobId,
+  schoolId,
+  subjects,
+  mode,
+  prepareAudit,
+}: ExamPreparingProps) {
   const [tipIndex, setTipIndex] = useState(0);
   const [progress, setProgress] = useState<PrepareProgress | null>(null);
 
@@ -137,8 +145,23 @@ export function ExamPreparing({ jobId, schoolId, subjects, mode }: ExamPreparing
           </p>
         </div>
 
+        {prepareAudit && prepareAudit.length > 0 && (
+          <div className="text-left text-xs text-muted-foreground space-y-1 rounded-xl border p-3">
+            <p className="font-medium text-foreground">Pool updates</p>
+            {prepareAudit.flatMap((entry) =>
+              entry.actions.map((action, i) => (
+                <p key={`${entry.subjectId}-${i}`}>
+                  {SUBJECTS.find((s) => s.id === entry.subjectId)?.name ?? entry.subjectId}:{" "}
+                  {action}
+                </p>
+              ))
+            )}
+          </div>
+        )}
+
         <p className="text-xs text-muted-foreground">
-          First time for a subject takes longer. Later attempts are instant.
+          First time for a subject takes longer. Vercel Hobby has a 10s function
+          limit — use Pro or pre-seed banks for long prepares.
         </p>
       </div>
     </div>

@@ -12,3 +12,15 @@ export function getBankPath(schoolId: SchoolId, subjectId: SubjectId): string {
 export function getBanksDir(schoolId: SchoolId): string {
   return path.join(process.cwd(), "data", "banks", schoolId);
 }
+
+export function getAssetsDir(schoolId: SchoolId, subjectId: SubjectId): string {
+  return path.join(process.cwd(), "data", "assets", schoolId, subjectId);
+}
+
+export function getAssetFilePath(
+  schoolId: SchoolId,
+  subjectId: SubjectId,
+  filename: string
+): string {
+  return path.join(getAssetsDir(schoolId, subjectId), filename);
+}

@@ -6,6 +6,7 @@ import {
   saveBankToDb,
 } from "@/lib/bank-store";
 import { isDbEnabled } from "@/lib/db";
+import { ensureContextImagesPersisted } from "@/lib/blob-assets";
 import { getBankPath, getBanksDir } from "@/lib/paths";
 import type { QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
@@ -36,18 +37,18 @@ function shouldMirrorToJson(): boolean {
 }
 
 export async function saveQuestionBank(bank: QuestionBank): Promise<void> {
+  const persisted = await ensureContextImagesPersisted(bank);
   if (isDbEnabled()) {
-    await saveBankToDb(bank);
+    await saveBankToDb(persisted);
   }
 
   if (!shouldMirrorToJson()) return;
 
-  // Local dev backup when DB is configured, or primary store without DB
-  const dir = getBanksDir(bank.schoolId);
+  const dir = getBanksDir(persisted.schoolId);
   await mkdir(dir, { recursive: true });
   await writeFile(
-    getBankPath(bank.schoolId, bank.subjectId),
-    JSON.stringify(bank, null, 2)
+    getBankPath(persisted.schoolId, persisted.subjectId),
+    JSON.stringify(persisted, null, 2)
   );
 }
 

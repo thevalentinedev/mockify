@@ -59,10 +59,15 @@ Rules:
 - Preserve wording exactly as in the source where possible.
 - Skip instructions and page headers only — passages, graphs, tables, and diagrams are NOT non-question content; extract their full text/data into contexts[] instead of omitting them.
 - If options are labeled A/B/C/D, strip the letter prefix from option text.
-- When a passage, graph, table, or diagram is shared by one or more questions, add the full content to contexts[] with a unique id (e.g. ctx-1).
-- Link every question that refers to shared material — e.g. "the passage", "the story", "according to the graph", "the table above" — via contextId pointing to the matching context.
+- When a passage, graph, table, or diagram is shared by one or more questions, add the full content to contexts[] with a unique id (e.g. ctx-1, fig-1).
+- Link every question that refers to shared material — e.g. "the passage", "the story", "according to the graph", "the table above", "Figure 1" — via contextId pointing to the matching context.
 - Reuse the same contextId for all questions that share the same passage, graph, or table.
-- For graphs/tables/diagrams, describe the visual data as text in the context content field.
+- For passages and tables with extractable text/data, put the full text in context content.
+- For diagrams, graphs, and images that are NOT present as text in the PDF extract, still create a context entry:
+  - type: "diagram" | "graph" | "image" as appropriate
+  - title: the figure label exactly as in the PDF (e.g. "Figure 1", "Figure 2")
+  - content: a short placeholder such as "The actual diagram is not included in the extracted text." — images will be attached from the PDF later
+- Do NOT skip figure/diagram contexts just because the visual is missing from the text; questions referencing "Figure N" must have a linked context with that title.
 
 PDF TEXT:
 ${text}`,

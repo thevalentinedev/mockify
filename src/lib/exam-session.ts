@@ -52,9 +52,14 @@ export function saveProgress(
 ): void {
   const payload: ExamProgress = {
     startedAt: session.startedAt,
+    currentSubjectIndex: progress.currentSubjectIndex ?? 0,
     currentIndex: progress.currentIndex,
     answers: progress.answers,
     showReview: progress.showReview,
+    completedSubjects: progress.completedSubjects ?? [],
+    flaggedQuestionIds: progress.flaggedQuestionIds ?? [],
+    questionTimeMs: progress.questionTimeMs ?? {},
+    questionOpenedAt: progress.questionOpenedAt,
     updatedAt: Date.now(),
   };
   writeStorage(PROGRESS_KEY, JSON.stringify(payload));
@@ -70,6 +75,14 @@ export function loadProgress(session: ExamSession): ExamProgress | null {
   } catch {
     return null;
   }
+}
+
+export function formatLastSaved(updatedAt: number): string {
+  const seconds = Math.floor((Date.now() - updatedAt) / 1000);
+  if (seconds < 10) return "Saved just now";
+  if (seconds < 60) return `Saved ${seconds}s ago`;
+  const minutes = Math.floor(seconds / 60);
+  return `Saved ${minutes}m ago`;
 }
 
 export function hasActiveExam(): boolean {
@@ -113,8 +126,13 @@ export function startNewExam(session: ExamSession): void {
   clearExamInProgress();
   saveSession(session);
   saveProgress(session, {
+    currentSubjectIndex: 0,
     currentIndex: 0,
     answers: [],
     showReview: false,
+    completedSubjects: [],
+    flaggedQuestionIds: [],
+    questionTimeMs: {},
+    questionOpenedAt: Date.now(),
   });
 }

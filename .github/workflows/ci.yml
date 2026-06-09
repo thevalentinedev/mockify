@@ -30,6 +30,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Smoke test
+        run: npm run smoke-test
+
       - name: Build
         run: npm run build
         env:

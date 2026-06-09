@@ -1,7 +1,11 @@
 import path from "path";
 import { NextResponse } from "next/server";
 import { extractQuestionsFromText, toQuestionBank } from "@/lib/ai-extract";
-import { extractTextFromPdf } from "@/lib/pdf-extract";
+import {
+  attachPdfImagesToBank,
+  bankNeedsImageExtraction,
+} from "@/lib/pdf-context-images";
+import { extractPdfBundle } from "@/lib/pdf-extract";
 import { getUploadsDir } from "@/lib/paths";
 import type { SchoolId, SubjectId } from "@/types/exam";
 
@@ -31,17 +35,33 @@ export async function POST(request: Request) {
     }
 
     const filePath = path.join(getUploadsDir(school, subject), filename);
-    const text = await extractTextFromPdf(filePath);
-    const extraction = await extractQuestionsFromText(text, school, subject);
-    const bank = toQuestionBank(extraction, school, subject, {
+    const pdfBundle = await extractPdfBundle(filePath);
+    const extraction = await extractQuestionsFromText(
+      pdfBundle.text,
+      school,
+      subject
+    );
+    let bank = toQuestionBank(extraction, school, subject, {
       questionCount,
       timeLimitMinutes,
     });
 
+    let figuresAttached = 0;
+    if (bankNeedsImageExtraction(bank)) {
+      const { bank: withImages, attached } = await attachPdfImagesToBank(
+        bank,
+        filePath
+      );
+      bank = withImages;
+      figuresAttached = attached;
+    }
+
     return NextResponse.json({
       extraction,
       bank,
-      textPreview: text.slice(0, 500),
+      figuresAttached,
+      embeddedImageCount: pdfBundle.images.length,
+      textPreview: pdfBundle.text.slice(0, 500),
       unansweredCount: extraction.questions.filter((q) => q.correctIndex === null).length,
     });
   } catch (error) {

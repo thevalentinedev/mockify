@@ -2,9 +2,29 @@ export type SchoolId = "conestoga";
 
 export type SubjectId = "english" | "maths" | "biology" | "chemistry";
 
-export type ExamMode = "practice" | "mock";
+export type ExamMode = "practice" | "mock" | "quick" | "custom";
 
-export type QuestionSource = "sample" | "generated" | "verified";
+export type QuickSplitMode = "per-subject" | "total";
+
+export interface SubjectCustomOptions {
+  questionCount: number;
+  /** 0 = no timer */
+  timeLimitMinutes: number;
+}
+
+/** User-defined settings for custom mode (persisted on session) */
+export interface ExamCustomOptions {
+  perSubject: Partial<Record<SubjectId, SubjectCustomOptions>>;
+}
+
+export interface ExamBuildPreferences {
+  quickSplit?: QuickSplitMode;
+  /** Topics to prioritize in question selection (spaced repetition / weak-topic practice) */
+  focusTopics?: string[];
+  customPerSubject?: Partial<Record<SubjectId, SubjectCustomOptions>>;
+}
+
+export type QuestionSource = "sample" | "generated" | "verified" | "variant";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
@@ -54,6 +74,10 @@ export interface QuestionContext {
   type: QuestionContextType;
   title?: string;
   content: string;
+  /** Base64 data URL — persisted in bank JSON for deployment */
+  imageData?: string;
+  /** Relative asset path under data/assets/ — used locally when set */
+  imagePath?: string;
 }
 
 export interface Question {
@@ -86,6 +110,10 @@ export interface BankMeta {
   totalGenerated: number;
   /** How many exams have started using this bank */
   examStarts?: number;
+  /** Last N exams — question ids used (for rotation away from repeats) */
+  recentExamSets?: string[][];
+  lastTwistedAt?: string;
+  lastExamBuiltAt?: string;
 }
 
 export interface SubjectExamConfig {
@@ -117,15 +145,31 @@ export interface ShuffledQuestion {
   topic?: string;
   context?: QuestionContext;
   contextKey?: string;
+  answerConfidence?: AnswerConfidence;
+}
+
+export interface SubjectSection {
+  subjectId: SubjectId;
+  questions: ShuffledQuestion[];
+  /** Per-subject timer in mock mode */
+  timeLimitMinutes: number | null;
+  startedAt: number;
+  completedAt?: number;
 }
 
 export interface ExamSession {
   schoolId: SchoolId;
   subjects: SubjectId[];
   mode: ExamMode;
-  questions: ShuffledQuestion[];
-  timeLimitMinutes: number | null;
+  sections: SubjectSection[];
   startedAt: number;
+  /** Present when mode is "custom" */
+  customOptions?: ExamCustomOptions;
+  quickSplit?: QuickSplitMode;
+  focusTopics?: string[];
+  /** @deprecated Pre-sections format — migrated on load */
+  questions?: ShuffledQuestion[];
+  timeLimitMinutes?: number | null;
 }
 
 export interface ExamAnswer {
@@ -135,14 +179,35 @@ export interface ExamAnswer {
 
 export interface ExamProgress {
   startedAt: number;
+  currentSubjectIndex: number;
+  /** Index within the current subject section */
   currentIndex: number;
   answers: ExamAnswer[];
   showReview: boolean;
+  completedSubjects: SubjectId[];
+  flaggedQuestionIds: string[];
+  /** ms spent per question id */
+  questionTimeMs: Record<string, number>;
+  /** when the student opened the current question */
+  questionOpenedAt?: number;
   updatedAt: number;
+}
+
+export interface QuestionTimeStat {
+  questionId: string;
+  subjectId: SubjectId;
+  index: number;
+  timeMs: number;
 }
 
 export interface ExamResult {
   session: ExamSession;
   answers: ExamAnswer[];
   completedAt: number;
+  timeStats?: QuestionTimeStat[];
+}
+
+export interface PrepareAuditEntry {
+  subjectId: SubjectId;
+  actions: string[];
 }

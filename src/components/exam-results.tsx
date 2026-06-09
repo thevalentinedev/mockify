@@ -1,13 +1,19 @@
 "use client";
 
 import { BentoCard } from "@/components/bento-card";
+import { SubjectPills } from "@/components/subject-pills";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { useIsClient } from "@/hooks/use-is-client";
 import { SUBJECTS } from "@/lib/exam-config";
+import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
+import { FormatMathText } from "@/lib/format-math-text";
+import { ConfidenceBadge } from "@/components/confidence-badge";
+import { savePracticeTopics } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
-import type { ExamResult } from "@/types/exam";
+import type { ExamResult, SubjectId } from "@/types/exam";
 import {
   ArrowRight,
   CheckCircle2,
@@ -17,9 +23,8 @@ import {
   Target,
   XCircle,
 } from "lucide-react";
-import { useIsClient } from "@/hooks/use-is-client";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function ExamResults() {
   const router = useRouter();
@@ -29,18 +34,27 @@ export function ExamResults() {
     [isClient]
   );
 
+  const session = useMemo(
+    () => (result ? normalizeSession(result.session) : null),
+    [result]
+  );
+
+  const [activeSubjectId, setActiveSubjectId] = useState<SubjectId | null>(null);
+  const resolvedSubjectId = activeSubjectId ?? session?.subjects[0] ?? null;
+
   useEffect(() => {
     if (isClient && !result) router.replace("/");
   }, [isClient, result, router]);
 
   const stats = useMemo(() => {
-    if (!result) return null;
+    if (!result || !session) return null;
 
-    const { session, answers } = result;
+    const allQuestions = getAllQuestions(session);
+    const { answers } = result;
     let correct = 0;
     const bySubject: Record<string, { correct: number; total: number }> = {};
 
-    for (const question of session.questions) {
+    for (const question of allQuestions) {
       const answer = answers.find((a) => a.questionId === question.id);
       const isCorrect = answer?.selectedIndex === question.correctIndex;
 
@@ -54,14 +68,14 @@ export function ExamResults() {
       }
     }
 
-    const total = session.questions.length;
+    const total = allQuestions.length;
     const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
     const durationMs = result.completedAt - session.startedAt;
     const durationMin = Math.floor(durationMs / 60000);
     const durationSec = Math.floor((durationMs % 60000) / 1000);
 
     const weakTopics: Record<string, number> = {};
-    for (const question of session.questions) {
+    for (const question of allQuestions) {
       const answer = answers.find((a) => a.questionId === question.id);
       const isCorrect = answer?.selectedIndex === question.correctIndex;
       if (!isCorrect && question.topic) {
@@ -81,12 +95,22 @@ export function ExamResults() {
       durationMin,
       durationSec,
       focusTopics,
+      allQuestions,
     };
-  }, [result]);
+  }, [result, session]);
 
-  if (!result || !stats) return null;
+  const activeQuestions = useMemo(() => {
+    if (!stats || !resolvedSubjectId) return [];
+    return stats.allQuestions.filter((q) => q.subjectId === resolvedSubjectId);
+  }, [stats, resolvedSubjectId]);
 
-  const { session } = result;
+  if (!result || !stats || !session || !resolvedSubjectId) return null;
+
+  const activeSubjectStats = stats.bySubject[resolvedSubjectId];
+  const activePct =
+    activeSubjectStats && activeSubjectStats.total > 0
+      ? Math.round((activeSubjectStats.correct / activeSubjectStats.total) * 100)
+      : 0;
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-8">
@@ -104,14 +128,14 @@ export function ExamResults() {
         </div>
         <h1 className="text-2xl font-bold sm:text-3xl">Exam Complete</h1>
         <p className="text-muted-foreground">
-          You scored {stats.correct} out of {stats.total} questions correctly
+          Overall: {stats.correct} / {stats.total} correct
         </p>
         <div className="flex items-center justify-center gap-2">
           <Badge variant="outline" className="capitalize">
             {session.mode}
           </Badge>
           <Badge variant="secondary">
-            {stats.durationMin}m {stats.durationSec}s
+            {stats.durationMin}m {stats.durationSec}s total
           </Badge>
         </div>
       </div>
@@ -132,13 +156,55 @@ export function ExamResults() {
               </Badge>
             ))}
           </div>
+          <Button
+            className="gap-2"
+            onClick={() => {
+              savePracticeTopics(stats.focusTopics);
+              router.push("/");
+            }}
+          >
+            <Target className="size-4" />
+            Practice weak topics
+          </Button>
+        </BentoCard>
+      )}
+
+      {result.timeStats && result.timeStats.length > 0 && (
+        <BentoCard className="space-y-3">
+          <h2 className="font-semibold">Time per question</h2>
+          <p className="text-sm text-muted-foreground">
+            Slowest:{" "}
+            {Math.round(
+              Math.max(...result.timeStats.map((t) => t.timeMs)) / 1000
+            )}
+            s · Average:{" "}
+            {Math.round(
+              result.timeStats.reduce((s, t) => s + t.timeMs, 0) /
+                result.timeStats.length /
+                1000
+            )}
+            s
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {result.timeStats
+              .slice()
+              .sort((a, b) => b.timeMs - a.timeMs)
+              .slice(0, 8)
+              .map((t) => (
+                <Badge key={t.questionId} variant="outline" className="text-xs">
+                  Q{t.index + 1}: {Math.round(t.timeMs / 1000)}s
+                </Badge>
+              ))}
+          </div>
         </BentoCard>
       )}
 
       <BentoCard className="space-y-4">
         <h2 className="font-semibold">Score by subject</h2>
         <div className="space-y-4">
-          {Object.entries(stats.bySubject).map(([subjectId, data]) => {
+          {session.subjects.map((subjectId) => {
+            const data = stats.bySubject[subjectId];
+            if (!data) return null;
             const subject = SUBJECTS.find((s) => s.id === subjectId);
             const pct = Math.round((data.correct / data.total) * 100);
 
@@ -158,12 +224,30 @@ export function ExamResults() {
       </BentoCard>
 
       <BentoCard className="space-y-4">
-        <h2 className="font-semibold">Answer review</h2>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="font-semibold">Answer review</h2>
+            {activeSubjectStats && (
+              <p className="text-sm text-muted-foreground mt-1">
+                {SUBJECTS.find((s) => s.id === resolvedSubjectId)?.name}:{" "}
+                {activeSubjectStats.correct}/{activeSubjectStats.total} ({activePct}%)
+              </p>
+            )}
+          </div>
+        </div>
+
+        <SubjectPills
+          subjects={session.subjects}
+          activeSubjectId={resolvedSubjectId}
+          completedSubjects={session.subjects}
+          onSelect={setActiveSubjectId}
+          interactive
+        />
+
         <div className="space-y-4">
-          {session.questions.map((question, index) => {
+          {activeQuestions.map((question, index) => {
             const answer = result.answers.find((a) => a.questionId === question.id);
             const isCorrect = answer?.selectedIndex === question.correctIndex;
-            const subject = SUBJECTS.find((s) => s.id === question.subjectId);
 
             return (
               <div key={question.id} className="space-y-3">
@@ -179,18 +263,16 @@ export function ExamResults() {
                       <span className="text-sm font-medium text-muted-foreground">
                         Q{index + 1}
                       </span>
-                      {subject && (
-                        <Badge variant="outline" className="text-xs">
-                          {subject.name}
-                        </Badge>
-                      )}
+                      <ConfidenceBadge confidence={question.answerConfidence} />
                       {question.topic && (
                         <Badge variant="outline" className="text-xs">
                           {question.topic}
                         </Badge>
                       )}
                     </div>
-                    <p className="exam-question text-[1.05rem] sm:text-[1.1rem]">{question.text}</p>
+                    <p className="exam-question text-[1.05rem] sm:text-[1.1rem]">
+                      <FormatMathText>{question.text}</FormatMathText>
+                    </p>
                     <div className="space-y-1.5">
                       {question.options.map((opt, i) => {
                         const isSelected = answer?.selectedIndex === i;
@@ -207,7 +289,8 @@ export function ExamResults() {
                                   : "text-muted-foreground"
                             }`}
                           >
-                            {String.fromCharCode(65 + i)}. {opt}
+                            {String.fromCharCode(65 + i)}.{" "}
+                            <FormatMathText>{opt}</FormatMathText>
                             {isCorrectOpt && " ✓"}
                             {isSelected && !isCorrectOpt && " (your answer)"}
                           </p>
@@ -233,13 +316,15 @@ export function ExamResults() {
                           question.wrongAnswerHints?.[String(answer.selectedIndex)] && (
                             <p className="text-muted-foreground">
                               <span className="font-medium text-foreground">Your answer: </span>
-                              {question.wrongAnswerHints[String(answer.selectedIndex)]}
+                              <FormatMathText>
+                                {question.wrongAnswerHints[String(answer.selectedIndex)]}
+                              </FormatMathText>
                             </p>
                           )}
                         {question.explanation && (
                           <p className="text-muted-foreground">
                             <span className="font-medium text-foreground">Correct answer: </span>
-                            {question.explanation}
+                            <FormatMathText>{question.explanation}</FormatMathText>
                           </p>
                         )}
                       </div>

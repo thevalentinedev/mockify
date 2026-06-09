@@ -4,7 +4,11 @@ import { enrichQuestionBankDetailed } from "@/lib/ai/enrich-bank";
 import { generatePracticeQuestions } from "@/lib/ai/generate-questions";
 import { extractQuestionsFromText, toQuestionBank } from "@/lib/ai-extract";
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
-import { extractTextFromPdf } from "@/lib/pdf-extract";
+import {
+  attachPdfImagesToBank,
+  bankNeedsImageExtraction,
+} from "@/lib/pdf-context-images";
+import { extractPdfBundle } from "@/lib/pdf-extract";
 import { getUploadsDir } from "@/lib/paths";
 import { getExamSpec } from "@/lib/exam-config";
 import type { SchoolId, SubjectId } from "@/types/exam";
@@ -36,13 +40,28 @@ export async function POST(request: Request) {
 
     let bank = await getQuestionBank(school, subject);
     let extracted = 0;
+    let figuresAttached = 0;
 
     if (filename && !enrichOnly) {
       const filePath = path.join(getUploadsDir(school, subject), filename);
-      const text = await extractTextFromPdf(filePath);
-      const extraction = await extractQuestionsFromText(text, school, subject);
+      const pdfBundle = await extractPdfBundle(filePath);
+      const extraction = await extractQuestionsFromText(
+        pdfBundle.text,
+        school,
+        subject
+      );
       bank = toQuestionBank(extraction, school, subject);
       extracted = bank.questions.length;
+
+      if (bankNeedsImageExtraction(bank)) {
+        const { bank: withImages, attached } = await attachPdfImagesToBank(
+          bank,
+          filePath
+        );
+        bank = withImages;
+        figuresAttached = attached;
+      }
+
       await saveQuestionBank(bank);
     }
 
@@ -78,6 +97,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       saved: true,
       extracted,
+      figuresAttached,
       examQuestionCount: examConfig.questionCount,
       poolSize: bank.questions.length,
       added,

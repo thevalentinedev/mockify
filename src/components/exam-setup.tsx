@@ -8,8 +8,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import {
   MODES,
+  QUICK_QUESTION_COUNT,
   SCHOOLS,
   SUBJECTS,
+  getModeStartLabel,
   type SetupStep,
 } from "@/lib/exam-config";
 import {
@@ -17,7 +19,24 @@ import {
   loadSession,
   startNewExam,
 } from "@/lib/exam-session";
-import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
+import { Input } from "@/components/ui/input";
+import {
+  getWrongQuestionIds,
+  loadPracticeTopics,
+  clearPracticeTopics,
+} from "@/lib/learning-history";
+import {
+  getUserAttempts,
+  incrementUserAttempts,
+} from "@/lib/user-attempts";
+import type {
+  ExamMode,
+  QuickSplitMode,
+  SchoolId,
+  SubjectCustomOptions,
+  SubjectId,
+} from "@/types/exam";
+import type { SubjectEnsureResult } from "@/lib/bank-manager";
 import {
   ArrowLeft,
   ArrowRight,
@@ -27,6 +46,7 @@ import {
   Dna,
   FlaskConical,
   GraduationCap,
+  SlidersHorizontal,
   Sparkles,
   Timer,
   Trash2,
@@ -41,9 +61,12 @@ import { useEffect, useMemo, useState } from "react";
 interface SessionStats {
   totalQuestions: number;
   totalTimeMinutes: number;
+  timed: boolean;
   bySubject: {
     subjectId: SubjectId;
     questionCount: number;
+    requestedCount?: number;
+    maxQuestions?: number;
     poolSize: number;
     timeLimitMinutes: number;
     ready: boolean;
@@ -70,6 +93,13 @@ export function ExamSetup() {
   const [schoolId, setSchoolId] = useState<SchoolId | null>("conestoga");
   const [subjects, setSubjects] = useState<SubjectId[]>([]);
   const [mode, setMode] = useState<ExamMode | null>(null);
+  const [quickSplit, setQuickSplit] = useState<QuickSplitMode>("per-subject");
+  const [customPerSubject, setCustomPerSubject] = useState<
+    Partial<Record<SubjectId, SubjectCustomOptions>>
+  >({});
+  const [prepareAudit, setPrepareAudit] = useState<SubjectEnsureResult[] | null>(
+    null
+  );
   const [stats, setStats] = useState<SessionStats | null>(null);
   const [starting, setStarting] = useState(false);
   const [preparing, setPreparing] = useState(false);
@@ -77,24 +107,50 @@ export function ExamSetup() {
   const [startError, setStartError] = useState<string | null>(null);
   const isClient = useIsClient();
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0);
-  const inProgressSession = useMemo(
-    () => (isClient ? loadSession() : null),
-    [isClient, sessionRefreshKey]
-  );
+  const inProgressSession = useMemo(() => {
+    void sessionRefreshKey;
+    return isClient ? loadSession() : null;
+  }, [isClient, sessionRefreshKey]);
 
   const canFetchStats = Boolean(schoolId && subjects.length > 0 && mode);
   const displayStats = canFetchStats ? stats : null;
-  const canStart = (displayStats?.bySubject?.length ?? 0) > 0;
+  const customQuestionsValid =
+    mode !== "custom" ||
+    subjects.every((subjectId) => {
+      const max =
+        displayStats?.bySubject.find((s) => s.subjectId === subjectId)
+          ?.maxQuestions ?? QUICK_QUESTION_COUNT;
+      const count = customPerSubject[subjectId]?.questionCount ?? QUICK_QUESTION_COUNT;
+      return count >= 1 && count <= max;
+    });
+  const canStart = (displayStats?.bySubject?.length ?? 0) > 0 && customQuestionsValid;
+
+  const focusTopics = useMemo(() => {
+    if (!isClient) return [];
+    return loadPracticeTopics();
+  }, [isClient]);
+
+  const previewPayload = useMemo(() => {
+    if (!schoolId || !mode) return null;
+    return {
+      school: schoolId,
+      subjects,
+      mode,
+      ...(mode === "quick" ? { quickSplit } : {}),
+      ...(mode === "custom" ? { customPerSubject } : {}),
+      ...(focusTopics.length ? { focusTopics } : {}),
+    };
+  }, [schoolId, subjects, mode, quickSplit, customPerSubject, focusTopics]);
 
   useEffect(() => {
-    if (!canFetchStats) return;
+    if (!previewPayload) return;
 
     let cancelled = false;
 
     fetch("/api/exam/preview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ school: schoolId, subjects, mode }),
+      body: JSON.stringify(previewPayload),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -107,7 +163,7 @@ export function ExamSetup() {
     return () => {
       cancelled = true;
     };
-  }, [canFetchStats, schoolId, subjects, mode]);
+  }, [previewPayload]);
 
   function toggleSubject(id: SubjectId) {
     setSubjects((prev) =>
@@ -137,10 +193,19 @@ export function ExamSetup() {
       const prepareRes = await fetch("/api/exam/prepare", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ school: schoolId, subjects, jobId }),
+        body: JSON.stringify({
+          school: schoolId,
+          subjects,
+          jobId,
+          userAttempts: getUserAttempts(subjects),
+        }),
       });
 
-      let prepareData: { error?: string; jobId?: string } = {};
+      let prepareData: {
+        error?: string;
+        jobId?: string;
+        bankResults?: SubjectEnsureResult[];
+      } = {};
       try {
         prepareData = await prepareRes.json();
       } catch {
@@ -157,10 +222,24 @@ export function ExamSetup() {
         return;
       }
 
+      setPrepareAudit(prepareData.bankResults ?? null);
+
+      const wrongQuestionIdsBySubject = Object.fromEntries(
+        subjects.map((id) => [id, getWrongQuestionIds(id)])
+      ) as Partial<Record<SubjectId, string[]>>;
+
       const buildRes = await fetch("/api/exam/build", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ school: schoolId, subjects, mode }),
+        body: JSON.stringify({
+          school: schoolId,
+          subjects,
+          mode,
+          ...(mode === "quick" ? { quickSplit } : {}),
+          ...(mode === "custom" ? { customPerSubject } : {}),
+          ...(focusTopics.length ? { focusTopics } : {}),
+          wrongQuestionIdsBySubject,
+        }),
       });
 
       let buildData: { error?: string; session?: import("@/types/exam").ExamSession } =
@@ -177,6 +256,8 @@ export function ExamSetup() {
         return;
       }
 
+      incrementUserAttempts(schoolId, subjects);
+      clearPracticeTopics();
       startNewExam(buildData.session);
       router.push("/exam");
     } catch (err) {
@@ -191,6 +272,7 @@ export function ExamSetup() {
       setStarting(false);
       setPreparing(false);
       setPrepareJobId(null);
+      setPrepareAudit(null);
     }
   }
 
@@ -209,6 +291,7 @@ export function ExamSetup() {
           schoolId={schoolId}
           subjects={subjects}
           mode={mode}
+          prepareAudit={prepareAudit}
         />
       )}
 
@@ -355,42 +438,160 @@ export function ExamSetup() {
         <section className="space-y-4">
           <h2 className="text-lg font-semibold">Select exam mode</h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            {MODES.map((m) => (
-              <BentoCard
-                key={m.id}
-                selected={mode === m.id}
-                onClick={() => setMode(m.id)}
-                className="bg-gradient-to-br from-background to-muted/30"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
-                      {m.timeLimit ? (
-                        <Timer className="size-5 text-primary" />
+            {MODES.map((m) => {
+              const ModeIcon =
+                m.id === "quick"
+                  ? Zap
+                  : m.id === "custom"
+                    ? SlidersHorizontal
+                    : m.timeLimit
+                      ? Timer
+                      : Zap;
+
+              return (
+                <BentoCard
+                  key={m.id}
+                  selected={mode === m.id}
+                  onClick={() => setMode(m.id)}
+                  className="bg-gradient-to-br from-background to-muted/30"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
+                        <ModeIcon className="size-5 text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-lg">{m.name}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{m.description}</p>
+                    <div className="flex gap-2">
+                      {m.id === "quick" ? (
+                        <Badge variant="secondary" className="gap-1">
+                          <Clock className="size-3" />
+                          {QUICK_QUESTION_COUNT} q · scaled time
+                        </Badge>
+                      ) : m.id === "custom" ? (
+                        <Badge variant="secondary" className="gap-1">
+                          <SlidersHorizontal className="size-3" />
+                          Your settings
+                        </Badge>
+                      ) : m.timeLimit ? (
+                        <Badge variant="secondary" className="gap-1">
+                          <Clock className="size-3" />
+                          Timed
+                        </Badge>
                       ) : (
-                        <Zap className="size-5 text-primary" />
+                        <Badge variant="secondary" className="gap-1">
+                          <Zap className="size-3" />
+                          Untimed
+                        </Badge>
                       )}
                     </div>
-                    <h3 className="font-semibold text-lg">{m.name}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground">{m.description}</p>
-                  <div className="flex gap-2">
-                    {m.timeLimit ? (
-                      <Badge variant="secondary" className="gap-1">
-                        <Clock className="size-3" />
-                        Timed
-                      </Badge>
-                    ) : (
-                      <Badge variant="secondary" className="gap-1">
-                        <Zap className="size-3" />
-                        Untimed
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              </BentoCard>
-            ))}
+                </BentoCard>
+              );
+            })}
           </div>
+
+          {mode === "quick" && subjects.length > 1 && (
+            <BentoCard className="bg-muted/30 space-y-3">
+              <h3 className="font-semibold">Quick layout</h3>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={quickSplit === "per-subject" ? "default" : "outline"}
+                  onClick={() => setQuickSplit("per-subject")}
+                >
+                  20 per subject
+                </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant={quickSplit === "total" ? "default" : "outline"}
+                  onClick={() => setQuickSplit("total")}
+                >
+                  20 total (split)
+                </Button>
+              </div>
+            </BentoCard>
+          )}
+
+          {mode === "custom" && (
+            <BentoCard className="bg-muted/30 space-y-4">
+              <h3 className="font-semibold">Custom settings per subject</h3>
+              <p className="text-sm text-muted-foreground">
+                Set time to 0 for no timer on that subject.
+              </p>
+              <div className="space-y-4">
+                {subjects.map((subjectId) => {
+                  const subject = SUBJECTS.find((s) => s.id === subjectId);
+                  const max =
+                    displayStats?.bySubject.find((s) => s.subjectId === subjectId)
+                      ?.maxQuestions ?? QUICK_QUESTION_COUNT;
+                  const settings = customPerSubject[subjectId] ?? {
+                    questionCount: QUICK_QUESTION_COUNT,
+                    timeLimitMinutes: 0,
+                  };
+
+                  return (
+                    <div
+                      key={subjectId}
+                      className="grid gap-3 sm:grid-cols-3 rounded-xl border p-3 bg-background/50"
+                    >
+                      <p className="font-medium sm:col-span-3">{subject?.name}</p>
+                      <div className="space-y-1">
+                        <Label>Questions</Label>
+                        <Input
+                          type="number"
+                          min={1}
+                          max={max}
+                          value={settings.questionCount}
+                          onChange={(e) =>
+                            setCustomPerSubject((prev) => ({
+                              ...prev,
+                              [subjectId]: {
+                                ...settings,
+                                questionCount: Math.max(
+                                  1,
+                                  parseInt(e.target.value, 10) || 1
+                                ),
+                              },
+                            }))
+                          }
+                        />
+                      </div>
+                      <div className="space-y-1 sm:col-span-2">
+                        <Label>Time (minutes)</Label>
+                        <Input
+                          type="number"
+                          min={0}
+                          value={settings.timeLimitMinutes}
+                          onChange={(e) =>
+                            setCustomPerSubject((prev) => ({
+                              ...prev,
+                              [subjectId]: {
+                                ...settings,
+                                timeLimitMinutes: Math.max(
+                                  0,
+                                  parseInt(e.target.value, 10) || 0
+                                ),
+                              },
+                            }))
+                          }
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </BentoCard>
+          )}
+
+          {focusTopics.length > 0 && (
+            <p className="text-sm text-amber-700 dark:text-amber-400">
+              Practicing weak topics: {focusTopics.join(", ")}
+            </p>
+          )}
 
           {displayStats && (
             <BentoCard className="bg-muted/30 space-y-3">
@@ -406,22 +607,33 @@ export function ExamSetup() {
                 </div>
                 <div className="rounded-xl bg-background/60 p-3 text-center">
                   <p className="text-2xl font-bold">
-                    {mode === "mock" ? displayStats.totalTimeMinutes : "∞"}
+                    {displayStats.timed ? displayStats.totalTimeMinutes : "∞"}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    {mode === "mock" ? "Minutes" : "No limit"}
+                    {displayStats.timed ? "Minutes" : "No limit"}
                   </p>
                 </div>
               </div>
               {displayStats.bySubject.map((s) => {
                 const subject = SUBJECTS.find((sub) => sub.id === s.subjectId);
+                const timeLabel =
+                  s.timeLimitMinutes > 0 ? `${s.timeLimitMinutes} min` : "no limit";
                 return (
                   <p key={s.subjectId} className="text-xs text-muted-foreground">
-                    {subject?.name}: {s.questionCount} questions · {s.timeLimitMinutes} min
+                    {subject?.name}: {s.questionCount} questions · {timeLabel}
                     {s.ready && ` · ${s.poolSize} ready in bank`}
                   </p>
                 );
               })}
+              {mode === "quick" && (
+                <p className="text-xs text-muted-foreground">
+                  Quick mode:{" "}
+                  {quickSplit === "total" && subjects.length > 1
+                    ? `${QUICK_QUESTION_COUNT} questions split across subjects`
+                    : `${QUICK_QUESTION_COUNT} questions per subject`}
+                  , time scaled from the real exam spec.
+                </p>
+              )}
               <p className="text-xs text-muted-foreground">
                 Questions are prepared automatically when you start.
               </p>
@@ -453,7 +665,7 @@ export function ExamSetup() {
               className="gap-2"
               size="lg"
             >
-              Start {mode === "mock" ? "Mock Exam" : "Practice"}
+              Start {mode ? getModeStartLabel(mode) : "Exam"}
               <ArrowRight className="size-4" />
             </Button>
           )}

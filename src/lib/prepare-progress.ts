@@ -7,6 +7,7 @@ export type PreparePhase =
   | "extracting"
   | "enriching"
   | "generating"
+  | "twisting"
   | "finishing"
   | "done";
 

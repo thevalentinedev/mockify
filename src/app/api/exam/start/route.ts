@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ensureBanksForSubjects } from "@/lib/bank-manager";
 import { buildExamSession } from "@/lib/build-exam-session";
+import { parseBuildOptionsFromBody } from "@/lib/parse-build-options";
 import {
   completePrepareJob,
   initPrepareJob,
@@ -32,7 +33,8 @@ export async function POST(request: Request) {
     const bankResults = await ensureBanksForSubjects(school, subjects, id);
     completePrepareJob(id);
 
-    const session = await buildExamSession(school, subjects, mode);
+    const options = parseBuildOptionsFromBody(mode, body);
+    const session = await buildExamSession(school, subjects, mode, options);
     if (!session) {
       return NextResponse.json({ error: "No questions available" }, { status: 404 });
     }
