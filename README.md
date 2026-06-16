@@ -18,9 +18,10 @@ Open [http://localhost:3000](http://localhost:3000).
 |---------|-------------|
 | `npm run dev` | Start dev server |
 | `npm run build` | Production build |
+| `npm run vercel-build` | Vercel deploy: sync banks to Neon (if `DATABASE_URL` set), then build |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript check |
-| `npm run db:migrate` | Push local JSON banks to Neon |
+| `npm run db:migrate` | Push local JSON banks to Neon (also runs automatically on Vercel deploy) |
 
 ## CI
 

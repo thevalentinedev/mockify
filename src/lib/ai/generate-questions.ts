@@ -150,7 +150,7 @@ ${ENRICHMENT_PROMPT_RULES}`,
       {
         id,
         text: q.text,
-        options: q.options,
+        options: q.options ?? undefined,
         contextId: remappedContextId,
         meta: { topics: q.topics, source: "generated" },
       },

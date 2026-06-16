@@ -10,6 +10,11 @@ import type {
   QuestionType,
 } from "@/types/exam";
 
+/** OpenAI structured outputs require every key — use null instead of omitting. */
+function nullish<T>(value: T | null | undefined): T | undefined {
+  return value === null || value === undefined ? undefined : value;
+}
+
 export const aiDistractorSchema = z.object({
   answer: z.string(),
   reason: z.string(),
@@ -17,7 +22,7 @@ export const aiDistractorSchema = z.object({
 
 export const aiSolutionSchema = z.object({
   steps: z.array(z.string()).min(1),
-  finalAnswer: z.string().optional(),
+  finalAnswer: z.union([z.string(), z.null()]),
 });
 
 export const aiWrongHintSchema = z.object({
@@ -30,25 +35,27 @@ export const aiEnrichedQuestionSchema = z.object({
   answerConfidence: z.enum(["high", "medium", "low"]),
   questionType: z
     .enum(["multiple_choice", "numeric", "short_answer", "true_false"])
-    .optional(),
-  correctIndex: z.number().int().optional(),
-  answer: z.string().optional(),
-  acceptedAnswers: z.array(z.string()).optional(),
+    .nullable(),
+  correctIndex: z.number().int().nullable(),
+  answer: z.string().nullable(),
+  acceptedAnswers: z.array(z.string()).nullable(),
   explanation: z.string(),
-  solution: aiSolutionSchema.optional(),
-  distractors: z.array(aiDistractorSchema).optional(),
-  wrongAnswerHints: z.array(aiWrongHintSchema).optional(),
-  learningObjective: z.string().optional(),
-  tags: z.array(z.string()).optional(),
+  solution: aiSolutionSchema.nullable(),
+  distractors: z.array(aiDistractorSchema).nullable(),
+  wrongAnswerHints: z.array(aiWrongHintSchema).nullable(),
+  learningObjective: z.string().nullable(),
+  tags: z.array(z.string()).nullable(),
   topics: z.array(z.string()),
   difficulty: difficultyZod,
 });
 
-export const aiGeneratedQuestionSchema = aiEnrichedQuestionSchema.omit({ id: true }).extend({
-  text: z.string(),
-  options: z.array(z.string()).min(2).max(6).optional(),
-  contextId: z.string().nullable().optional(),
-});
+export const aiGeneratedQuestionSchema = aiEnrichedQuestionSchema
+  .omit({ id: true })
+  .extend({
+    text: z.string(),
+    options: z.array(z.string()).min(2).max(6).nullable(),
+    contextId: z.string().nullable(),
+  });
 
 export type AiEnrichedQuestion = z.infer<typeof aiEnrichedQuestionSchema>;
 export type AiGeneratedQuestion = z.infer<typeof aiGeneratedQuestionSchema>;
@@ -91,7 +98,8 @@ function resolveQuestionType(
   enriched: AiEnrichedQuestion
 ): QuestionType | undefined {
   if (original.questionType) return original.questionType;
-  if (enriched.questionType) return enriched.questionType;
+  const enrichedType = nullish(enriched.questionType);
+  if (enrichedType) return enrichedType;
   if (isTextGradedQuestion(original)) return "numeric";
   if (original.options?.length) return "multiple_choice";
   return undefined;
@@ -131,16 +139,17 @@ export function applyAiEnrichment(
   const topics = enriched.topics.length
     ? enriched.topics
     : (original.meta?.topics ?? []);
-  const tags =
-    enriched.tags?.length ? enriched.tags : buildTagsFromTopics(topics);
+  const tags = enriched.tags?.length
+    ? enriched.tags
+    : buildTagsFromTopics(topics);
 
   const solution: QuestionSolution | undefined =
     enriched.solution?.steps.length
       ? {
           steps: enriched.solution.steps,
           finalAnswer:
-            enriched.solution.finalAnswer ??
-            enriched.answer ??
+            nullish(enriched.solution.finalAnswer) ??
+            nullish(enriched.answer) ??
             original.answer,
         }
       : original.solution;
@@ -157,7 +166,7 @@ export function applyAiEnrichment(
       topics,
       tags,
       learningObjective:
-        enriched.learningObjective ?? original.meta?.learningObjective,
+        nullish(enriched.learningObjective) ?? original.meta?.learningObjective,
       difficulty: enriched.difficulty,
       source: original.meta?.source === "generated" ? "generated" : "verified",
       verifiedAt: new Date().toISOString(),
@@ -166,14 +175,15 @@ export function applyAiEnrichment(
   };
 
   if (isNumeric) {
-    next.answer = enriched.answer ?? original.answer;
+    next.answer = nullish(enriched.answer) ?? original.answer;
     next.acceptedAnswers =
-      enriched.acceptedAnswers ?? original.acceptedAnswers;
+      nullish(enriched.acceptedAnswers) ?? original.acceptedAnswers;
     delete next.options;
     delete next.correctIndex;
     delete next.wrongAnswerHints;
   } else {
-    next.correctIndex = enriched.correctIndex ?? original.correctIndex ?? 0;
+    next.correctIndex =
+      nullish(enriched.correctIndex) ?? original.correctIndex ?? 0;
     next.options = original.options;
   }
 
@@ -187,6 +197,7 @@ export function applyAiGeneratedQuestion(
   return applyAiEnrichment(
     {
       ...base,
+      options: nullish(generated.options) ?? base.options,
       meta: base.meta ?? { topics: [], source: "generated" },
     },
     { ...generated, id: base.id }
@@ -195,8 +206,9 @@ export function applyAiGeneratedQuestion(
 
 export const ENRICHMENT_PROMPT_RULES = `Quality rules:
 - answerConfidence must be "high" only when you are certain the answer and reasoning are correct. Use "medium" or "low" if unsure — those questions will be discarded.
-- For numeric/free-response: provide solution.steps (2-5 short steps) and finalAnswer. Include acceptedAnswers for alternate forms (fractions, decimals).
-- For multiple-choice: provide distractors[] with { answer, reason } explaining the student misconception — not just "this is wrong".
+- For numeric/free-response: provide solution with steps (2-5 short steps) and finalAnswer string. Include acceptedAnswers for alternate forms (fractions, decimals).
+- For multiple-choice: provide distractors[] with { answer, reason } explaining the student misconception. Set solution.finalAnswer to null when the correct option letter/value is enough.
+- Use null for fields that do not apply (e.g. options on numeric questions, distractors on numeric).
 - learningObjective: one specific skill sentence (e.g. "Add fractions with unlike denominators").
 - tags: 2-5 short searchable labels (e.g. fractions, lcd, arithmetic).
 - difficulty: 1=very easy, 2=easy, 3=medium, 4=hard, 5=very hard.`;
