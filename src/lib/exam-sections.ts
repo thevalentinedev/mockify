@@ -1,4 +1,4 @@
-import { getExamSpec, getModeTimeLimitMinutes } from "@/lib/exam-config";
+import { getExamSpec, getModeTimeLimitMinutes, normalizeExamMode } from "@/lib/exam-config";
 import type {
   ExamProgress,
   ExamSession,
@@ -40,26 +40,29 @@ export function buildSectionsFromQuestions(
 
 /** Support sessions saved before per-subject sections existed */
 export function normalizeSession(session: ExamSession): ExamSession {
-  if (session.sections?.length) return session;
+  const mode = normalizeExamMode(session.mode);
+  const withMode = mode === session.mode ? session : { ...session, mode };
 
-  const questions = session.questions ?? [];
-  if (!questions.length) return { ...session, sections: [] };
+  if (withMode.sections?.length) return withMode;
 
-  const firstSubject = session.subjects[0];
+  const questions = withMode.questions ?? [];
+  if (!questions.length) return { ...withMode, sections: [] };
+
+  const firstSubject = withMode.subjects[0];
   const legacyCustomTime = firstSubject
-    ? session.customOptions?.perSubject?.[firstSubject]?.timeLimitMinutes
+    ? withMode.customOptions?.perSubject?.[firstSubject]?.timeLimitMinutes
     : undefined;
 
   const sections = buildSectionsFromQuestions(
-    session.schoolId,
-    session.subjects,
-    session.mode,
+    withMode.schoolId,
+    withMode.subjects,
+    withMode.mode,
     questions,
-    session.startedAt,
+    withMode.startedAt,
     legacyCustomTime
   );
 
-  return { ...session, sections };
+  return { ...withMode, sections };
 }
 
 export function getAllQuestions(session: ExamSession): ShuffledQuestion[] {
@@ -79,6 +82,7 @@ function withProgressDefaults(progress: ExamProgress): ExamProgress {
   return {
     ...progress,
     flaggedQuestionIds: progress.flaggedQuestionIds ?? [],
+    revealedQuestionIds: progress.revealedQuestionIds ?? [],
     questionTimeMs: progress.questionTimeMs ?? {},
     completedSubjects: progress.completedSubjects ?? [],
   };

@@ -58,6 +58,7 @@ export function saveProgress(
     showReview: progress.showReview,
     completedSubjects: progress.completedSubjects ?? [],
     flaggedQuestionIds: progress.flaggedQuestionIds ?? [],
+    revealedQuestionIds: progress.revealedQuestionIds ?? [],
     questionTimeMs: progress.questionTimeMs ?? {},
     questionOpenedAt: progress.questionOpenedAt,
     updatedAt: Date.now(),

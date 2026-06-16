@@ -1,0 +1,311 @@
+{
+  "schoolId": "conestoga",
+  "subjectId": "chemistry",
+  "config": {
+    "questionCount": 31,
+    "timeLimitMinutes": 60
+  },
+  "questions": [
+    {
+      "id": "chem-001",
+      "text": "What is the chemical symbol for gold?",
+      "options": [
+        "Go",
+        "Gd",
+        "Au",
+        "Ag"
+      ],
+      "correctIndex": 2,
+      "explanation": "Gold’s chemical symbol is Au, which comes from its Latin name, aurum. Chemical symbols are standardized abbreviations used on the periodic table to represent elements.",
+      "wrongAnswerHints": {
+        "0": "Go is not a chemical symbol; it looks like a word abbreviation rather than an element symbol.",
+        "1": "Gd is the symbol for gadolinium, not gold.",
+        "3": "Ag is the symbol for silver, not gold."
+      },
+      "meta": {
+        "topics": [
+          "chemical symbols and periodic table basics"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T15:19:57.774Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-002",
+      "text": "How many protons does a carbon atom have?",
+      "options": [
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "correctIndex": 1,
+      "explanation": "Carbon has 6 protons because its atomic number is 6. The number of protons determines which element an atom is, and every carbon atom has 6 protons.",
+      "wrongAnswerHints": {
+        "0": "4 is the atomic number of beryllium, not carbon.",
+        "2": "8 is the atomic number of oxygen, not carbon.",
+        "3": "12 may refer to a common carbon isotope’s mass number, but not the number of protons."
+      },
+      "meta": {
+        "topics": [
+          "atomic structure and subatomic particles",
+          "chemical symbols and periodic table basics"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T15:19:57.774Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-003",
+      "text": "What is the pH of a neutral solution at 25°C?",
+      "options": [
+        "0",
+        "7",
+        "10",
+        "14"
+      ],
+      "correctIndex": 1,
+      "explanation": "A neutral solution at 25°C has a pH of 7. On the pH scale, values below 7 are acidic and values above 7 are basic.",
+      "wrongAnswerHints": {
+        "0": "0 is strongly acidic, not neutral.",
+        "2": "10 is basic, so it is not neutral.",
+        "3": "14 is very basic, not neutral."
+      },
+      "meta": {
+        "topics": [
+          "acidity/basic pH scale"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T15:19:57.774Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-004",
+      "text": "Which state of matter has a definite volume but no definite shape?",
+      "options": [
+        "Solid",
+        "Liquid",
+        "Gas",
+        "Plasma"
+      ],
+      "correctIndex": 1,
+      "explanation": "A liquid has a definite volume but no definite shape, so it takes the shape of its container. Solids keep both shape and volume, while gases do not keep either one fixed.",
+      "wrongAnswerHints": {
+        "0": "A solid has a definite shape and a definite volume.",
+        "2": "A gas has neither a definite shape nor a definite volume.",
+        "3": "Plasma is an ionized state of matter and does not have a definite shape or volume."
+      },
+      "meta": {
+        "topics": [
+          "states of matter"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T15:19:57.774Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-005",
+      "text": "What type of bond involves the sharing of electron pairs?",
+      "options": [
+        "Ionic",
+        "Covalent",
+        "Metallic",
+        "Hydrogen"
+      ],
+      "correctIndex": 1,
+      "explanation": "Covalent bonds involve the sharing of electron pairs between atoms. This type of bonding commonly occurs between nonmetals.",
+      "wrongAnswerHints": {
+        "0": "Ionic bonding involves the transfer of electrons, not sharing.",
+        "2": "Metallic bonding describes metals sharing a pool of electrons, but not as electron pairs between two atoms.",
+        "3": "Hydrogen bonding is an intermolecular attraction, not a primary bond formed by sharing electron pairs."
+      },
+      "meta": {
+        "topics": [
+          "chemical bonding"
+        ],
+        "difficulty": "easy",
+        "source": "verified",
+        "verifiedAt": "2026-06-09T15:19:57.774Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-gen-006",
+      "text": "Which element has the chemical symbol Na?",
+      "options": [
+        "Nitrogen",
+        "Sodium",
+        "Neon",
+        "Nickel"
+      ],
+      "correctIndex": 1,
+      "explanation": "Na is the chemical symbol for sodium.",
+      "wrongAnswerHints": {
+        "0": "Nitrogen uses the symbol N.",
+        "2": "Neon uses the symbol Ne.",
+        "3": "Nickel uses the symbol Ni."
+      },
+      "meta": {
+        "topics": [
+          "chemical symbols and periodic table basics"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T15:20:03.412Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-gen-007",
+      "text": "How many neutrons are in a carbon-14 atom?",
+      "options": [
+        "6",
+        "8",
+        "12",
+        "14"
+      ],
+      "correctIndex": 1,
+      "explanation": "Carbon has 6 protons. In carbon-14, the mass number is 14, so neutrons = 14 - 6 = 8.",
+      "wrongAnswerHints": {
+        "0": "6 is the number of protons in carbon, not the number of neutrons in carbon-14.",
+        "2": "12 is the mass number of carbon-12, not the neutron count of carbon-14.",
+        "3": "14 is the mass number, not the number of neutrons."
+      },
+      "meta": {
+        "topics": [
+          "atomic structure and subatomic particles"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T15:20:03.412Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-gen-008",
+      "text": "What is the pH of a solution that is slightly acidic?",
+      "options": [
+        "3",
+        "7",
+        "9",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "A slightly acidic solution has a pH below 7, often around 3 to 6.",
+      "wrongAnswerHints": {
+        "1": "7 is neutral, not acidic.",
+        "2": "9 is basic, not acidic.",
+        "3": "13 is strongly basic."
+      },
+      "meta": {
+        "topics": [
+          "acidity/basic pH scale"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T15:20:03.412Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-gen-009",
+      "text": "Which state of matter has particles that are packed closely together and vibrate in place?",
+      "options": [
+        "Solid",
+        "Liquid",
+        "Gas",
+        "Plasma"
+      ],
+      "correctIndex": 0,
+      "explanation": "In a solid, particles are tightly packed and mainly vibrate in fixed positions.",
+      "wrongAnswerHints": {
+        "1": "A liquid has particles that can move past one another.",
+        "2": "A gas has particles far apart and moving freely.",
+        "3": "Plasma is an ionized state of matter, not the usual closely packed form."
+      },
+      "meta": {
+        "topics": [
+          "states of matter"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T15:20:03.412Z",
+        "answerConfidence": "high"
+      }
+    },
+    {
+      "id": "chem-gen-010",
+      "text": "What type of bond is formed when one atom transfers electrons to another atom?",
+      "options": [
+        "Ionic",
+        "Covalent",
+        "Metallic",
+        "Hydrogen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ionic bonding involves the transfer of electrons, usually between a metal and a nonmetal.",
+      "wrongAnswerHints": {
+        "1": "Covalent bonds involve sharing electrons.",
+        "2": "Metallic bonding involves metals and a sea of electrons, not simple transfer between two atoms.",
+        "3": "Hydrogen bonding is an intermolecular attraction, not an electron-transfer bond."
+      },
+      "meta": {
+        "topics": [
+          "chemical bonding"
+        ],
+        "difficulty": "easy",
+        "source": "generated",
+        "verifiedAt": "2026-06-09T15:20:03.412Z",
+        "answerConfidence": "high"
+      }
+    }
+  ],
+  "meta": {
+    "schoolContext": "This Conestoga College chemistry pre-assessment appears to be a broad, foundational placement-style test focused on high school chemistry essentials rather than advanced problem solving. The questions emphasize direct recall of core concepts, terminology, and basic classification knowledge.",
+    "topicsCovered": [
+      "chemical symbols and periodic table basics",
+      "atomic structure and subatomic particles",
+      "acidity/basic pH scale",
+      "states of matter",
+      "chemical bonding"
+    ],
+    "examBlueprint": [
+      {
+        "topic": "chemical symbols and periodic table basics",
+        "weight": 20,
+        "questionCount": 1
+      },
+      {
+        "topic": "atomic structure and subatomic particles",
+        "weight": 20,
+        "questionCount": 1
+      },
+      {
+        "topic": "acidity/basic pH scale",
+        "weight": 20,
+        "questionCount": 1
+      },
+      {
+        "topic": "states of matter",
+        "weight": 20,
+        "questionCount": 1
+      },
+      {
+        "topic": "chemical bonding",
+        "weight": 20,
+        "questionCount": 1
+      }
+    ],
+    "totalGenerated": 5,
+    "lastEnrichedAt": "2026-06-09T15:19:57.928Z",
+    "lastGeneratedAt": "2026-06-09T15:20:03.412Z"
+  }
+}

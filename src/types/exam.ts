@@ -2,9 +2,7 @@ export type SchoolId = "conestoga";
 
 export type SubjectId = "english" | "maths" | "biology" | "chemistry";
 
-export type ExamMode = "practice" | "mock" | "quick" | "custom";
-
-export type QuickSplitMode = "per-subject" | "total";
+export type ExamMode = "practice" | "mock" | "custom" | "study";
 
 export interface SubjectCustomOptions {
   questionCount: number;
@@ -18,7 +16,6 @@ export interface ExamCustomOptions {
 }
 
 export interface ExamBuildPreferences {
-  quickSplit?: QuickSplitMode;
   /** Topics to prioritize in question selection (spaced repetition / weak-topic practice) */
   focusTopics?: string[];
   customPerSubject?: Partial<Record<SubjectId, SubjectCustomOptions>>;
@@ -165,7 +162,6 @@ export interface ExamSession {
   startedAt: number;
   /** Present when mode is "custom" */
   customOptions?: ExamCustomOptions;
-  quickSplit?: QuickSplitMode;
   focusTopics?: string[];
   /** @deprecated Pre-sections format — migrated on load */
   questions?: ShuffledQuestion[];
@@ -186,6 +182,8 @@ export interface ExamProgress {
   showReview: boolean;
   completedSubjects: SubjectId[];
   flaggedQuestionIds: string[];
+  /** Study mode — question ids where the student revealed the answer */
+  revealedQuestionIds?: string[];
   /** ms spent per question id */
   questionTimeMs: Record<string, number>;
   /** when the student opened the current question */

@@ -1,7 +1,6 @@
 import type { ExamBuildOptions } from "@/lib/build-exam-session";
 import type {
   ExamMode,
-  QuickSplitMode,
   SubjectCustomOptions,
   SubjectId,
 } from "@/types/exam";
@@ -10,7 +9,6 @@ export function parseBuildOptionsFromBody(
   mode: ExamMode,
   body: Record<string, unknown>
 ): ExamBuildOptions | undefined {
-  const quickSplit = body.quickSplit as QuickSplitMode | undefined;
   const focusTopics = body.focusTopics as string[] | undefined;
   const customPerSubject = body.customPerSubject as
     | Partial<Record<SubjectId, SubjectCustomOptions>>
@@ -28,7 +26,6 @@ export function parseBuildOptionsFromBody(
       : {};
 
   const hasOptions =
-    quickSplit ||
     focusTopics?.length ||
     customPerSubject ||
     wrongQuestionIdsBySubject ||
@@ -37,7 +34,6 @@ export function parseBuildOptionsFromBody(
   if (!hasOptions) return undefined;
 
   return {
-    quickSplit,
     focusTopics,
     customPerSubject,
     wrongQuestionIdsBySubject,

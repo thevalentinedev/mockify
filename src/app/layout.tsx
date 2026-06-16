@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import { GraduationCap } from "lucide-react";
-import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -27,26 +26,9 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakarta.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
-        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-background via-background to-primary/5" />
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent" />
-
-        <header className="sticky top-0 z-50 border-b border-border/50 bg-background/70 backdrop-blur-xl">
-          <div className="mx-auto flex h-14 max-w-5xl items-center px-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <GraduationCap className="size-4" />
-              </div>
-              <span className="hidden sm:inline">Mock Exam Prep</span>
-            </Link>
-          </div>
-        </header>
-
+      <body className="flex min-h-full flex-col font-sans">
+        <SiteHeader />
         {children}
-
-        <footer className="mt-auto border-t border-border/50 py-6 text-center text-xs text-muted-foreground">
-          Pre-assessment practice
-        </footer>
       </body>
     </html>
   );

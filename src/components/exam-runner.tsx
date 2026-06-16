@@ -1,20 +1,28 @@
 "use client";
 
+import { ExamHeader } from "@/components/exam-header";
+import { ExamNavBar } from "@/components/exam-nav-bar";
+import {
+  EXAM_NAV_MIN_QUESTIONS,
+  ExamQuestionGrid,
+  ExamQuestionNavRail,
+  ExamQuestionNavSheet,
+} from "@/components/exam-question-nav";
 import { ExamTimer } from "@/components/exam-timer";
+import { KeyboardHints } from "@/components/keyboard-hints";
 import { BentoCard } from "@/components/bento-card";
 import { SubjectPills } from "@/components/subject-pills";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { QuestionContextCard } from "@/components/question-context-card";
 import { ConfidenceBadge } from "@/components/confidence-badge";
+import { StudyAnswerPanel } from "@/components/study-answer-panel";
 import { useExamKeyboard } from "@/hooks/use-exam-keyboard";
 import { FormatMathText } from "@/lib/format-math-text";
 import { recordExamResult } from "@/lib/learning-history";
 import { useIsClient } from "@/hooks/use-is-client";
-import { SUBJECTS } from "@/lib/exam-config";
+import { isStudyMode, SUBJECTS } from "@/lib/exam-config";
 import {
   getCurrentSection,
   normalizeProgress,
@@ -37,16 +45,10 @@ import type {
   QuestionTimeStat,
   SubjectId,
 } from "@/types/exam";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  Flag,
-  Home,
-  Loader2,
-} from "lucide-react";
+import { Home, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface ExamRunnerProps {
   session: ExamSession;
@@ -94,6 +96,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
       showReview: false,
       completedSubjects: [],
       flaggedQuestionIds: [],
+      revealedQuestionIds: [],
       questionTimeMs: {},
       questionOpenedAt: Date.now(),
       updatedAt: Date.now(),
@@ -102,6 +105,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
 
   const [openContexts, setOpenContexts] = useState<Record<string, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [questionNavOpen, setQuestionNavOpen] = useState(false);
 
   const subjectIndex = progress.currentSubjectIndex;
   const section = getCurrentSection(session, subjectIndex);
@@ -110,6 +114,8 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   const current = questions[currentIndex];
   const answers = progress.answers;
   const showReview = progress.showReview;
+  const studyMode = isStudyMode(session.mode);
+  const revealedQuestionIds = progress.revealedQuestionIds ?? [];
 
   const resumed =
     answers.length > 0 || currentIndex > 0 || progress.completedSubjects.length > 0;
@@ -125,6 +131,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
           showReview: next.showReview,
           completedSubjects: next.completedSubjects,
           flaggedQuestionIds: next.flaggedQuestionIds,
+          revealedQuestionIds: next.revealedQuestionIds,
           questionTimeMs: next.questionTimeMs,
           questionOpenedAt: next.questionOpenedAt,
         });
@@ -235,6 +242,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
         showReview: next.showReview,
         completedSubjects: next.completedSubjects,
         flaggedQuestionIds: next.flaggedQuestionIds,
+        revealedQuestionIds: next.revealedQuestionIds,
         questionTimeMs: next.questionTimeMs,
         questionOpenedAt: Date.now(),
       });
@@ -274,12 +282,64 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     ? progress.flaggedQuestionIds.includes(current.id)
     : false;
 
+  const hasSelectedAnswer =
+    currentAnswer?.selectedIndex !== null &&
+    currentAnswer?.selectedIndex !== undefined;
+
+  const isAnswerRevealed =
+    studyMode && current ? revealedQuestionIds.includes(current.id) : false;
+
+  const awaitingReveal = studyMode && hasSelectedAnswer && !isAnswerRevealed;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [currentIndex, showReview, subjectIndex]);
+
   function navigateToQuestion(index: number) {
     persistProgress(navigationProgressPatch(progress, index, current?.id));
   }
 
-  function selectAnswer(index: number) {
+  function handleRevealAnswer() {
+    if (!current || !studyMode || isAnswerRevealed) return;
+    if (!hasSelectedAnswer) return;
+    const revealed = new Set(revealedQuestionIds);
+    revealed.add(current.id);
+    persistProgress({ revealedQuestionIds: [...revealed] });
+  }
+
+  function handleNext() {
+    if (studyMode && awaitingReveal) {
+      handleRevealAnswer();
+      return;
+    }
+
+    if (currentIndex < questions.length - 1) {
+      navigateToQuestion(currentIndex + 1);
+    } else if (studyMode) {
+      submitCurrentSubject();
+    } else {
+      persistProgress({ showReview: true });
+    }
+  }
+
+  function handlePrevious() {
+    navigateToQuestion(Math.max(0, currentIndex - 1));
+  }
+
+  function openReview() {
+    persistProgress({ showReview: true });
+  }
+
+  function toggleFlag() {
     if (!current) return;
+    const flagged = new Set(progress.flaggedQuestionIds);
+    if (flagged.has(current.id)) flagged.delete(current.id);
+    else flagged.add(current.id);
+    persistProgress({ flaggedQuestionIds: [...flagged] });
+  }
+
+  function selectAnswer(index: number) {
+    if (!current || (studyMode && isAnswerRevealed)) return;
     persistProgress({
       answers: (() => {
         const existing = answers.find((a) => a.questionId === current.id);
@@ -296,18 +356,14 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   useExamKeyboard({
     enabled: Boolean(current && !showReview && !submitted),
     optionCount: current?.options.length ?? 0,
+    hasSelectedAnswer,
+    awaitingReveal,
     onSelectOption: selectAnswer,
-    onPrevious: () => navigateToQuestion(Math.max(0, currentIndex - 1)),
-    onNext: () =>
-      navigateToQuestion(Math.min(questions.length - 1, currentIndex + 1)),
-    onReview: () => persistProgress({ showReview: true }),
-    onToggleFlag: () => {
-      if (!current) return;
-      const flagged = new Set(progress.flaggedQuestionIds);
-      if (flagged.has(current.id)) flagged.delete(current.id);
-      else flagged.add(current.id);
-      persistProgress({ flaggedQuestionIds: [...flagged] });
-    },
+    onPrevious: handlePrevious,
+    onNext: handleNext,
+    onRevealAnswer: handleRevealAnswer,
+    onReview: openReview,
+    onToggleFlag: toggleFlag,
   });
 
   if (!section || !current) {
@@ -318,244 +374,295 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     );
   }
 
-  function goToQuestion(index: number) {
-    navigateToQuestion(index);
-  }
-
-  function toggleFlag() {
-    const flagged = new Set(progress.flaggedQuestionIds);
-    if (flagged.has(current.id)) flagged.delete(current.id);
-    else flagged.add(current.id);
-    persistProgress({ flaggedQuestionIds: [...flagged] });
-  }
-
-  if (showReview) {
-    return (
-      <div className="mx-auto w-full max-w-3xl space-y-6">
-        {resumed && (
-          <p className="text-center text-sm text-muted-foreground">
-            Progress restored — your answers were saved locally.
-          </p>
-        )}
-
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Badge variant="outline" className="capitalize">
-              {session.mode}
-            </Badge>
-          </div>
-          <SubjectPills
-            subjects={session.subjects}
-            activeSubjectId={section.subjectId}
-            completedSubjects={progress.completedSubjects}
-          />
-        </div>
-
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">
-            Review {subject?.name ?? section.subjectId}
-          </h2>
-          <Badge variant="outline">
-            {answeredCount}/{questions.length} answered
-          </Badge>
-        </div>
-
-        <div className="grid gap-2 sm:grid-cols-5">
-          {questions.map((q, i) => {
-            const ans = answers.find((a) => a.questionId === q.id);
-            const isAnswered =
-              ans?.selectedIndex !== null && ans?.selectedIndex !== undefined;
-            const flagged = progress.flaggedQuestionIds.includes(q.id);
-
-            return (
-              <button
-                key={q.id}
-                onClick={() => goToQuestion(i)}
-                className={`rounded-xl border p-3 text-center text-sm font-medium transition-all hover:shadow-sm ${
-                  flagged
-                    ? "border-amber-500/40 bg-amber-500/10"
-                    : isAnswered
-                      ? "border-primary/30 bg-primary/5"
-                      : "border-dashed border-muted-foreground/30 bg-muted/20"
-                }`}
-              >
-                Q{i + 1}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="flex gap-3">
-          <Button
-            variant="outline"
-            onClick={() => persistProgress({ showReview: false })}
-            className="gap-2"
-          >
-            <ArrowLeft className="size-4" />
-            Back to exam
-          </Button>
-          <Button onClick={submitCurrentSubject} className="gap-2 flex-1">
-            <CheckCircle2 className="size-4" />
-            {isLastSubject ? "Submit exam" : `Submit ${subject?.name} & continue`}
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="mx-auto w-full max-w-3xl space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-muted-foreground">
-        {resumed && (
-          <p className="text-emerald-600 dark:text-emerald-400">
-            Welcome back — progress restored.
-          </p>
-        )}
-        <p className={resumed ? "" : "mx-auto"}>
-          {formatLastSaved(progress.updatedAt)} · auto-saves locally
-        </p>
-      </div>
-
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="capitalize">
-            {session.mode}
-          </Badge>
-        </div>
-        <div className="flex items-center gap-3">
-          {section.timeLimitMinutes && section.startedAt > 0 && (
-            <ExamTimer
-              key={`${section.subjectId}-${section.startedAt}`}
-              startedAt={section.startedAt}
-              timeLimitMinutes={section.timeLimitMinutes}
-              onTimeUp={handleTimeUp}
-            />
-          )}
-          <span className="text-sm text-muted-foreground font-medium tabular-nums">
-            {currentIndex + 1} / {questions.length}
-          </span>
-        </div>
-      </div>
-
+  const subjectPills =
+    session.subjects.length > 1 ? (
       <SubjectPills
         subjects={session.subjects}
         activeSubjectId={section.subjectId}
         completedSubjects={progress.completedSubjects}
       />
+    ) : undefined;
 
-      <Progress value={progressPct} className="h-1.5" />
+  const timerSlot =
+    section.timeLimitMinutes && section.startedAt > 0 ? (
+      <ExamTimer
+        key={`${section.subjectId}-${section.startedAt}`}
+        startedAt={section.startedAt}
+        timeLimitMinutes={section.timeLimitMinutes}
+        onTimeUp={handleTimeUp}
+      />
+    ) : undefined;
 
-      <BentoCard className="space-y-6 p-6 sm:p-8">
-        {current.context && (
-          <QuestionContextCard
-            context={current.context}
-            schoolId={session.schoolId}
-            subjectId={section.subjectId}
-            open={openContexts[current.contextKey ?? current.id] ?? false}
-            onOpenChange={(open) =>
-              setOpenContexts((prev) => ({
-                ...prev,
-                [current.contextKey ?? current.id]: open,
-              }))
-            }
-          />
-        )}
+  const exitAction = (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon-sm"
+      onClick={() => {
+        if (
+          window.confirm(
+            "Exit exam? Your progress is saved locally — you can resume from the home page."
+          )
+        ) {
+          router.push("/");
+        }
+      }}
+      aria-label="Exit exam"
+      className="shrink-0 text-muted-foreground"
+    >
+      <Home className="size-4" />
+    </Button>
+  );
 
-        <div className="space-y-2">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="exam-label">Question {currentIndex + 1}</span>
-            <ConfidenceBadge confidence={current.answerConfidence} />
+  const autosaveLabel = resumed
+    ? "Restored · saved locally"
+    : `${formatLastSaved(progress.updatedAt)} · saved`;
+
+  function goToQuestion(index: number) {
+    navigateToQuestion(index);
+  }
+
+  const primaryNavLabel = studyMode
+    ? isAnswerRevealed
+      ? currentIndex < questions.length - 1
+        ? "Next"
+        : isLastSubject
+          ? "Finish"
+          : `Next: ${SUBJECTS.find((s) => s.id === session.sections[subjectIndex + 1]?.subjectId)?.name ?? "subject"}`
+      : "See answer"
+    : currentIndex < questions.length - 1
+      ? "Next"
+      : "Finish";
+
+  const canProceedPrimary = studyMode
+    ? isAnswerRevealed || hasSelectedAnswer
+    : true;
+
+  const submitLabel = isLastSubject
+    ? "Submit exam"
+    : `Submit ${subject?.name ?? section.subjectId}`;
+
+  const questionIds = questions.map((q) => q.id);
+  const showQuestionNav = questions.length >= EXAM_NAV_MIN_QUESTIONS;
+
+  const questionNavProps = {
+    questionCount: questions.length,
+    currentIndex,
+    answers,
+    questionIds,
+    flaggedQuestionIds: progress.flaggedQuestionIds,
+    onSelect: goToQuestion,
+  };
+
+  if (showReview) {
+    const reviewProgressPct =
+      questions.length > 0 ? (answeredCount / questions.length) * 100 : 0;
+
+    return (
+      <>
+        <ExamHeader
+          mode={session.mode}
+          currentIndex={currentIndex}
+          totalQuestions={questions.length}
+          progressPct={reviewProgressPct}
+          headerLabel={`${answeredCount}/${questions.length} answered`}
+          autosaveLabel={autosaveLabel}
+          resumed={resumed}
+          subjectPills={subjectPills}
+          actions={exitAction}
+        />
+
+        <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
+          <div className="mx-auto w-full max-w-3xl flex-1 exam-content-pad space-y-4">
+            <h2 className="text-xl font-semibold">
+              Review {subject?.name ?? section.subjectId}
+            </h2>
+
+            {!showQuestionNav && (
+              <ExamQuestionGrid {...questionNavProps} />
+            )}
+            {showQuestionNav && (
+              <p className="text-sm text-muted-foreground lg:hidden">
+                Tap Questions below to jump, or use the list on larger screens.
+              </p>
+            )}
           </div>
-          <h2 className="exam-question">
-            <FormatMathText>{current.text}</FormatMathText>
-          </h2>
+
+          {showQuestionNav && (
+            <ExamQuestionNavRail
+              {...questionNavProps}
+              className="hidden w-44 shrink-0 lg:block"
+            />
+          )}
         </div>
 
-        <RadioGroup
-          value={currentAnswer?.selectedIndex?.toString() ?? ""}
-          onValueChange={(val) => selectAnswer(parseInt(val, 10))}
-          className="space-y-3"
-        >
-          {current.options.map((option, index) => (
-            <div key={index}>
-              <Label
-                htmlFor={`option-${index}`}
-                className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 sm:p-5 transition-all hover:bg-muted/50 ${
-                  currentAnswer?.selectedIndex === index
-                    ? "border-primary bg-primary/5 ring-1 ring-primary/20"
-                    : "border-border"
-                }`}
-              >
-                <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
-                  {String.fromCharCode(65 + index)}
-                </span>
-                <span className="exam-option">
-                  <FormatMathText>{option}</FormatMathText>
-                </span>
-              </Label>
+        <ExamNavBar
+          variant="review"
+          submitLabel={submitLabel}
+          onBackToExam={() => persistProgress({ showReview: false })}
+          onSubmit={submitCurrentSubject}
+          showQuestionsNav={showQuestionNav}
+          onOpenQuestions={() => setQuestionNavOpen(true)}
+        />
+
+        {showQuestionNav && (
+          <ExamQuestionNavSheet
+            open={questionNavOpen}
+            onOpenChange={setQuestionNavOpen}
+            {...questionNavProps}
+          />
+        )}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <ExamHeader
+        mode={session.mode}
+        currentIndex={currentIndex}
+        totalQuestions={questions.length}
+        progressPct={progressPct}
+        autosaveLabel={autosaveLabel}
+        resumed={resumed}
+        timer={timerSlot}
+        subjectPills={subjectPills}
+        actions={exitAction}
+      />
+
+      <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
+        <div className="mx-auto w-full max-w-3xl flex-1 exam-content-pad space-y-4">
+          <KeyboardHints
+            hints={
+              studyMode
+                ? [
+                    { keys: "1–4", label: "answer" },
+                    { keys: "Enter", label: "see answer / next" },
+                    { keys: "P", label: "prev" },
+                    { keys: "F", label: "flag" },
+                  ]
+                : undefined
+            }
+          />
+
+          <BentoCard static className="exam-density shadow-sm">
+          {current.context && (
+            <QuestionContextCard
+              context={current.context}
+              schoolId={session.schoolId}
+              subjectId={section.subjectId}
+              open={openContexts[current.contextKey ?? current.id] ?? false}
+              onOpenChange={(open) =>
+                setOpenContexts((prev) => ({
+                  ...prev,
+                  [current.contextKey ?? current.id]: open,
+                }))
+              }
+            />
+          )}
+
+          <div className="space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="exam-label">Question {currentIndex + 1}</span>
+              <ConfidenceBadge confidence={current.answerConfidence} />
             </div>
-          ))}
-        </RadioGroup>
-      </BentoCard>
+            <h2 id="exam-question" className="exam-question">
+              <FormatMathText>{current.text}</FormatMathText>
+            </h2>
+          </div>
 
-      <div className="flex items-center justify-between gap-3">
-        <Button
-          variant="outline"
-          onClick={() => navigateToQuestion(Math.max(0, currentIndex - 1))}
-          disabled={currentIndex === 0}
-          className="gap-2"
-        >
-          <ArrowLeft className="size-4" />
-          Previous
-        </Button>
-
-        <Button
-          variant={isFlagged ? "secondary" : "ghost"}
-          onClick={toggleFlag}
-          className="gap-2"
-        >
-          <Flag className="size-4" />
-          {isFlagged ? "Flagged" : "Flag"}
-        </Button>
-
-        <Button
-          variant="ghost"
-          onClick={() => persistProgress({ showReview: true })}
-          className="gap-2"
-        >
-          Review
-        </Button>
-
-        {currentIndex < questions.length - 1 ? (
-          <Button
-            onClick={() => navigateToQuestion(currentIndex + 1)}
-            className="gap-2"
+          <RadioGroup
+            value={currentAnswer?.selectedIndex?.toString() ?? ""}
+            onValueChange={(val) => selectAnswer(parseInt(val, 10))}
+            className="exam-density-options"
+            disabled={studyMode && isAnswerRevealed}
           >
-            Next
-            <ArrowRight className="size-4" />
-          </Button>
-        ) : (
-          <Button
-            onClick={() => persistProgress({ showReview: true })}
-            className="gap-2"
-          >
-            Finish
-            <CheckCircle2 className="size-4" />
-          </Button>
+            {current.options.map((option, index) => {
+              const isSelected = currentAnswer?.selectedIndex === index;
+              const isCorrectOpt =
+                studyMode && isAnswerRevealed && current.correctIndex === index;
+              const isWrongSelected =
+                studyMode && isAnswerRevealed && isSelected && !isCorrectOpt;
+
+              return (
+                <div key={index}>
+                  <Label
+                    htmlFor={`option-${index}`}
+                    className={cn(
+                      "exam-density-option flex items-center gap-3 rounded-xl border motion-safe:transition-all",
+                      studyMode && isAnswerRevealed
+                        ? "cursor-default"
+                        : "cursor-pointer hover:bg-muted/50",
+                      !studyMode || !isAnswerRevealed
+                        ? isSelected
+                          ? "border-primary bg-primary/5 ring-1 ring-primary/20"
+                          : "border-border"
+                        : isCorrectOpt
+                          ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                          : isWrongSelected
+                            ? "border-red-500/40 bg-red-500/10 text-red-700 dark:text-red-400"
+                            : "border-border text-muted-foreground"
+                    )}
+                  >
+                    <RadioGroupItem
+                      value={index.toString()}
+                      id={`option-${index}`}
+                      disabled={studyMode && isAnswerRevealed}
+                    />
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
+                      {String.fromCharCode(65 + index)}
+                    </span>
+                    <span className="exam-option">
+                      <FormatMathText>{option}</FormatMathText>
+                      {isCorrectOpt && " ✓"}
+                      {isWrongSelected && " (your answer)"}
+                    </span>
+                  </Label>
+                </div>
+              );
+            })}
+          </RadioGroup>
+
+          {studyMode && isAnswerRevealed && (
+            <StudyAnswerPanel
+              question={current}
+              answer={currentAnswer}
+              className="mt-4"
+            />
+          )}
+        </BentoCard>
+        </div>
+
+        {showQuestionNav && (
+          <ExamQuestionNavRail
+            {...questionNavProps}
+            className="hidden w-44 shrink-0 lg:block"
+          />
         )}
       </div>
 
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => router.push("/")}
-        className="mx-auto flex gap-2 text-muted-foreground"
-      >
-        <Home className="size-4" />
-        Exit to home
-      </Button>
-    </div>
+      <ExamNavBar
+        canGoPrevious={currentIndex > 0}
+        canGoNext={canProceedPrimary}
+        isFlagged={isFlagged}
+        nextLabel={primaryNavLabel}
+        hideReview={studyMode}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        onFlag={toggleFlag}
+        onReview={openReview}
+        showQuestionsNav={showQuestionNav}
+        onOpenQuestions={() => setQuestionNavOpen(true)}
+      />
+
+      {showQuestionNav && (
+        <ExamQuestionNavSheet
+          open={questionNavOpen}
+          onOpenChange={setQuestionNavOpen}
+          {...questionNavProps}
+        />
+      )}
+    </>
   );
 }
 

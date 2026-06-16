@@ -1,6 +1,8 @@
 "use client";
 
 import { BentoCard } from "@/components/bento-card";
+import { ExamPreparing } from "@/components/exam-preparing";
+import { SetupFooter } from "@/components/setup-footer";
 import { StepIndicator } from "@/components/step-indicator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -14,6 +16,7 @@ import {
   getModeStartLabel,
   type SetupStep,
 } from "@/lib/exam-config";
+import { cn } from "@/lib/utils";
 import {
   clearExamInProgress,
   loadSession,
@@ -31,18 +34,15 @@ import {
 } from "@/lib/user-attempts";
 import type {
   ExamMode,
-  QuickSplitMode,
   SchoolId,
   SubjectCustomOptions,
   SubjectId,
 } from "@/types/exam";
 import type { SubjectEnsureResult } from "@/lib/bank-manager";
 import {
-  ArrowLeft,
-  ArrowRight,
   BookOpen,
   Calculator,
-  Clock,
+  ChevronDown,
   Dna,
   FlaskConical,
   GraduationCap,
@@ -50,9 +50,9 @@ import {
   Sparkles,
   Timer,
   Trash2,
+  X,
   Zap,
 } from "lucide-react";
-import { ExamPreparing } from "@/components/exam-preparing";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useIsClient } from "@/hooks/use-is-client";
@@ -87,13 +87,22 @@ const STEPS = [
   { id: "mode", label: "Mode" },
 ];
 
+function getModeMetaLine(modeId: string, timed?: boolean): string {
+  if (modeId === "study") {
+    return `${QUICK_QUESTION_COUNT} questions · instant feedback`;
+  }
+  if (modeId === "custom") {
+    return "Your question count & timer";
+  }
+  return timed ? "Timed · full exam spec" : "Untimed · full exam spec";
+}
+
 export function ExamSetup() {
   const router = useRouter();
   const [step, setStep] = useState<SetupStep>("school");
   const [schoolId, setSchoolId] = useState<SchoolId | null>("conestoga");
   const [subjects, setSubjects] = useState<SubjectId[]>([]);
   const [mode, setMode] = useState<ExamMode | null>(null);
-  const [quickSplit, setQuickSplit] = useState<QuickSplitMode>("per-subject");
   const [customPerSubject, setCustomPerSubject] = useState<
     Partial<Record<SubjectId, SubjectCustomOptions>>
   >({});
@@ -105,6 +114,8 @@ export function ExamSetup() {
   const [preparing, setPreparing] = useState(false);
   const [prepareJobId, setPrepareJobId] = useState<string | null>(null);
   const [startError, setStartError] = useState<string | null>(null);
+  const [resumeDismissed, setResumeDismissed] = useState(false);
+  const [previewOverride, setPreviewOverride] = useState<boolean | null>(null);
   const isClient = useIsClient();
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0);
   const inProgressSession = useMemo(() => {
@@ -124,6 +135,7 @@ export function ExamSetup() {
       return count >= 1 && count <= max;
     });
   const canStart = (displayStats?.bySubject?.length ?? 0) > 0 && customQuestionsValid;
+  const previewOpen = previewOverride ?? subjects.length <= 3;
 
   const focusTopics = useMemo(() => {
     if (!isClient) return [];
@@ -136,11 +148,10 @@ export function ExamSetup() {
       school: schoolId,
       subjects,
       mode,
-      ...(mode === "quick" ? { quickSplit } : {}),
       ...(mode === "custom" ? { customPerSubject } : {}),
       ...(focusTopics.length ? { focusTopics } : {}),
     };
-  }, [schoolId, subjects, mode, quickSplit, customPerSubject, focusTopics]);
+  }, [schoolId, subjects, mode, customPerSubject, focusTopics]);
 
   useEffect(() => {
     if (!previewPayload) return;
@@ -235,7 +246,6 @@ export function ExamSetup() {
           school: schoolId,
           subjects,
           mode,
-          ...(mode === "quick" ? { quickSplit } : {}),
           ...(mode === "custom" ? { customPerSubject } : {}),
           ...(focusTopics.length ? { focusTopics } : {}),
           wrongQuestionIdsBySubject,
@@ -277,6 +287,7 @@ export function ExamSetup() {
   }
 
   const isHome = step === "school";
+  const showResumeBanner = Boolean(inProgressSession) && !resumeDismissed;
 
   function handleDiscardExam() {
     clearExamInProgress();
@@ -284,7 +295,7 @@ export function ExamSetup() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-8">
+    <>
       {preparing && mode && prepareJobId && schoolId && (
         <ExamPreparing
           jobId={prepareJobId}
@@ -295,20 +306,28 @@ export function ExamSetup() {
         />
       )}
 
-      {startError && (
-        <p className="text-sm text-center text-destructive">{startError}</p>
-      )}
+      <div
+        className={cn(
+          "mx-auto w-full max-w-4xl space-y-6",
+          !isHome && "setup-content-pad"
+        )}
+      >
+        {startError && (
+          <p className="text-center text-sm text-destructive">{startError}</p>
+        )}
 
-      {inProgressSession && (
-        <BentoCard className="flex items-center justify-between gap-4 bg-emerald-500/5 border-emerald-500/20 py-4">
-          <div className="min-w-0">
-            <p className="font-medium">Exam in progress</p>
-            <p className="text-sm text-muted-foreground capitalize">
-              {inProgressSession.mode} · {inProgressSession.subjects.join(", ")}
-            </p>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
-            <Button asChild size="sm">
+        {showResumeBanner && inProgressSession && (
+          <BentoCard
+            compact
+            className="flex items-center gap-3 border-emerald-500/20 bg-emerald-500/5 pl-4 pr-2"
+          >
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium">Exam in progress</p>
+              <p className="truncate text-xs text-muted-foreground capitalize">
+                {inProgressSession.mode} · {inProgressSession.subjects.join(", ")}
+              </p>
+            </div>
+            <Button asChild size="sm" className="shrink-0">
               <Link href="/exam">Resume</Link>
             </Button>
             <Button
@@ -316,33 +335,46 @@ export function ExamSetup() {
               size="icon-sm"
               onClick={handleDiscardExam}
               aria-label="Discard exam"
+              className="shrink-0"
             >
               <Trash2 className="size-4" />
             </Button>
-          </div>
-        </BentoCard>
-      )}
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => setResumeDismissed(true)}
+              aria-label="Dismiss"
+              className="shrink-0 text-muted-foreground"
+            >
+              <X className="size-4" />
+            </Button>
+          </BentoCard>
+        )}
 
-      {isHome && (
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-            <GraduationCap className="size-4" />
-            Pre-Assessment Practice
+        {isHome && (
+          <div className="space-y-2 text-center sm:space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+              <GraduationCap className="size-4" />
+              Pre-Assessment Practice
+            </div>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+              Mock Exam Prep
+            </h1>
+            <p className="mx-auto max-w-lg text-sm text-muted-foreground sm:text-base">
+              Select your school, subjects, and mode to begin practicing for your
+              entrance assessment.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Mock Exam Prep
-          </h1>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Select your school, subjects, and mode to begin practicing for your
-            entrance assessment.
-          </p>
-        </div>
-      )}
+        )}
 
-      {!isHome && <StepIndicator steps={STEPS} currentStep={step} />}
+        {!isHome && (
+          <div className="sticky top-14 z-20 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6">
+            <StepIndicator steps={STEPS} currentStep={step} />
+          </div>
+        )}
 
       {step === "school" && (
-        <section className="space-y-4">
+        <section key="school" className="setup-step-enter space-y-4">
           <h2 className="text-lg font-semibold">Select your school</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {SCHOOLS.map((school) => (
@@ -385,7 +417,7 @@ export function ExamSetup() {
       )}
 
       {step === "subjects" && (
-        <section className="space-y-4">
+        <section key="subjects" className="setup-step-enter space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Choose subjects</h2>
             <Badge variant="outline">
@@ -435,13 +467,13 @@ export function ExamSetup() {
       )}
 
       {step === "mode" && (
-        <section className="space-y-4">
+        <section key="mode" className="setup-step-enter space-y-4">
           <h2 className="text-lg font-semibold">Select exam mode</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {MODES.map((m) => {
               const ModeIcon =
-                m.id === "quick"
-                  ? Zap
+                m.id === "study"
+                  ? GraduationCap
                   : m.id === "custom"
                     ? SlidersHorizontal
                     : m.timeLimit
@@ -463,66 +495,24 @@ export function ExamSetup() {
                       <h3 className="font-semibold text-lg">{m.name}</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">{m.description}</p>
-                    <div className="flex gap-2">
-                      {m.id === "quick" ? (
-                        <Badge variant="secondary" className="gap-1">
-                          <Clock className="size-3" />
-                          {QUICK_QUESTION_COUNT} q · scaled time
-                        </Badge>
-                      ) : m.id === "custom" ? (
-                        <Badge variant="secondary" className="gap-1">
-                          <SlidersHorizontal className="size-3" />
-                          Your settings
-                        </Badge>
-                      ) : m.timeLimit ? (
-                        <Badge variant="secondary" className="gap-1">
-                          <Clock className="size-3" />
-                          Timed
-                        </Badge>
-                      ) : (
-                        <Badge variant="secondary" className="gap-1">
-                          <Zap className="size-3" />
-                          Untimed
-                        </Badge>
-                      )}
-                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {getModeMetaLine(m.id, m.timeLimit)}
+                    </p>
                   </div>
                 </BentoCard>
               );
             })}
           </div>
 
-          {mode === "quick" && subjects.length > 1 && (
-            <BentoCard className="bg-muted/30 space-y-3">
-              <h3 className="font-semibold">Quick layout</h3>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={quickSplit === "per-subject" ? "default" : "outline"}
-                  onClick={() => setQuickSplit("per-subject")}
-                >
-                  20 per subject
-                </Button>
-                <Button
-                  type="button"
-                  size="sm"
-                  variant={quickSplit === "total" ? "default" : "outline"}
-                  onClick={() => setQuickSplit("total")}
-                >
-                  20 total (split)
-                </Button>
-              </div>
-            </BentoCard>
-          )}
-
           {mode === "custom" && (
-            <BentoCard className="bg-muted/30 space-y-4">
-              <h3 className="font-semibold">Custom settings per subject</h3>
-              <p className="text-sm text-muted-foreground">
-                Set time to 0 for no timer on that subject.
-              </p>
-              <div className="space-y-4">
+            <BentoCard className="space-y-4 bg-muted/30">
+              <div>
+                <h3 className="font-semibold">Custom settings per subject</h3>
+                <p className="text-sm text-muted-foreground">
+                  Set time to 0 for no timer on that subject.
+                </p>
+              </div>
+              <div className="space-y-3">
                 {subjects.map((subjectId) => {
                   const subject = SUBJECTS.find((s) => s.id === subjectId);
                   const max =
@@ -533,15 +523,12 @@ export function ExamSetup() {
                     timeLimitMinutes: 0,
                   };
 
-                  return (
-                    <div
-                      key={subjectId}
-                      className="grid gap-3 sm:grid-cols-3 rounded-xl border p-3 bg-background/50"
-                    >
-                      <p className="font-medium sm:col-span-3">{subject?.name}</p>
+                  const fields = (
+                    <>
                       <div className="space-y-1">
-                        <Label>Questions</Label>
+                        <Label htmlFor={`${subjectId}-questions`}>Questions</Label>
                         <Input
+                          id={`${subjectId}-questions`}
                           type="number"
                           min={1}
                           max={max}
@@ -561,8 +548,9 @@ export function ExamSetup() {
                         />
                       </div>
                       <div className="space-y-1 sm:col-span-2">
-                        <Label>Time (minutes)</Label>
+                        <Label htmlFor={`${subjectId}-time`}>Time (minutes)</Label>
                         <Input
+                          id={`${subjectId}-time`}
                           type="number"
                           min={0}
                           value={settings.timeLimitMinutes}
@@ -580,6 +568,34 @@ export function ExamSetup() {
                           }
                         />
                       </div>
+                    </>
+                  );
+
+                  if (subjects.length >= 3) {
+                    return (
+                      <details
+                        key={subjectId}
+                        className="group rounded-xl border bg-background/50"
+                        open
+                      >
+                        <summary className="flex cursor-pointer list-none items-center justify-between p-3 font-medium [&::-webkit-details-marker]:hidden">
+                          {subject?.name}
+                          <ChevronDown className="size-4 text-muted-foreground transition-transform group-open:rotate-180" />
+                        </summary>
+                        <div className="grid gap-3 border-t p-3 sm:grid-cols-3">
+                          {fields}
+                        </div>
+                      </details>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={subjectId}
+                      className="grid gap-3 rounded-xl border bg-background/50 p-3 sm:grid-cols-3"
+                    >
+                      <p className="font-medium sm:col-span-3">{subject?.name}</p>
+                      {fields}
                     </div>
                   );
                 })}
@@ -594,83 +610,80 @@ export function ExamSetup() {
           )}
 
           {displayStats && (
-            <BentoCard className="bg-muted/30 space-y-3">
-              <h3 className="font-semibold">Session preview</h3>
-              <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-xl bg-background/60 p-3 text-center">
-                  <p className="text-2xl font-bold">{displayStats.totalQuestions}</p>
-                  <p className="text-xs text-muted-foreground">Exam questions</p>
-                </div>
-                <div className="rounded-xl bg-background/60 p-3 text-center">
-                  <p className="text-2xl font-bold">{subjects.length}</p>
-                  <p className="text-xs text-muted-foreground">Subjects</p>
-                </div>
-                <div className="rounded-xl bg-background/60 p-3 text-center">
-                  <p className="text-2xl font-bold">
-                    {displayStats.timed ? displayStats.totalTimeMinutes : "∞"}
-                  </p>
+            <BentoCard className="bg-muted/30">
+              <button
+                type="button"
+                onClick={() => setPreviewOverride(!previewOpen)}
+                className="flex w-full items-center justify-between gap-2 text-left"
+              >
+                <h3 className="font-semibold">Session preview</h3>
+                <ChevronDown
+                  className={cn(
+                    "size-4 shrink-0 text-muted-foreground transition-transform",
+                    previewOpen && "rotate-180"
+                  )}
+                />
+              </button>
+
+              {previewOpen && (
+                <div className="mt-3 space-y-3">
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                      <p className="text-2xl font-bold">{displayStats.totalQuestions}</p>
+                      <p className="text-xs text-muted-foreground">Exam questions</p>
+                    </div>
+                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                      <p className="text-2xl font-bold">{subjects.length}</p>
+                      <p className="text-xs text-muted-foreground">Subjects</p>
+                    </div>
+                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                      <p className="text-2xl font-bold">
+                        {displayStats.timed ? displayStats.totalTimeMinutes : "∞"}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {displayStats.timed ? "Minutes" : "No limit"}
+                      </p>
+                    </div>
+                  </div>
+                  {displayStats.bySubject.map((s) => {
+                    const subject = SUBJECTS.find((sub) => sub.id === s.subjectId);
+                    const timeLabel =
+                      s.timeLimitMinutes > 0 ? `${s.timeLimitMinutes} min` : "no limit";
+                    return (
+                      <p key={s.subjectId} className="text-xs text-muted-foreground">
+                        {subject?.name}: {s.questionCount} questions · {timeLabel}
+                        {s.ready && ` · ${s.poolSize} ready in bank`}
+                      </p>
+                    );
+                  })}
                   <p className="text-xs text-muted-foreground">
-                    {displayStats.timed ? "Minutes" : "No limit"}
+                    Questions are prepared automatically when you start.
                   </p>
                 </div>
-              </div>
-              {displayStats.bySubject.map((s) => {
-                const subject = SUBJECTS.find((sub) => sub.id === s.subjectId);
-                const timeLabel =
-                  s.timeLimitMinutes > 0 ? `${s.timeLimitMinutes} min` : "no limit";
-                return (
-                  <p key={s.subjectId} className="text-xs text-muted-foreground">
-                    {subject?.name}: {s.questionCount} questions · {timeLabel}
-                    {s.ready && ` · ${s.poolSize} ready in bank`}
-                  </p>
-                );
-              })}
-              {mode === "quick" && (
-                <p className="text-xs text-muted-foreground">
-                  Quick mode:{" "}
-                  {quickSplit === "total" && subjects.length > 1
-                    ? `${QUICK_QUESTION_COUNT} questions split across subjects`
-                    : `${QUICK_QUESTION_COUNT} questions per subject`}
-                  , time scaled from the real exam spec.
-                </p>
               )}
-              <p className="text-xs text-muted-foreground">
-                Questions are prepared automatically when you start.
-              </p>
             </BentoCard>
           )}
         </section>
       )}
+      </div>
 
       {step !== "school" && (
-        <div className="flex items-center justify-between pt-2">
-          <Button variant="ghost" onClick={goBack} className="gap-2">
-            <ArrowLeft className="size-4" />
-            Back
-          </Button>
-
-          {step === "subjects" ? (
-            <Button
-              onClick={goNext}
-              disabled={subjects.length === 0}
-              className="gap-2"
-            >
-              Continue
-              <ArrowRight className="size-4" />
-            </Button>
-          ) : (
-            <Button
-              onClick={startExam}
-              disabled={!mode || !displayStats || !canStart || starting}
-              className="gap-2"
-              size="lg"
-            >
-              Start {mode ? getModeStartLabel(mode) : "Exam"}
-              <ArrowRight className="size-4" />
-            </Button>
-          )}
-        </div>
+        <SetupFooter
+          onBack={goBack}
+          onContinue={step === "subjects" ? goNext : startExam}
+          continueLabel={
+            step === "mode" && mode
+              ? `Start ${getModeStartLabel(mode)}`
+              : "Continue"
+          }
+          continueDisabled={
+            step === "subjects"
+              ? subjects.length === 0
+              : !mode || !displayStats || !canStart
+          }
+          continueLoading={starting}
+        />
       )}
-    </div>
+    </>
   );
 }

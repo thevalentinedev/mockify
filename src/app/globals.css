@@ -81,6 +81,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --shell-header-height: 3.5rem;
+  --exam-sticky-header-height: 3rem;
+  --exam-nav-height: 3.5rem;
+  --setup-footer-height: 3.75rem;
 }
 
 .dark {
@@ -124,6 +128,18 @@
   html {
     @apply font-sans scroll-smooth;
     font-size: 106.25%;
+    scroll-padding-top: calc(
+      var(--shell-header-height) + var(--exam-sticky-header-height)
+    );
+    scroll-padding-bottom: calc(
+      var(--exam-nav-height) + env(safe-area-inset-bottom, 0px)
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
   body {
     @apply bg-background text-foreground leading-relaxed;
@@ -161,5 +177,50 @@
 
   .exam-passage {
     @apply text-[0.9375rem] leading-[1.75] text-foreground/90 sm:text-[1rem];
+  }
+
+  .exam-content-pad {
+    padding-bottom: calc(
+      var(--exam-nav-height) + env(safe-area-inset-bottom, 0px)
+    );
+  }
+
+  .exam-density {
+    @apply space-y-4 p-4 sm:space-y-4 sm:p-5;
+  }
+
+  .exam-density-options {
+    @apply space-y-2;
+  }
+
+  .exam-density-option {
+    @apply p-3 sm:p-4;
+  }
+
+  .setup-content-pad {
+    padding-bottom: calc(
+      var(--setup-footer-height) + env(safe-area-inset-bottom, 0px)
+    );
+  }
+
+  .setup-step-enter {
+    animation: setup-step-enter 200ms ease-out both;
+  }
+
+  @keyframes setup-step-enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .setup-step-enter {
+      animation: none;
+    }
   }
 }

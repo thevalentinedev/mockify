@@ -1,34 +1,36 @@
 "use client";
 
 import { BentoCard } from "@/components/bento-card";
+import { ResultQuestionRow } from "@/components/result-question-row";
+import { ResultsFooter } from "@/components/results-footer";
 import { SubjectPills } from "@/components/subject-pills";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
 import { useIsClient } from "@/hooks/use-is-client";
 import { SUBJECTS } from "@/lib/exam-config";
 import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
-import { FormatMathText } from "@/lib/format-math-text";
-import { ConfidenceBadge } from "@/components/confidence-badge";
 import { savePracticeTopics } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
+import { cn } from "@/lib/utils";
 import type { ExamResult, SubjectId } from "@/types/exam";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Home,
-  Lightbulb,
-  RotateCcw,
-  Target,
-  XCircle,
-} from "lucide-react";
+import { RotateCcw, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+function scoreRingClass(percentage: number): string {
+  if (percentage >= 70) return "bg-emerald-500/10 text-emerald-600";
+  if (percentage >= 50) return "bg-amber-500/10 text-amber-600";
+  return "bg-red-500/10 text-red-600";
+}
 
 export function ExamResults() {
   const router = useRouter();
   const isClient = useIsClient();
+  const reviewRef = useRef<HTMLElement>(null);
+  const [expandedQuestionIds, setExpandedQuestionIds] = useState<Set<string>>(
+    () => new Set()
+  );
+
   const result = useMemo(
     () => (isClient ? loadResult<ExamResult>() : null),
     [isClient]
@@ -104,6 +106,54 @@ export function ExamResults() {
     return stats.allQuestions.filter((q) => q.subjectId === resolvedSubjectId);
   }, [stats, resolvedSubjectId]);
 
+  const timeSummary = useMemo(() => {
+    if (!result?.timeStats?.length) return null;
+    const times = result.timeStats.map((t) => t.timeMs);
+    const slowest = Math.round(Math.max(...times) / 1000);
+    const average = Math.round(
+      times.reduce((sum, ms) => sum + ms, 0) / times.length / 1000
+    );
+    const sorted = result.timeStats.slice().sort((a, b) => b.timeMs - a.timeMs);
+    return { slowest, average, sorted };
+  }, [result]);
+
+  function goHome() {
+    router.push("/");
+  }
+
+  function goRetake() {
+    router.push("/");
+  }
+
+  function practiceWeakTopics() {
+    if (!stats?.focusTopics.length) return;
+    savePracticeTopics(stats.focusTopics);
+    router.push("/");
+  }
+
+  function handleSubjectSelect(subjectId: SubjectId) {
+    setActiveSubjectId(subjectId);
+    setExpandedQuestionIds(new Set());
+    reviewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function toggleQuestionExpanded(questionId: string) {
+    setExpandedQuestionIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(questionId)) next.delete(questionId);
+      else next.add(questionId);
+      return next;
+    });
+  }
+
+  function expandAllQuestions() {
+    setExpandedQuestionIds(new Set(activeQuestions.map((q) => q.id)));
+  }
+
+  function collapseAllQuestions() {
+    setExpandedQuestionIds(new Set());
+  }
+
   if (!result || !stats || !session || !resolvedSubjectId) return null;
 
   const activeSubjectStats = stats.bySubject[resolvedSubjectId];
@@ -111,248 +161,163 @@ export function ExamResults() {
     activeSubjectStats && activeSubjectStats.total > 0
       ? Math.round((activeSubjectStats.correct / activeSubjectStats.total) * 100)
       : 0;
+  const hasFocusTopics = stats.focusTopics.length > 0;
 
   return (
-    <div className="mx-auto w-full max-w-3xl space-y-8">
-      <div className="text-center space-y-3">
-        <div
-          className={`mx-auto flex size-20 items-center justify-center rounded-full ${
-            stats.percentage >= 70
-              ? "bg-emerald-500/10 text-emerald-600"
-              : stats.percentage >= 50
-                ? "bg-amber-500/10 text-amber-600"
-                : "bg-red-500/10 text-red-600"
-          }`}
-        >
-          <span className="text-3xl font-bold">{stats.percentage}%</span>
-        </div>
-        <h1 className="text-2xl font-bold sm:text-3xl">Exam Complete</h1>
-        <p className="text-muted-foreground">
-          Overall: {stats.correct} / {stats.total} correct
-        </p>
-        <div className="flex items-center justify-center gap-2">
-          <Badge variant="outline" className="capitalize">
-            {session.mode}
-          </Badge>
-          <Badge variant="secondary">
-            {stats.durationMin}m {stats.durationSec}s total
-          </Badge>
-        </div>
-      </div>
-
-      {stats.focusTopics.length > 0 && (
-        <BentoCard className="space-y-3 bg-gradient-to-br from-amber-500/5 to-transparent">
-          <div className="flex items-center gap-2">
-            <Target className="size-5 text-amber-600" />
-            <h2 className="font-semibold">Focus areas for next practice</h2>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Topics you missed — retake practice targeting these to work toward 100%.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {stats.focusTopics.map((topic) => (
-              <Badge key={topic} variant="secondary">
-                {topic}
-              </Badge>
-            ))}
-          </div>
-          <Button
-            className="gap-2"
-            onClick={() => {
-              savePracticeTopics(stats.focusTopics);
-              router.push("/");
-            }}
+    <>
+      <div className="mx-auto w-full max-w-3xl setup-content-pad space-y-6">
+        <section className="max-h-[40vh] space-y-3 text-center sm:space-y-4">
+          <div
+            className={cn(
+              "mx-auto flex size-16 items-center justify-center rounded-full sm:size-20",
+              scoreRingClass(stats.percentage)
+            )}
           >
-            <Target className="size-4" />
-            Practice weak topics
-          </Button>
-        </BentoCard>
-      )}
-
-      {result.timeStats && result.timeStats.length > 0 && (
-        <BentoCard className="space-y-3">
-          <h2 className="font-semibold">Time per question</h2>
-          <p className="text-sm text-muted-foreground">
-            Slowest:{" "}
-            {Math.round(
-              Math.max(...result.timeStats.map((t) => t.timeMs)) / 1000
-            )}
-            s · Average:{" "}
-            {Math.round(
-              result.timeStats.reduce((s, t) => s + t.timeMs, 0) /
-                result.timeStats.length /
-                1000
-            )}
-            s
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {result.timeStats
-              .slice()
-              .sort((a, b) => b.timeMs - a.timeMs)
-              .slice(0, 8)
-              .map((t) => (
-                <Badge key={t.questionId} variant="outline" className="text-xs">
-                  Q{t.index + 1}: {Math.round(t.timeMs / 1000)}s
+            <span className="text-2xl font-bold sm:text-3xl">{stats.percentage}%</span>
+          </div>
+          <div className="space-y-1">
+            <h1 className="text-xl font-bold sm:text-2xl">Exam Complete</h1>
+            <p className="text-sm text-muted-foreground">
+              {stats.correct} / {stats.total} correct · {stats.durationMin}m{" "}
+              {stats.durationSec}s
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <Badge variant="outline" className="capitalize">
+              {session.mode}
+            </Badge>
+            {session.subjects.map((subjectId) => {
+              const data = stats.bySubject[subjectId];
+              if (!data) return null;
+              const subject = SUBJECTS.find((s) => s.id === subjectId);
+              const pct = Math.round((data.correct / data.total) * 100);
+              return (
+                <Badge key={subjectId} variant="secondary" className="text-xs">
+                  {subject?.name ?? subjectId}: {data.correct}/{data.total} ({pct}
+                  %)
                 </Badge>
-              ))}
+              );
+            })}
           </div>
-        </BentoCard>
-      )}
 
-      <BentoCard className="space-y-4">
-        <h2 className="font-semibold">Score by subject</h2>
-        <div className="space-y-4">
-          {session.subjects.map((subjectId) => {
-            const data = stats.bySubject[subjectId];
-            if (!data) return null;
-            const subject = SUBJECTS.find((s) => s.id === subjectId);
-            const pct = Math.round((data.correct / data.total) * 100);
-
-            return (
-              <div key={subjectId} className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium">{subject?.name ?? subjectId}</span>
-                  <span className="text-muted-foreground">
-                    {data.correct}/{data.total} ({pct}%)
-                  </span>
-                </div>
-                <Progress value={pct} className="h-2" />
+          {hasFocusTopics ? (
+            <div className="space-y-2 pt-1">
+              <div className="flex flex-wrap justify-center gap-1.5">
+                {stats.focusTopics.slice(0, 4).map((topic) => (
+                  <Badge key={topic} variant="outline" className="text-xs">
+                    {topic}
+                  </Badge>
+                ))}
+                {stats.focusTopics.length > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{stats.focusTopics.length - 4} more
+                  </Badge>
+                )}
               </div>
-            );
-          })}
-        </div>
-      </BentoCard>
+              <Button onClick={practiceWeakTopics} className="gap-2" size="lg">
+                <Target className="size-4" />
+                Practice weak topics
+              </Button>
+            </div>
+          ) : (
+            <Button onClick={goRetake} className="gap-2" size="lg">
+              <RotateCcw className="size-4" />
+              Retake exam
+            </Button>
+          )}
+        </section>
 
-      <BentoCard className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h2 className="font-semibold">Answer review</h2>
-            {activeSubjectStats && (
-              <p className="text-sm text-muted-foreground mt-1">
-                {SUBJECTS.find((s) => s.id === resolvedSubjectId)?.name}:{" "}
-                {activeSubjectStats.correct}/{activeSubjectStats.total} ({activePct}%)
-              </p>
+        {timeSummary && (
+          <details className="group rounded-xl border bg-card/80">
+            <summary className="flex cursor-pointer list-none items-center justify-between p-4 font-medium [&::-webkit-details-marker]:hidden">
+              <span>Timing details</span>
+              <span className="text-sm font-normal text-muted-foreground">
+                Slowest {timeSummary.slowest}s · Avg {timeSummary.average}s
+              </span>
+            </summary>
+            <div className="space-y-3 border-t px-4 pb-4 pt-3">
+              <div className="flex flex-wrap gap-2">
+                {timeSummary.sorted.map((t) => (
+                  <Badge key={t.questionId} variant="outline" className="text-xs">
+                    Q{t.index + 1}: {Math.round(t.timeMs / 1000)}s
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </details>
+        )}
+
+        <section ref={reviewRef} className="scroll-mt-36 space-y-4">
+          <BentoCard static compact className="space-y-4">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h2 className="font-semibold">Answer review</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {SUBJECTS.find((s) => s.id === resolvedSubjectId)?.name}:{" "}
+                  {activeSubjectStats?.correct}/{activeSubjectStats?.total} ({activePct}
+                  %) · Tap a question to expand
+                </p>
+              </div>
+              {activeQuestions.length > 0 && (
+                <div className="flex shrink-0 gap-1">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={expandAllQuestions}
+                  >
+                    Expand all
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={collapseAllQuestions}
+                    disabled={expandedQuestionIds.size === 0}
+                  >
+                    Collapse
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {session.subjects.length > 1 && (
+              <SubjectPills
+                subjects={session.subjects}
+                activeSubjectId={resolvedSubjectId}
+                completedSubjects={session.subjects}
+                onSelect={handleSubjectSelect}
+                interactive
+              />
             )}
-          </div>
-        </div>
 
-        <SubjectPills
-          subjects={session.subjects}
-          activeSubjectId={resolvedSubjectId}
-          completedSubjects={session.subjects}
-          onSelect={setActiveSubjectId}
-          interactive
-        />
-
-        <div className="space-y-4">
-          {activeQuestions.map((question, index) => {
-            const answer = result.answers.find((a) => a.questionId === question.id);
-            const isCorrect = answer?.selectedIndex === question.correctIndex;
-
-            return (
-              <div key={question.id} className="space-y-3">
-                {index > 0 && <Separator />}
-                <div className="flex items-start gap-3">
-                  {isCorrect ? (
-                    <CheckCircle2 className="size-5 shrink-0 text-emerald-500 mt-0.5" />
-                  ) : (
-                    <XCircle className="size-5 shrink-0 text-red-500 mt-0.5" />
-                  )}
-                  <div className="space-y-2 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-medium text-muted-foreground">
-                        Q{index + 1}
-                      </span>
-                      <ConfidenceBadge confidence={question.answerConfidence} />
-                      {question.topic && (
-                        <Badge variant="outline" className="text-xs">
-                          {question.topic}
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="exam-question text-[1.05rem] sm:text-[1.1rem]">
-                      <FormatMathText>{question.text}</FormatMathText>
-                    </p>
-                    <div className="space-y-1.5">
-                      {question.options.map((opt, i) => {
-                        const isSelected = answer?.selectedIndex === i;
-                        const isCorrectOpt = question.correctIndex === i;
-
-                        return (
-                          <p
-                            key={i}
-                            className={`exam-option rounded-lg px-3 py-2 ${
-                              isCorrectOpt
-                                ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                                : isSelected
-                                  ? "bg-red-500/10 text-red-700 dark:text-red-400"
-                                  : "text-muted-foreground"
-                            }`}
-                          >
-                            {String.fromCharCode(65 + i)}.{" "}
-                            <FormatMathText>{opt}</FormatMathText>
-                            {isCorrectOpt && " ✓"}
-                            {isSelected && !isCorrectOpt && " (your answer)"}
-                          </p>
-                        );
-                      })}
-                    </div>
-                    {(question.explanation ||
-                      (answer?.selectedIndex != null &&
-                        question.wrongAnswerHints?.[String(answer.selectedIndex)])) && (
-                      <div
-                        className={`rounded-xl p-4 space-y-2 text-sm ${
-                          isCorrect
-                            ? "bg-emerald-500/5 border border-emerald-500/20"
-                            : "bg-amber-500/5 border border-amber-500/20"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2 font-medium">
-                          <Lightbulb className="size-4" />
-                          {isCorrect ? "Why this is correct" : "Learn from this"}
-                        </div>
-                        {!isCorrect &&
-                          answer?.selectedIndex != null &&
-                          question.wrongAnswerHints?.[String(answer.selectedIndex)] && (
-                            <p className="text-muted-foreground">
-                              <span className="font-medium text-foreground">Your answer: </span>
-                              <FormatMathText>
-                                {question.wrongAnswerHints[String(answer.selectedIndex)]}
-                              </FormatMathText>
-                            </p>
-                          )}
-                        {question.explanation && (
-                          <p className="text-muted-foreground">
-                            <span className="font-medium text-foreground">Correct answer: </span>
-                            <FormatMathText>{question.explanation}</FormatMathText>
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </BentoCard>
-
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <Button onClick={() => router.push("/")} className="gap-2 flex-1" size="lg">
-          <RotateCcw className="size-4" />
-          Retake
-        </Button>
-        <Button
-          variant="outline"
-          onClick={() => router.push("/")}
-          className="gap-2"
-          size="lg"
-        >
-          <Home className="size-4" />
-          Home
-          <ArrowRight className="size-4" />
-        </Button>
+            <div className="space-y-2">
+              {activeQuestions.map((question, index) => {
+                const answer = result.answers.find(
+                  (a) => a.questionId === question.id
+                );
+                return (
+                  <ResultQuestionRow
+                    key={question.id}
+                    index={index}
+                    question={question}
+                    answer={answer}
+                    expanded={expandedQuestionIds.has(question.id)}
+                    onToggle={() => toggleQuestionExpanded(question.id)}
+                  />
+                );
+              })}
+            </div>
+          </BentoCard>
+        </section>
       </div>
-    </div>
+
+      <ResultsFooter
+        hasFocusTopics={hasFocusTopics}
+        onHome={goHome}
+        onRetake={goRetake}
+        onPracticeWeak={practiceWeakTopics}
+      />
+    </>
   );
 }

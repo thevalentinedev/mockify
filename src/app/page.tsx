@@ -1,9 +1,10 @@
 import { ExamSetup } from "@/components/exam-setup";
+import { PageShell } from "@/components/page-shell";
 
 export default function HomePage() {
   return (
-    <main className="flex-1 px-4 py-10 sm:px-6 sm:py-16">
+    <PageShell variant="default">
       <ExamSetup />
-    </main>
+    </PageShell>
   );
 }

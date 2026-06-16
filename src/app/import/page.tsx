@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
+import { ImportManager } from "@/components/import-manager";
 
-/** Admin prepare flow moved server-side — redirect old URL */
 export default function ImportPage() {
-  redirect("/");
+  return <ImportManager />;
 }

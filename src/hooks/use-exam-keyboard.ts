@@ -5,9 +5,13 @@ import { useEffect } from "react";
 interface UseExamKeyboardOptions {
   enabled: boolean;
   optionCount: number;
+  hasSelectedAnswer?: boolean;
+  /** Study mode: Enter advances only after reveal; N/→ blocked until revealed */
+  awaitingReveal?: boolean;
   onSelectOption: (index: number) => void;
   onPrevious: () => void;
   onNext: () => void;
+  onRevealAnswer?: () => void;
   onReview: () => void;
   onToggleFlag: () => void;
 }
@@ -15,9 +19,12 @@ interface UseExamKeyboardOptions {
 export function useExamKeyboard({
   enabled,
   optionCount,
+  hasSelectedAnswer = false,
+  awaitingReveal = false,
   onSelectOption,
   onPrevious,
   onNext,
+  onRevealAnswer,
   onReview,
   onToggleFlag,
 }: UseExamKeyboardOptions): void {
@@ -45,7 +52,18 @@ export function useExamKeyboard({
         return;
       }
 
+      if (key === "enter" && hasSelectedAnswer) {
+        event.preventDefault();
+        if (awaitingReveal && onRevealAnswer) {
+          onRevealAnswer();
+        } else {
+          onNext();
+        }
+        return;
+      }
+
       if (key === "n" || key === "arrowright") {
+        if (awaitingReveal) return;
         event.preventDefault();
         onNext();
         return;
@@ -74,9 +92,12 @@ export function useExamKeyboard({
   }, [
     enabled,
     optionCount,
+    hasSelectedAnswer,
+    awaitingReveal,
     onSelectOption,
     onPrevious,
     onNext,
+    onRevealAnswer,
     onReview,
     onToggleFlag,
   ]);

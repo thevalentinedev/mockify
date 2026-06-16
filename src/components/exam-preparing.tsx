@@ -100,20 +100,29 @@ export function ExamPreparing({
   }, [jobId]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto w-full max-w-md space-y-8 px-6 text-center">
-        <div className="inline-flex items-center justify-center size-16 rounded-2xl bg-primary/10">
-          <Sparkles className="size-8 text-primary animate-pulse" />
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="preparing-title"
+    >
+      <div className="mx-auto w-full max-w-md space-y-6 rounded-2xl border bg-card/95 p-6 shadow-lg sm:space-y-8 sm:p-8">
+        <div className="text-center space-y-4">
+          <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-primary/10 sm:size-16">
+            <Sparkles className="size-7 text-primary animate-pulse sm:size-8" />
+          </div>
+
+          <div className="space-y-1">
+            <h2 id="preparing-title" className="text-xl font-semibold">
+              Preparing your exam
+            </h2>
+            <p className="text-sm text-muted-foreground capitalize">
+              {mode} · {subjectNames}
+            </p>
+          </div>
         </div>
 
-        <div className="space-y-2">
-          <h2 className="text-xl font-semibold">Preparing your exam</h2>
-          <p className="text-sm text-muted-foreground capitalize">
-            {mode} · {subjectNames}
-          </p>
-        </div>
-
-        <div className="space-y-2">
+        <div className="space-y-2 text-center">
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <Loader2 className="size-4 animate-spin" />
             <span>{statusMessage}</span>
@@ -138,15 +147,15 @@ export function ExamPreparing({
           )}
         </div>
 
-        <div className="rounded-2xl border bg-card/80 p-5 text-left min-h-[5rem] flex items-center">
-          <p className="text-sm text-muted-foreground leading-relaxed transition-opacity duration-500">
+        <div className="flex min-h-[4.5rem] items-center rounded-xl border bg-muted/30 p-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             <span className="font-medium text-foreground">Tip: </span>
             {TIPS[tipIndex]}
           </p>
         </div>
 
         {prepareAudit && prepareAudit.length > 0 && (
-          <div className="text-left text-xs text-muted-foreground space-y-1 rounded-xl border p-3">
+          <div className="space-y-1 rounded-xl border p-3 text-left text-xs text-muted-foreground">
             <p className="font-medium text-foreground">Pool updates</p>
             {prepareAudit.flatMap((entry) =>
               entry.actions.map((action, i) => (
@@ -158,11 +167,6 @@ export function ExamPreparing({
             )}
           </div>
         )}
-
-        <p className="text-xs text-muted-foreground">
-          First time for a subject takes longer. Vercel Hobby has a 10s function
-          limit — use Pro or pre-seed banks for long prepares.
-        </p>
       </div>
     </div>
   );

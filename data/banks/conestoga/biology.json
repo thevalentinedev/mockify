@@ -140,11 +140,10 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Human circulatory system and heart anatomy",
-          "Pressure and movement of blood"
+          "Human Anatomy",
+          "Circulatory System"
         ],
         "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
         "answerConfidence": "high"
       },
       "text": "Blood flows directly from the right ventricle in the human heart to the:",
@@ -154,12 +153,12 @@
         "lungs",
         "right atrium"
       ],
-      "explanation": "Blood leaving the right ventricle is pumped into the pulmonary artery and then travels to the lungs for oxygenation. This is part of the pulmonary circulation, which carries deoxygenated blood from the heart to the lungs.",
+      "explanation": "The right ventricle pumps deoxygenated blood to the lungs through the pulmonary arteries.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "The left atrium receives oxygenated blood from the lungs, not blood directly from the right ventricle.",
-        "1": "The left ventricle receives blood from the left atrium and pumps it to the body.",
-        "3": "The right atrium receives blood returning from the body, not blood from the right ventricle."
+        "0": "Blood does not flow directly from the right ventricle to the left atrium.",
+        "1": "The ventricles are not directly connected.",
+        "3": "Blood enters the right ventricle from the right atrium, not the reverse."
       }
     },
     {
@@ -167,11 +166,10 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Genetics and chromosomes",
-          "Cell structure and nucleus location"
+          "Genetics",
+          "Cell Biology"
         ],
         "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
         "answerConfidence": "high"
       },
       "text": "Genes are located in (on) the:",
@@ -181,12 +179,12 @@
         "endoplasmic reticulum",
         "chromosomes"
       ],
-      "explanation": "Genes are segments of DNA located on chromosomes. Chromosomes package and organize genetic material, making them the structures that carry genes within the nucleus.",
+      "explanation": "Genes are segments of DNA located on chromosomes.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Centrioles help organize cell division, but they do not contain genes.",
-        "1": "Mitochondria contain their own DNA, but the standard answer for where genes are located is chromosomes.",
-        "2": "The endoplasmic reticulum helps with synthesis and transport, but genes are not located there."
+        "0": "Centrioles assist in cell division but do not contain genes.",
+        "1": "Mitochondria contain some DNA but genes are primarily located on chromosomes.",
+        "2": "The endoplasmic reticulum helps synthesize proteins and lipids."
       }
     },
     {
@@ -194,10 +192,10 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Thermoregulation and endothermy"
+          "Physiology",
+          "Homeostasis"
         ],
         "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
         "answerConfidence": "high"
       },
       "text": "A constant body temperature is characteristic of:",
@@ -207,12 +205,12 @@
         "mammals only",
         "mammals and birds"
       ],
-      "explanation": "Mammals and birds are endotherms, meaning they regulate and maintain a relatively constant internal body temperature. Reptiles are ectotherms, so their body temperature varies more with the environment.",
+      "explanation": "Mammals and birds are endothermic animals that regulate their body temperature internally.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Reptiles do not maintain a constant internal body temperature like mammals do.",
-        "1": "Reptiles are not endothermic and therefore do not keep a constant body temperature.",
-        "2": "Mammals are endothermic, but reptiles are not."
+        "0": "Reptiles are ectothermic and rely on environmental heat.",
+        "1": "Birds maintain body temperature, reptiles do not.",
+        "2": "Birds also maintain a constant body temperature."
       }
     },
     {
@@ -220,10 +218,9 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Nervous system basics"
+          "Nervous System"
         ],
         "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
         "answerConfidence": "high"
       },
       "text": "The basic functional unit of the nervous system is the:",
@@ -233,12 +230,12 @@
         "nerve",
         "dendrite"
       ],
-      "explanation": "The neuron is the basic functional unit of the nervous system. Neurons are specialized cells that transmit electrical signals and communicate information throughout the body.",
+      "explanation": "The neuron is the fundamental cell responsible for transmitting nerve impulses.",
       "correctIndex": 0,
       "wrongAnswerHints": {
-        "1": "The spinal cord is a major nervous system structure, but it is made of many neurons and other tissues.",
-        "2": "A nerve is a bundle of axons, not the basic individual functional unit.",
-        "3": "A dendrite is only part of a neuron, not the whole functional unit."
+        "1": "The spinal cord is composed of many neurons.",
+        "2": "A nerve is a bundle of neuron fibers.",
+        "3": "A dendrite is only one part of a neuron."
       }
     },
     {
@@ -246,10 +243,10 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Acid-base balance and pH"
+          "Chemistry",
+          "Homeostasis"
         ],
         "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
         "answerConfidence": "high"
       },
       "text": "The pH of blood is slightly basic. Which of the following would be most appropriate?",
@@ -259,12 +256,12 @@
         "7.4",
         "13.8"
       ],
-      "explanation": "Normal blood pH is slightly basic, usually around 7.4. This narrow range is important because enzymes and body processes depend on stable pH conditions.",
+      "explanation": "Human blood normally has a pH of approximately 7.35–7.45.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "6.4 is acidic, not slightly basic.",
-        "1": "4.6 is strongly acidic and far outside the normal blood pH range.",
-        "3": "13.8 is extremely basic and would be incompatible with normal blood function."
+        "0": "6.4 is acidic.",
+        "1": "4.6 is strongly acidic.",
+        "3": "13.8 is extremely basic and incompatible with life."
       }
     },
     {

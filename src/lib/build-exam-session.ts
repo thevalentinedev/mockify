@@ -1,12 +1,10 @@
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
 import { ensureContextImagesPersisted } from "@/lib/blob-assets";
 import {
-  computeQuickTimeMinutes,
   getExamSpec,
   getModeQuestionCount,
   getModeTimeLimitMinutes,
 } from "@/lib/exam-config";
-import { distributeQuickQuestions } from "@/lib/quick-distribution";
 import { recordExamQuestionUsage } from "@/lib/exam-variety";
 import { getContextKey, resolveQuestionContext } from "@/lib/question-context";
 import { selectQuestionsWithBias } from "@/lib/spaced-selection";
@@ -52,11 +50,6 @@ export async function buildExamSession(
 ): Promise<ExamSession | null> {
   const startedAt = Date.now();
   const sections: SubjectSection[] = [];
-  const quickSplit = options?.quickSplit ?? "per-subject";
-  const quickCounts =
-    mode === "quick"
-      ? distributeQuickQuestions(schoolId, subjects, quickSplit)
-      : null;
 
   const customOptions: ExamCustomOptions | undefined =
     mode === "custom" && options?.customPerSubject
@@ -75,19 +68,7 @@ export async function buildExamSession(
 
     const examCount = getModeQuestionCount(mode, baseSpec, {
       customQuestionCount: customForSubject?.questionCount,
-      quickQuestionCount: quickCounts?.[subjectId],
     });
-
-    const quickTime =
-      mode === "quick" && quickCounts?.[subjectId]
-        ? Math.max(
-            1,
-            Math.round(
-              baseSpec.timeLimitMinutes *
-                (quickCounts[subjectId] / baseSpec.questionCount)
-            )
-          )
-        : computeQuickTimeMinutes(baseSpec);
 
     const sectionQuestions: ShuffledQuestion[] = [];
 
@@ -145,7 +126,6 @@ export async function buildExamSession(
       questions: sectionQuestions,
       timeLimitMinutes: getModeTimeLimitMinutes(mode, baseSpec, {
         customTimeLimitMinutes: customForSubject?.timeLimitMinutes,
-        quickTimeLimitMinutes: quickTime,
       }),
       startedAt: sections.length === 0 ? startedAt : 0,
     });
@@ -160,7 +140,6 @@ export async function buildExamSession(
     sections,
     startedAt,
     ...(customOptions ? { customOptions } : {}),
-    ...(options?.quickSplit ? { quickSplit: options.quickSplit } : {}),
     ...(options?.focusTopics?.length ? { focusTopics: options.focusTopics } : {}),
   };
 }
@@ -174,11 +153,6 @@ export async function getSessionStats(
   let totalQuestions = 0;
   let totalTimeMinutes = 0;
   const bySubject = [];
-  const quickSplit = options?.quickSplit ?? "per-subject";
-  const quickCounts =
-    mode === "quick"
-      ? distributeQuickQuestions(schoolId, subjects, quickSplit)
-      : null;
 
   for (const subjectId of subjects) {
     const spec = getExamSpec(schoolId, subjectId);
@@ -188,23 +162,11 @@ export async function getSessionStats(
 
     const examCount = getModeQuestionCount(mode, baseSpec, {
       customQuestionCount: customForSubject?.questionCount,
-      quickQuestionCount: quickCounts?.[subjectId],
     });
     const effectiveCount = Math.min(examCount, bank?.questions.length ?? 0);
-    const quickTime =
-      mode === "quick" && quickCounts?.[subjectId]
-        ? Math.max(
-            1,
-            Math.round(
-              baseSpec.timeLimitMinutes *
-                (quickCounts[subjectId] / baseSpec.questionCount)
-            )
-          )
-        : computeQuickTimeMinutes(baseSpec);
     const timeLimit =
       getModeTimeLimitMinutes(mode, baseSpec, {
         customTimeLimitMinutes: customForSubject?.timeLimitMinutes,
-        quickTimeLimitMinutes: quickTime,
       }) ?? 0;
     const poolSize = bank?.questions.length ?? 0;
     const maxQuestions = Math.min(poolSize, baseSpec.questionCount);
@@ -229,6 +191,5 @@ export async function getSessionStats(
     bySubject,
     mode,
     timed: totalTimeMinutes > 0,
-    quickSplit: mode === "quick" ? quickSplit : undefined,
   };
 }
