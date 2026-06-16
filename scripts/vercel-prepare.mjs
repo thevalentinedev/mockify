@@ -12,13 +12,27 @@ import { fileURLToPath } from "url";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
+function runNode(script) {
+  return new Promise((resolve, reject) => {
+    const child = spawn("node", [script], {
+      cwd: root,
+      env: process.env,
+      stdio: "inherit",
+    });
+    child.on("error", reject);
+    child.on("exit", (code) => {
+      if (code === 0) resolve();
+      else reject(new Error(`node ${script} exited with code ${code}`));
+    });
+  });
+}
+
 function runNpm(script) {
   return new Promise((resolve, reject) => {
     const child = spawn("npm", ["run", script], {
       cwd: root,
       env: process.env,
       stdio: "inherit",
-      shell: true,
     });
     child.on("error", reject);
     child.on("exit", (code) => {
@@ -43,7 +57,7 @@ try {
   await runNpm("db:migrate");
 
   console.log("[vercel-prepare] Syncing figure images to Neon…");
-  await runNpm("db:sync-figures");
+  await runNode("scripts/sync-figure-images.mjs");
 
   console.log("[vercel-prepare] Database sync complete.");
 } catch (error) {

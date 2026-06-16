@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "db:migrate": "node scripts/migrate-banks-to-neon.mjs",
     "banks:prune": "node scripts/prune-ineligible-questions.mjs",
-    "db:sync-figures": "node --env-file=.env scripts/sync-figure-images.mjs",
+    "db:sync-figures": "node scripts/sync-figure-images.mjs",
     "smoke-test": "node scripts/smoke-test.mjs"
   },
   "dependencies": {

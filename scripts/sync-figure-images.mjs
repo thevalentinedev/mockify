@@ -1,6 +1,7 @@
 /**
  * Sync figure imageData from local JSON + assets into Neon.
- * Run: node --env-file=.env scripts/sync-figure-images.mjs [subject]
+ * Run: DATABASE_URL=... node scripts/sync-figure-images.mjs [subject]
+ * On Vercel, DATABASE_URL is injected by the platform (no .env file).
  */
 import { readFile, readdir } from "fs/promises";
 import path from "path";
