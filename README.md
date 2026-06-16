@@ -50,7 +50,7 @@ GitHub Actions runs **lint**, **typecheck**, and **build** on every push/PR to `
    uploads/conestoga/biology/
    uploads/conestoga/chemistry/
    ```
-3. Select school + subject, pick a PDF, click **Extract questions with AI** (uses `gpt-5.4-mini`)
+3. Select school + subject, pick a PDF, click **Extract questions with AI** (uses `gpt-5-mini`)
 4. Review the preview, set time limit / question count if needed, then **Save to question bank**
 
 Saved banks go to `data/banks/{school}/{subject}.json` and override the placeholder questions.
