@@ -2,6 +2,7 @@
 
 import { getContextImageSrc } from "@/lib/context-image";
 import { getContextLabel } from "@/lib/question-context";
+import { divider, iconTile, shell, surface } from "@/lib/surface";
 import { cn } from "@/lib/utils";
 import type { QuestionContext, QuestionContextType, SchoolId, SubjectId } from "@/types/exam";
 import {
@@ -60,15 +61,15 @@ export function QuestionContextCard({
   const [chunkIndex, setChunkIndex] = useState(0);
 
   return (
-    <div className="rounded-xl border border-border/80 bg-muted/25 overflow-hidden">
+    <div className={cn(shell, "overflow-hidden")}>
       <button
         type="button"
         onClick={() => onOpenChange(!open)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors hover:bg-muted/40"
+        className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors hover:bg-muted/30"
       >
         <div className="flex min-w-0 items-center gap-2.5">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-background/80">
+          <span className={cn(iconTile, "size-8 shrink-0")}>
             <Icon className="size-4 text-muted-foreground" />
           </span>
           <div className="min-w-0">
@@ -87,14 +88,15 @@ export function QuestionContextCard({
       </button>
 
       {open && (
-        <div className="border-t border-border/60 bg-background/50 px-4 py-4 space-y-3">
+        <div className="space-y-3 px-4 pb-4">
+          <div className={divider} />
           {imageSrc && (
-            <div className="overflow-hidden rounded-lg border border-border/60 bg-white dark:bg-zinc-900 dark:border-zinc-700 p-2">
+            <div className={cn(surface, "overflow-hidden p-2")}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imageSrc}
                 alt={label}
-                className="mx-auto max-h-80 w-full object-contain dark:brightness-95"
+                className="mx-auto max-h-80 w-full rounded-[var(--radius-surface)] object-contain dark:brightness-95"
               />
             </div>
           )}

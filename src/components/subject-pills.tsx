@@ -2,6 +2,7 @@
 
 import { SUBJECTS } from "@/lib/exam-config";
 import { cn } from "@/lib/utils";
+import { pill as pillClass, pillActive, pillDone } from "@/lib/surface";
 import type { SubjectId } from "@/types/exam";
 import { Check } from "lucide-react";
 
@@ -30,18 +31,13 @@ export function SubjectPills({
         const pill = (
           <span
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-medium transition-colors",
-              isCompleted &&
-                "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+              "inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium transition-colors",
+              pillClass,
+              isCompleted && pillDone,
+              isActive && !isCompleted && pillActive,
               isActive &&
                 isCompleted &&
-                "ring-2 ring-emerald-500/50 ring-offset-2 ring-offset-background",
-              isActive &&
-                !isCompleted &&
-                "border-primary bg-primary/10 text-primary",
-              !isActive &&
-                !isCompleted &&
-                "border-border bg-muted/40 text-muted-foreground",
+                "ring-2 ring-emerald-500/35 ring-offset-2 ring-offset-background",
               interactive &&
                 (isCompleted || isActive) &&
                 "cursor-pointer hover:opacity-90"

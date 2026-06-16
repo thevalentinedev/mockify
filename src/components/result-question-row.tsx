@@ -10,6 +10,7 @@ import {
 import { SolutionSteps } from "@/components/solution-steps";
 import { getRemediationReason } from "@/lib/distractors";
 import { FormatMathText } from "@/lib/format-math-text";
+import { divider, shell } from "@/lib/surface";
 import { hasSolutionContent } from "@/lib/solution";
 import type { ExamAnswer, ShuffledQuestion } from "@/types/exam";
 import { cn } from "@/lib/utils";
@@ -41,11 +42,11 @@ export function ResultQuestionRow({
   const hasExplanation = hasSolutionContent(question) || Boolean(remediation);
 
   return (
-    <div className="rounded-xl border border-border/60 bg-card/50 overflow-hidden">
+    <div className={cn(shell, "overflow-hidden")}>
       <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center gap-3 p-3 text-left transition-colors hover:bg-muted/40 sm:p-4"
+        className="flex w-full items-center gap-3 p-3 text-left transition-colors hover:bg-muted/30 sm:p-4"
         aria-expanded={expanded}
       >
         {isCorrect ? (
@@ -83,8 +84,9 @@ export function ResultQuestionRow({
       </button>
 
       {expanded && (
-        <div className="space-y-3 border-t px-3 pb-4 pt-3 sm:px-4">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="space-y-3 px-3 pb-4 sm:px-4">
+          <div className={divider} />
+          <div className="flex flex-wrap items-center gap-2 pt-1">
             <ConfidenceBadge confidence={question.answerConfidence} />
           </div>
           <p className="exam-question text-[1.05rem] sm:text-[1.1rem]">
@@ -94,7 +96,7 @@ export function ResultQuestionRow({
             <div className="space-y-1.5 text-sm">
               <p
                 className={cn(
-                  "rounded-lg px-3 py-2",
+                  "rounded-[var(--radius-surface)] px-3 py-2",
                   isCorrect
                     ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
                     : "bg-red-500/10 text-red-700 dark:text-red-400"
@@ -104,7 +106,7 @@ export function ResultQuestionRow({
                 <FormatMathText>{answer?.textAnswer ?? "—"}</FormatMathText>
               </p>
               {!isCorrect && (
-                <p className="rounded-lg bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:text-emerald-400">
+                <p className="rounded-[var(--radius-surface)] bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:text-emerald-400">
                   Correct answer:{" "}
                   <FormatMathText>{formatCorrectAnswer(question)}</FormatMathText>
                 </p>
@@ -120,7 +122,7 @@ export function ResultQuestionRow({
                   <p
                     key={i}
                     className={cn(
-                      "exam-option rounded-lg px-3 py-2",
+                      "exam-option rounded-[var(--radius-surface)] px-3 py-2",
                       isCorrectOpt &&
                         "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
                       isSelected &&
@@ -141,10 +143,8 @@ export function ResultQuestionRow({
           {hasExplanation && (
             <div
               className={cn(
-                "space-y-2 rounded-xl p-4 text-sm",
-                isCorrect
-                  ? "border border-emerald-500/20 bg-emerald-500/5"
-                  : "border border-amber-500/20 bg-amber-500/5"
+                "space-y-2 rounded-[var(--radius-surface)] p-4 text-sm",
+                isCorrect ? "bg-emerald-500/10" : "bg-amber-500/10"
               )}
             >
               <div className="flex items-center gap-2 font-medium">

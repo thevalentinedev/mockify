@@ -3,6 +3,8 @@
 import { useAnimatedCount } from "@/hooks/use-animated-count";
 import { getExamSpec, SUBJECTS } from "@/lib/exam-config";
 import { getReadyCount, type PrepareProgress } from "@/lib/prepare-progress";
+import { glassScrim, shell, surface } from "@/lib/surface";
+import { cn } from "@/lib/utils";
 import type { SubjectEnsureResult } from "@/lib/bank-manager";
 import type { ExamMode, SchoolId, SubjectId } from "@/types/exam";
 import { Loader2, Sparkles } from "lucide-react";
@@ -101,14 +103,14 @@ export function ExamPreparing({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md"
+      className={cn("fixed inset-0 z-[100] flex items-center justify-center", glassScrim)}
       role="dialog"
       aria-modal="true"
       aria-labelledby="preparing-title"
     >
-      <div className="mx-auto w-full max-w-md space-y-6 rounded-2xl border bg-card/95 p-6 shadow-lg sm:space-y-8 sm:p-8">
+      <div className={cn(shell, "mx-auto w-full max-w-md space-y-6 p-6 sm:space-y-8 sm:p-8")}>
         <div className="text-center space-y-4">
-          <div className="inline-flex size-14 items-center justify-center rounded-2xl bg-primary/10 sm:size-16">
+          <div className={cn(surface, "inline-flex size-14 items-center justify-center sm:size-16")}>
             <Sparkles className="size-7 text-primary animate-pulse sm:size-8" />
           </div>
 
@@ -147,7 +149,7 @@ export function ExamPreparing({
           )}
         </div>
 
-        <div className="flex min-h-[4.5rem] items-center rounded-xl border bg-muted/30 p-4">
+        <div className={cn(surface, "flex min-h-[4.5rem] items-center p-4")}>
           <p className="text-sm text-muted-foreground leading-relaxed">
             <span className="font-medium text-foreground">Tip: </span>
             {TIPS[tipIndex]}
@@ -155,7 +157,7 @@ export function ExamPreparing({
         </div>
 
         {prepareAudit && prepareAudit.length > 0 && (
-          <div className="space-y-1 rounded-xl border p-3 text-left text-xs text-muted-foreground">
+          <div className={cn(surface, "space-y-1 p-3 text-left text-xs text-muted-foreground")}>
             <p className="font-medium text-foreground">Pool updates</p>
             {prepareAudit.flatMap((entry) =>
               entry.actions.map((action, i) => (

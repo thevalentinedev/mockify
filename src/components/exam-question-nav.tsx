@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { glassScrim, glassSheet, shell } from "@/lib/surface";
 import type { ExamAnswer } from "@/types/exam";
 import { X } from "lucide-react";
 import { useEffect } from "react";
@@ -36,12 +37,12 @@ function isQuestionAnswered(
 
 function tileClassName(state: QuestionTileState): string {
   return cn(
-    "rounded-xl border p-2.5 text-center text-sm font-medium transition-all hover:shadow-sm sm:p-3",
+    "rounded-[var(--radius-surface)] p-2.5 text-center text-sm font-medium transition-all sm:p-3",
     state === "current" &&
-      "border-primary bg-primary/10 ring-2 ring-primary/30 shadow-sm",
-    state === "flagged" && "border-amber-500/40 bg-amber-500/10",
-    state === "answered" && "border-primary/30 bg-primary/5",
-    state === "empty" && "border-dashed border-muted-foreground/30 bg-muted/20"
+      "bg-primary/12 text-primary ring-2 ring-primary/25 shadow-sm",
+    state === "flagged" && "bg-amber-500/12 text-amber-800 dark:text-amber-300",
+    state === "answered" && "bg-primary/8 text-foreground",
+    state === "empty" && "bg-muted/40 text-muted-foreground"
   );
 }
 
@@ -124,7 +125,8 @@ export function ExamQuestionNavRail({
     <aside
       aria-label="Question navigator"
       className={cn(
-        "sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto rounded-xl border bg-card/80 p-3 backdrop-blur-sm",
+        "sticky top-32 max-h-[calc(100vh-10rem)] overflow-y-auto p-3",
+        shell,
         className
       )}
     >
@@ -192,11 +194,11 @@ export function ExamQuestionNavSheet({
     <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
       <button
         type="button"
-        className="absolute inset-0 bg-background/60 backdrop-blur-sm"
+        className={cn("absolute inset-0", glassScrim)}
         aria-label="Close question list"
         onClick={() => onOpenChange(false)}
       />
-      <div className="absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-2xl border-t bg-background p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] shadow-lg">
+      <div className={cn("absolute inset-x-0 bottom-0 max-h-[70vh] overflow-y-auto rounded-t-[var(--radius-shell)] p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]", glassSheet)}>
         <div className="mb-4 flex items-center justify-between gap-3">
           <div>
             <h2 className="font-semibold">Questions</h2>

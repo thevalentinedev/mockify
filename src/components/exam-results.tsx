@@ -14,6 +14,7 @@ import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
 import { savePracticeTopics } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
 import { cn } from "@/lib/utils";
+import { divider, surface } from "@/lib/surface";
 import type { ExamResult, SubjectId } from "@/types/exam";
 import { RotateCcw, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -251,14 +252,15 @@ export function ExamResults() {
         </section>
 
         {timeSummary && (
-          <details className="group rounded-xl border bg-card/80">
-            <summary className="flex cursor-pointer list-none items-center justify-between p-4 font-medium [&::-webkit-details-marker]:hidden">
+          <details className={cn(surface, "group p-2")}>
+            <summary className="flex cursor-pointer list-none items-center justify-between rounded-[var(--radius-surface)] p-2 font-medium [&::-webkit-details-marker]:hidden">
               <span>Timing details</span>
               <span className="text-sm font-normal text-muted-foreground">
                 Slowest {timeSummary.slowest}s · Avg {timeSummary.average}s
               </span>
             </summary>
-            <div className="space-y-3 border-t px-4 pb-4 pt-3">
+            <div className="space-y-3 p-2 pt-1">
+              <div className={divider} />
               <div className="flex flex-wrap gap-2">
                 {timeSummary.sorted.map((t) => (
                   <Badge key={t.questionId} variant="outline" className="text-xs">

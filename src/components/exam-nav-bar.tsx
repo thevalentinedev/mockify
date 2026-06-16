@@ -52,7 +52,7 @@ export function ExamNavBar({
   return (
     <nav
       aria-label="Exam navigation"
-      className={cn("fixed inset-x-0 bottom-0 z-40 soft-chrome pb-[env(safe-area-inset-bottom)]", className)}
+      className={cn("fixed inset-x-0 bottom-0 z-40 soft-chrome soft-glass-bottom pb-[env(safe-area-inset-bottom)]", className)}
     >
       <div className="mx-auto flex h-14 max-w-3xl items-center justify-between gap-2 px-4">
         {variant === "review" ? (

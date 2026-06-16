@@ -36,7 +36,7 @@ export function ExamHeader({
   return (
     <div
       className={cn(
-        "sticky top-14 z-30 space-y-2 py-2",
+        "space-y-2 py-2",
         className
       )}
     >

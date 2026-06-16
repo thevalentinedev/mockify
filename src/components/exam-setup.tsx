@@ -18,7 +18,6 @@ import {
 } from "@/lib/exam-config";
 import { MATHS_PROGRAMS } from "@/lib/maths-program";
 import { formatTopicLabel } from "@/lib/question-topics";
-import { cn } from "@/lib/utils";
 import { iconTile, shell, softCheck, softRow, statTile, surface } from "@/lib/surface";
 import { cn } from "@/lib/utils";
 import {
@@ -462,7 +461,7 @@ export function ExamSetup() {
         )}
 
         {!isHome && (
-          <div className="sticky top-14 z-20 py-2">
+          <div className="py-2">
             <StepIndicator steps={STEPS} currentStep={step} />
           </div>
         )}

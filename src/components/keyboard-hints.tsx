@@ -2,6 +2,7 @@
 
 import { useIsClient } from "@/hooks/use-is-client";
 import { cn } from "@/lib/utils";
+import { kbd, surface } from "@/lib/surface";
 import { X } from "lucide-react";
 import { useState } from "react";
 
@@ -63,13 +64,14 @@ export function KeyboardHints({
   return (
     <div
       className={cn(
-        "flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-lg border border-border/50 bg-muted/40 px-3 py-2 text-xs text-muted-foreground",
+        "flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-3 py-2 text-xs text-muted-foreground",
+        surface,
         className
       )}
     >
       {hints.map(({ keys, label }) => (
         <span key={keys} className="inline-flex items-center gap-1">
-          <kbd className="rounded border border-border/60 bg-background px-1.5 py-0.5 font-mono text-[0.65rem] font-medium text-foreground">
+          <kbd className={kbd}>
             {keys}
           </kbd>
           {label}

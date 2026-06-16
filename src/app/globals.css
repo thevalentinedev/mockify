@@ -94,6 +94,11 @@
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06);
   --shadow-soft-lg: 0 2px 8px oklch(0 0 0 / 0.06), 0 16px 40px oklch(0 0 0 / 0.08);
   --shadow-inset: inset 0 1px 0 oklch(1 0 0 / 0.06);
+  --glass-blur: 24px;
+  --glass-saturate: 180%;
+  --glass-fill: oklch(1 0 0 / 0.68);
+  --glass-border: oklch(1 0 0 / 0.45);
+  --glass-highlight: oklch(1 0 0 / 0.55);
 }
 
 .dark {
@@ -131,6 +136,9 @@
   --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.25), 0 8px 24px oklch(0 0 0 / 0.35);
   --shadow-soft-lg: 0 2px 8px oklch(0 0 0 / 0.3), 0 16px 40px oklch(0 0 0 / 0.4);
   --shadow-inset: inset 0 1px 0 oklch(1 0 0 / 0.04);
+  --glass-fill: oklch(0.17 0 0 / 0.62);
+  --glass-border: oklch(1 0 0 / 0.14);
+  --glass-highlight: oklch(1 0 0 / 0.08);
 }
 
 @layer base {
@@ -244,14 +252,62 @@
     background: color-mix(in oklch, var(--foreground) 6%, transparent);
   }
 
+  .soft-glass,
   .soft-chrome {
-    background: color-mix(in oklch, var(--background) 82%, transparent);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 -1px 0 color-mix(in oklch, var(--foreground) 5%, transparent);
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 1px 0 color-mix(in oklch, var(--foreground) 4%, transparent);
   }
 
+  .soft-glass-bottom,
+  footer.soft-chrome,
+  nav.soft-chrome {
+    border-top: 1px solid var(--glass-border);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 -8px 32px oklch(0 0 0 / 0.06);
+  }
+
+  .dark .soft-glass-bottom,
+  .dark footer.soft-chrome,
+  .dark nav.soft-chrome {
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      0 -8px 32px oklch(0 0 0 / 0.28);
+  }
+
+  header.soft-glass,
   header.soft-chrome {
-    box-shadow: 0 1px 0 color-mix(in oklch, var(--foreground) 5%, transparent);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow:
+      inset 0 -1px 0 color-mix(in oklch, var(--foreground) 3%, transparent),
+      0 4px 24px oklch(0 0 0 / 0.04);
+  }
+
+  .dark header.soft-glass,
+  .dark header.soft-chrome {
+    box-shadow:
+      inset 0 -1px 0 color-mix(in oklch, var(--foreground) 6%, transparent),
+      0 4px 24px oklch(0 0 0 / 0.22);
+  }
+
+  .soft-glass-scrim {
+    background: color-mix(in oklch, var(--background) 42%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+  }
+
+  .soft-glass-sheet {
+    background: var(--glass-fill);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    border-top: 1px solid var(--glass-border);
+    box-shadow:
+      inset 0 1px 0 var(--glass-highlight),
+      var(--shadow-soft-lg);
   }
 
   .soft-kbd {
@@ -278,13 +334,13 @@
   }
 
   .soft-pill-done {
-    background: color-mix(in oklch, var(--color-emerald-500, oklch(0.7 0.15 145)) 12%, var(--background));
-    color: oklch(0.55 0.14 155);
-    box-shadow: inset 0 0 0 1px color-mix(in oklch, oklch(0.7 0.15 145) 20%, transparent);
+    background: color-mix(in oklch, oklch(0.72 0.14 155) 12%, var(--background));
+    color: oklch(0.52 0.13 155);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, oklch(0.72 0.14 155) 22%, transparent);
   }
 
   .dark .soft-pill-done {
-    color: oklch(0.75 0.12 155);
+    color: oklch(0.78 0.11 155);
   }
 
   .exam-question {
@@ -347,6 +403,25 @@
   @media (prefers-reduced-motion: reduce) {
     .setup-step-enter {
       animation: none;
+    }
+
+    .feedback-enter {
+      animation: none;
+    }
+  }
+
+  .feedback-enter {
+    animation: feedback-enter 320ms ease-out both;
+  }
+
+  @keyframes feedback-enter {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
   }
 }

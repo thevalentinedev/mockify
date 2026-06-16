@@ -32,7 +32,7 @@ export function SetupFooter({
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 soft-chrome pb-[env(safe-area-inset-bottom)]",
+        "fixed inset-x-0 bottom-0 z-40 soft-chrome soft-glass-bottom pb-[env(safe-area-inset-bottom)]",
         className
       )}
     >
