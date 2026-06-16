@@ -1,8 +1,8 @@
 "use client";
 
+import { AppLogoMark } from "@/components/app-logo-mark";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
-import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -31,9 +31,7 @@ export function SiteHeader() {
     <header className={cn("sticky top-0 z-50 soft-chrome")}>
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex min-w-0 items-center gap-2 font-semibold">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <GraduationCap className="size-4" />
-          </div>
+          <AppLogoMark />
           {mode === "default" && (
             <span className="hidden truncate sm:inline">Mock Exam Prep</span>
           )}

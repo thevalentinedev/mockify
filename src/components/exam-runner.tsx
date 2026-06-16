@@ -8,6 +8,9 @@ import {
   ExamQuestionNavRail,
   ExamQuestionNavSheet,
 } from "@/components/exam-question-nav";
+import { ExamReviewSummary } from "@/components/exam-review-summary";
+import { ExamSubmitConfirmDialog } from "@/components/exam-submit-confirm";
+import { ExamTimeNudge } from "@/components/exam-time-nudge";
 import { ExamTimer } from "@/components/exam-timer";
 import { KeyboardHints } from "@/components/keyboard-hints";
 import { BentoCard } from "@/components/bento-card";
@@ -114,6 +117,12 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   const pendingStudyScrollRef = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const [questionNavOpen, setQuestionNavOpen] = useState(false);
+  const [reviewUnlocked, setReviewUnlocked] = useState(
+    () => initialProgress?.showReview ?? false
+  );
+  const [timeRunningLow, setTimeRunningLow] = useState(false);
+  const [showTimeNudge, setShowTimeNudge] = useState(false);
+  const [submitConfirmOpen, setSubmitConfirmOpen] = useState(false);
 
   const subjectIndex = progress.currentSubjectIndex;
   const section = getCurrentSection(session, subjectIndex);
@@ -262,13 +271,35 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     finishEntireExam,
   ]);
 
+  const enterReview = useCallback(() => {
+    setReviewUnlocked(true);
+    persistProgress({ showReview: true });
+  }, [persistProgress]);
+
+  const unansweredInSection = questions.filter((question) => {
+    const answer = answers.find((a) => a.questionId === question.id);
+    return !hasAnsweredQuestion(question, answer);
+  }).length;
+
+  const confirmSubmit = useCallback(
+    (force = false) => {
+      if (!force && unansweredInSection > 0) {
+        setSubmitConfirmOpen(true);
+        return;
+      }
+      setSubmitConfirmOpen(false);
+      submitCurrentSubject();
+    },
+    [unansweredInSection, submitCurrentSubject]
+  );
+
   const handleTimeUp = useCallback(() => {
     if (showReview) {
       submitCurrentSubject();
     } else {
-      persistProgress({ showReview: true });
+      enterReview();
     }
-  }, [showReview, submitCurrentSubject, persistProgress]);
+  }, [showReview, submitCurrentSubject, enterReview]);
 
   const currentAnswer = current
     ? answers.find((a) => a.questionId === current.id)
@@ -345,18 +376,14 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     if (currentIndex < questions.length - 1) {
       navigateToQuestion(currentIndex + 1);
     } else if (studyMode) {
-      submitCurrentSubject();
+      confirmSubmit();
     } else {
-      persistProgress({ showReview: true });
+      enterReview();
     }
   }
 
   function handlePrevious() {
     navigateToQuestion(Math.max(0, currentIndex - 1));
-  }
-
-  function openReview() {
-    persistProgress({ showReview: true });
   }
 
   function toggleFlag() {
@@ -414,7 +441,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     onPrevious: handlePrevious,
     onNext: handleNext,
     onRevealAnswer: handleRevealAnswer,
-    onReview: openReview,
+    onReview: enterReview,
     onToggleFlag: toggleFlag,
   });
 
@@ -442,14 +469,12 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
         startedAt={section.startedAt}
         timeLimitMinutes={section.timeLimitMinutes}
         onTimeUp={handleTimeUp}
+        onLowTimeChange={setTimeRunningLow}
+        onFiveMinuteWarning={() => setShowTimeNudge(true)}
       />
     ) : undefined;
 
   function goToQuestion(index: number) {
-    if (showReview) {
-      persistProgress({ currentIndex: index });
-      return;
-    }
     navigateToQuestion(index);
   }
 
@@ -623,38 +648,64 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     onSelect: goToQuestion,
   };
 
+  const submitConfirmDialog = (
+    <ExamSubmitConfirmDialog
+      open={submitConfirmOpen}
+      unansweredCount={unansweredInSection}
+      totalQuestions={questions.length}
+      subjectName={subject?.name ?? section?.subjectId ?? "this subject"}
+      isLastSubject={isLastSubject}
+      onCancel={() => setSubmitConfirmOpen(false)}
+      onConfirm={() => confirmSubmit(true)}
+    />
+  );
+
   if (showReview) {
     const reviewProgressPct =
       questions.length > 0 ? (answeredCount / questions.length) * 100 : 0;
+    const flaggedInSection = progress.flaggedQuestionIds.filter((id) =>
+      questionIds.includes(id)
+    ).length;
 
     return (
       <>
-        <ExamHeader
-          mode={session.mode}
-          currentIndex={currentIndex}
-          totalQuestions={questions.length}
-          progressPct={reviewProgressPct}
-          headerLabel={`${answeredCount}/${questions.length} answered`}
-          subjectPills={subjectPills}
-        />
+        <div className="mx-auto w-full max-w-5xl exam-content-pad space-y-4">
+          <ExamHeader
+            mode={session.mode}
+            currentIndex={currentIndex}
+            totalQuestions={questions.length}
+            progressPct={reviewProgressPct}
+            headerLabel={`${answeredCount}/${questions.length} answered`}
+            subjectPills={subjectPills}
+            alignTimerWithNav={showQuestionNav}
+          />
 
-        <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
-          <div className="mx-auto w-full max-w-3xl flex-1 exam-content-pad space-y-4">
+          <div className="lg:flex lg:items-start lg:gap-6">
+            <div className="mx-auto w-full max-w-3xl flex-1 space-y-4">
             <h2 className="text-xl font-semibold">
               Review {subject?.name ?? section.subjectId}
             </h2>
 
-            {questionCard}
+            <ExamReviewSummary
+              answeredCount={answeredCount}
+              totalQuestions={questions.length}
+              flaggedCount={flaggedInSection}
+            />
+
+            <p className="text-sm text-muted-foreground">
+              Tap a question to go back and answer or change your choice, then
+              return here to submit.
+            </p>
 
             {!showQuestionNav && (
               <ExamQuestionGrid {...questionNavProps} />
             )}
             {showQuestionNav && (
               <p className="text-sm text-muted-foreground lg:hidden">
-                Tap Questions below to jump, or use the list on larger screens.
+                Tap Questions below to jump back into the exam.
               </p>
             )}
-          </div>
+            </div>
 
           {showQuestionNav && (
             <ExamQuestionNavRail
@@ -662,13 +713,14 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
               className="hidden w-44 shrink-0 lg:block"
             />
           )}
+          </div>
         </div>
 
         <ExamNavBar
           variant="review"
           submitLabel={submitLabel}
           onBackToExam={() => persistProgress({ showReview: false })}
-          onSubmit={submitCurrentSubject}
+          onSubmit={confirmSubmit}
           showQuestionsNav={showQuestionNav}
           onOpenQuestions={() => setQuestionNavOpen(true)}
         />
@@ -680,23 +732,38 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             {...questionNavProps}
           />
         )}
+        {submitConfirmDialog}
       </>
     );
   }
 
   return (
     <>
-      <ExamHeader
-        mode={session.mode}
-        currentIndex={currentIndex}
-        totalQuestions={questions.length}
-        progressPct={progressPct}
-        timer={timerSlot}
-        subjectPills={subjectPills}
-      />
+      <div
+        className={cn(
+          "mx-auto w-full max-w-5xl exam-content-pad space-y-4 motion-safe:transition-colors",
+          timeRunningLow && !showReview && "lg:px-1"
+        )}
+      >
+        <ExamHeader
+          mode={session.mode}
+          currentIndex={currentIndex}
+          totalQuestions={questions.length}
+          progressPct={progressPct}
+          timer={timerSlot}
+          timeLow={timeRunningLow}
+          subjectPills={subjectPills}
+          alignTimerWithNav={showQuestionNav}
+        />
 
-      <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
-        <div className="mx-auto w-full max-w-3xl flex-1 exam-content-pad space-y-4">
+        {showTimeNudge && timeRunningLow && (
+          <div className="max-w-3xl">
+            <ExamTimeNudge onDismiss={() => setShowTimeNudge(false)} />
+          </div>
+        )}
+
+        <div className="lg:flex lg:items-start lg:gap-6">
+          <div className="mx-auto w-full max-w-3xl flex-1 space-y-4">
           <KeyboardHints
             hints={
               studyMode && !isTextInput
@@ -717,7 +784,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
           />
 
           {questionCard}
-        </div>
+          </div>
 
         {showQuestionNav && (
           <ExamQuestionNavRail
@@ -725,6 +792,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             className="hidden w-44 shrink-0 lg:block"
           />
         )}
+        </div>
       </div>
 
       <ExamNavBar
@@ -733,10 +801,11 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
         isFlagged={isFlagged}
         nextLabel={primaryNavLabel}
         hideReview={studyMode}
+        highlightReview={reviewUnlocked && !showReview}
         onPrevious={handlePrevious}
         onNext={handleNext}
         onFlag={toggleFlag}
-        onReview={openReview}
+        onReview={enterReview}
         showQuestionsNav={showQuestionNav}
         onOpenQuestions={() => setQuestionNavOpen(true)}
       />
@@ -748,6 +817,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
           {...questionNavProps}
         />
       )}
+      {submitConfirmDialog}
     </>
   );
 }

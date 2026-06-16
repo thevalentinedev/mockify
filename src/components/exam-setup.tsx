@@ -157,6 +157,7 @@ export function ExamSetup() {
   const [levelUpBanner, setLevelUpBanner] = useState<string | null>(null);
   const [pendingLaunchStart, setPendingLaunchStart] = useState(false);
   const launchHydratedRef = useRef(false);
+  const startExamRef = useRef<() => Promise<void>>(async () => {});
   const isClient = useIsClient();
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0);
   const inProgressSession = useMemo(() => {
@@ -194,33 +195,35 @@ export function ExamSetup() {
     if (!launch) return;
 
     launchHydratedRef.current = true;
-    setSchoolId(launch.schoolId);
-    setSubjects(launch.subjects);
-    setMode(launch.mode);
-    setStep("mode");
-    setModeSubview("configure");
-    setLaunchFocusTopics(launch.focusTopics);
+    queueMicrotask(() => {
+      setSchoolId(launch.schoolId);
+      setSubjects(launch.subjects);
+      setMode(launch.mode);
+      setStep("mode");
+      setModeSubview("configure");
+      setLaunchFocusTopics(launch.focusTopics);
 
-    if (launch.subjects.includes("maths")) {
-      setMathsProgram(launch.mathsProgram ?? "engineering");
-    }
+      if (launch.subjects.includes("maths")) {
+        setMathsProgram(launch.mathsProgram ?? "engineering");
+      }
 
-    if (launch.mode === "study" && Object.keys(launch.focusBySubject).length) {
-      setStudyTopicsBySubject(launch.focusBySubject);
-    }
+      if (launch.mode === "study" && Object.keys(launch.focusBySubject).length) {
+        setStudyTopicsBySubject(launch.focusBySubject);
+      }
 
-    const focusPreview = launch.focusTopics.slice(0, 3).join(", ");
-    const extra =
-      launch.focusTopics.length > 3
-        ? ` +${launch.focusTopics.length - 3} more`
-        : "";
-    setLevelUpBanner(
-      `Level-up session — focusing on ${focusPreview}${extra}`
-    );
+      const focusPreview = launch.focusTopics.slice(0, 3).join(", ");
+      const extra =
+        launch.focusTopics.length > 3
+          ? ` +${launch.focusTopics.length - 3} more`
+          : "";
+      setLevelUpBanner(
+        `Level-up session — focusing on ${focusPreview}${extra}`
+      );
 
-    if (launch.autoStart) {
-      setPendingLaunchStart(true);
-    }
+      if (launch.autoStart) {
+        setPendingLaunchStart(true);
+      }
+    });
 
     clearPracticeLaunch();
   }, [isClient]);
@@ -425,9 +428,15 @@ export function ExamSetup() {
   }
 
   useEffect(() => {
+    startExamRef.current = startExam;
+  });
+
+  useEffect(() => {
     if (!pendingLaunchStart || !canStart || starting || preparing) return;
-    setPendingLaunchStart(false);
-    void startExam();
+    queueMicrotask(() => {
+      setPendingLaunchStart(false);
+      void startExamRef.current();
+    });
   }, [pendingLaunchStart, canStart, starting, preparing]);
 
   const isHome = step === "school";

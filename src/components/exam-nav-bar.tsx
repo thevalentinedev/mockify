@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
+  ClipboardList,
   Flag,
   LayoutGrid,
 } from "lucide-react";
@@ -28,6 +29,8 @@ export interface ExamNavBarProps {
   showQuestionsNav?: boolean;
   onOpenQuestions?: () => void;
   hideReview?: boolean;
+  /** Emphasize return-to-review after the overview has been opened */
+  highlightReview?: boolean;
   className?: string;
 }
 
@@ -47,6 +50,7 @@ export function ExamNavBar({
   showQuestionsNav = false,
   onOpenQuestions,
   hideReview = false,
+  highlightReview = false,
   className,
 }: ExamNavBarProps) {
   return (
@@ -64,8 +68,8 @@ export function ExamNavBar({
               className="gap-2"
             >
               <ArrowLeft className="size-4" />
-              <span className="hidden sm:inline">Back to exam</span>
-              <span className="sm:hidden">Back</span>
+              <span className="hidden sm:inline">Continue exam</span>
+              <span className="sm:hidden">Exam</span>
             </Button>
             <Button type="button" onClick={onSubmit} className="gap-2 flex-1 sm:flex-none">
               <CheckCircle2 className="size-4" />
@@ -113,13 +117,16 @@ export function ExamNavBar({
               {!hideReview && (
                 <Button
                   type="button"
-                  variant="ghost"
+                  variant={highlightReview ? "outline" : "ghost"}
                   size="sm"
                   onClick={onReview}
                   className="gap-1.5"
                 >
-                  <span className="hidden sm:inline">Review</span>
-                  <span className="sm:hidden">Rev</span>
+                  <ClipboardList className="size-4" />
+                  <span className="hidden sm:inline">
+                    {highlightReview ? "Return to review" : "Review"}
+                  </span>
+                  <span className="sm:hidden">Review</span>
                 </Button>
               )}
             </div>
