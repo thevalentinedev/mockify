@@ -11,7 +11,7 @@ import { isAnswerCorrect } from "@/lib/answer-grader";
 import { getLearningObjective } from "@/lib/learning-objective";
 import { SUBJECTS } from "@/lib/exam-config";
 import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
-import { savePracticeTopics } from "@/lib/learning-history";
+import { savePracticeLaunch } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
 import {
   getScoreMessage,
@@ -146,8 +146,37 @@ export function ExamResults() {
   }
 
   function practiceWeakTopics() {
-    if (!stats?.practiceFocus.length) return;
-    savePracticeTopics(stats.practiceFocus);
+    if (!result || !stats?.practiceFocus.length || !session) return;
+
+    const focusBySubject: Partial<Record<SubjectId, string[]>> = {};
+    for (const question of stats.allQuestions) {
+      const answer = result.answers.find((a) => a.questionId === question.id);
+      if (isAnswerCorrect(question, answer)) continue;
+
+      const focus = getLearningObjective(question) ?? question.topic;
+      if (!focus) continue;
+
+      const list = focusBySubject[question.subjectId] ?? [];
+      if (!list.includes(focus)) list.push(focus);
+      focusBySubject[question.subjectId] = list;
+    }
+
+    const levelUpMode =
+      session.mode === "study"
+        ? "study"
+        : session.mode === "mock"
+          ? "practice"
+          : "practice";
+
+    savePracticeLaunch({
+      schoolId: session.schoolId,
+      subjects: session.subjects,
+      mode: levelUpMode,
+      mathsProgram: session.mathsProgram,
+      focusBySubject,
+      focusTopics: stats.practiceFocus,
+      autoStart: true,
+    });
     router.push("/");
   }
 

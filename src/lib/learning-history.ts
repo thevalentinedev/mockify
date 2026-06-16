@@ -1,9 +1,22 @@
-import type { ExamResult, SubjectId } from "@/types/exam";
+import type { ExamResult, ExamMode, MathsProgramId, SchoolId, SubjectId } from "@/types/exam";
 import { isAnswerCorrect } from "@/lib/answer-grader";
 import { getLearningObjective } from "@/lib/learning-objective";
 
 const HISTORY_KEY = "mock-learning-history";
 const PRACTICE_TOPICS_KEY = "mock-practice-topics";
+const PRACTICE_LAUNCH_KEY = "mock-practice-launch";
+
+export interface PracticeLaunchConfig {
+  schoolId: SchoolId;
+  subjects: SubjectId[];
+  mode: ExamMode;
+  mathsProgram?: MathsProgramId;
+  /** Per-subject labels for study-mode topic filter */
+  focusBySubject: Partial<Record<SubjectId, string[]>>;
+  /** Biases question selection in practice / mock / custom */
+  focusTopics: string[];
+  autoStart?: boolean;
+}
 
 interface LearningHistory {
   wrongQuestionIds: Partial<Record<SubjectId, string[]>>;
@@ -84,6 +97,27 @@ export function getWrongQuestionIds(subjectId: SubjectId): string[] {
 
 export function savePracticeTopics(topics: string[]): void {
   sessionStorage.setItem(PRACTICE_TOPICS_KEY, JSON.stringify(topics));
+}
+
+export function savePracticeLaunch(config: PracticeLaunchConfig): void {
+  sessionStorage.setItem(PRACTICE_LAUNCH_KEY, JSON.stringify(config));
+  sessionStorage.setItem(PRACTICE_TOPICS_KEY, JSON.stringify(config.focusTopics));
+}
+
+export function loadPracticeLaunch(): PracticeLaunchConfig | null {
+  if (typeof window === "undefined") return null;
+  const raw = sessionStorage.getItem(PRACTICE_LAUNCH_KEY);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as PracticeLaunchConfig;
+  } catch {
+    return null;
+  }
+}
+
+export function clearPracticeLaunch(): void {
+  sessionStorage.removeItem(PRACTICE_LAUNCH_KEY);
+  clearPracticeTopics();
 }
 
 export function loadPracticeTopics(): string[] {

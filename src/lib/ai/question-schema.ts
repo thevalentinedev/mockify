@@ -2,6 +2,7 @@ import { z } from "zod";
 import { difficultyZod } from "@/lib/difficulty";
 import { buildTagsFromTopics } from "@/lib/tags";
 import { isTextGradedQuestion } from "@/lib/question-type";
+import { isContextAnchoredQuestion } from "@/lib/question-context";
 import type {
   AnswerConfidence,
   Question,
@@ -32,6 +33,8 @@ export const aiWrongHintSchema = z.object({
 
 export const aiEnrichedQuestionSchema = z.object({
   id: z.string(),
+  /** Temp id into chunk-level contexts[] when enrichment creates missing material */
+  contextId: z.string().nullable(),
   answerConfidence: z.enum(["high", "medium", "low"]),
   questionType: z
     .enum(["multiple_choice", "numeric", "short_answer", "true_false"])
@@ -107,7 +110,8 @@ function resolveQuestionType(
 
 export function applyAiEnrichment(
   original: Question,
-  enriched: AiEnrichedQuestion
+  enriched: AiEnrichedQuestion,
+  options?: { resolvedContextId?: string }
 ): Question | null {
   if (!isPublishableConfidence(enriched.answerConfidence)) {
     return null;
@@ -115,6 +119,7 @@ export function applyAiEnrichment(
 
   const questionType = resolveQuestionType(original, enriched);
   const isNumeric = questionType === "numeric" || isTextGradedQuestion(original);
+  const lockAnswerFields = isContextAnchoredQuestion(original);
 
   const distractors =
     enriched.distractors?.length
@@ -154,8 +159,14 @@ export function applyAiEnrichment(
         }
       : original.solution;
 
+  const contextId =
+    original.contextId ??
+    options?.resolvedContextId ??
+    nullish(enriched.contextId);
+
   const next: Question = {
     ...original,
+    ...(contextId ? { contextId } : {}),
     questionType,
     explanation: enriched.explanation,
     solution,
@@ -175,15 +186,19 @@ export function applyAiEnrichment(
   };
 
   if (isNumeric) {
-    next.answer = nullish(enriched.answer) ?? original.answer;
-    next.acceptedAnswers =
-      nullish(enriched.acceptedAnswers) ?? original.acceptedAnswers;
+    if (!lockAnswerFields) {
+      next.answer = nullish(enriched.answer) ?? original.answer;
+      next.acceptedAnswers =
+        nullish(enriched.acceptedAnswers) ?? original.acceptedAnswers;
+    }
     delete next.options;
     delete next.correctIndex;
     delete next.wrongAnswerHints;
   } else {
-    next.correctIndex =
-      nullish(enriched.correctIndex) ?? original.correctIndex ?? 0;
+    if (!lockAnswerFields) {
+      next.correctIndex =
+        nullish(enriched.correctIndex) ?? original.correctIndex ?? 0;
+    }
     next.options = original.options;
   }
 
@@ -203,6 +218,13 @@ export function applyAiGeneratedQuestion(
     { ...generated, id: base.id }
   );
 }
+
+export const CONTEXT_ENRICHMENT_RULES = `Context / reading material rules:
+- When referencedContext is provided, answer ONLY from that material. Do not create a new context.
+- When question text refers to a story, passage, poem, chart, table, figure, or notice but referencedContext is null, create the missing material in the chunk-level contexts[] array and set contextId on that question to the matching context id.
+- Reuse the same context id when multiple questions in the chunk share one passage or figure.
+- Standalone general-knowledge questions (no implied passage) should leave contextId null and must not get a spurious context.
+- Passage/comprehension content must be long enough to answer the question (typically 2–6 sentences for narratives, or full notice/chart text for functional reading).`;
 
 export const ENRICHMENT_PROMPT_RULES = `Quality rules:
 - answerConfidence must be "high" only when you are certain the answer and reasoning are correct. Use "medium" or "low" if unsure — those questions will be discarded.

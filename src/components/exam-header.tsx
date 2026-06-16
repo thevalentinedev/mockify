@@ -10,8 +10,6 @@ export interface ExamHeaderProps {
   currentIndex: number;
   totalQuestions: number;
   progressPct: number;
-  autosaveLabel?: string;
-  resumed?: boolean;
   /** Overrides the default "3 / 20" counter — e.g. review mode */
   headerLabel?: string;
   timer?: ReactNode;
@@ -25,8 +23,6 @@ export function ExamHeader({
   currentIndex,
   totalQuestions,
   progressPct,
-  autosaveLabel,
-  resumed,
   headerLabel,
   timer,
   subjectPills,
@@ -60,17 +56,6 @@ export function ExamHeader({
         )}
 
         {timer}
-
-        {autosaveLabel && (
-          <span
-            className={cn(
-              "hidden text-xs text-muted-foreground sm:inline",
-              resumed && "text-emerald-600 dark:text-emerald-400"
-            )}
-          >
-            {autosaveLabel}
-          </span>
-        )}
 
         {actions}
       </div>

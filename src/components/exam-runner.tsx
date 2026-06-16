@@ -12,7 +12,6 @@ import { ExamTimer } from "@/components/exam-timer";
 import { KeyboardHints } from "@/components/keyboard-hints";
 import { BentoCard } from "@/components/bento-card";
 import { SubjectPills } from "@/components/subject-pills";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -38,7 +37,6 @@ import {
   clearSession,
   loadProgress,
   loadSession,
-  formatLastSaved,
   saveProgress,
   saveResult,
   saveSession,
@@ -51,9 +49,9 @@ import type {
   QuestionTimeStat,
   SubjectId,
 } from "@/types/exam";
-import { Home, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { answerFeedback } from "@/lib/motivation";
 import { softRow } from "@/lib/surface";
@@ -112,6 +110,8 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   );
 
   const [openContexts, setOpenContexts] = useState<Record<string, boolean>>({});
+  const studyFeedbackRef = useRef<HTMLDivElement>(null);
+  const pendingStudyScrollRef = useRef(false);
   const [submitted, setSubmitted] = useState(false);
   const [questionNavOpen, setQuestionNavOpen] = useState(false);
 
@@ -124,9 +124,6 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   const showReview = progress.showReview;
   const studyMode = isStudyMode(session.mode);
   const revealedQuestionIds = progress.revealedQuestionIds ?? [];
-
-  const resumed =
-    answers.length > 0 || currentIndex > 0 || progress.completedSubjects.length > 0;
 
   const persistProgress = useCallback(
     (patch: Partial<ExamProgress>) => {
@@ -306,6 +303,26 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [currentIndex, showReview, subjectIndex]);
 
+  useEffect(() => {
+    if (!studyMode || !isAnswerRevealed || !pendingStudyScrollRef.current) return;
+
+    pendingStudyScrollRef.current = false;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const scrollToFeedback = () => {
+      studyFeedbackRef.current?.scrollIntoView({
+        behavior: reduceMotion ? "instant" : "smooth",
+        block: "start",
+      });
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToFeedback);
+    });
+  }, [studyMode, isAnswerRevealed, current?.id]);
+
   function navigateToQuestion(index: number) {
     persistProgress(navigationProgressPatch(progress, index, current?.id));
   }
@@ -315,6 +332,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     if (!hasSelectedAnswer) return;
     const revealed = new Set(revealedQuestionIds);
     revealed.add(current.id);
+    pendingStudyScrollRef.current = true;
     persistProgress({ revealedQuestionIds: [...revealed] });
   }
 
@@ -427,31 +445,6 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
       />
     ) : undefined;
 
-  const exitAction = (
-    <Button
-      type="button"
-      variant="ghost"
-      size="icon-sm"
-      onClick={() => {
-        if (
-          window.confirm(
-            "Exit exam? Your progress is saved locally — you can resume from the home page."
-          )
-        ) {
-          router.push("/");
-        }
-      }}
-      aria-label="Exit exam"
-      className="shrink-0 text-muted-foreground"
-    >
-      <Home className="size-4" />
-    </Button>
-  );
-
-  const autosaveLabel = resumed
-    ? "Restored · saved locally"
-    : `${formatLastSaved(progress.updatedAt)} · saved`;
-
   function goToQuestion(index: number) {
     navigateToQuestion(index);
   }
@@ -500,10 +493,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
           totalQuestions={questions.length}
           progressPct={reviewProgressPct}
           headerLabel={`${answeredCount}/${questions.length} answered`}
-          autosaveLabel={autosaveLabel}
-          resumed={resumed}
           subjectPills={subjectPills}
-          actions={exitAction}
         />
 
         <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
@@ -557,11 +547,8 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
         currentIndex={currentIndex}
         totalQuestions={questions.length}
         progressPct={progressPct}
-        autosaveLabel={autosaveLabel}
-        resumed={resumed}
         timer={timerSlot}
         subjectPills={subjectPills}
-        actions={exitAction}
       />
 
       <div className="mx-auto w-full max-w-5xl lg:flex lg:items-start lg:gap-6">
@@ -591,7 +578,11 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
               context={current.context}
               schoolId={session.schoolId}
               subjectId={section.subjectId}
-              open={openContexts[current.contextKey ?? current.id] ?? false}
+              open={
+                openContexts[current.contextKey ?? current.id] ??
+                (current.context.type === "passage" ||
+                  current.context.type === "comprehension")
+              }
               onOpenChange={(open) =>
                 setOpenContexts((prev) => ({
                   ...prev,
@@ -704,11 +695,16 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
           )}
 
           {studyMode && isAnswerRevealed && (
-            <StudyAnswerPanel
-              question={current}
-              answer={currentAnswer}
-              className="mt-4"
-            />
+            <div
+              ref={studyFeedbackRef}
+              className="scroll-mt-[calc(var(--shell-header-height)+0.75rem)]"
+            >
+              <StudyAnswerPanel
+                question={current}
+                answer={currentAnswer}
+                className="mt-4"
+              />
+            </div>
           )}
         </BentoCard>
         </div>

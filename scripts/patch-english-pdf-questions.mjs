@@ -8,6 +8,8 @@ import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { mergePatchQuestion } from "./lib/merge-patch-question.mjs";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const bankPath = path.join(__dirname, "../data/banks/conestoga/english.json");
 
@@ -728,9 +730,13 @@ const bank = JSON.parse(raw);
 bank.contexts = { ...bank.contexts, ...PDF_CONTEXTS };
 
 const pdfIds = new Set(PDF_QUESTIONS.map((q) => q.id));
+const existingById = new Map(bank.questions.map((q) => [q.id, q]));
+const patched = PDF_QUESTIONS.map((patch) =>
+  mergePatchQuestion(existingById.get(patch.id), patch)
+);
 const rest = bank.questions.filter((q) => !pdfIds.has(q.id));
 
-bank.questions = [...PDF_QUESTIONS, ...rest];
+bank.questions = [...patched, ...rest];
 
 await writeFile(bankPath, JSON.stringify(bank, null, 2) + "\n");
 

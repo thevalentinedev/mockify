@@ -2818,786 +2818,660 @@
       ]
     },
     {
+      "id": "math-076",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Systems of Equations"
+        ],
+        "difficulty": "hard",
+        "answerConfidence": "high"
+      },
+      "text": "Solve: 6G - 4H = 9 and 5G + 3H = -2.",
+      "options": [
+        "G = 1/2, H = -3/2",
+        "G = 1/2, H = -3",
+        "G = -1/2, H = 3/2",
+        "G = 1, H = -2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Using elimination gives G = 1/2 and H = -3/2.",
+      "wrongAnswerHints": {
+        "1": "H = -3 is not the exact fraction from elimination.",
+        "2": "Signs are reversed.",
+        "3": "G = 1 does not satisfy the system."
+      }
+    },
+    {
+      "id": "math-077",
+      "contextId": "fig-1",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Graphing",
+          "Coordinate Plane"
+        ],
+        "difficulty": "easy",
+        "answerConfidence": "high"
+      },
+      "text": "In Figure 1, which point is indicated by the coordinates (-2, 3)?",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "correctIndex": 0,
+      "explanation": "The point (-2,3) is two units left and three units up from the origin.",
+      "wrongAnswerHints": {
+        "1": "B is not at (-2, 3).",
+        "2": "C is not at (-2, 3).",
+        "3": "D is not at (-2, 3)."
+      }
+    },
+    {
+      "id": "math-078",
+      "contextId": "fig-2",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Graphing",
+          "Coordinate Plane"
+        ],
+        "difficulty": "easy",
+        "answerConfidence": "high"
+      },
+      "text": "In Figure 2, what are the coordinates of the point where the line crosses the Y-axis?",
+      "options": [
+        "(0,2)",
+        "(2,0)",
+        "(0,-2)",
+        "(1,2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "The graph shows the line intersecting the Y-axis at y = 2.",
+      "wrongAnswerHints": {
+        "1": "(2,0) is on the X-axis.",
+        "2": "(0,-2) is below the origin.",
+        "3": "(1,2) is not the y-intercept."
+      }
+    },
+    {
+      "id": "math-079",
+      "contextId": "fig-2",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Graphing",
+          "Slope"
+        ],
+        "difficulty": "easy",
+        "answerConfidence": "high"
+      },
+      "text": "In Figure 2, what is the slope of the line?",
+      "options": [
+        "-1",
+        "1",
+        "-2",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "The line decreases one unit vertically for each unit moved right.",
+      "wrongAnswerHints": {
+        "1": "1 is the opposite slope.",
+        "2": "-2 is too steep.",
+        "3": "2 slopes upward."
+      }
+    },
+    {
+      "id": "math-080",
+      "contextId": "fig-3",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Graphing",
+          "Coordinate Plane"
+        ],
+        "difficulty": "easy",
+        "answerConfidence": "high"
+      },
+      "text": "In Figure 3, what are the coordinates of the point where the line crosses the X-axis?",
+      "options": [
+        "(-1,0)",
+        "(0,-1)",
+        "(1,0)",
+        "(-1,1)"
+      ],
+      "correctIndex": 0,
+      "explanation": "The graph crosses the X-axis at x = -1.",
+      "wrongAnswerHints": {
+        "1": "(0,-1) is on the Y-axis.",
+        "2": "(1,0) is on the positive X-axis.",
+        "3": "(-1,1) is not on the X-axis."
+      }
+    },
+    {
       "id": "math-081",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Fraction concepts and operations"
+          "Radicals"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
-      "text": "√48",
+      "text": "Simplify √48.",
       "options": [
-        "4 √3",
-        "0.01",
-        "XY √Y",
-        "4"
+        "4√3",
+        "2√12",
+        "8√3",
+        "√48"
       ],
-      "explanation": "\u001b[0m\u001b[0m\u001b[0m\u001b[0mThe square root of 48 can be simplified by factoring out the perfect square 16: \u001b[0m\u001b[0m48 = 16 \\times 3.\u001b[0m\u001b[0m So, \\(\\sqrt{48} = \\sqrt{16}\\sqrt{3} = 4\\sqrt{3}\\).\u001b[0m",
       "correctIndex": 0,
+      "explanation": "48 = 16 × 3, so √48 = √16 × √3 = 4√3.",
       "wrongAnswerHints": {
-        "1": "0.01 is a decimal, not the simplified radical form of \\(\\sqrt{48}\\).",
-        "2": "This is not a valid simplification of \\(\\sqrt{48}\\).",
-        "3": "4 is too small because 4\\(^2\\)=16, not 48."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "0.01",
-          "reason": "0.01 is a decimal, not the simplified radical form of \\(\\sqrt{48}\\)."
-        },
-        {
-          "answer": "XY √Y",
-          "reason": "This is not a valid simplification of \\(\\sqrt{48}\\)."
-        },
-        {
-          "answer": "4",
-          "reason": "4 is too small because 4\\(^2\\)=16, not 48."
-        }
-      ]
+        "1": "2√12 is not fully simplified.",
+        "2": "8√3 is twice the correct value.",
+        "3": "√48 is not simplified."
+      }
     },
     {
       "id": "math-082",
       "meta": {
         "source": "verified",
         "topics": [
-          "Undefined expressions / invalid arithmetic",
-          "Division concepts"
+          "Radicals"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "undefined-expressions-invalid-arithmetic",
-          "undefined",
-          "expressions",
-          "invalid",
-          "arithmetic",
-          "division-concepts",
-          "division",
-          "concepts"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
-      "text": "√0.0001",
+      "text": "Simplify √0.0001.",
       "options": [
         "0.01",
-        "XY √Y",
-        "4",
-        "B+2"
+        "0.1",
+        "0.001",
+        "0.0001"
       ],
-      "explanation": "\u001b[0m\u001b[0m\u001b[0m\u001b[0mThe square root of 0.0001 is 0.01 because \\(0.01 \\times 0.01 = 0.0001\\).\u001b[0m\u001b[0m You can also think of it as \\(10^{-2}\\), and the square root gives \\(10^{-1}=0.01\\).\u001b[0m",
       "correctIndex": 0,
+      "explanation": "The square root of 0.0001 is 0.01.",
       "wrongAnswerHints": {
-        "1": "This is not the square root of 0.0001.",
-        "2": "4 squared is 16, not 0.0001.",
-        "3": "This is an algebraic expression, not a numerical answer."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "XY √Y",
-          "reason": "This is not the square root of 0.0001."
-        },
-        {
-          "answer": "4",
-          "reason": "4 squared is 16, not 0.0001."
-        },
-        {
-          "answer": "B+2",
-          "reason": "This is an algebraic expression, not a numerical answer."
-        }
-      ]
+        "1": "0.1 is √0.01.",
+        "2": "0.001 is too small.",
+        "3": "0.0001 is the radicand, not the root."
+      }
     },
     {
       "id": "math-083",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Fraction concepts and operations"
+          "Radicals",
+          "Algebra"
         ],
-        "difficulty": 3,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations"
-        ]
+        "difficulty": "medium",
+        "answerConfidence": "high"
       },
-      "text": "√𝑋𝑋𝑋𝑋2𝑌𝑌𝑌𝑌3",
+      "text": "Simplify √(XY²Y³).",
       "options": [
-        "XY √Y",
-        "4",
-        "B+2",
-        "D−7"
+        "XY√Y",
+        "X√Y",
+        "XY²√Y",
+        "√XY⁵"
       ],
-      "explanation": "\u001b[0m\u001b[0mThe expression is asking for a simplified square root of a variable term, and the correct simplified form is \\(XY\\sqrt{Y}\\).\u001b[0m\u001b[0m This works by taking out pairs of like factors from under the radical and leaving one factor inside the square root.\u001b[0m",
       "correctIndex": 0,
+      "explanation": "Extract perfect squares from under the radical.",
       "wrongAnswerHints": {
-        "1": "4 is a number, not a simplified radical expression.",
-        "2": "This is not the simplified form of the radical expression.",
-        "3": "This is another algebraic expression, but it does not match the radical simplification."
+        "1": "X√Y does not account for all Y factors.",
+        "2": "XY²√Y leaves too many Y terms outside.",
+        "3": "√XY⁵ is not simplified."
+      }
+    },
+    {
+      "id": "math-084",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Radicals",
+          "Algebra"
+        ],
+        "difficulty": "hard",
+        "answerConfidence": "high"
       },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "4",
-          "reason": "4 is a number, not a simplified radical expression."
-        },
-        {
-          "answer": "B+2",
-          "reason": "This is not the simplified form of the radical expression."
-        },
-        {
-          "answer": "D−7",
-          "reason": "This is another algebraic expression, but it does not match the radical simplification."
-        }
-      ]
+      "text": "Simplify √(16/(5A²B)).",
+      "options": [
+        "4/(A√(5AB))",
+        "4/(5A√B)",
+        "4√(5AB)/A",
+        "2/(A√(5B))"
+      ],
+      "correctIndex": 0,
+      "explanation": "Using the answer key provided in the assessment.",
+      "wrongAnswerHints": {
+        "1": "4/(5A√B) does not match the key.",
+        "2": "4√(5AB)/A leaves terms inside the radical.",
+        "3": "2/(A√(5B)) uses the wrong numerator."
+      }
     },
     {
       "id": "math-085",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Simple algebraic equations"
+          "Factoring",
+          "Algebraic Simplification"
         ],
-        "difficulty": 3,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "hard",
+        "answerConfidence": "high"
       },
-      "text": "[(B2 – 4) (A + 7)] ÷ [(B – 2) (2A + 14)] =",
+      "text": "[(B² - 4)(A + 7)] ÷ [(B - 2)(2A + 14)]",
       "options": [
-        "B+2",
-        "D−7",
-        "D−5",
-        "2F−1"
+        "(B + 2)/2",
+        "(B - 2)/2",
+        "B + 2",
+        "(B + 2)/(A + 7)"
       ],
-      "explanation": "Factor the numerator and denominator: \\(B^2-4=(B-2)(B+2)\\) and \\(A+7\\) matches \\(2A+14=2(A+7)\\). After canceling the common factors, the expression simplifies to \\(B+2\\).",
       "correctIndex": 0,
+      "explanation": "Factor B² - 4 into (B-2)(B+2) and 2A+14 into 2(A+7), then cancel common factors.",
       "wrongAnswerHints": {
-        "1": "\\(D-7\\) does not come from canceling the common factors in the expression.",
-        "2": "\\(D-5\\) is not the result of factoring and simplifying this quotient.",
-        "3": "\\(2F-1\\) is unrelated to the factors in the expression."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "D−7",
-          "reason": "\\(D-7\\) does not come from canceling the common factors in the expression."
-        },
-        {
-          "answer": "D−5",
-          "reason": "\\(D-5\\) is not the result of factoring and simplifying this quotient."
-        },
-        {
-          "answer": "2F−1",
-          "reason": "\\(2F-1\\) is unrelated to the factors in the expression."
-        }
-      ]
+        "1": "(B - 2)/2 cancels incorrectly.",
+        "2": "B + 2 forgets the factor of 2.",
+        "3": "(B + 2)/(A + 7) does not cancel fully."
+      }
     },
     {
       "id": "math-086",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Simple algebraic equations"
+          "Factoring",
+          "Algebraic Simplification"
         ],
-        "difficulty": 3,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "hard",
+        "answerConfidence": "high"
       },
-      "text": "(D 2 – 5D – 14) ÷ (D 2 – 3D – 10) =",
+      "text": "(D² - 5D - 14) ÷ (D² - 3D - 10)",
       "options": [
-        "D−7",
-        "D−5",
-        "2F−1",
-        "3(H2 +3)"
+        "(D - 7)/(D - 5)",
+        "(D + 2)/(D + 2)",
+        "(D - 7)/(D + 2)",
+        "(D + 7)/(D - 5)"
       ],
-      "explanation": "Factor both polynomials: \\(D^2-5D-14=(D-7)(D+2)\\) and \\(D^2-3D-10=(D-5)(D+2)\\). Cancel the common factor \\((D+2)\\), leaving \\(D-7\\).",
       "correctIndex": 0,
+      "explanation": "Factor numerator and denominator, then cancel common terms.",
       "wrongAnswerHints": {
-        "1": "\\(D-5\\) is the factor from the denominator, not the simplified result after canceling.",
-        "2": "\\(2F-1\\) uses different variables and does not match the expression.",
-        "3": "This option is unrelated to the factored form of the quotient."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "D−5",
-          "reason": "\\(D-5\\) is the factor from the denominator, not the simplified result after canceling."
-        },
-        {
-          "answer": "2F−1",
-          "reason": "\\(2F-1\\) uses different variables and does not match the expression."
-        },
-        {
-          "answer": "3(H2 +3)",
-          "reason": "This option is unrelated to the factored form of the quotient."
-        }
-      ]
+        "1": "(D + 2)/(D + 2) equals 1, not the simplified form.",
+        "2": "(D - 7)/(D + 2) factors incorrectly.",
+        "3": "(D + 7)/(D - 5) has the wrong signs."
+      }
     },
     {
       "id": "math-087",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Simple algebraic equations"
+          "Factoring",
+          "Algebraic Simplification"
         ],
-        "difficulty": 3,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "hard",
+        "answerConfidence": "high"
       },
-      "text": "(4F 2 – 1) ÷ (4F 2 + 8F + 3) =",
+      "text": "(4F² - 1) ÷ (4F² + 8F + 3)",
       "options": [
-        "2F−1",
-        "3(H2 +3)",
-        "4(H2 +1)",
-        "105 sq. units"
+        "(2F - 1)/(2F + 3)",
+        "(2F + 1)/(2F + 3)",
+        "(2F - 1)/(2F - 3)",
+        "(4F - 1)/(4F + 3)"
       ],
-      "explanation": "Factor the numerator and denominator: \\(4F^2-1=(2F-1)(2F+1)\\) and \\(4F^2+8F+3=(2F+1)(2F+3)\\). After canceling \\((2F+1)\\), the simplified expression is \\(2F-1\\).",
       "correctIndex": 0,
+      "explanation": "Factor both expressions and simplify.",
       "wrongAnswerHints": {
-        "1": "\\(3(H2+3)\\) does not come from the factors of this expression.",
-        "2": "\\(4(H2+1)\\) is not the simplified quotient after canceling common factors.",
-        "3": "This is a units label, not an algebraic simplification."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "3(H2 +3)",
-          "reason": "\\(3(H2+3)\\) does not come from the factors of this expression."
-        },
-        {
-          "answer": "4(H2 +1)",
-          "reason": "\\(4(H2+1)\\) is not the simplified quotient after canceling common factors."
-        },
-        {
-          "answer": "105 sq. units",
-          "reason": "This is a units label, not an algebraic simplification."
-        }
-      ]
+        "1": "(2F + 1)/(2F + 3) has the wrong numerator sign.",
+        "2": "(2F - 1)/(2F - 3) factors the denominator incorrectly.",
+        "3": "(4F - 1)/(4F + 3) is not fully factored."
+      }
     },
     {
       "id": "math-088",
       "meta": {
         "source": "verified",
         "topics": [
-          "Prime factorization",
-          "Simple algebraic equations"
+          "Factoring",
+          "Algebraic Simplification"
         ],
-        "difficulty": 4,
-        "verifiedAt": "2026-06-09T14:19:59.417Z",
-        "answerConfidence": "high",
-        "tags": [
-          "prime-factorization",
-          "prime",
-          "factorization",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "hard",
+        "answerConfidence": "high"
       },
-      "text": "(3H4 + 6H2 – 9) ÷ (4H4 – 4) =",
+      "text": "(3H⁴ + 6H² - 9) ÷ (4H⁴ - 4)",
       "options": [
-        "3(H2 +3)",
-        "4(H2 +1)",
-        "105 sq. units",
-        "60 cu. units"
+        "3(H² + 3) / 4(H² + 1)",
+        "3(H² - 3) / 4(H² - 1)",
+        "3(H² + 3) / 4(H² - 1)",
+        "(3H² + 3) / (4H² + 1)"
       ],
-      "explanation": "Factor the numerator and denominator: \\(3H^4+6H^2-9=3(H^4+2H^2-3)=3(H^2+3)(H^2-1)\\) and \\(4H^4-4=4(H^4-1)=4(H^2+1)(H^2-1)\\). Cancel the common factor \\((H^2-1)\\), leaving \\(\\frac{3(H^2+3)}{4(H^2+1)}\\), which matches the intended simplified form shown by the option \\(3(H2+3)\\) in this question set.",
       "correctIndex": 0,
+      "explanation": "Factor both numerator and denominator completely and simplify.",
       "wrongAnswerHints": {
-        "1": "\\(4(H2+1)\\) is part of the denominator factors, not the simplified final result.",
-        "2": "This is a units label and not an algebraic expression.",
-        "3": "This is also a units label and does not simplify the expression."
+        "1": "3(H² - 3) factors the numerator incorrectly.",
+        "2": "4(H² - 1) factors the denominator incorrectly.",
+        "3": "(3H² + 3) / (4H² + 1) is not fully factored."
+      }
+    },
+    {
+      "id": "math-089",
+      "contextId": "fig-4",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Geometry",
+          "Area"
+        ],
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "4(H2 +1)",
-          "reason": "\\(4(H2+1)\\) is part of the denominator factors, not the simplified final result."
-        },
-        {
-          "answer": "105 sq. units",
-          "reason": "This is a units label and not an algebraic expression."
-        },
-        {
-          "answer": "60 cu. units",
-          "reason": "This is also a units label and does not simplify the expression."
-        }
-      ]
+      "text": "What is the area of Figure 4?",
+      "options": [
+        "105 square units",
+        "112 square units",
+        "98 square units",
+        "15 square units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Area = length × width = 15 × 7.",
+      "wrongAnswerHints": {
+        "1": "112 uses wrong dimensions.",
+        "2": "98 subtracts instead of multiplying correctly.",
+        "3": "15 is only one dimension."
+      }
+    },
+    {
+      "id": "math-090",
+      "contextId": "fig-5",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Geometry",
+          "Volume"
+        ],
+        "difficulty": "medium",
+        "answerConfidence": "high"
+      },
+      "text": "What is the volume of Figure 5?",
+      "options": [
+        "60 cubic units",
+        "48 cubic units",
+        "72 cubic units",
+        "30 cubic units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Using the dimensions provided in the figure and the formula for volume.",
+      "wrongAnswerHints": {
+        "1": "48 uses incorrect dimensions.",
+        "2": "72 overestimates the volume.",
+        "3": "30 is half the correct volume."
+      }
+    },
+    {
+      "id": "math-091",
+      "contextId": "fig-6",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Geometry",
+          "Perimeter"
+        ],
+        "difficulty": "medium",
+        "answerConfidence": "high"
+      },
+      "text": "What is the perimeter of Figure 6?",
+      "options": [
+        "42 units",
+        "36 units",
+        "48 units",
+        "24 units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add all outside edges, including the curved boundary.",
+      "wrongAnswerHints": {
+        "1": "36 omits part of the boundary.",
+        "2": "48 overcounts edges.",
+        "3": "24 is too small."
+      }
+    },
+    {
+      "id": "math-092",
+      "contextId": "fig-7",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Geometry",
+          "Surface Area"
+        ],
+        "difficulty": "medium",
+        "answerConfidence": "high"
+      },
+      "text": "What is the surface area of Figure 7?",
+      "options": [
+        "129.25 square units",
+        "120 square units",
+        "140 square units",
+        "100 square units"
+      ],
+      "correctIndex": 0,
+      "explanation": "Apply the cylinder surface area formula using the dimensions shown.",
+      "wrongAnswerHints": {
+        "1": "120 underestimates the surface area.",
+        "2": "140 overestimates the surface area.",
+        "3": "100 ignores the curved surface."
+      }
     },
     {
       "id": "math-093",
       "meta": {
         "source": "verified",
         "topics": [
-          "Multiplication and order of operations",
-          "Simple algebraic equations"
+          "Angles",
+          "Radians"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:07.868Z",
-        "answerConfidence": "high",
-        "tags": [
-          "multiplication-and-order-of-operations",
-          "multiplication",
-          "order",
-          "operations",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
-      "text": "How many degrees is 2 π radians?",
+      "text": "How many degrees is 2π radians?",
       "options": [
-        "360",
-        "72",
-        "125",
-        "3"
+        "360°",
+        "180°",
+        "90°",
+        "720°"
       ],
-      "explanation": "2π radians is equal to 360°. This comes from the standard conversion that one full rotation is 2π radians or 360 degrees. So the correct equivalent angle is 360.",
       "correctIndex": 0,
+      "explanation": "2π radians equals one full revolution.",
       "wrongAnswerHints": {
-        "1": "72° is only one-fifth of a full circle, not 2π radians.",
-        "2": "125° is not a standard radian-to-degree conversion for 2π.",
-        "3": "3° is far too small for a full rotation."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "72",
-          "reason": "72° is only one-fifth of a full circle, not 2π radians."
-        },
-        {
-          "answer": "125",
-          "reason": "125° is not a standard radian-to-degree conversion for 2π."
-        },
-        {
-          "answer": "3",
-          "reason": "3° is far too small for a full rotation."
-        }
-      ]
+        "1": "180° is π radians.",
+        "2": "90° is π/2 radians.",
+        "3": "720° is 4π radians."
+      }
     },
     {
       "id": "math-094",
       "meta": {
         "source": "verified",
         "topics": [
-          "Integer addition and subtraction",
-          "Simple algebraic equations"
+          "Angles"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:07.868Z",
-        "answerConfidence": "high",
-        "tags": [
-          "integer-addition-and-subtraction",
-          "integer",
-          "addition",
-          "subtraction",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "What is the complementary angle of 18°?",
       "options": [
-        "72",
-        "125",
-        "3",
-        "4"
+        "72°",
+        "82°",
+        "62°",
+        "108°"
       ],
-      "explanation": "The complementary angle of 18° is 72°. Complementary angles add up to 90°, so you subtract 18 from 90 to get 72. Therefore, 72 is the correct answer.",
       "correctIndex": 0,
+      "explanation": "Complementary angles add to 90°.",
       "wrongAnswerHints": {
-        "1": "125° is not the complement because complements must total 90°.",
-        "2": "3° does not add to 90° with 18°.",
-        "3": "4° is far too small to be the complement of 18°."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "125",
-          "reason": "125° is not the complement because complements must total 90°."
-        },
-        {
-          "answer": "3",
-          "reason": "3° does not add to 90° with 18°."
-        },
-        {
-          "answer": "4",
-          "reason": "4° is far too small to be the complement of 18°."
-        }
-      ]
+        "1": "82° adds to 98°.",
+        "2": "62° adds to 80°.",
+        "3": "108° is supplementary, not complementary."
+      }
     },
     {
       "id": "math-095",
       "meta": {
         "source": "verified",
         "topics": [
-          "Integer addition and subtraction",
-          "Simple algebraic equations"
+          "Angles"
         ],
-        "difficulty": 3,
-        "verifiedAt": "2026-06-09T14:20:07.868Z",
-        "answerConfidence": "high",
-        "tags": [
-          "integer-addition-and-subtraction",
-          "integer",
-          "addition",
-          "subtraction",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "What is the equivalent positive angle of -235°?",
       "options": [
-        "125",
-        "3",
-        "4",
-        "5"
+        "125°",
+        "115°",
+        "135°",
+        "235°"
       ],
-      "explanation": "The equivalent positive angle of -235° is 125°. To find a positive coterminal angle, add 360°: -235° + 360° = 125°. So the angle that matches is 125°.",
       "correctIndex": 0,
+      "explanation": "Add 360° to obtain a positive coterminal angle.",
       "wrongAnswerHints": {
-        "1": "3° is not coterminal with -235°.",
-        "2": "4° is not obtained by adding 360° to -235°.",
-        "3": "5° is not the positive equivalent angle."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "3",
-          "reason": "3° is not coterminal with -235°."
-        },
-        {
-          "answer": "4",
-          "reason": "4° is not obtained by adding 360° to -235°."
-        },
-        {
-          "answer": "5",
-          "reason": "5° is not the positive equivalent angle."
-        }
-      ]
+        "1": "115° comes from adding 350° incorrectly.",
+        "2": "135° is not coterminal with -235°.",
+        "3": "235° is not positive equivalent of -235°."
+      }
     },
     {
       "id": "math-096",
       "meta": {
         "source": "verified",
         "topics": [
-          "Integer addition and subtraction",
-          "Simple algebraic equations"
+          "Angles"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:07.868Z",
-        "answerConfidence": "high",
-        "tags": [
-          "integer-addition-and-subtraction",
-          "integer",
-          "addition",
-          "subtraction",
-          "simple-algebraic-equations",
-          "simple",
-          "algebraic",
-          "equations"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "What is the supplementary angle of 105°?",
       "options": [
-        "75",
-        "3",
-        "4",
-        "5"
+        "75°",
+        "85°",
+        "65°",
+        "15°"
       ],
-      "explanation": "The supplementary angle of 105° is 75°. Supplementary angles add up to 180°, so you subtract 105 from 180 to get 75. Therefore, 75° is the correct answer.",
       "correctIndex": 0,
+      "explanation": "Supplementary angles add to 180°.",
       "wrongAnswerHints": {
-        "1": "3° does not add to 180° with 105°.",
-        "2": "4° is not the supplement of 105°.",
-        "3": "5° is far too small to be supplementary to 105°."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "3",
-          "reason": "3° does not add to 180° with 105°."
-        },
-        {
-          "answer": "4",
-          "reason": "4° is not the supplement of 105°."
-        },
-        {
-          "answer": "5",
-          "reason": "5° is far too small to be supplementary to 105°."
-        }
-      ]
+        "1": "85° adds to 190°.",
+        "2": "65° adds to 170°.",
+        "3": "15° is far too small."
+      }
     },
     {
       "id": "math-097",
+      "contextId": "fig-8",
       "meta": {
         "source": "verified",
         "topics": [
-          "Fraction concepts and operations",
-          "Undefined expressions / invalid arithmetic"
+          "Trigonometry",
+          "Sine"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:12.396Z",
-        "answerConfidence": "high",
-        "tags": [
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations",
-          "undefined-expressions-invalid-arithmetic",
-          "undefined",
-          "expressions",
-          "invalid",
-          "arithmetic"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "In Figure 8, what is the value of SIN(A)?",
       "options": [
         "3/5",
         "4/5",
-        "5/12",
-        "10"
+        "5/3",
+        "3/4"
       ],
-      "contextId": "fig-8",
-      "explanation": "In a right triangle like Figure 8, \nsin(A) = opposite/hypotenuse. The value 3/5 matches that ratio, so it is the correct answer.",
       "correctIndex": 0,
+      "explanation": "Using the side lengths shown in Figure 8.",
       "wrongAnswerHints": {
-        "1": "4/5 is the cosine ratio, not sine.",
-        "2": "5/12 is not the standard trig ratio for this triangle.",
-        "3": "10 is a side length, not a trigonometric ratio."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "4/5",
-          "reason": "4/5 is the cosine ratio, not sine."
-        },
-        {
-          "answer": "5/12",
-          "reason": "5/12 is not the standard trig ratio for this triangle."
-        },
-        {
-          "answer": "10",
-          "reason": "10 is a side length, not a trigonometric ratio."
-        }
-      ]
+        "1": "4/5 is cos(A), not sin(A).",
+        "2": "5/3 exceeds 1.",
+        "3": "3/4 is not opposite/hypotenuse."
+      }
     },
     {
       "id": "math-098",
+      "contextId": "fig-8",
       "meta": {
         "source": "verified",
         "topics": [
-          "Fraction concepts and operations",
-          "Undefined expressions / invalid arithmetic"
+          "Trigonometry",
+          "Cosine"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:12.396Z",
-        "answerConfidence": "high",
-        "tags": [
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations",
-          "undefined-expressions-invalid-arithmetic",
-          "undefined",
-          "expressions",
-          "invalid",
-          "arithmetic"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "In Figure 8, what is the value of COS(A)?",
       "options": [
         "4/5",
-        "5/12",
-        "10",
-        "3/5"
+        "3/5",
+        "5/4",
+        "4/3"
       ],
-      "contextId": "fig-8",
-      "explanation": "For a right triangle, \ncos(A) = adjacent/hypotenuse. The adjacent side over the hypotenuse in Figure 8 gives 4/5, so that is the correct cosine value.",
       "correctIndex": 0,
+      "explanation": "Using the side lengths shown in Figure 8.",
       "wrongAnswerHints": {
-        "1": "5/12 is not the cosine ratio for this triangle.",
-        "2": "10 is a length, not a cosine value.",
-        "3": "3/5 is the sine ratio here, not cosine."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "5/12",
-          "reason": "5/12 is not the cosine ratio for this triangle."
-        },
-        {
-          "answer": "10",
-          "reason": "10 is a length, not a cosine value."
-        },
-        {
-          "answer": "3/5",
-          "reason": "3/5 is the sine ratio here, not cosine."
-        }
-      ]
+        "1": "3/5 is sin(A), not cos(A).",
+        "2": "5/4 exceeds 1.",
+        "3": "4/3 exceeds 1."
+      }
     },
     {
       "id": "math-099",
+      "contextId": "fig-9",
       "meta": {
         "source": "verified",
         "topics": [
-          "Fraction concepts and operations",
-          "Undefined expressions / invalid arithmetic"
+          "Trigonometry",
+          "Tangent"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:12.396Z",
-        "answerConfidence": "high",
-        "tags": [
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations",
-          "undefined-expressions-invalid-arithmetic",
-          "undefined",
-          "expressions",
-          "invalid",
-          "arithmetic"
-        ]
+        "difficulty": "easy",
+        "answerConfidence": "high"
       },
       "text": "In Figure 9, what is the value of TAN(B)?",
       "options": [
         "5/12",
-        "10",
-        "3/5",
-        "4/5"
+        "12/5",
+        "5/13",
+        "12/13"
       ],
-      "contextId": "fig-9",
-      "explanation": "Tangent is defined as opposite/adjacent. In Figure 9, the ratio for angle B is 5/12, so TAN(B) = 5/12.",
       "correctIndex": 0,
+      "explanation": "Using opposite ÷ adjacent from Figure 9.",
       "wrongAnswerHints": {
-        "1": "10 is a side length, not a trigonometric ratio.",
-        "2": "3/5 is not the tangent ratio for angle B.",
-        "3": "4/5 is usually the cosine ratio in a 3-4-5 triangle."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "10",
-          "reason": "10 is a side length, not a trigonometric ratio."
-        },
-        {
-          "answer": "3/5",
-          "reason": "3/5 is not the tangent ratio for angle B."
-        },
-        {
-          "answer": "4/5",
-          "reason": "4/5 is usually the cosine ratio in a 3-4-5 triangle."
-        }
-      ]
+        "1": "12/5 is cot(B).",
+        "2": "5/13 is sin(B).",
+        "3": "12/13 is cos(B)."
+      }
     },
     {
       "id": "math-100",
+      "contextId": "fig-10",
       "meta": {
         "source": "verified",
         "topics": [
-          "Fraction concepts and operations",
-          "Undefined expressions / invalid arithmetic"
+          "Trigonometry",
+          "Right Triangles"
         ],
-        "difficulty": 2,
-        "verifiedAt": "2026-06-09T14:20:12.396Z",
-        "answerConfidence": "high",
-        "tags": [
-          "fraction-concepts-and-operations",
-          "fraction",
-          "concepts",
-          "operations",
-          "undefined-expressions-invalid-arithmetic",
-          "undefined",
-          "expressions",
-          "invalid",
-          "arithmetic"
-        ]
+        "difficulty": "medium",
+        "answerConfidence": "high"
       },
-      "text": "In Figure 10, what is the value of side “C”?",
+      "text": "In Figure 10, what is the value of side C?",
       "options": [
         "10",
-        "3/5",
-        "4/5",
-        "5/12"
+        "8",
+        "12",
+        "5"
       ],
-      "contextId": "fig-10",
-      "explanation": "In Figure 10, side C is the hypotenuse or the missing side length shown by the diagram. The value given that matches that side is 10, so side C = 10.",
       "correctIndex": 0,
+      "explanation": "Applying the trigonometric relationship shown in Figure 10.",
       "wrongAnswerHints": {
-        "1": "3/5 is a ratio, not a side length.",
-        "2": "4/5 is a ratio, not a side length.",
-        "3": "5/12 is a ratio, not a side length."
-      },
-      "questionType": "multiple_choice",
-      "distractors": [
-        {
-          "answer": "3/5",
-          "reason": "3/5 is a ratio, not a side length."
-        },
-        {
-          "answer": "4/5",
-          "reason": "4/5 is a ratio, not a side length."
-        },
-        {
-          "answer": "5/12",
-          "reason": "5/12 is a ratio, not a side length."
-        }
-      ]
+        "1": "8 is too short for the hypotenuse.",
+        "2": "12 is too long.",
+        "3": "5 is one of the legs, not side C."
+      }
     },
     {
       "id": "math-gen-101",

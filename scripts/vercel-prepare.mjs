@@ -31,6 +31,9 @@ if (!process.env.DATABASE_URL) {
 }
 
 try {
+  console.log("[vercel-prepare] Applying PDF context patches to bank JSON…");
+  await run("scripts/patch-english-pdf-questions.mjs");
+
   console.log("[vercel-prepare] Pruning ineligible questions from bank JSON…");
   await run("scripts/prune-ineligible-questions.mjs");
 

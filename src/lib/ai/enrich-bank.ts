@@ -3,16 +3,19 @@ import { generateText, Output } from "ai";
 import { z } from "zod";
 import {
   ENRICHMENT_PROMPT_RULES,
+  CONTEXT_ENRICHMENT_RULES,
   aiEnrichedQuestionSchema,
   applyAiEnrichment,
 } from "@/lib/ai/question-schema";
 import { AI_MODEL } from "@/lib/ai/model";
+import { aiContextSchema, mergeAiContexts, resolveAiContextId } from "@/lib/ai/context-storage";
 import { pruneIneligibleQuestions } from "@/lib/question-eligibility";
 import {
   getUnenrichedQuestions,
   isQuestionEnriched,
 } from "@/lib/question-enrichment";
 import { isTextGradedQuestion } from "@/lib/question-type";
+import { looksContextDependent, resolveQuestionContext } from "@/lib/question-context";
 import type { BankMeta, Question, QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
 const CHUNK_SIZE = 6;
@@ -30,11 +33,16 @@ const blueprintSchema = z.object({
 });
 
 const enrichChunkSchema = z.object({
+  contexts: z.array(aiContextSchema).nullable(),
   questions: z.array(aiEnrichedQuestionSchema),
 });
 
-function formatQuestionForEnrich(question: Question): object {
+function formatQuestionForEnrich(
+  question: Question,
+  contexts?: QuestionBank["contexts"]
+): object {
   const numeric = isTextGradedQuestion(question);
+  const context = resolveQuestionContext(question, contexts);
   return {
     id: question.id,
     text: question.text,
@@ -44,6 +52,15 @@ function formatQuestionForEnrich(question: Question): object {
     answer: question.answer,
     acceptedAnswers: question.acceptedAnswers,
     contextId: question.contextId,
+    referencedContext: context
+      ? {
+          type: context.type,
+          title: context.title,
+          content: context.content,
+        }
+      : null,
+    likelyNeedsContext:
+      !question.contextId && looksContextDependent(question),
   };
 }
 
@@ -91,9 +108,10 @@ async function enrichQuestionChunk(
   questions: Question[],
   schoolId: SchoolId,
   subjectId: SubjectId,
-  topics: string[]
-): Promise<z.infer<typeof enrichChunkSchema>["questions"]> {
-  const payload = questions.map(formatQuestionForEnrich);
+  topics: string[],
+  contexts?: QuestionBank["contexts"]
+): Promise<z.infer<typeof enrichChunkSchema>> {
+  const payload = questions.map((q) => formatQuestionForEnrich(q, contexts));
 
   const { output } = await generateText({
     model: openai(AI_MODEL),
@@ -101,11 +119,14 @@ async function enrichQuestionChunk(
     prompt: `You are a ${schoolId} ${subjectId} pre-assessment tutor. Verify and enrich these questions for a study app.
 
 For EACH question:
-1. Solve it carefully. Fix correctIndex or numeric answer if wrong.
-2. Numeric questions: questionType "numeric", solution.steps (2-5 steps), finalAnswer, acceptedAnswers.
-3. Multiple-choice: keep 4 options, provide distractors[] with misconception reasons.
-4. Write learningObjective (one specific skill) and 2-5 tags.
-5. Assign 1-2 topics from: ${topics.join(", ")}
+1. When referencedContext is provided, keep the existing correctIndex/answer — explain using that passage or figure only.
+2. Solve it carefully. Fix correctIndex or numeric answer only when there is NO referencedContext.
+3. Numeric questions: questionType "numeric", solution.steps (2-5 steps), finalAnswer, acceptedAnswers.
+4. Multiple-choice: keep 4 options, provide distractors[] with misconception reasons.
+5. Write learningObjective (one specific skill) and 2-5 tags.
+6. Assign 1-2 topics from: ${topics.join(", ")}
+
+${CONTEXT_ENRICHMENT_RULES}
 
 ${ENRICHMENT_PROMPT_RULES}
 
@@ -114,7 +135,7 @@ ${JSON.stringify(payload, null, 2)}`,
   });
 
   if (!output) throw new Error("Failed to enrich question chunk");
-  return output.questions;
+  return output;
 }
 
 export interface EnrichQuestionBankResult {
@@ -175,15 +196,24 @@ export async function enrichQuestionBankDetailed(
     : await analyzeExamBlueprint(bank);
 
   const enrichedById = new Map<string, Question | null>();
+  let bankContexts = { ...bank.contexts };
 
   for (let i = 0; i < toEnrich.length; i += CHUNK_SIZE) {
     const chunk = toEnrich.slice(i, i + CHUNK_SIZE);
-    const results = await enrichQuestionChunk(
+    const chunkOutput = await enrichQuestionChunk(
       chunk,
       bank.schoolId,
       bank.subjectId,
-      meta.topicsCovered
+      meta.topicsCovered,
+      bankContexts
     );
+    const { contexts: mergedContexts, idMap } = mergeAiContexts(
+      bankContexts,
+      chunkOutput.contexts,
+      chunk[0]?.id ?? String(i)
+    );
+    bankContexts = mergedContexts;
+    const results = chunkOutput.questions;
 
     for (const original of chunk) {
       const enriched = results.find((r) => r.id === original.id);
@@ -191,7 +221,9 @@ export async function enrichQuestionBankDetailed(
         enrichedById.set(original.id, original);
         continue;
       }
-      const applied = applyAiEnrichment(original, enriched);
+      const applied = applyAiEnrichment(original, enriched, {
+        resolvedContextId: resolveAiContextId(enriched.contextId, idMap),
+      });
       if (!applied) {
         enrichedById.set(original.id, null);
         removedCount++;
@@ -210,6 +242,7 @@ export async function enrichQuestionBankDetailed(
       await options.onProgress({
         ...bank,
         questions,
+        contexts: bankContexts,
         meta: { ...meta, totalGenerated: meta.totalGenerated ?? 0 },
       });
     }
@@ -229,6 +262,7 @@ export async function enrichQuestionBankDetailed(
     bank: {
       ...bank,
       questions: pruned.kept,
+      contexts: bankContexts,
       meta: {
         ...meta,
         lastEnrichedAt: new Date().toISOString(),

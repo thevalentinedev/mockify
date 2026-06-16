@@ -27,9 +27,10 @@ import {
 } from "@/lib/exam-session";
 import { Input } from "@/components/ui/input";
 import {
+  clearPracticeLaunch,
   getWrongQuestionIds,
+  loadPracticeLaunch,
   loadPracticeTopics,
-  clearPracticeTopics,
 } from "@/lib/learning-history";
 import {
   getUserAttempts,
@@ -61,7 +62,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useIsClient } from "@/hooks/use-is-client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 interface SessionStats {
   totalQuestions: number;
@@ -152,6 +153,10 @@ export function ExamSetup() {
   const [startError, setStartError] = useState<string | null>(null);
   const [resumeDismissed, setResumeDismissed] = useState(false);
   const [previewOverride, setPreviewOverride] = useState<boolean | null>(null);
+  const [launchFocusTopics, setLaunchFocusTopics] = useState<string[]>([]);
+  const [levelUpBanner, setLevelUpBanner] = useState<string | null>(null);
+  const [pendingLaunchStart, setPendingLaunchStart] = useState(false);
+  const launchHydratedRef = useRef(false);
   const isClient = useIsClient();
   const [sessionRefreshKey, setSessionRefreshKey] = useState(0);
   const inProgressSession = useMemo(() => {
@@ -178,8 +183,46 @@ export function ExamSetup() {
   const previewOpen = previewOverride ?? subjects.length <= 3;
 
   const focusTopics = useMemo(() => {
+    if (launchFocusTopics.length) return launchFocusTopics;
     if (!isClient) return [];
     return loadPracticeTopics();
+  }, [isClient, launchFocusTopics]);
+
+  useEffect(() => {
+    if (!isClient || launchHydratedRef.current) return;
+    const launch = loadPracticeLaunch();
+    if (!launch) return;
+
+    launchHydratedRef.current = true;
+    setSchoolId(launch.schoolId);
+    setSubjects(launch.subjects);
+    setMode(launch.mode);
+    setStep("mode");
+    setModeSubview("configure");
+    setLaunchFocusTopics(launch.focusTopics);
+
+    if (launch.subjects.includes("maths")) {
+      setMathsProgram(launch.mathsProgram ?? "engineering");
+    }
+
+    if (launch.mode === "study" && Object.keys(launch.focusBySubject).length) {
+      setStudyTopicsBySubject(launch.focusBySubject);
+    }
+
+    const focusPreview = launch.focusTopics.slice(0, 3).join(", ");
+    const extra =
+      launch.focusTopics.length > 3
+        ? ` +${launch.focusTopics.length - 3} more`
+        : "";
+    setLevelUpBanner(
+      `Level-up session — focusing on ${focusPreview}${extra}`
+    );
+
+    if (launch.autoStart) {
+      setPendingLaunchStart(true);
+    }
+
+    clearPracticeLaunch();
   }, [isClient]);
 
   const previewPayload = useMemo(() => {
@@ -360,7 +403,9 @@ export function ExamSetup() {
       }
 
       incrementUserAttempts(schoolId, subjects);
-      clearPracticeTopics();
+      clearPracticeLaunch();
+      setLaunchFocusTopics([]);
+      setLevelUpBanner(null);
       startNewExam(buildData.session);
       router.push("/exam");
     } catch (err) {
@@ -378,6 +423,12 @@ export function ExamSetup() {
       setPrepareAudit(null);
     }
   }
+
+  useEffect(() => {
+    if (!pendingLaunchStart || !canStart || starting || preparing) return;
+    setPendingLaunchStart(false);
+    void startExam();
+  }, [pendingLaunchStart, canStart, starting, preparing]);
 
   const isHome = step === "school";
   const showResumeBanner = Boolean(inProgressSession) && !resumeDismissed;
@@ -643,6 +694,19 @@ export function ExamSetup() {
 
       {step === "mode" && modeSubview === "configure" && mode && (
         <section key="mode-configure" className="setup-step-enter space-y-4">
+          {levelUpBanner && (
+            <BentoCard className="border-violet-500/20 bg-violet-500/8">
+              <p className="text-sm font-medium text-violet-900 dark:text-violet-200">
+                {levelUpBanner}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {pendingLaunchStart || starting || preparing
+                  ? "Starting your focused session…"
+                  : "Review settings below, then tap Start when ready."}
+              </p>
+            </BentoCard>
+          )}
+
           {(() => {
             const modeConfig = MODES.find((m) => m.id === mode)!;
             const ModeIcon = getModeIcon(mode);
@@ -848,12 +912,6 @@ export function ExamSetup() {
                 })}
               </div>
             </BentoCard>
-          )}
-
-          {focusTopics.length > 0 && mode !== "study" && (
-            <p className="text-sm text-violet-700 dark:text-violet-300">
-              Leveling up: {focusTopics.join(", ")}
-            </p>
           )}
 
           {displayStats && (

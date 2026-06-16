@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "vercel-build": "node scripts/vercel-prepare.mjs && next build",
+    "banks:patch-pdf": "node scripts/patch-english-pdf-questions.mjs && node scripts/patch-maths-pdf-questions.mjs && node scripts/patch-maths-pdf-questions-26-50.mjs && node scripts/patch-maths-pdf-questions-51-75.mjs && node scripts/patch-maths-pdf-questions-76-100.mjs && node scripts/patch-biology-pdf-questions.mjs && node scripts/patch-chemistry-pdf-questions.mjs",
+    "banks:audit-contexts": "node scripts/audit-question-contexts.mjs",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
