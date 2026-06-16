@@ -15,14 +15,13 @@ import { savePracticeLaunch } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
 import {
   getScoreMessage,
-  practiceFocusAction,
   practiceFocusHeading,
   scoreRingClass,
 } from "@/lib/motivation";
 import { cn } from "@/lib/utils";
 import { divider, surface } from "@/lib/surface";
 import type { ExamResult, SubjectId } from "@/types/exam";
-import { RotateCcw, Sparkles, Target } from "lucide-react";
+import { RotateCcw, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -278,10 +277,6 @@ export function ExamResults() {
                   </Badge>
                 )}
               </div>
-              <Button onClick={practiceWeakTopics} className="gap-2" size="lg">
-                <Target className="size-4" />
-                {practiceFocusAction(usingObjectives)}
-              </Button>
             </div>
           ) : (
             <Button onClick={goRetake} className="gap-2" size="lg">

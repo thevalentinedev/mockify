@@ -108,10 +108,6 @@ export function practiceFocusHeading(usingObjectives: boolean): string {
   return usingObjectives ? "Skills to level up" : "Topics to level up";
 }
 
-export function practiceFocusAction(usingObjectives: boolean): string {
-  return usingObjectives ? "Practice these skills" : "Practice these topics";
-}
-
 export const answerFeedback = {
   correct:
     "rounded-[var(--radius-surface)] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",

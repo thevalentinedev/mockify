@@ -446,8 +446,150 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     ) : undefined;
 
   function goToQuestion(index: number) {
+    if (showReview) {
+      persistProgress({ currentIndex: index });
+      return;
+    }
     navigateToQuestion(index);
   }
+
+  const contextOpen = current.context
+    ? (openContexts[current.contextKey ?? current.id] ??
+      (current.context.type === "passage" ||
+        current.context.type === "comprehension"))
+    : false;
+
+  const questionCard = (
+    <BentoCard static className="exam-density shadow-sm">
+      {current.context && (
+        <QuestionContextCard
+          context={current.context}
+          schoolId={session.schoolId}
+          subjectId={section.subjectId}
+          open={contextOpen}
+          onOpenChange={(open) =>
+            setOpenContexts((prev) => ({
+              ...prev,
+              [current.contextKey ?? current.id]: open,
+            }))
+          }
+        />
+      )}
+
+      <div className="space-y-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="exam-label">Question {currentIndex + 1}</span>
+          <ConfidenceBadge confidence={current.answerConfidence} />
+        </div>
+        <h2 id="exam-question" className="exam-question">
+          <FormatMathText>{current.text}</FormatMathText>
+        </h2>
+      </div>
+
+      {isTextInput ? (
+        <div className="space-y-2">
+          <Label htmlFor="numeric-answer" className="exam-label">
+            Your answer
+          </Label>
+          <Input
+            id="numeric-answer"
+            type="text"
+            inputMode="text"
+            autoComplete="off"
+            spellCheck={false}
+            value={currentAnswer?.textAnswer ?? ""}
+            onChange={(event) => setTextAnswer(event.target.value)}
+            disabled={studyMode && isAnswerRevealed}
+            className={cn(
+              "exam-density-option text-base",
+              studyMode &&
+                isAnswerRevealed &&
+                (isAnswerCorrect(current, currentAnswer)
+                  ? answerFeedback.correctBorder
+                  : answerFeedback.incorrectBorder)
+            )}
+            placeholder="Enter your answer"
+          />
+          {studyMode && isAnswerRevealed && (
+            <p
+              className={cn(
+                "text-sm",
+                isAnswerCorrect(current, currentAnswer)
+                  ? "text-emerald-700 dark:text-emerald-400"
+                  : "text-muted-foreground"
+              )}
+            >
+              {isAnswerCorrect(current, currentAnswer)
+                ? "Answer: "
+                : "Here's the answer: "}
+              <FormatMathText>{current.answer ?? ""}</FormatMathText>
+            </p>
+          )}
+        </div>
+      ) : (
+        <RadioGroup
+          value={currentAnswer?.selectedIndex?.toString() ?? ""}
+          onValueChange={(val) => selectAnswer(parseInt(val, 10))}
+          className="exam-density-options"
+          disabled={studyMode && isAnswerRevealed}
+        >
+          {(current.options ?? []).map((option, index) => {
+            const isSelected = currentAnswer?.selectedIndex === index;
+            const isCorrectOpt =
+              studyMode && isAnswerRevealed && current.correctIndex === index;
+            const isWrongSelected =
+              studyMode && isAnswerRevealed && isSelected && !isCorrectOpt;
+
+            return (
+              <div key={index}>
+                <Label
+                  htmlFor={`option-${index}`}
+                  className={cn(
+                    "exam-density-option flex items-center gap-3 motion-safe:transition-all",
+                    !studyMode || !isAnswerRevealed
+                      ? softRow(isSelected)
+                      : isCorrectOpt
+                        ? answerFeedback.correct
+                        : isWrongSelected
+                          ? answerFeedback.incorrect
+                          : "soft-row text-muted-foreground",
+                    studyMode && isAnswerRevealed && "cursor-default"
+                  )}
+                >
+                  <RadioGroupItem
+                    value={index.toString()}
+                    id={`option-${index}`}
+                    disabled={studyMode && isAnswerRevealed}
+                  />
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
+                    {String.fromCharCode(65 + index)}
+                  </span>
+                  <span className="exam-option">
+                    <FormatMathText>{option}</FormatMathText>
+                    {isCorrectOpt && " ✓"}
+                    {isWrongSelected && " (your pick)"}
+                  </span>
+                </Label>
+              </div>
+            );
+          })}
+        </RadioGroup>
+      )}
+
+      {studyMode && isAnswerRevealed && (
+        <div
+          ref={studyFeedbackRef}
+          className="scroll-mt-[calc(var(--shell-header-height)+0.75rem)]"
+        >
+          <StudyAnswerPanel
+            question={current}
+            answer={currentAnswer}
+            className="mt-4"
+          />
+        </div>
+      )}
+    </BentoCard>
+  );
 
   const primaryNavLabel = studyMode
     ? isAnswerRevealed
@@ -501,6 +643,8 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             <h2 className="text-xl font-semibold">
               Review {subject?.name ?? section.subjectId}
             </h2>
+
+            {questionCard}
 
             {!showQuestionNav && (
               <ExamQuestionGrid {...questionNavProps} />
@@ -572,141 +716,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             }
           />
 
-          <BentoCard static className="exam-density shadow-sm">
-          {current.context && (
-            <QuestionContextCard
-              context={current.context}
-              schoolId={session.schoolId}
-              subjectId={section.subjectId}
-              open={
-                openContexts[current.contextKey ?? current.id] ??
-                (current.context.type === "passage" ||
-                  current.context.type === "comprehension")
-              }
-              onOpenChange={(open) =>
-                setOpenContexts((prev) => ({
-                  ...prev,
-                  [current.contextKey ?? current.id]: open,
-                }))
-              }
-            />
-          )}
-
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="exam-label">Question {currentIndex + 1}</span>
-              <ConfidenceBadge confidence={current.answerConfidence} />
-            </div>
-            <h2 id="exam-question" className="exam-question">
-              <FormatMathText>{current.text}</FormatMathText>
-            </h2>
-          </div>
-
-          {isTextInput ? (
-            <div className="space-y-2">
-              <Label htmlFor="numeric-answer" className="exam-label">
-                Your answer
-              </Label>
-              <Input
-                id="numeric-answer"
-                type="text"
-                inputMode="text"
-                autoComplete="off"
-                spellCheck={false}
-                value={currentAnswer?.textAnswer ?? ""}
-                onChange={(event) => setTextAnswer(event.target.value)}
-                disabled={studyMode && isAnswerRevealed}
-                className={cn(
-                  "exam-density-option text-base",
-                  studyMode &&
-                    isAnswerRevealed &&
-                    (isAnswerCorrect(current, currentAnswer)
-                      ? answerFeedback.correctBorder
-                      : answerFeedback.incorrectBorder)
-                )}
-                placeholder="Enter your answer"
-              />
-              {studyMode && isAnswerRevealed && (
-                <p
-                  className={cn(
-                    "text-sm",
-                    isAnswerCorrect(current, currentAnswer)
-                      ? "text-emerald-700 dark:text-emerald-400"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {isAnswerCorrect(current, currentAnswer)
-                    ? "Answer: "
-                    : "Here's the answer: "}
-                  <FormatMathText>{current.answer ?? ""}</FormatMathText>
-                </p>
-              )}
-            </div>
-          ) : (
-            <RadioGroup
-              value={currentAnswer?.selectedIndex?.toString() ?? ""}
-              onValueChange={(val) => selectAnswer(parseInt(val, 10))}
-              className="exam-density-options"
-              disabled={studyMode && isAnswerRevealed}
-            >
-              {(current.options ?? []).map((option, index) => {
-                const isSelected = currentAnswer?.selectedIndex === index;
-                const isCorrectOpt =
-                  studyMode &&
-                  isAnswerRevealed &&
-                  current.correctIndex === index;
-                const isWrongSelected =
-                  studyMode && isAnswerRevealed && isSelected && !isCorrectOpt;
-
-                return (
-                  <div key={index}>
-                    <Label
-                      htmlFor={`option-${index}`}
-                      className={cn(
-                        "exam-density-option flex items-center gap-3 motion-safe:transition-all",
-                        !studyMode || !isAnswerRevealed
-                          ? softRow(isSelected)
-                          : isCorrectOpt
-                            ? answerFeedback.correct
-                            : isWrongSelected
-                              ? answerFeedback.incorrect
-                              : "soft-row text-muted-foreground",
-                        studyMode && isAnswerRevealed && "cursor-default"
-                      )}
-                    >
-                      <RadioGroupItem
-                        value={index.toString()}
-                        id={`option-${index}`}
-                        disabled={studyMode && isAnswerRevealed}
-                      />
-                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
-                        {String.fromCharCode(65 + index)}
-                      </span>
-                      <span className="exam-option">
-                        <FormatMathText>{option}</FormatMathText>
-                        {isCorrectOpt && " ✓"}
-                        {isWrongSelected && " (your pick)"}
-                      </span>
-                    </Label>
-                  </div>
-                );
-              })}
-            </RadioGroup>
-          )}
-
-          {studyMode && isAnswerRevealed && (
-            <div
-              ref={studyFeedbackRef}
-              className="scroll-mt-[calc(var(--shell-header-height)+0.75rem)]"
-            >
-              <StudyAnswerPanel
-                question={current}
-                answer={currentAnswer}
-                className="mt-4"
-              />
-            </div>
-          )}
-        </BentoCard>
+          {questionCard}
         </div>
 
         {showQuestionNav && (

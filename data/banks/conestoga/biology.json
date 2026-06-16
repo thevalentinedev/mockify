@@ -91,72 +91,9 @@
     "schoolContext": "Conestoga College pre-assessment biology appears to be a short, multiple-choice placement-style test focused on foundational high school biology concepts. The sample questions emphasize factual recall, basic vocabulary, and simple understanding of human anatomy, cells, and biomolecules rather than application or lab-based reasoning.",
     "lastEnrichedAt": "2026-06-09T15:11:59.838Z",
     "lastGeneratedAt": "2026-06-16T03:23:44.279Z",
-    "lastExamBuiltAt": "2026-06-15T23:13:06.721Z",
+    "totalGenerated": 19,
+    "examStarts": 5,
     "recentExamSets": [
-      [
-        "biol-gen-030",
-        "biol-001",
-        "biol-gen-024",
-        "biol-gen-028",
-        "biol-010",
-        "biol-gen-022",
-        "biol-gen-017",
-        "biol-gen-027",
-        "biol-gen-019",
-        "biol-gen-029",
-        "biol-006",
-        "biol-gen-016",
-        "biol-gen-030",
-        "biol-008",
-        "biol-014",
-        "biol-gen-018",
-        "biol-012",
-        "biol-013",
-        "biol-003",
-        "biol-007",
-        "biol-015",
-        "biol-gen-023",
-        "biol-009",
-        "biol-005",
-        "biol-gen-020",
-        "biol-gen-021",
-        "biol-011",
-        "biol-002",
-        "biol-004",
-        "biol-gen-025"
-      ],
-      [
-        "biol-gen-020",
-        "biol-gen-016",
-        "biol-gen-022",
-        "biol-005",
-        "biol-001",
-        "biol-003",
-        "biol-gen-021",
-        "biol-gen-027",
-        "biol-013",
-        "biol-gen-028",
-        "biol-gen-025",
-        "biol-002",
-        "biol-010",
-        "biol-gen-018",
-        "biol-gen-023",
-        "biol-gen-017",
-        "biol-014",
-        "biol-012",
-        "biol-006",
-        "biol-gen-030",
-        "biol-007",
-        "biol-gen-029",
-        "biol-011",
-        "biol-gen-019",
-        "biol-009",
-        "biol-015",
-        "biol-008",
-        "biol-gen-030",
-        "biol-004",
-        "biol-gen-024"
-      ],
       [
         "biol-003",
         "biol-006",
@@ -178,10 +115,53 @@
         "biol-002",
         "biol-gen-025",
         "biol-015"
+      ],
+      [
+        "biol-gen-016",
+        "biol-gen-025",
+        "biol-005",
+        "biol-gen-030",
+        "biol-015",
+        "biol-004",
+        "biol-gen-022",
+        "biol-gen-029",
+        "biol-002",
+        "biol-gen-030",
+        "biol-gen-019",
+        "biol-009",
+        "biol-007",
+        "biol-gen-030",
+        "biol-003",
+        "biol-011",
+        "biol-014",
+        "biol-gen-020",
+        "biol-gen-021",
+        "biol-gen-024"
+      ],
+      [
+        "biol-gen-025",
+        "biol-009",
+        "biol-gen-021",
+        "biol-gen-030",
+        "biol-001",
+        "biol-gen-018",
+        "biol-gen-022",
+        "biol-002",
+        "biol-003",
+        "biol-008",
+        "biol-015",
+        "biol-gen-030",
+        "biol-014",
+        "biol-gen-030",
+        "biol-gen-016",
+        "biol-gen-023",
+        "biol-gen-029",
+        "biol-007",
+        "biol-gen-024",
+        "biol-gen-017"
       ]
     ],
-    "totalGenerated": 19,
-    "examStarts": 4
+    "lastExamBuiltAt": "2026-06-16T03:24:07.578Z"
   },
   "config": {
     "questionCount": 30,
@@ -1599,6 +1579,22 @@
     },
     {
       "id": "biol-gen-030",
+      "meta": {
+        "tags": [
+          "cell organelles",
+          "protein synthesis",
+          "ribosomes"
+        ],
+        "source": "generated",
+        "topics": [
+          "Cell organelles and protein synthesis",
+          "Protein structure and enzymes"
+        ],
+        "difficulty": 1,
+        "verifiedAt": "2026-06-16T03:23:41.348Z",
+        "answerConfidence": "high",
+        "learningObjective": "Recognize ribosomes as the site of protein synthesis."
+      },
       "text": "The sites of protein synthesis in a cell are the:",
       "options": [
         "A. Golgi apparatus",
@@ -1606,24 +1602,6 @@
         "C. mitochondria",
         "D. lysosomes"
       ],
-      "meta": {
-        "topics": [
-          "Cell organelles and protein synthesis",
-          "Protein structure and enzymes"
-        ],
-        "source": "generated",
-        "tags": [
-          "cell organelles",
-          "protein synthesis",
-          "ribosomes"
-        ],
-        "learningObjective": "Recognize ribosomes as the site of protein synthesis.",
-        "difficulty": 1,
-        "verifiedAt": "2026-06-16T03:23:41.348Z",
-        "answerConfidence": "high"
-      },
-      "questionType": "multiple_choice",
-      "explanation": "Ribosomes are the cell structures that assemble amino acids into proteins. They can be found free in the cytoplasm or attached to the rough endoplasmic reticulum.",
       "solution": {
         "steps": [
           "Protein synthesis happens at ribosomes.",
@@ -1646,15 +1624,34 @@
           "reason": "Lysosomes digest materials inside the cell, but they do not make proteins."
         }
       ],
+      "explanation": "Ribosomes are the cell structures that assemble amino acids into proteins. They can be found free in the cytoplasm or attached to the rough endoplasmic reticulum.",
+      "correctIndex": 1,
+      "questionType": "multiple_choice",
       "wrongAnswerHints": {
         "0": "The Golgi apparatus modifies and packages proteins after they are made, but it does not synthesize them.",
         "2": "Mitochondria release energy through cellular respiration; they are not the main sites of protein synthesis.",
         "3": "Lysosomes digest materials inside the cell, but they do not make proteins."
-      },
-      "correctIndex": 1
+      }
     },
     {
       "id": "biol-gen-030",
+      "meta": {
+        "tags": [
+          "circulatory-system",
+          "heart",
+          "anatomy",
+          "blood-flow"
+        ],
+        "source": "generated",
+        "topics": [
+          "Human circulatory system and heart anatomy",
+          "Pressure and movement of blood"
+        ],
+        "difficulty": 1,
+        "verifiedAt": "2026-06-16T03:23:44.279Z",
+        "answerConfidence": "high",
+        "learningObjective": "Identify the chamber of the heart that pumps blood to the body."
+      },
       "text": "Blood is pumped from the left ventricle into the:",
       "options": [
         "right atrium",
@@ -1662,25 +1659,6 @@
         "left atrium",
         "pulmonary artery"
       ],
-      "meta": {
-        "topics": [
-          "Human circulatory system and heart anatomy",
-          "Pressure and movement of blood"
-        ],
-        "source": "generated",
-        "tags": [
-          "circulatory-system",
-          "heart",
-          "anatomy",
-          "blood-flow"
-        ],
-        "learningObjective": "Identify the chamber of the heart that pumps blood to the body.",
-        "difficulty": 1,
-        "verifiedAt": "2026-06-16T03:23:44.279Z",
-        "answerConfidence": "high"
-      },
-      "questionType": "multiple_choice",
-      "explanation": "The left ventricle is the main pumping chamber that sends oxygen-rich blood out through the aorta to the body.",
       "solution": {
         "steps": [
           "Identify which chamber has the thickest wall for pumping blood to the body.",
@@ -1703,8 +1681,10 @@
           "reason": "The right ventricle pumps blood to the lungs, not to the body."
         }
       ],
-      "wrongAnswerHints": {},
-      "correctIndex": 1
+      "explanation": "The left ventricle is the main pumping chamber that sends oxygen-rich blood out through the aorta to the body.",
+      "correctIndex": 1,
+      "questionType": "multiple_choice",
+      "wrongAnswerHints": {}
     }
   ],
   "subjectId": "biology"

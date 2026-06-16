@@ -3,39 +3,24 @@ import { generateText, Output } from "ai";
 import { z } from "zod";
 import {
   ENRICHMENT_PROMPT_RULES,
+  CONTEXT_ENRICHMENT_RULES,
   aiGeneratedQuestionSchema,
   applyAiGeneratedQuestion,
 } from "@/lib/ai/question-schema";
 import { AI_MODEL } from "@/lib/ai/model";
+import {
+  aiContextSchema,
+  mergeAiContexts,
+  resolveAiContextId,
+} from "@/lib/ai/context-storage";
 import { mergeQuestions } from "@/lib/ai/merge-questions";
 import { isTextGradedQuestion } from "@/lib/question-type";
-import type { Question, QuestionBank, QuestionContext } from "@/types/exam";
-
-const contextSchema = z.object({
-  id: z.string(),
-  type: z.enum(["passage", "comprehension", "graph", "table", "diagram", "image"]),
-  title: z.string().nullable(),
-  content: z.string(),
-});
+import type { Question, QuestionBank } from "@/types/exam";
 
 const generateSchema = z.object({
-  contexts: z.array(contextSchema).nullable(),
+  contexts: z.array(aiContextSchema).nullable(),
   questions: z.array(aiGeneratedQuestionSchema),
 });
-
-function nextUniqueContextKey(
-  existing: Record<string, QuestionContext>,
-  startId: number,
-  index: number
-): string {
-  let key = `gen-ctx-${startId}-${index}`;
-  let suffix = 0;
-  while (existing[key]) {
-    suffix++;
-    key = `gen-ctx-${startId}-${index}-${suffix}`;
-  }
-  return key;
-}
 
 function formatContextLinkedSamples(bank: QuestionBank): string {
   if (!bank.contexts || Object.keys(bank.contexts).length === 0) {
@@ -90,6 +75,7 @@ export async function generatePracticeQuestions(
     .join(", ");
 
   const numericHeavy = bank.subjectId === "maths";
+  const readingHeavy = bank.subjectId === "english";
 
   const { output } = await generateText({
     model: openai(AI_MODEL),
@@ -107,10 +93,12 @@ ${contextSamples ? `\nContext-linked examples:\n\n${contextSamples}\n` : ""}
 
 Rules:
 - ${numericHeavy ? "For maths: prefer questionType numeric with answer, acceptedAnswers, and solution.steps. Only use multiple_choice when the source style requires A/B/C/D from a figure." : "Use multiple_choice with exactly 4 options unless the subject clearly needs short numeric answers."}
+- ${readingHeavy ? "For English: include reading comprehension — about one third of questions should share a passage or notice in contexts[] with contextId links. Standalone grammar/vocabulary questions do not need a context." : "Shared passages/graphs go in contexts[] with contextId on questions."}
 - Questions must be original, not paraphrases of samples
 - Include solution.steps, distractors (for MCQ), learningObjective, and tags
-- Shared passages/graphs go in contexts[] with contextId on questions
 - Only return answerConfidence "high" when fully certain — medium/low questions are discarded
+
+${CONTEXT_ENRICHMENT_RULES}
 
 ${ENRICHMENT_PROMPT_RULES}`,
   });
@@ -122,29 +110,17 @@ ${ENRICHMENT_PROMPT_RULES}`,
   const prefix = bank.subjectId.slice(0, 4);
   const startId = bank.questions.length + 1;
 
-  const existingContexts: Record<string, QuestionContext> = {
-    ...bank.contexts,
-  };
-  const contextIdMap = new Map<string, string>();
-
-  for (const [i, ctx] of (output.contexts ?? []).entries()) {
-    const uniqueKey = nextUniqueContextKey(existingContexts, startId, i);
-    contextIdMap.set(ctx.id, uniqueKey);
-    existingContexts[uniqueKey] = {
-      id: uniqueKey,
-      type: ctx.type,
-      title: ctx.title ?? undefined,
-      content: ctx.content,
-    };
-  }
+  const { contexts: existingContexts, idMap: contextIdMap } = mergeAiContexts(
+    bank.contexts,
+    output.contexts,
+    `${prefix}-gen-${startId}`
+  );
 
   const newQuestions: Question[] = [];
 
   for (const [i, q] of output.questions.entries()) {
     const id = `${prefix}-gen-${String(startId + i).padStart(3, "0")}`;
-    const remappedContextId = q.contextId
-      ? (contextIdMap.get(q.contextId) ?? q.contextId)
-      : undefined;
+    const remappedContextId = resolveAiContextId(q.contextId, contextIdMap);
 
     const applied = applyAiGeneratedQuestion(
       {

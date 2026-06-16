@@ -12,6 +12,17 @@ export function looksContextDependent(question: Question): boolean {
   return PASSAGE_DEPENDENT_TEXT.test(question.text ?? "");
 }
 
+export function getContextOrphanQuestions(
+  questions: Question[],
+  contexts?: Record<string, QuestionContext>
+): Question[] {
+  return questions.filter(
+    (question) =>
+      looksContextDependent(question) &&
+      !resolveQuestionContext(question, contexts)
+  );
+}
+
 const LABELS: Record<QuestionContextType, string> = {
   passage: "Reading passage",
   comprehension: "Comprehension",

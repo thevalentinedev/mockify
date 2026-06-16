@@ -15,7 +15,11 @@ import {
   isQuestionEnriched,
 } from "@/lib/question-enrichment";
 import { isTextGradedQuestion } from "@/lib/question-type";
-import { looksContextDependent, resolveQuestionContext } from "@/lib/question-context";
+import {
+  getContextOrphanQuestions,
+  looksContextDependent,
+  resolveQuestionContext,
+} from "@/lib/question-context";
 import type { BankMeta, Question, QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
 const CHUNK_SIZE = 6;
@@ -138,6 +142,55 @@ ${JSON.stringify(payload, null, 2)}`,
   return output;
 }
 
+async function healContextOrphans(
+  bank: QuestionBank,
+  meta: BankMeta
+): Promise<QuestionBank> {
+  const orphans = getContextOrphanQuestions(bank.questions, bank.contexts);
+  if (orphans.length === 0) return bank;
+
+  let bankContexts = { ...bank.contexts };
+  const healedById = new Map<string, Question>();
+
+  for (let i = 0; i < orphans.length; i += CHUNK_SIZE) {
+    const chunk = orphans.slice(i, i + CHUNK_SIZE);
+    const chunkOutput = await enrichQuestionChunk(
+      chunk,
+      bank.schoolId,
+      bank.subjectId,
+      meta.topicsCovered,
+      bankContexts
+    );
+    const { contexts: mergedContexts, idMap } = mergeAiContexts(
+      bankContexts,
+      chunkOutput.contexts,
+      `heal-${chunk[0]?.id ?? i}`
+    );
+    bankContexts = mergedContexts;
+
+    for (const original of chunk) {
+      const enriched = chunkOutput.questions.find((r) => r.id === original.id);
+      if (!enriched) continue;
+      const applied = applyAiEnrichment(original, enriched, {
+        resolvedContextId: resolveAiContextId(enriched.contextId, idMap),
+      });
+      if (applied?.contextId && bankContexts[applied.contextId]) {
+        healedById.set(original.id, applied);
+      }
+    }
+  }
+
+  if (healedById.size === 0) return bank;
+
+  return {
+    ...bank,
+    contexts: bankContexts,
+    questions: bank.questions.map(
+      (question) => healedById.get(question.id) ?? question
+    ),
+  };
+}
+
 export interface EnrichQuestionBankResult {
   bank: QuestionBank;
   enrichedCount: number;
@@ -147,6 +200,8 @@ export interface EnrichQuestionBankResult {
 
 export interface EnrichOptions {
   force?: boolean;
+  /** Backfill passages/figures for context-dependent questions missing contextId */
+  healContexts?: boolean;
   onProgress?: (bank: QuestionBank) => void | Promise<void>;
 }
 
@@ -258,11 +313,17 @@ export async function enrichQuestionBankDetailed(
   const pruned = pruneIneligibleQuestions(questions);
   removedCount += pruned.removed.length;
 
+  const healContexts = options?.healContexts ?? true;
+  const healedBank = healContexts
+    ? await healContextOrphans(
+        { ...bank, questions: pruned.kept, contexts: bankContexts },
+        meta
+      )
+    : { ...bank, questions: pruned.kept, contexts: bankContexts };
+
   return {
     bank: {
-      ...bank,
-      questions: pruned.kept,
-      contexts: bankContexts,
+      ...healedBank,
       meta: {
         ...meta,
         lastEnrichedAt: new Date().toISOString(),
