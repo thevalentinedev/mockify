@@ -1,3 +1,15 @@
+import { isTextGradedQuestion } from "@/lib/answer-grader";
+import {
+  filterMathsPoolForProgram,
+  getMathsProgramLimit,
+  getMathsScaledTimeLimit,
+  resolveMathsQuestionCount,
+  usesSequentialMathsOrder,
+} from "@/lib/maths-program";
+import { filterExamEligibleQuestions } from "@/lib/question-eligibility";
+import { collectStudyTopics, filterQuestionsByStudyTopics } from "@/lib/question-topics";
+import { getLearningObjective, getTopicLabel } from "@/lib/learning-objective";
+import { getQuestionTags } from "@/lib/tags";
 import { getQuestionBank, saveQuestionBank } from "@/lib/bank-loader";
 import { ensureContextImagesPersisted } from "@/lib/blob-assets";
 import {
@@ -14,6 +26,7 @@ import type {
   ExamCustomOptions,
   ExamMode,
   ExamSession,
+  Question,
   SchoolId,
   ShuffledQuestion,
   SubjectCustomOptions,
@@ -42,6 +55,73 @@ function resolveCustomForSubject(
   return undefined;
 }
 
+function resolveSubjectQuestionPool(
+  schoolId: SchoolId,
+  subjectId: SubjectId,
+  questions: Question[],
+  options?: ExamBuildOptions
+) {
+  if (
+    schoolId === "conestoga" &&
+    subjectId === "maths" &&
+    options?.mathsProgram
+  ) {
+    return filterMathsPoolForProgram(questions, options.mathsProgram);
+  }
+  return questions;
+}
+
+function resolveSubjectExamCount(
+  schoolId: SchoolId,
+  subjectId: SubjectId,
+  mode: ExamMode,
+  baseSpec: { questionCount: number; timeLimitMinutes: number },
+  customForSubject: SubjectCustomOptions | undefined,
+  options?: ExamBuildOptions
+): number {
+  if (
+    schoolId === "conestoga" &&
+    subjectId === "maths" &&
+    options?.mathsProgram
+  ) {
+    return resolveMathsQuestionCount(
+      mode,
+      options.mathsProgram,
+      baseSpec.questionCount,
+      customForSubject?.questionCount
+    );
+  }
+
+  return getModeQuestionCount(mode, baseSpec, {
+    customQuestionCount: customForSubject?.questionCount,
+  });
+}
+
+function resolveSubjectTimeLimit(
+  schoolId: SchoolId,
+  subjectId: SubjectId,
+  mode: ExamMode,
+  baseSpec: { questionCount: number; timeLimitMinutes: number },
+  customForSubject: SubjectCustomOptions | undefined,
+  options?: ExamBuildOptions
+): number | null {
+  if (
+    mode === "mock" &&
+    schoolId === "conestoga" &&
+    subjectId === "maths" &&
+    options?.mathsProgram
+  ) {
+    return getMathsScaledTimeLimit(
+      options.mathsProgram,
+      baseSpec.timeLimitMinutes
+    );
+  }
+
+  return getModeTimeLimitMinutes(mode, baseSpec, {
+    customTimeLimitMinutes: customForSubject?.timeLimitMinutes,
+  });
+}
+
 export async function buildExamSession(
   schoolId: SchoolId,
   subjects: SubjectId[],
@@ -66,21 +146,42 @@ export async function buildExamSession(
     const baseSpec = spec ?? bank.config;
     const customForSubject = resolveCustomForSubject(subjectId, options);
 
-    const examCount = getModeQuestionCount(mode, baseSpec, {
-      customQuestionCount: customForSubject?.questionCount,
-    });
+    const examCount = resolveSubjectExamCount(
+      schoolId,
+      subjectId,
+      mode,
+      baseSpec,
+      customForSubject,
+      options
+    );
+
+    let pool = filterExamEligibleQuestions(
+      resolveSubjectQuestionPool(
+        schoolId,
+        subjectId,
+        bank.questions,
+        options
+      )
+    );
+
+    const studyTopics = options?.studyTopicsBySubject?.[subjectId];
+    if (mode === "study" && studyTopics?.length) {
+      pool = filterQuestionsByStudyTopics(pool, studyTopics);
+    }
 
     const sectionQuestions: ShuffledQuestion[] = [];
 
-    const selected = selectQuestionsWithBias(
-      bank.questions,
-      Math.min(examCount, bank.questions.length),
-      {
-        recentSets: bank.meta?.recentExamSets ?? [],
-        wrongQuestionIds: options?.wrongQuestionIdsBySubject?.[subjectId],
-        focusTopics: options?.focusTopics,
-      }
-    );
+    const takeCount = Math.min(examCount, pool.length);
+    const selected =
+      subjectId === "maths" &&
+      options?.mathsProgram &&
+      usesSequentialMathsOrder(mode)
+        ? pool.slice(0, takeCount)
+        : selectQuestionsWithBias(pool, takeCount, {
+            recentSets: bank.meta?.recentExamSets ?? [],
+            wrongQuestionIds: options?.wrongQuestionIdsBySubject?.[subjectId],
+            focusTopics: options?.focusTopics,
+          });
 
     bank = recordExamQuestionUsage(
       bank,
@@ -89,9 +190,35 @@ export async function buildExamSession(
     await saveQuestionBank(bank);
 
     for (const question of selected) {
+      const context = resolveQuestionContext(question, bank.contexts);
+      const base: ShuffledQuestion = {
+        id: `${subjectId}-${question.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        originalId: question.id,
+        subjectId,
+        text: question.text,
+        explanation: question.explanation,
+        solution: question.solution,
+        topic: getTopicLabel(question),
+        learningObjective: getLearningObjective(question),
+        tags: getQuestionTags(question),
+        answerConfidence: question.meta?.answerConfidence,
+        context,
+        contextKey: context ? getContextKey(context, question.id) : undefined,
+      };
+
+      if (isTextGradedQuestion(question)) {
+        sectionQuestions.push({
+          ...base,
+          questionType: "numeric",
+          answer: question.answer,
+          acceptedAnswers: question.acceptedAnswers,
+        });
+        continue;
+      }
+
       const shuffledOptions = shuffleQuestionOptions(
-        question.options,
-        question.correctIndex
+        question.options ?? [],
+        question.correctIndex ?? 0
       );
 
       const wrongHints = question.wrongAnswerHints
@@ -102,20 +229,13 @@ export async function buildExamSession(
           )
         : undefined;
 
-      const context = resolveQuestionContext(question, bank.contexts);
       sectionQuestions.push({
-        id: `${subjectId}-${question.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-        originalId: question.id,
-        subjectId,
-        text: question.text,
+        ...base,
+        questionType: "multiple_choice",
         options: shuffledOptions.options,
         correctIndex: shuffledOptions.correctIndex,
-        explanation: question.explanation,
         wrongAnswerHints: wrongHints,
-        topic: question.meta?.topics?.[0],
-        answerConfidence: question.meta?.answerConfidence,
-        context,
-        contextKey: context ? getContextKey(context, question.id) : undefined,
+        distractors: question.distractors,
       });
     }
 
@@ -124,9 +244,14 @@ export async function buildExamSession(
     sections.push({
       subjectId,
       questions: sectionQuestions,
-      timeLimitMinutes: getModeTimeLimitMinutes(mode, baseSpec, {
-        customTimeLimitMinutes: customForSubject?.timeLimitMinutes,
-      }),
+      timeLimitMinutes: resolveSubjectTimeLimit(
+        schoolId,
+        subjectId,
+        mode,
+        baseSpec,
+        customForSubject,
+        options
+      ),
       startedAt: sections.length === 0 ? startedAt : 0,
     });
   }
@@ -141,6 +266,11 @@ export async function buildExamSession(
     startedAt,
     ...(customOptions ? { customOptions } : {}),
     ...(options?.focusTopics?.length ? { focusTopics: options.focusTopics } : {}),
+    ...(options?.studyTopicsBySubject &&
+    Object.keys(options.studyTopicsBySubject).length > 0
+      ? { studyTopicsBySubject: options.studyTopicsBySubject }
+      : {}),
+    ...(options?.mathsProgram ? { mathsProgram: options.mathsProgram } : {}),
   };
 }
 
@@ -160,16 +290,43 @@ export async function getSessionStats(
     const baseSpec = spec ?? bank?.config ?? { questionCount: 0, timeLimitMinutes: 0 };
     const customForSubject = resolveCustomForSubject(subjectId, options);
 
-    const examCount = getModeQuestionCount(mode, baseSpec, {
-      customQuestionCount: customForSubject?.questionCount,
-    });
-    const effectiveCount = Math.min(examCount, bank?.questions.length ?? 0);
+    const examCount = resolveSubjectExamCount(
+      schoolId,
+      subjectId,
+      mode,
+      baseSpec,
+      customForSubject,
+      options
+    );
+    let pool = filterExamEligibleQuestions(
+      resolveSubjectQuestionPool(
+        schoolId,
+        subjectId,
+        bank?.questions ?? [],
+        options
+      )
+    );
+    const topics = collectStudyTopics(pool);
+    const totalPoolSize = pool.length;
+    const studyTopics = options?.studyTopicsBySubject?.[subjectId];
+    if (mode === "study" && studyTopics?.length) {
+      pool = filterQuestionsByStudyTopics(pool, studyTopics);
+    }
+    const effectiveCount = Math.min(examCount, pool.length);
     const timeLimit =
-      getModeTimeLimitMinutes(mode, baseSpec, {
-        customTimeLimitMinutes: customForSubject?.timeLimitMinutes,
-      }) ?? 0;
-    const poolSize = bank?.questions.length ?? 0;
-    const maxQuestions = Math.min(poolSize, baseSpec.questionCount);
+      resolveSubjectTimeLimit(
+        schoolId,
+        subjectId,
+        mode,
+        baseSpec,
+        customForSubject,
+        options
+      ) ?? 0;
+    const poolSize = pool.length;
+    const maxQuestions =
+      subjectId === "maths" && options?.mathsProgram
+        ? Math.min(poolSize, getMathsProgramLimit(options.mathsProgram))
+        : Math.min(poolSize, baseSpec.questionCount);
 
     totalQuestions += effectiveCount;
     totalTimeMinutes += timeLimit;
@@ -179,6 +336,9 @@ export async function getSessionStats(
       requestedCount: examCount,
       maxQuestions,
       poolSize,
+      totalPoolSize,
+      topics,
+      studyTopics: studyTopics?.length ? studyTopics : null,
       timeLimitMinutes: timeLimit,
       ready: poolSize > 0,
       poolComplete: poolSize >= examCount,

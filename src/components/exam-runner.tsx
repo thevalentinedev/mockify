@@ -13,6 +13,7 @@ import { KeyboardHints } from "@/components/keyboard-hints";
 import { BentoCard } from "@/components/bento-card";
 import { SubjectPills } from "@/components/subject-pills";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { QuestionContextCard } from "@/components/question-context-card";
@@ -20,6 +21,11 @@ import { ConfidenceBadge } from "@/components/confidence-badge";
 import { StudyAnswerPanel } from "@/components/study-answer-panel";
 import { useExamKeyboard } from "@/hooks/use-exam-keyboard";
 import { FormatMathText } from "@/lib/format-math-text";
+import {
+  hasAnsweredQuestion,
+  isAnswerCorrect,
+  isTextGradedQuestion,
+} from "@/lib/answer-grader";
 import { recordExamResult } from "@/lib/learning-history";
 import { useIsClient } from "@/hooks/use-is-client";
 import { isStudyMode, SUBJECTS } from "@/lib/exam-config";
@@ -49,6 +55,7 @@ import { Home, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import { softRow } from "@/lib/surface";
 
 interface ExamRunnerProps {
   session: ExamSession;
@@ -271,9 +278,10 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
   const progressPct = current
     ? ((currentIndex + 1) / questions.length) * 100
     : 0;
-  const answeredCount = questions.filter((q) =>
-    answers.some((a) => a.questionId === q.id && a.selectedIndex !== null)
-  ).length;
+  const answeredCount = questions.filter((q) => {
+    const answer = answers.find((a) => a.questionId === q.id);
+    return hasAnsweredQuestion(q, answer);
+  }).length;
   const subject = section
     ? SUBJECTS.find((s) => s.id === section.subjectId)
     : undefined;
@@ -282,9 +290,11 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
     ? progress.flaggedQuestionIds.includes(current.id)
     : false;
 
-  const hasSelectedAnswer =
-    currentAnswer?.selectedIndex !== null &&
-    currentAnswer?.selectedIndex !== undefined;
+  const isTextInput = current ? isTextGradedQuestion(current) : false;
+
+  const hasSelectedAnswer = current
+    ? hasAnsweredQuestion(current, currentAnswer)
+    : false;
 
   const isAnswerRevealed =
     studyMode && current ? revealedQuestionIds.includes(current.id) : false;
@@ -348,14 +358,37 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             a.questionId === current.id ? { ...a, selectedIndex: index } : a
           );
         }
-        return [...answers, { questionId: current.id, selectedIndex: index }];
+        return [
+          ...answers,
+          { questionId: current.id, selectedIndex: index, textAnswer: null },
+        ];
+      })(),
+    });
+  }
+
+  function setTextAnswer(value: string) {
+    if (!current || (studyMode && isAnswerRevealed)) return;
+    persistProgress({
+      answers: (() => {
+        const existing = answers.find((a) => a.questionId === current.id);
+        if (existing) {
+          return answers.map((a) =>
+            a.questionId === current.id
+              ? { ...a, textAnswer: value, selectedIndex: null }
+              : a
+          );
+        }
+        return [
+          ...answers,
+          { questionId: current.id, selectedIndex: null, textAnswer: value },
+        ];
       })(),
     });
   }
 
   useExamKeyboard({
     enabled: Boolean(current && !showReview && !submitted),
-    optionCount: current?.options.length ?? 0,
+    optionCount: isTextInput ? 0 : (current?.options?.length ?? 0),
     hasSelectedAnswer,
     awaitingReveal,
     onSelectOption: selectAnswer,
@@ -534,14 +567,20 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
         <div className="mx-auto w-full max-w-3xl flex-1 exam-content-pad space-y-4">
           <KeyboardHints
             hints={
-              studyMode
+              studyMode && !isTextInput
                 ? [
                     { keys: "1–4", label: "answer" },
                     { keys: "Enter", label: "see answer / next" },
                     { keys: "P", label: "prev" },
                     { keys: "F", label: "flag" },
                   ]
-                : undefined
+                : studyMode
+                  ? [
+                      { keys: "Enter", label: "see answer / next" },
+                      { keys: "P", label: "prev" },
+                      { keys: "F", label: "flag" },
+                    ]
+                  : undefined
             }
           />
 
@@ -571,57 +610,95 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
             </h2>
           </div>
 
-          <RadioGroup
-            value={currentAnswer?.selectedIndex?.toString() ?? ""}
-            onValueChange={(val) => selectAnswer(parseInt(val, 10))}
-            className="exam-density-options"
-            disabled={studyMode && isAnswerRevealed}
-          >
-            {current.options.map((option, index) => {
-              const isSelected = currentAnswer?.selectedIndex === index;
-              const isCorrectOpt =
-                studyMode && isAnswerRevealed && current.correctIndex === index;
-              const isWrongSelected =
-                studyMode && isAnswerRevealed && isSelected && !isCorrectOpt;
+          {isTextInput ? (
+            <div className="space-y-2">
+              <Label htmlFor="numeric-answer" className="exam-label">
+                Your answer
+              </Label>
+              <Input
+                id="numeric-answer"
+                type="text"
+                inputMode="text"
+                autoComplete="off"
+                spellCheck={false}
+                value={currentAnswer?.textAnswer ?? ""}
+                onChange={(event) => setTextAnswer(event.target.value)}
+                disabled={studyMode && isAnswerRevealed}
+                className={cn(
+                  "exam-density-option text-base",
+                  studyMode &&
+                    isAnswerRevealed &&
+                    (isAnswerCorrect(current, currentAnswer)
+                      ? "border-emerald-500/40 bg-emerald-500/10"
+                      : "border-red-500/40 bg-red-500/10")
+                )}
+                placeholder="Enter your answer"
+              />
+              {studyMode && isAnswerRevealed && (
+                <p
+                  className={cn(
+                    "text-sm",
+                    isAnswerCorrect(current, currentAnswer)
+                      ? "text-emerald-700 dark:text-emerald-400"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  Correct answer:{" "}
+                  <FormatMathText>{current.answer ?? ""}</FormatMathText>
+                </p>
+              )}
+            </div>
+          ) : (
+            <RadioGroup
+              value={currentAnswer?.selectedIndex?.toString() ?? ""}
+              onValueChange={(val) => selectAnswer(parseInt(val, 10))}
+              className="exam-density-options"
+              disabled={studyMode && isAnswerRevealed}
+            >
+              {(current.options ?? []).map((option, index) => {
+                const isSelected = currentAnswer?.selectedIndex === index;
+                const isCorrectOpt =
+                  studyMode &&
+                  isAnswerRevealed &&
+                  current.correctIndex === index;
+                const isWrongSelected =
+                  studyMode && isAnswerRevealed && isSelected && !isCorrectOpt;
 
-              return (
-                <div key={index}>
-                  <Label
-                    htmlFor={`option-${index}`}
-                    className={cn(
-                      "exam-density-option flex items-center gap-3 rounded-xl border motion-safe:transition-all",
-                      studyMode && isAnswerRevealed
-                        ? "cursor-default"
-                        : "cursor-pointer hover:bg-muted/50",
-                      !studyMode || !isAnswerRevealed
-                        ? isSelected
-                          ? "border-primary bg-primary/5 ring-1 ring-primary/20"
-                          : "border-border"
-                        : isCorrectOpt
-                          ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                          : isWrongSelected
-                            ? "border-red-500/40 bg-red-500/10 text-red-700 dark:text-red-400"
-                            : "border-border text-muted-foreground"
-                    )}
-                  >
-                    <RadioGroupItem
-                      value={index.toString()}
-                      id={`option-${index}`}
-                      disabled={studyMode && isAnswerRevealed}
-                    />
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
-                      {String.fromCharCode(65 + index)}
-                    </span>
-                    <span className="exam-option">
-                      <FormatMathText>{option}</FormatMathText>
-                      {isCorrectOpt && " ✓"}
-                      {isWrongSelected && " (your answer)"}
-                    </span>
-                  </Label>
-                </div>
-              );
-            })}
-          </RadioGroup>
+                return (
+                  <div key={index}>
+                    <Label
+                      htmlFor={`option-${index}`}
+                      className={cn(
+                        "exam-density-option flex items-center gap-3 motion-safe:transition-all",
+                        !studyMode || !isAnswerRevealed
+                          ? softRow(isSelected)
+                          : isCorrectOpt
+                            ? "rounded-[var(--radius-surface)] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                            : isWrongSelected
+                              ? "rounded-[var(--radius-surface)] bg-red-500/10 text-red-700 dark:text-red-400"
+                              : "soft-row text-muted-foreground",
+                        studyMode && isAnswerRevealed && "cursor-default"
+                      )}
+                    >
+                      <RadioGroupItem
+                        value={index.toString()}
+                        id={`option-${index}`}
+                        disabled={studyMode && isAnswerRevealed}
+                      />
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-sm font-semibold">
+                        {String.fromCharCode(65 + index)}
+                      </span>
+                      <span className="exam-option">
+                        <FormatMathText>{option}</FormatMathText>
+                        {isCorrectOpt && " ✓"}
+                        {isWrongSelected && " (your answer)"}
+                      </span>
+                    </Label>
+                  </div>
+                );
+              })}
+            </RadioGroup>
+          )}
 
           {studyMode && isAnswerRevealed && (
             <StudyAnswerPanel

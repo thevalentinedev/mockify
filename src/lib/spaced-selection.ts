@@ -1,4 +1,5 @@
 import { shuffle } from "@/lib/shuffle";
+import { matchesFocusTarget } from "@/lib/learning-objective";
 import type { Question } from "@/types/exam";
 
 interface SelectOptions {
@@ -24,7 +25,7 @@ export function selectQuestionsWithBias(
     (q) =>
       recentIds.has(q.id) &&
       (wrongIds.has(q.id) ||
-        (q.meta?.topics?.[0] && focusTopics.has(q.meta.topics[0])))
+        [...focusTopics].some((focus) => matchesFocusTarget(q, focus)))
   );
   const stale = pool.filter(
     (q) => recentIds.has(q.id) && !weak.includes(q)

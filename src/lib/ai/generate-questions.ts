@@ -1,8 +1,14 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText, Output } from "ai";
 import { z } from "zod";
+import {
+  ENRICHMENT_PROMPT_RULES,
+  aiGeneratedQuestionSchema,
+  applyAiGeneratedQuestion,
+} from "@/lib/ai/question-schema";
 import { AI_MODEL } from "@/lib/ai/model";
 import { mergeQuestions } from "@/lib/ai/merge-questions";
+import { isTextGradedQuestion } from "@/lib/question-type";
 import type { Question, QuestionBank, QuestionContext } from "@/types/exam";
 
 const contextSchema = z.object({
@@ -10,6 +16,11 @@ const contextSchema = z.object({
   type: z.enum(["passage", "comprehension", "graph", "table", "diagram", "image"]),
   title: z.string().nullable(),
   content: z.string(),
+});
+
+const generateSchema = z.object({
+  contexts: z.array(contextSchema).nullable(),
+  questions: z.array(aiGeneratedQuestionSchema),
 });
 
 function nextUniqueContextKey(
@@ -35,9 +46,7 @@ function formatContextLinkedSamples(bank: QuestionBank): string {
     .filter((q) => q.contextId && bank.contexts?.[q.contextId])
     .slice(0, 2);
 
-  if (linked.length === 0) {
-    return "";
-  }
+  if (linked.length === 0) return "";
 
   return linked
     .map((q) => {
@@ -46,34 +55,14 @@ function formatContextLinkedSamples(bank: QuestionBank): string {
         ctx.content.length > 400
           ? `${ctx.content.slice(0, 400)}…`
           : ctx.content;
+      const numeric = isTextGradedQuestion(q);
       return `Context-linked example (contextId: ${q.contextId}, type: ${ctx.type}):
 Context excerpt: ${preview}
 Q: ${q.text}
-Options: ${q.options.map((o, i) => `${String.fromCharCode(65 + i)}. ${o}`).join(" | ")}`;
+${numeric ? `Answer: ${q.answer}` : `Options: ${(q.options ?? []).map((o, i) => `${String.fromCharCode(65 + i)}. ${o}`).join(" | ")}`}`;
     })
     .join("\n\n");
 }
-
-const generateSchema = z.object({
-  contexts: z.array(contextSchema).nullable(),
-  questions: z.array(
-    z.object({
-      text: z.string(),
-      options: z.array(z.string()).min(4).max(4),
-      correctIndex: z.number().int(),
-      explanation: z.string(),
-      wrongAnswerHints: z.array(
-        z.object({
-          optionIndex: z.number().int(),
-          hint: z.string(),
-        })
-      ),
-      topics: z.array(z.string()),
-      difficulty: z.enum(["easy", "medium", "hard"]),
-      contextId: z.string().nullable(),
-    })
-  ),
-});
 
 export async function generatePracticeQuestions(
   bank: QuestionBank,
@@ -86,41 +75,44 @@ export async function generatePracticeQuestions(
   const samples = bank.questions
     .filter((q) => q.meta?.source !== "generated")
     .slice(0, 6)
-    .map(
-      (q) =>
-        `Q: ${q.text}\nOptions: ${q.options.map((o, i) => `${String.fromCharCode(65 + i)}. ${o}`).join(" | ")}\nTopic: ${q.meta?.topics?.join(", ") ?? "general"}`
-    )
+    .map((q) => {
+      const numeric = isTextGradedQuestion(q);
+      if (numeric) {
+        return `Q: ${q.text}\nType: numeric\nAnswer: ${q.answer}\nTopic: ${q.meta?.topics?.join(", ") ?? "general"}`;
+      }
+      return `Q: ${q.text}\nOptions: ${(q.options ?? []).map((o, i) => `${String.fromCharCode(65 + i)}. ${o}`).join(" | ")}\nTopic: ${q.meta?.topics?.join(", ") ?? "general"}`;
+    })
     .join("\n\n");
 
   const contextSamples = formatContextLinkedSamples(bank);
-
   const topicList = bank.meta.examBlueprint
     .map((t) => `${t.topic} (~${t.weight}% of exam)`)
     .join(", ");
 
+  const numericHeavy = bank.subjectId === "maths";
+
   const { output } = await generateText({
     model: openai(AI_MODEL),
     output: Output.object({ schema: generateSchema }),
-    prompt: `Generate ${count} NEW multiple-choice practice questions for ${bank.schoolId} ${bank.subjectId} pre-assessment.
+    prompt: `Generate ${count} NEW practice questions for ${bank.schoolId} ${bank.subjectId} pre-assessment.
 
 Context: ${bank.meta.schoolContext ?? "College entrance pre-assessment"}
 
 Topics to cover (distribute evenly): ${topicList}
 
-Match the STYLE and DIFFICULTY of these sample questions — samples show what topics appear, not exact wording to copy:
+Match the STYLE and DIFFICULTY of these sample questions:
 
 ${samples}
-${contextSamples ? `\nThese passage/graph-linked examples show how contextId ties questions to shared material:\n\n${contextSamples}\n` : ""}
+${contextSamples ? `\nContext-linked examples:\n\n${contextSamples}\n` : ""}
+
 Rules:
-- Exactly 4 options per question (A-D style content, no letter prefixes)
+- ${numericHeavy ? "For maths: prefer questionType numeric with answer, acceptedAnswers, and solution.steps. Only use multiple_choice when the source style requires A/B/C/D from a figure." : "Use multiple_choice with exactly 4 options unless the subject clearly needs short numeric answers."}
 - Questions must be original, not paraphrases of samples
-- Same academic level as samples
-- Include explanation and wrongAnswerHints for each wrong option
-- Assign topics and difficulty
-- Any question that refers to "the passage", "the story", "the graph", "the table", "the diagram", or similar shared material MUST include the full passage or data in contexts[] and set contextId on that question
-- When multiple questions share one passage or graph, reuse the same contextId across those questions
-- contextId values in your output are logical labels only — they will be remapped when saved; use short unique ids within your response (e.g. ctx-1, ctx-2)
-- Focus on mastery — questions should prepare students to score 100%`,
+- Include solution.steps, distractors (for MCQ), learningObjective, and tags
+- Shared passages/graphs go in contexts[] with contextId on questions
+- Only return answerConfidence "high" when fully certain — medium/low questions are discarded
+
+${ENRICHMENT_PROMPT_RULES}`,
   });
 
   if (!output?.questions.length) {
@@ -146,44 +138,35 @@ Rules:
     };
   }
 
-  const newQuestions: Question[] = output.questions.map((q, i) => {
-    const wrongAnswerHints: Record<string, string> = {};
-    for (const hint of q.wrongAnswerHints) {
-      if (hint.optionIndex !== q.correctIndex) {
-        wrongAnswerHints[String(hint.optionIndex)] = hint.hint;
-      }
-    }
+  const newQuestions: Question[] = [];
 
+  for (const [i, q] of output.questions.entries()) {
+    const id = `${prefix}-gen-${String(startId + i).padStart(3, "0")}`;
     const remappedContextId = q.contextId
       ? (contextIdMap.get(q.contextId) ?? q.contextId)
       : undefined;
 
-    return {
-      id: `${prefix}-gen-${String(startId + i).padStart(3, "0")}`,
-      text: q.text,
-      options: q.options,
-      correctIndex: q.correctIndex,
-      explanation: q.explanation,
-      wrongAnswerHints,
-      contextId: remappedContextId,
-      meta: {
-        topics: q.topics,
-        difficulty: q.difficulty,
-        source: "generated",
-        verifiedAt: new Date().toISOString(),
-        answerConfidence: "high",
+    const applied = applyAiGeneratedQuestion(
+      {
+        id,
+        text: q.text,
+        options: q.options,
+        contextId: remappedContextId,
+        meta: { topics: q.topics, source: "generated" },
       },
-    };
-  });
+      q
+    );
 
-  const mergedContexts = existingContexts;
+    if (applied) newQuestions.push(applied);
+  }
 
   const merged = mergeQuestions(bank.questions, newQuestions);
 
   return {
     ...bank,
     questions: merged,
-    contexts: Object.keys(mergedContexts).length > 0 ? mergedContexts : bank.contexts,
+    contexts:
+      Object.keys(existingContexts).length > 0 ? existingContexts : bank.contexts,
     meta: {
       ...bank.meta,
       topicsCovered: bank.meta.topicsCovered,

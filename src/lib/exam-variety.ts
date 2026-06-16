@@ -6,7 +6,7 @@ export const REFRESH_EVERY_ATTEMPTS = 3;
 /** Re-word / re-scenario existing questions every N starts */
 export const TWIST_EVERY_ATTEMPTS = 5;
 /** Max pool size as multiple of official exam length */
-export const POOL_CAP_MULTIPLIER = 2;
+export const POOL_CAP_MULTIPLIER = 4;
 export const GENERATE_ON_REFRESH = 12;
 export const TWIST_BATCH_SIZE = 8;
 export const RECENT_EXAM_SETS_KEPT = 3;

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
+import { shell, shellSelected } from "@/lib/surface";
 
 interface BentoCardProps {
   children: ReactNode;
@@ -11,6 +12,8 @@ interface BentoCardProps {
   /** Tighter padding — resume banners, dense panels */
   compact?: boolean;
   onClick?: () => void;
+  /** For toggle-style cards (e.g. multi-select subjects) */
+  ariaPressed?: boolean;
 }
 
 export function BentoCard({
@@ -21,6 +24,7 @@ export function BentoCard({
   static: isStatic,
   compact,
   onClick,
+  ariaPressed,
 }: BentoCardProps) {
   const Component = onClick ? "button" : "div";
   const isInteractive = Boolean(onClick && !disabled && !isStatic);
@@ -30,15 +34,17 @@ export function BentoCard({
       type={onClick ? "button" : undefined}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
+      aria-pressed={onClick ? ariaPressed : undefined}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border bg-card/80 text-left shadow-sm backdrop-blur-sm",
+        shell,
+        "group relative overflow-hidden text-left",
         compact ? "p-4" : "p-5",
         isInteractive &&
-          "transition-all duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-md",
-        !isInteractive && "transition-colors duration-200",
-        selected && "border-primary ring-2 ring-primary/20 shadow-md",
+          "transition-all duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[var(--shadow-soft-lg)]",
+        !isInteractive && "transition-[background,box-shadow] duration-200",
+        selected && shellSelected,
         disabled &&
-          "cursor-not-allowed opacity-50 motion-safe:hover:translate-y-0 motion-safe:hover:shadow-sm",
+          "cursor-not-allowed opacity-50 motion-safe:hover:translate-y-0 motion-safe:hover:shadow-[var(--shadow-soft)]",
         onClick && !disabled && "cursor-pointer",
         className
       )}

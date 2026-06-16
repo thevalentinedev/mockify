@@ -8,134 +8,691 @@
   "questions": [
     {
       "id": "chem-001",
-      "text": "What is the chemical symbol for gold?",
-      "options": [
-        "Go",
-        "Gd",
-        "Au",
-        "Ag"
-      ],
-      "correctIndex": 2,
-      "explanation": "Gold’s chemical symbol is Au, which comes from its Latin name, aurum. Chemical symbols are standardized abbreviations used on the periodic table to represent elements.",
-      "wrongAnswerHints": {
-        "0": "Go is not a chemical symbol; it looks like a word abbreviation rather than an element symbol.",
-        "1": "Gd is the symbol for gadolinium, not gold.",
-        "3": "Ag is the symbol for silver, not gold."
-      },
       "meta": {
-        "topics": [
-          "chemical symbols and periodic table basics"
-        ],
-        "difficulty": "easy",
         "source": "verified",
-        "verifiedAt": "2026-06-09T15:19:57.774Z",
-        "answerConfidence": "high"
-      }
+        "topics": [
+          "Chemical Changes"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "chemical-changes",
+          "chemical",
+          "changes"
+        ]
+      },
+      "text": "Iron rusting is an example of what kind of change?",
+      "options": [
+        "chemical",
+        "physical",
+        "nuclear",
+        "biological"
+      ],
+      "explanation": "Rusting forms a new substance, iron oxide, so it is a chemical change.",
+      "correctIndex": 0,
+      "wrongAnswerHints": {
+        "1": "A physical change does not create a new substance.",
+        "2": "Rusting does not involve changes in the nucleus.",
+        "3": "Rusting is not a biological process."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "physical",
+          "reason": "A physical change does not create a new substance."
+        },
+        {
+          "answer": "nuclear",
+          "reason": "Rusting does not involve changes in the nucleus."
+        },
+        {
+          "answer": "biological",
+          "reason": "Rusting is not a biological process."
+        }
+      ]
     },
     {
       "id": "chem-002",
-      "text": "How many protons does a carbon atom have?",
-      "options": [
-        "4",
-        "6",
-        "8",
-        "12"
-      ],
-      "correctIndex": 1,
-      "explanation": "Carbon has 6 protons because its atomic number is 6. The number of protons determines which element an atom is, and every carbon atom has 6 protons.",
-      "wrongAnswerHints": {
-        "0": "4 is the atomic number of beryllium, not carbon.",
-        "2": "8 is the atomic number of oxygen, not carbon.",
-        "3": "12 may refer to a common carbon isotope’s mass number, but not the number of protons."
-      },
       "meta": {
-        "topics": [
-          "atomic structure and subatomic particles",
-          "chemical symbols and periodic table basics"
-        ],
-        "difficulty": "easy",
         "source": "verified",
-        "verifiedAt": "2026-06-09T15:19:57.774Z",
-        "answerConfidence": "high"
-      }
+        "topics": [
+          "Atomic Structure"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "atomic-structure",
+          "atomic",
+          "structure"
+        ]
+      },
+      "text": "A structure consisting of nucleus with electrons orbiting around it is a(n):",
+      "options": [
+        "molecule",
+        "organism",
+        "cell",
+        "atom"
+      ],
+      "explanation": "An atom has a nucleus with electrons surrounding it.",
+      "correctIndex": 3,
+      "wrongAnswerHints": {
+        "0": "A molecule is made of two or more atoms bonded together.",
+        "1": "An organism is a living thing.",
+        "2": "A cell is the basic unit of life, not a nucleus with orbiting electrons."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "molecule",
+          "reason": "A molecule is made of two or more atoms bonded together."
+        },
+        {
+          "answer": "organism",
+          "reason": "An organism is a living thing."
+        },
+        {
+          "answer": "cell",
+          "reason": "A cell is the basic unit of life, not a nucleus with orbiting electrons."
+        }
+      ]
     },
     {
       "id": "chem-003",
-      "text": "What is the pH of a neutral solution at 25°C?",
-      "options": [
-        "0",
-        "7",
-        "10",
-        "14"
-      ],
-      "correctIndex": 1,
-      "explanation": "A neutral solution at 25°C has a pH of 7. On the pH scale, values below 7 are acidic and values above 7 are basic.",
-      "wrongAnswerHints": {
-        "0": "0 is strongly acidic, not neutral.",
-        "2": "10 is basic, so it is not neutral.",
-        "3": "14 is very basic, not neutral."
-      },
       "meta": {
-        "topics": [
-          "acidity/basic pH scale"
-        ],
-        "difficulty": "easy",
         "source": "verified",
-        "verifiedAt": "2026-06-09T15:19:57.774Z",
-        "answerConfidence": "high"
-      }
+        "topics": [
+          "Chemical Bonding",
+          "Ionic Bonds"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "chemical-bonding",
+          "chemical",
+          "bonding",
+          "ionic-bonds",
+          "ionic",
+          "bonds"
+        ]
+      },
+      "text": "A bond that is formed between two atoms of opposite charge is called:",
+      "options": [
+        "impossible",
+        "ionic",
+        "maternal",
+        "covalent"
+      ],
+      "explanation": "An ionic bond forms through attraction between oppositely charged ions.",
+      "correctIndex": 1,
+      "wrongAnswerHints": {
+        "0": "Opposite charges can attract and form bonds.",
+        "2": "Maternal is unrelated to chemical bonding.",
+        "3": "A covalent bond involves sharing electrons."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "impossible",
+          "reason": "Opposite charges can attract and form bonds."
+        },
+        {
+          "answer": "maternal",
+          "reason": "Maternal is unrelated to chemical bonding."
+        },
+        {
+          "answer": "covalent",
+          "reason": "A covalent bond involves sharing electrons."
+        }
+      ]
     },
     {
       "id": "chem-004",
-      "text": "Which state of matter has a definite volume but no definite shape?",
-      "options": [
-        "Solid",
-        "Liquid",
-        "Gas",
-        "Plasma"
-      ],
-      "correctIndex": 1,
-      "explanation": "A liquid has a definite volume but no definite shape, so it takes the shape of its container. Solids keep both shape and volume, while gases do not keep either one fixed.",
-      "wrongAnswerHints": {
-        "0": "A solid has a definite shape and a definite volume.",
-        "2": "A gas has neither a definite shape nor a definite volume.",
-        "3": "Plasma is an ionized state of matter and does not have a definite shape or volume."
-      },
       "meta": {
-        "topics": [
-          "states of matter"
-        ],
-        "difficulty": "easy",
         "source": "verified",
-        "verifiedAt": "2026-06-09T15:19:57.774Z",
-        "answerConfidence": "high"
-      }
+        "topics": [
+          "Ions",
+          "Atomic Structure"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "ions",
+          "atomic-structure",
+          "atomic",
+          "structure"
+        ]
+      },
+      "text": "Atoms which have gained or lost electrons are:",
+      "options": [
+        "molecules",
+        "ions",
+        "neutrons",
+        "neutral"
+      ],
+      "explanation": "Atoms become ions when they gain or lose electrons and develop a charge.",
+      "correctIndex": 1,
+      "wrongAnswerHints": {
+        "0": "Molecules are groups of bonded atoms.",
+        "2": "Neutrons are particles in the nucleus.",
+        "3": "Neutral atoms have no net charge."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "molecules",
+          "reason": "Molecules are groups of bonded atoms."
+        },
+        {
+          "answer": "neutrons",
+          "reason": "Neutrons are particles in the nucleus."
+        },
+        {
+          "answer": "neutral",
+          "reason": "Neutral atoms have no net charge."
+        }
+      ]
     },
     {
       "id": "chem-005",
-      "text": "What type of bond involves the sharing of electron pairs?",
-      "options": [
-        "Ionic",
-        "Covalent",
-        "Metallic",
-        "Hydrogen"
-      ],
-      "correctIndex": 1,
-      "explanation": "Covalent bonds involve the sharing of electron pairs between atoms. This type of bonding commonly occurs between nonmetals.",
-      "wrongAnswerHints": {
-        "0": "Ionic bonding involves the transfer of electrons, not sharing.",
-        "2": "Metallic bonding describes metals sharing a pool of electrons, but not as electron pairs between two atoms.",
-        "3": "Hydrogen bonding is an intermolecular attraction, not a primary bond formed by sharing electron pairs."
-      },
       "meta": {
-        "topics": [
-          "chemical bonding"
-        ],
-        "difficulty": "easy",
         "source": "verified",
-        "verifiedAt": "2026-06-09T15:19:57.774Z",
-        "answerConfidence": "high"
-      }
+        "topics": [
+          "Atomic Structure",
+          "Molecules",
+          "Relative Size"
+        ],
+        "difficulty": 3,
+        "answerConfidence": "high",
+        "tags": [
+          "atomic-structure",
+          "atomic",
+          "structure",
+          "molecules",
+          "relative-size",
+          "relative",
+          "size"
+        ]
+      },
+      "text": "Arrange the following components in descending order of relative size (largest first, smallest last): 1) glucose molecule (C6H12O6), 2) electron, 3) water molecule (H2O), 4) carbon atom",
+      "options": [
+        "1, 3, 4, 2",
+        "2, 1, 3, 4",
+        "3, 1, 2, 4",
+        "4, 1, 3, 2"
+      ],
+      "explanation": "A glucose molecule is larger than a water molecule; a water molecule is larger than a carbon atom; an electron is smallest.",
+      "correctIndex": 0,
+      "wrongAnswerHints": {
+        "1": "An electron is the smallest item, not the largest.",
+        "2": "Water is smaller than glucose, and an electron is smaller than an atom.",
+        "3": "A carbon atom is smaller than the molecules listed."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "2, 1, 3, 4",
+          "reason": "An electron is the smallest item, not the largest."
+        },
+        {
+          "answer": "3, 1, 2, 4",
+          "reason": "Water is smaller than glucose, and an electron is smaller than an atom."
+        },
+        {
+          "answer": "4, 1, 3, 2",
+          "reason": "A carbon atom is smaller than the molecules listed."
+        }
+      ]
+    },
+    {
+      "id": "chem-006",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Solutions",
+          "Solvents and Solutes"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "solutions",
+          "solvents-and-solutes",
+          "solvents",
+          "solutes"
+        ]
+      },
+      "text": "When sugar is dissolved in water, the water is called the:",
+      "options": [
+        "solution",
+        "solvent",
+        "solute",
+        "syrup"
+      ],
+      "explanation": "The solvent is the substance that dissolves the solute. In this case, water dissolves sugar.",
+      "correctIndex": 1,
+      "wrongAnswerHints": {
+        "0": "The solution is the complete mixture of sugar and water.",
+        "2": "The solute is the substance being dissolved, which is sugar.",
+        "3": "Syrup is a concentrated sugar solution, not the role of water."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "solution",
+          "reason": "The solution is the complete mixture of sugar and water."
+        },
+        {
+          "answer": "solute",
+          "reason": "The solute is the substance being dissolved, which is sugar."
+        },
+        {
+          "answer": "syrup",
+          "reason": "Syrup is a concentrated sugar solution, not the role of water."
+        }
+      ]
+    },
+    {
+      "id": "chem-007",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Chemical Bonding",
+          "Covalent Bonds"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "chemical-bonding",
+          "chemical",
+          "bonding",
+          "covalent-bonds",
+          "covalent",
+          "bonds"
+        ]
+      },
+      "text": "A bond that is formed through a sharing of electrons by two atoms is:",
+      "options": [
+        "impossible",
+        "covalent",
+        "unlikely",
+        "ionic"
+      ],
+      "explanation": "A covalent bond forms when atoms share electrons.",
+      "correctIndex": 1,
+      "wrongAnswerHints": {
+        "0": "Atoms can form bonds by sharing electrons.",
+        "2": "Sharing electrons is a common way atoms bond.",
+        "3": "An ionic bond involves transfer of electrons and attraction between ions."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "impossible",
+          "reason": "Atoms can form bonds by sharing electrons."
+        },
+        {
+          "answer": "unlikely",
+          "reason": "Sharing electrons is a common way atoms bond."
+        },
+        {
+          "answer": "ionic",
+          "reason": "An ionic bond involves transfer of electrons and attraction between ions."
+        }
+      ]
+    },
+    {
+      "id": "chem-008",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Acids and Bases"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "acids-and-bases",
+          "acids",
+          "bases"
+        ]
+      },
+      "text": "Compounds releasing hydroxyl ions (OH-1) when dissolved in water are:",
+      "options": [
+        "alcohols",
+        "acids",
+        "salts",
+        "bases"
+      ],
+      "explanation": "Bases release hydroxyl ions, OH⁻, in water.",
+      "correctIndex": 3,
+      "wrongAnswerHints": {
+        "0": "Alcohols contain hydroxyl groups but do not necessarily release hydroxyl ions in water.",
+        "1": "Acids release hydrogen ions, not hydroxyl ions.",
+        "2": "Salts are ionic compounds formed from acids and bases."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "alcohols",
+          "reason": "Alcohols contain hydroxyl groups but do not necessarily release hydroxyl ions in water."
+        },
+        {
+          "answer": "acids",
+          "reason": "Acids release hydrogen ions, not hydroxyl ions."
+        },
+        {
+          "answer": "salts",
+          "reason": "Salts are ionic compounds formed from acids and bases."
+        }
+      ]
+    },
+    {
+      "id": "chem-009",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Kinetic Molecular Theory",
+          "Heat"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "kinetic-molecular-theory",
+          "kinetic",
+          "molecular",
+          "theory",
+          "heat"
+        ]
+      },
+      "text": "When heat is applied to a liquid, the molecules of the liquid:",
+      "options": [
+        "come closer together",
+        "increase in weight",
+        "are converted to heat energy",
+        "move faster"
+      ],
+      "explanation": "Heating adds energy to molecules, causing them to move faster.",
+      "correctIndex": 3,
+      "wrongAnswerHints": {
+        "0": "Heating usually increases molecular motion and separation.",
+        "1": "Heating does not increase molecular weight.",
+        "2": "The molecules gain kinetic energy; they are not converted into heat energy."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "come closer together",
+          "reason": "Heating usually increases molecular motion and separation."
+        },
+        {
+          "answer": "increase in weight",
+          "reason": "Heating does not increase molecular weight."
+        },
+        {
+          "answer": "are converted to heat energy",
+          "reason": "The molecules gain kinetic energy; they are not converted into heat energy."
+        }
+      ]
+    },
+    {
+      "id": "chem-010",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Ions",
+          "Atomic Structure"
+        ],
+        "difficulty": 3,
+        "answerConfidence": "high",
+        "tags": [
+          "ions",
+          "atomic-structure",
+          "atomic",
+          "structure"
+        ]
+      },
+      "text": "Which of the following is NOT true of an ion?",
+      "options": [
+        "it has an unequal number of protons and electrons",
+        "it has an electrical charge",
+        "it has the same number of electrons and protons",
+        "it is an atom that has gained or lost electrons"
+      ],
+      "explanation": "An ion has gained or lost electrons, so it does not have the same number of electrons and protons.",
+      "correctIndex": 2,
+      "wrongAnswerHints": {
+        "0": "This is true of an ion.",
+        "1": "This is true because ions carry a charge.",
+        "3": "This is the definition of an ion."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "it has an unequal number of protons and electrons",
+          "reason": "This is true of an ion."
+        },
+        {
+          "answer": "it has an electrical charge",
+          "reason": "This is true because ions carry a charge."
+        },
+        {
+          "answer": "it is an atom that has gained or lost electrons",
+          "reason": "This is the definition of an ion."
+        }
+      ]
+    },
+    {
+      "id": "chem-011",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Atomic Structure",
+          "Atomic Number",
+          "Neutrons"
+        ],
+        "difficulty": 3,
+        "answerConfidence": "high",
+        "tags": [
+          "atomic-structure",
+          "atomic",
+          "structure",
+          "atomic-number",
+          "number",
+          "neutrons"
+        ]
+      },
+      "text": "If the atomic weight of an element is eight, and if it contains four protons in the nucleus, what else do we know about the atom?",
+      "options": [
+        "there are eight electrons in its shell",
+        "the atomic number is eight",
+        "there are four electrons in the nucleus",
+        "there are four neutrons in the nucleus"
+      ],
+      "explanation": "Atomic weight is approximately protons plus neutrons. If the mass is 8 and there are 4 protons, there are 4 neutrons.",
+      "correctIndex": 3,
+      "wrongAnswerHints": {
+        "0": "A neutral atom with four protons would have four electrons, not eight.",
+        "1": "Atomic number equals the number of protons, so it would be four.",
+        "2": "Electrons are not found in the nucleus."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "there are eight electrons in its shell",
+          "reason": "A neutral atom with four protons would have four electrons, not eight."
+        },
+        {
+          "answer": "the atomic number is eight",
+          "reason": "Atomic number equals the number of protons, so it would be four."
+        },
+        {
+          "answer": "there are four electrons in the nucleus",
+          "reason": "Electrons are not found in the nucleus."
+        }
+      ]
+    },
+    {
+      "id": "chem-012",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Acids and Bases"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "acids-and-bases",
+          "acids",
+          "bases"
+        ]
+      },
+      "text": "Many hydrogen ions will be yielded by:",
+      "options": [
+        "strong acids",
+        "weak bases",
+        "strong bases",
+        "weak acids"
+      ],
+      "explanation": "Strong acids release many hydrogen ions, H⁺, in solution.",
+      "correctIndex": 0,
+      "wrongAnswerHints": {
+        "1": "Bases do not yield many hydrogen ions.",
+        "2": "Strong bases release hydroxide ions, not hydrogen ions.",
+        "3": "Weak acids release fewer hydrogen ions than strong acids."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "weak bases",
+          "reason": "Bases do not yield many hydrogen ions."
+        },
+        {
+          "answer": "strong bases",
+          "reason": "Strong bases release hydroxide ions, not hydrogen ions."
+        },
+        {
+          "answer": "weak acids",
+          "reason": "Weak acids release fewer hydrogen ions than strong acids."
+        }
+      ]
+    },
+    {
+      "id": "chem-013",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Atoms, Molecules, and Ions"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "atoms-molecules-and-ions",
+          "atoms",
+          "molecules",
+          "ions"
+        ]
+      },
+      "text": "Indicate whether CO2 is an atom, molecule, or ion.",
+      "options": [
+        "atoms",
+        "molecules",
+        "ions"
+      ],
+      "explanation": "CO2 contains more than one atom chemically bonded together, so it is a molecule.",
+      "correctIndex": 1,
+      "wrongAnswerHints": {
+        "0": "CO2 is made of multiple atoms, not a single atom.",
+        "2": "CO2 is neutral here, not charged."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "atoms",
+          "reason": "CO2 is made of multiple atoms, not a single atom."
+        },
+        {
+          "answer": "ions",
+          "reason": "CO2 is neutral here, not charged."
+        }
+      ]
+    },
+    {
+      "id": "chem-014",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Atoms, Molecules, and Ions"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "atoms-molecules-and-ions",
+          "atoms",
+          "molecules",
+          "ions"
+        ]
+      },
+      "text": "Indicate whether H+ is an atom, molecule, or ion.",
+      "options": [
+        "atoms",
+        "molecules",
+        "ions"
+      ],
+      "explanation": "H+ has a positive charge, so it is an ion.",
+      "correctIndex": 2,
+      "wrongAnswerHints": {
+        "0": "A charged hydrogen particle is not neutral, so it is classified as an ion.",
+        "1": "H+ is not made of multiple bonded atoms."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "atoms",
+          "reason": "A charged hydrogen particle is not neutral, so it is classified as an ion."
+        },
+        {
+          "answer": "molecules",
+          "reason": "H+ is not made of multiple bonded atoms."
+        }
+      ]
+    },
+    {
+      "id": "chem-015",
+      "meta": {
+        "source": "verified",
+        "topics": [
+          "Atoms, Molecules, and Ions"
+        ],
+        "difficulty": 2,
+        "answerConfidence": "high",
+        "tags": [
+          "atoms-molecules-and-ions",
+          "atoms",
+          "molecules",
+          "ions"
+        ]
+      },
+      "text": "Indicate whether O is an atom, molecule, or ion.",
+      "options": [
+        "atoms",
+        "molecules",
+        "ions"
+      ],
+      "explanation": "O represents a single oxygen atom with no charge shown.",
+      "correctIndex": 0,
+      "wrongAnswerHints": {
+        "1": "A molecule would contain two or more bonded atoms, such as O2.",
+        "2": "An ion would show a charge, such as O2-."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "molecules",
+          "reason": "A molecule would contain two or more bonded atoms, such as O2."
+        },
+        {
+          "answer": "ions",
+          "reason": "An ion would show a charge, such as O2-."
+        }
+      ]
     },
     {
       "id": "chem-gen-006",
@@ -157,11 +714,34 @@
         "topics": [
           "chemical symbols and periodic table basics"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "source": "generated",
         "verifiedAt": "2026-06-09T15:20:03.412Z",
-        "answerConfidence": "high"
-      }
+        "answerConfidence": "high",
+        "tags": [
+          "chemical-symbols-and-periodic-table-basics",
+          "chemical",
+          "symbols",
+          "periodic",
+          "table",
+          "basics"
+        ]
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Nitrogen",
+          "reason": "Nitrogen uses the symbol N."
+        },
+        {
+          "answer": "Neon",
+          "reason": "Neon uses the symbol Ne."
+        },
+        {
+          "answer": "Nickel",
+          "reason": "Nickel uses the symbol Ni."
+        }
+      ]
     },
     {
       "id": "chem-gen-007",
@@ -183,11 +763,33 @@
         "topics": [
           "atomic structure and subatomic particles"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "source": "generated",
         "verifiedAt": "2026-06-09T15:20:03.412Z",
-        "answerConfidence": "high"
-      }
+        "answerConfidence": "high",
+        "tags": [
+          "atomic-structure-and-subatomic-particles",
+          "atomic",
+          "structure",
+          "subatomic",
+          "particles"
+        ]
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "6",
+          "reason": "6 is the number of protons in carbon, not the number of neutrons in carbon-14."
+        },
+        {
+          "answer": "12",
+          "reason": "12 is the mass number of carbon-12, not the neutron count of carbon-14."
+        },
+        {
+          "answer": "14",
+          "reason": "14 is the mass number, not the number of neutrons."
+        }
+      ]
     },
     {
       "id": "chem-gen-008",
@@ -209,11 +811,32 @@
         "topics": [
           "acidity/basic pH scale"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "source": "generated",
         "verifiedAt": "2026-06-09T15:20:03.412Z",
-        "answerConfidence": "high"
-      }
+        "answerConfidence": "high",
+        "tags": [
+          "acidity-basic-ph-scale",
+          "acidity",
+          "basic",
+          "scale"
+        ]
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "7",
+          "reason": "7 is neutral, not acidic."
+        },
+        {
+          "answer": "9",
+          "reason": "9 is basic, not acidic."
+        },
+        {
+          "answer": "13",
+          "reason": "13 is strongly basic."
+        }
+      ]
     },
     {
       "id": "chem-gen-009",
@@ -235,11 +858,31 @@
         "topics": [
           "states of matter"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "source": "generated",
         "verifiedAt": "2026-06-09T15:20:03.412Z",
-        "answerConfidence": "high"
-      }
+        "answerConfidence": "high",
+        "tags": [
+          "states-of-matter",
+          "states",
+          "matter"
+        ]
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Liquid",
+          "reason": "A liquid has particles that can move past one another."
+        },
+        {
+          "answer": "Gas",
+          "reason": "A gas has particles far apart and moving freely."
+        },
+        {
+          "answer": "Plasma",
+          "reason": "Plasma is an ionized state of matter, not the usual closely packed form."
+        }
+      ]
     },
     {
       "id": "chem-gen-010",
@@ -261,11 +904,31 @@
         "topics": [
           "chemical bonding"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "source": "generated",
         "verifiedAt": "2026-06-09T15:20:03.412Z",
-        "answerConfidence": "high"
-      }
+        "answerConfidence": "high",
+        "tags": [
+          "chemical-bonding",
+          "chemical",
+          "bonding"
+        ]
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Covalent",
+          "reason": "Covalent bonds involve sharing electrons."
+        },
+        {
+          "answer": "Metallic",
+          "reason": "Metallic bonding involves metals and a sea of electrons, not simple transfer between two atoms."
+        },
+        {
+          "answer": "Hydrogen",
+          "reason": "Hydrogen bonding is an intermolecular attraction, not an electron-transfer bond."
+        }
+      ]
     }
   ],
   "meta": {
@@ -306,6 +969,11 @@
     ],
     "totalGenerated": 5,
     "lastEnrichedAt": "2026-06-09T15:19:57.928Z",
-    "lastGeneratedAt": "2026-06-09T15:20:03.412Z"
+    "lastGeneratedAt": "2026-06-09T15:20:03.412Z",
+    "source": {
+      "institution": "Conestoga College",
+      "exam": "Pre-Admission Chemistry Assessment",
+      "year": null
+    }
   }
 }

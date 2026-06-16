@@ -5,6 +5,9 @@ import {
   isQuestionEnriched,
 } from "@/lib/question-enrichment";
 import {
+  countExamEligibleQuestions,
+} from "@/lib/question-eligibility";
+import {
   type PreparePhase,
   updateSubjectPrepareProgress,
 } from "@/lib/prepare-progress";
@@ -39,7 +42,7 @@ export interface SubjectEnsureResult {
  *
  * Variety strategy (retakes should feel fresh without AI on every click):
  * - Every start → smart rotation at build time (avoid last 3 exam sets)
- * - Every 3rd start → generate ~12 new questions (pool cap = 2× exam size)
+ * - Every 3rd start → generate ~12 new questions (pool cap = 4× exam size)
  * - Every 5th start → AI-twist ~8 overused questions into new scenarios
  * - First-time / incomplete pool → extract, enrich, generate as before
  */
@@ -152,7 +155,8 @@ export async function ensureSubjectBank(
   // ── 2. Fast path: pool is full and every question has saved explanations ──
   const unenriched = getUnenrichedQuestions(bank.questions);
   const allEnriched = unenriched.length === 0 && bank.questions.every(isQuestionEnriched);
-  const poolReady = poolSize >= target;
+  const eligibleCount = countExamEligibleQuestions(bank.questions);
+  const poolReady = eligibleCount >= target;
 
   if (allEnriched && poolReady) {
     if (bankNeedsImageExtraction(bank)) {
@@ -178,9 +182,12 @@ export async function ensureSubjectBank(
     }
 
     const nextAttempt = nextAttemptNumber(userAttempt ?? examStarts);
-    const runTwist = shouldTwistQuestions(nextAttempt);
+    const skipVarietyAi = Boolean(process.env.VERCEL);
+    const runTwist = !skipVarietyAi && shouldTwistQuestions(nextAttempt);
     const runGenerate =
-      !runTwist && shouldGenerateRefresh(nextAttempt, poolSize, target);
+      !skipVarietyAi &&
+      !runTwist &&
+      shouldGenerateRefresh(nextAttempt, eligibleCount, target);
 
     if (runTwist) {
       const sources = pickQuestionsToTwist(
@@ -231,16 +238,18 @@ export async function ensureSubjectBank(
       actions.push("Rotating question selection");
       report(jobId, subjectId, {
         phase: "finishing",
-        poolSize: Math.min(poolSize, target),
+        poolSize: Math.min(eligibleCount, target),
         target,
         enrichedCount: countEnrichedQuestions(bank.questions),
-        message: "Picking fresh questions for this attempt…",
+        message: skipVarietyAi
+          ? "Picking questions for this attempt…"
+          : "Picking fresh questions for this attempt…",
       });
     }
 
     report(jobId, subjectId, {
       phase: "done",
-      poolSize: Math.min(poolSize, target),
+      poolSize: Math.min(eligibleCount, target),
       target,
       enrichedCount: countEnrichedQuestions(bank.questions),
       message: "Ready",
@@ -250,9 +259,11 @@ export async function ensureSubjectBank(
     return {
       subjectId,
       actions,
-      poolSize: bank.questions.length,
+      poolSize: eligibleCount,
       examQuestionCount: target,
-      skippedAi: actions.length === 1 && actions[0] === "Rotating question selection",
+      skippedAi:
+        skipVarietyAi ||
+        (actions.length === 1 && actions[0] === "Rotating question selection"),
     };
   }
 
@@ -295,11 +306,12 @@ export async function ensureSubjectBank(
     await persistBank(bank, "enriching");
   }
 
-  // ── 4. Generate in small batches until pool reaches exam size ──
+  // ── 4. Generate in small batches until eligible pool reaches exam size ──
   const GENERATE_BATCH = 5;
   let generateRounds = 0;
-  while (poolSize < target && generateRounds < 30) {
-    const batchSize = Math.min(GENERATE_BATCH, target - poolSize);
+  let eligiblePool = countExamEligibleQuestions(bank.questions);
+  while (eligiblePool < target && generateRounds < 30) {
+    const batchSize = Math.min(GENERATE_BATCH, target - eligiblePool);
     const before = poolSize;
     report(jobId, subjectId, {
       phase: "generating",
@@ -312,6 +324,7 @@ export async function ensureSubjectBank(
     bank = await generatePracticeQuestions(bank, batchSize);
     await persistBank(bank, "generating");
     generateRounds++;
+    eligiblePool = countExamEligibleQuestions(bank.questions);
     if (poolSize === before) break;
   }
 
@@ -330,7 +343,7 @@ export async function ensureSubjectBank(
 
   report(jobId, subjectId, {
     phase: "done",
-    poolSize: Math.min(poolSize, target),
+    poolSize: Math.min(countExamEligibleQuestions(bank.questions), target),
     target,
     enrichedCount: countEnrichedQuestions(bank.questions),
     message: "Ready",
@@ -341,7 +354,7 @@ export async function ensureSubjectBank(
   return {
     subjectId,
     actions,
-    poolSize,
+    poolSize: countExamEligibleQuestions(bank.questions),
     examQuestionCount: target,
     skippedAi: false,
   };

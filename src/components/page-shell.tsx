@@ -19,7 +19,7 @@ function SiteFooter({ compact }: { compact?: boolean }) {
   return (
     <footer
       className={cn(
-        "mt-auto border-t border-border/50 text-center text-xs text-muted-foreground",
+        "mt-auto text-center text-xs text-muted-foreground",
         compact ? "py-4" : "py-6"
       )}
     >

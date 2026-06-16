@@ -1,6 +1,14 @@
 "use client";
 
+import {
+  formatCorrectAnswer,
+  isAnswerCorrect,
+  isTextGradedQuestion,
+} from "@/lib/answer-grader";
+import { SolutionSteps } from "@/components/solution-steps";
+import { getRemediationReason } from "@/lib/distractors";
 import { FormatMathText } from "@/lib/format-math-text";
+import { hasSolutionContent } from "@/lib/solution";
 import type { ExamAnswer, ShuffledQuestion } from "@/types/exam";
 import { cn } from "@/lib/utils";
 import { Lightbulb } from "lucide-react";
@@ -16,22 +24,22 @@ export function StudyAnswerPanel({
   answer,
   className,
 }: StudyAnswerPanelProps) {
-  const isCorrect = answer?.selectedIndex === question.correctIndex;
-  const hasExplanation =
-    Boolean(question.explanation) ||
-    (answer?.selectedIndex != null &&
-      Boolean(question.wrongAnswerHints?.[String(answer.selectedIndex)]));
+  const isTextInput = isTextGradedQuestion(question);
+  const isCorrect = isAnswerCorrect(question, answer);
+  const remediation = getRemediationReason(question, answer);
+  const hasExplanation = hasSolutionContent(question) || Boolean(remediation);
 
   if (!hasExplanation) {
     return (
       <div
         className={cn(
-          "rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-sm",
+          "rounded-[var(--radius-surface)] bg-emerald-500/10 p-4 text-sm",
           className
         )}
       >
         <p className="font-medium text-emerald-700 dark:text-emerald-400">
-          Correct answer: {String.fromCharCode(65 + question.correctIndex)}
+          Correct answer:{" "}
+          <FormatMathText>{formatCorrectAnswer(question)}</FormatMathText>
         </p>
       </div>
     );
@@ -40,10 +48,8 @@ export function StudyAnswerPanel({
   return (
     <div
       className={cn(
-        "space-y-2 rounded-xl p-4 text-sm",
-        isCorrect
-          ? "border border-emerald-500/20 bg-emerald-500/5"
-          : "border border-amber-500/20 bg-amber-500/5",
+        "space-y-2 rounded-[var(--radius-surface)] p-4 text-sm",
+        isCorrect ? "bg-emerald-500/10" : "bg-amber-500/10",
         className
       )}
     >
@@ -51,22 +57,19 @@ export function StudyAnswerPanel({
         <Lightbulb className="size-4" />
         {isCorrect ? "Why this is correct" : "Learn from this"}
       </div>
-      {!isCorrect &&
-        answer?.selectedIndex != null &&
-        question.wrongAnswerHints?.[String(answer.selectedIndex)] && (
-          <p className="text-muted-foreground">
-            <span className="font-medium text-foreground">Your answer: </span>
-            <FormatMathText>
-              {question.wrongAnswerHints[String(answer.selectedIndex)]}
-            </FormatMathText>
-          </p>
-        )}
-      {question.explanation && (
+      {!isCorrect && remediation && (
         <p className="text-muted-foreground">
-          <span className="font-medium text-foreground">Explanation: </span>
-          <FormatMathText>{question.explanation}</FormatMathText>
+          <span className="font-medium text-foreground">
+            {isTextInput ? "Why this is wrong: " : "Your mistake: "}
+          </span>
+          <FormatMathText>{remediation}</FormatMathText>
         </p>
       )}
+      <SolutionSteps
+        question={question}
+        label={isCorrect ? "Solution" : "Correct solution"}
+        progressive
+      />
     </div>
   );
 }

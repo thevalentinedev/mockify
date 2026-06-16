@@ -7,6 +7,8 @@ import { SubjectPills } from "@/components/subject-pills";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useIsClient } from "@/hooks/use-is-client";
+import { isAnswerCorrect } from "@/lib/answer-grader";
+import { getLearningObjective } from "@/lib/learning-objective";
 import { SUBJECTS } from "@/lib/exam-config";
 import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
 import { savePracticeTopics } from "@/lib/learning-history";
@@ -58,7 +60,7 @@ export function ExamResults() {
 
     for (const question of allQuestions) {
       const answer = answers.find((a) => a.questionId === question.id);
-      const isCorrect = answer?.selectedIndex === question.correctIndex;
+      const isCorrect = isAnswerCorrect(question, answer);
 
       if (!bySubject[question.subjectId]) {
         bySubject[question.subjectId] = { correct: 0, total: 0 };
@@ -77,17 +79,32 @@ export function ExamResults() {
     const durationSec = Math.floor((durationMs % 60000) / 1000);
 
     const weakTopics: Record<string, number> = {};
+    const weakLearningObjectives: Record<string, number> = {};
     for (const question of allQuestions) {
       const answer = answers.find((a) => a.questionId === question.id);
-      const isCorrect = answer?.selectedIndex === question.correctIndex;
-      if (!isCorrect && question.topic) {
+      const isCorrect = isAnswerCorrect(question, answer);
+      if (isCorrect) continue;
+
+      if (question.topic) {
         weakTopics[question.topic] = (weakTopics[question.topic] ?? 0) + 1;
       }
+
+      const objective = getLearningObjective(question);
+      if (objective) {
+        weakLearningObjectives[objective] =
+          (weakLearningObjectives[objective] ?? 0) + 1;
+      }
     }
+
+    const focusObjectives = Object.entries(weakLearningObjectives)
+      .sort((a, b) => b[1] - a[1])
+      .map(([objective]) => objective);
 
     const focusTopics = Object.entries(weakTopics)
       .sort((a, b) => b[1] - a[1])
       .map(([topic]) => topic);
+
+    const practiceFocus = focusObjectives.length > 0 ? focusObjectives : focusTopics;
 
     return {
       correct,
@@ -97,6 +114,8 @@ export function ExamResults() {
       durationMin,
       durationSec,
       focusTopics,
+      focusObjectives,
+      practiceFocus,
       allQuestions,
     };
   }, [result, session]);
@@ -126,8 +145,8 @@ export function ExamResults() {
   }
 
   function practiceWeakTopics() {
-    if (!stats?.focusTopics.length) return;
-    savePracticeTopics(stats.focusTopics);
+    if (!stats?.practiceFocus.length) return;
+    savePracticeTopics(stats.practiceFocus);
     router.push("/");
   }
 
@@ -161,7 +180,8 @@ export function ExamResults() {
     activeSubjectStats && activeSubjectStats.total > 0
       ? Math.round((activeSubjectStats.correct / activeSubjectStats.total) * 100)
       : 0;
-  const hasFocusTopics = stats.focusTopics.length > 0;
+  const hasPracticeFocus = stats.practiceFocus.length > 0;
+  const usingObjectives = stats.focusObjectives.length > 0;
 
   return (
     <>
@@ -200,23 +220,26 @@ export function ExamResults() {
             })}
           </div>
 
-          {hasFocusTopics ? (
+          {hasPracticeFocus ? (
             <div className="space-y-2 pt-1">
+              <p className="text-xs text-muted-foreground">
+                {usingObjectives ? "Skills to practice" : "Topics to practice"}
+              </p>
               <div className="flex flex-wrap justify-center gap-1.5">
-                {stats.focusTopics.slice(0, 4).map((topic) => (
-                  <Badge key={topic} variant="outline" className="text-xs">
-                    {topic}
+                {stats.practiceFocus.slice(0, 4).map((item) => (
+                  <Badge key={item} variant="outline" className="text-xs">
+                    {item}
                   </Badge>
                 ))}
-                {stats.focusTopics.length > 4 && (
+                {stats.practiceFocus.length > 4 && (
                   <Badge variant="outline" className="text-xs">
-                    +{stats.focusTopics.length - 4} more
+                    +{stats.practiceFocus.length - 4} more
                   </Badge>
                 )}
               </div>
               <Button onClick={practiceWeakTopics} className="gap-2" size="lg">
                 <Target className="size-4" />
-                Practice weak topics
+                {usingObjectives ? "Practice weak skills" : "Practice weak topics"}
               </Button>
             </div>
           ) : (
@@ -313,7 +336,7 @@ export function ExamResults() {
       </div>
 
       <ResultsFooter
-        hasFocusTopics={hasFocusTopics}
+        hasFocusTopics={hasPracticeFocus}
         onHome={goHome}
         onRetake={goRetake}
         onPracticeWeak={practiceWeakTopics}

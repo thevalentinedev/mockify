@@ -2,7 +2,15 @@
 
 import { ConfidenceBadge } from "@/components/confidence-badge";
 import { Badge } from "@/components/ui/badge";
+import {
+  formatCorrectAnswer,
+  isAnswerCorrect,
+  isTextGradedQuestion,
+} from "@/lib/answer-grader";
+import { SolutionSteps } from "@/components/solution-steps";
+import { getRemediationReason } from "@/lib/distractors";
 import { FormatMathText } from "@/lib/format-math-text";
+import { hasSolutionContent } from "@/lib/solution";
 import type { ExamAnswer, ShuffledQuestion } from "@/types/exam";
 import { cn } from "@/lib/utils";
 import {
@@ -27,11 +35,10 @@ export function ResultQuestionRow({
   expanded,
   onToggle,
 }: ResultQuestionRowProps) {
-  const isCorrect = answer?.selectedIndex === question.correctIndex;
-  const hasExplanation =
-    Boolean(question.explanation) ||
-    (answer?.selectedIndex != null &&
-      Boolean(question.wrongAnswerHints?.[String(answer.selectedIndex)]));
+  const isTextInput = isTextGradedQuestion(question);
+  const isCorrect = isAnswerCorrect(question, answer);
+  const remediation = getRemediationReason(question, answer);
+  const hasExplanation = hasSolutionContent(question) || Boolean(remediation);
 
   return (
     <div className="rounded-xl border border-border/60 bg-card/50 overflow-hidden">
@@ -49,10 +56,16 @@ export function ResultQuestionRow({
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm font-medium">Question {index + 1}</span>
-            {question.topic && (
+            {question.learningObjective ? (
               <Badge variant="outline" className="text-xs">
-                {question.topic}
+                {question.learningObjective}
               </Badge>
+            ) : (
+              question.topic && (
+                <Badge variant="outline" className="text-xs">
+                  {question.topic}
+                </Badge>
+              )
             )}
             {!expanded && (
               <span className="truncate text-xs text-muted-foreground">
@@ -77,32 +90,54 @@ export function ResultQuestionRow({
           <p className="exam-question text-[1.05rem] sm:text-[1.1rem]">
             <FormatMathText>{question.text}</FormatMathText>
           </p>
-          <div className="space-y-1.5">
-            {question.options.map((opt, i) => {
-              const isSelected = answer?.selectedIndex === i;
-              const isCorrectOpt = question.correctIndex === i;
-
-              return (
-                <p
-                  key={i}
-                  className={cn(
-                    "exam-option rounded-lg px-3 py-2",
-                    isCorrectOpt &&
-                      "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
-                    isSelected &&
-                      !isCorrectOpt &&
-                      "bg-red-500/10 text-red-700 dark:text-red-400",
-                    !isCorrectOpt && !isSelected && "text-muted-foreground"
-                  )}
-                >
-                  {String.fromCharCode(65 + i)}.{" "}
-                  <FormatMathText>{opt}</FormatMathText>
-                  {isCorrectOpt && " ✓"}
-                  {isSelected && !isCorrectOpt && " (your answer)"}
+          {isTextInput ? (
+            <div className="space-y-1.5 text-sm">
+              <p
+                className={cn(
+                  "rounded-lg px-3 py-2",
+                  isCorrect
+                    ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                    : "bg-red-500/10 text-red-700 dark:text-red-400"
+                )}
+              >
+                Your answer:{" "}
+                <FormatMathText>{answer?.textAnswer ?? "—"}</FormatMathText>
+              </p>
+              {!isCorrect && (
+                <p className="rounded-lg bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:text-emerald-400">
+                  Correct answer:{" "}
+                  <FormatMathText>{formatCorrectAnswer(question)}</FormatMathText>
                 </p>
-              );
-            })}
-          </div>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-1.5">
+              {(question.options ?? []).map((opt, i) => {
+                const isSelected = answer?.selectedIndex === i;
+                const isCorrectOpt = question.correctIndex === i;
+
+                return (
+                  <p
+                    key={i}
+                    className={cn(
+                      "exam-option rounded-lg px-3 py-2",
+                      isCorrectOpt &&
+                        "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+                      isSelected &&
+                        !isCorrectOpt &&
+                        "bg-red-500/10 text-red-700 dark:text-red-400",
+                      !isCorrectOpt && !isSelected && "text-muted-foreground"
+                    )}
+                  >
+                    {String.fromCharCode(65 + i)}.{" "}
+                    <FormatMathText>{opt}</FormatMathText>
+                    {isCorrectOpt && " ✓"}
+                    {isSelected && !isCorrectOpt && " (your answer)"}
+                  </p>
+                );
+              })}
+            </div>
+          )}
           {hasExplanation && (
             <div
               className={cn(
@@ -116,22 +151,18 @@ export function ResultQuestionRow({
                 <Lightbulb className="size-4" />
                 {isCorrect ? "Why this is correct" : "Learn from this"}
               </div>
-              {!isCorrect &&
-                answer?.selectedIndex != null &&
-                question.wrongAnswerHints?.[String(answer.selectedIndex)] && (
-                  <p className="text-muted-foreground">
-                    <span className="font-medium text-foreground">Your answer: </span>
-                    <FormatMathText>
-                      {question.wrongAnswerHints[String(answer.selectedIndex)]}
-                    </FormatMathText>
-                  </p>
-                )}
-              {question.explanation && (
+              {!isCorrect && remediation && (
                 <p className="text-muted-foreground">
-                  <span className="font-medium text-foreground">Correct answer: </span>
-                  <FormatMathText>{question.explanation}</FormatMathText>
+                  <span className="font-medium text-foreground">
+                    {isTextInput ? "Why this is wrong: " : "Your mistake: "}
+                  </span>
+                  <FormatMathText>{remediation}</FormatMathText>
                 </p>
               )}
+              <SolutionSteps
+                question={question}
+                label={isCorrect ? "Solution" : "Correct solution"}
+              />
             </div>
           )}
         </div>

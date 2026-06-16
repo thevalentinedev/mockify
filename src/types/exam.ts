@@ -4,6 +4,9 @@ export type SubjectId = "english" | "maths" | "biology" | "chemistry";
 
 export type ExamMode = "practice" | "mock" | "custom" | "study";
 
+/** Conestoga Math Skills Assessment program track */
+export type MathsProgramId = "engineering" | "business" | "trades-health";
+
 export interface SubjectCustomOptions {
   questionCount: number;
   /** 0 = no timer */
@@ -18,14 +21,43 @@ export interface ExamCustomOptions {
 export interface ExamBuildPreferences {
   /** Topics to prioritize in question selection (spaced repetition / weak-topic practice) */
   focusTopics?: string[];
+  /** Study mode — restrict each subject to selected topics (empty = all) */
+  studyTopicsBySubject?: Partial<Record<SubjectId, string[]>>;
   customPerSubject?: Partial<Record<SubjectId, SubjectCustomOptions>>;
+  /** Conestoga maths — which program track determines question range (1–72, 1–88, or 1–100) */
+  mathsProgram?: MathsProgramId;
 }
 
 export type QuestionSource = "sample" | "generated" | "verified" | "variant";
 
-export type Difficulty = "easy" | "medium" | "hard";
+export type Difficulty = 1 | 2 | 3 | 4 | 5;
 
 export type AnswerConfidence = "high" | "medium" | "low";
+
+/** Institution / exam PDF provenance (bank-level meta.source) */
+export interface ExamSourceMetadata {
+  institution: string;
+  exam: string;
+  year: number | null;
+}
+
+export interface QuestionDistractor {
+  answer: string;
+  reason: string;
+}
+
+export interface QuestionSolution {
+  steps: string[];
+  finalAnswer?: string;
+}
+
+export type QuestionType =
+  | "multiple_choice"
+  | "multi_select"
+  | "numeric"
+  | "short_answer"
+  | "essay"
+  | "true_false";
 
 export interface School {
   id: SchoolId;
@@ -51,6 +83,10 @@ export interface ModeConfig {
 
 export interface QuestionMeta {
   topics: string[];
+  /** Compact search labels — easier to filter than long topic strings */
+  tags?: string[];
+  /** Specific skill tested — better for analytics than topics alone */
+  learningObjective?: string;
   difficulty?: Difficulty;
   source: QuestionSource;
   verifiedAt?: string;
@@ -80,15 +116,28 @@ export interface QuestionContext {
 export interface Question {
   id: string;
   text: string;
-  options: string[];
-  correctIndex: number;
+  questionType?: QuestionType;
+  options?: string[];
+  correctIndex?: number;
+  /** Primary correct answer for numeric questions */
+  answer?: string;
+  /** Alternate accepted forms (fractions, decimals, etc.) */
+  acceptedAnswers?: string[];
   explanation?: string;
-  /** Why each wrong option is incorrect — keyed by option index */
+  /** Step-by-step worked solution — preferred over a single explanation string */
+  solution?: QuestionSolution;
+  /** Why each distractor exists — keyed by wrong answer text */
+  distractors?: QuestionDistractor[];
+  /** @deprecated Prefer distractors — keyed by option index */
   wrongAnswerHints?: Record<string, string>;
   /** Inline reference material (passage, graph description, etc.) */
   context?: QuestionContext;
   /** Shared material — resolved from bank.contexts when set */
   contextId?: string;
+  /** Top-level alias — normalized into meta.learningObjective on load */
+  learningObjective?: string;
+  /** Top-level alias — normalized into meta.tags on load */
+  tags?: string[];
   meta?: QuestionMeta;
 }
 
@@ -102,6 +151,8 @@ export interface BankMeta {
   schoolContext?: string;
   topicsCovered: string[];
   examBlueprint: TopicWeight[];
+  /** Institution / exam PDF provenance */
+  source?: ExamSourceMetadata;
   lastEnrichedAt?: string;
   lastGeneratedAt?: string;
   totalGenerated: number;
@@ -135,11 +186,18 @@ export interface ShuffledQuestion {
   originalId: string;
   subjectId: SubjectId;
   text: string;
-  options: string[];
-  correctIndex: number;
+  questionType?: QuestionType;
+  options?: string[];
+  correctIndex?: number;
+  answer?: string;
+  acceptedAnswers?: string[];
   explanation?: string;
+  solution?: QuestionSolution;
+  distractors?: QuestionDistractor[];
   wrongAnswerHints?: Record<string, string>;
   topic?: string;
+  learningObjective?: string;
+  tags?: string[];
   context?: QuestionContext;
   contextKey?: string;
   answerConfidence?: AnswerConfidence;
@@ -163,6 +221,9 @@ export interface ExamSession {
   /** Present when mode is "custom" */
   customOptions?: ExamCustomOptions;
   focusTopics?: string[];
+  studyTopicsBySubject?: Partial<Record<SubjectId, string[]>>;
+  /** Conestoga maths program track when maths is included */
+  mathsProgram?: MathsProgramId;
   /** @deprecated Pre-sections format — migrated on load */
   questions?: ShuffledQuestion[];
   timeLimitMinutes?: number | null;
@@ -171,6 +232,7 @@ export interface ExamSession {
 export interface ExamAnswer {
   questionId: string;
   selectedIndex: number | null;
+  textAnswer?: string | null;
 }
 
 export interface ExamProgress {

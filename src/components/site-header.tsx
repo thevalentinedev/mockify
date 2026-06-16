@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { GraduationCap } from "lucide-react";
 import Link from "next/link";
@@ -27,14 +28,7 @@ export function SiteHeader() {
   const label = trailingLabel[mode];
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 border-b backdrop-blur-xl",
-        mode === "focus"
-          ? "border-border/40 bg-background/90"
-          : "border-border/50 bg-background/70"
-      )}
-    >
+    <header className={cn("sticky top-0 z-50 soft-chrome")}>
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex min-w-0 items-center gap-2 font-semibold">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
@@ -45,11 +39,14 @@ export function SiteHeader() {
           )}
         </Link>
 
-        {label && (
-          <span className="shrink-0 text-sm font-medium text-muted-foreground">
-            {label}
-          </span>
-        )}
+        <div className="ml-auto flex shrink-0 items-center gap-3">
+          {label && (
+            <span className="text-sm font-medium text-muted-foreground">
+              {label}
+            </span>
+          )}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

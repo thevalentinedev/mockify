@@ -36,7 +36,7 @@ export function ExamHeader({
   return (
     <div
       className={cn(
-        "sticky top-14 z-30 -mx-4 space-y-2 border-b border-border/50 bg-background/90 px-4 py-2 backdrop-blur-xl sm:-mx-6 sm:px-6",
+        "sticky top-14 z-30 space-y-2 py-2",
         className
       )}
     >

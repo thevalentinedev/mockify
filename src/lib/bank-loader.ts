@@ -1,5 +1,7 @@
 import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 import path from "path";
+import { normalizeQuestionBank } from "@/lib/normalize-question";
+import { pruneQuestionBank } from "@/lib/question-eligibility";
 import { getStaticQuestionBank } from "@/data/question-banks/static";
 import {
   getBankFromDb,
@@ -15,6 +17,34 @@ function hasQuestions(bank: QuestionBank | null | undefined): bank is QuestionBa
   return (bank?.questions.length ?? 0) > 0;
 }
 
+function logPrunedQuestions(
+  schoolId: SchoolId,
+  subjectId: SubjectId,
+  removed: QuestionBank["questions"]
+) {
+  if (removed.length === 0) return;
+  console.info(
+    `[bank] Removed ${removed.length} ineligible question(s) from ${schoolId}/${subjectId}: ${removed.map((q) => q.id).join(", ")}`
+  );
+}
+
+async function finalizeLoadedBank(bank: QuestionBank): Promise<QuestionBank> {
+  const normalized = normalizeQuestionBank(bank);
+  const { bank: pruned, removed } = pruneQuestionBank(normalized);
+
+  if (removed.length === 0) {
+    return pruned;
+  }
+
+  logPrunedQuestions(bank.schoolId, bank.subjectId, removed);
+
+  if (isDbEnabled() || shouldMirrorToJson()) {
+    await saveQuestionBank(pruned, { skipPrune: true });
+  }
+
+  return pruned;
+}
+
 /** Loads question bank — Neon DB, bundled JSON, then static seed banks */
 export async function getQuestionBank(
   schoolId: SchoolId,
@@ -22,7 +52,7 @@ export async function getQuestionBank(
 ): Promise<QuestionBank | null> {
   if (isDbEnabled()) {
     const fromDb = await getBankFromDb(schoolId, subjectId);
-    if (hasQuestions(fromDb)) return fromDb;
+    if (hasQuestions(fromDb)) return finalizeLoadedBank(fromDb);
   }
 
   const jsonPath = getBankPath(schoolId, subjectId);
@@ -30,13 +60,13 @@ export async function getQuestionBank(
   try {
     const raw = await readFile(jsonPath, "utf-8");
     const fromJson = JSON.parse(raw) as QuestionBank;
-    if (hasQuestions(fromJson)) return fromJson;
+    if (hasQuestions(fromJson)) return finalizeLoadedBank(fromJson);
   } catch {
     // fall through to bundled seed bank
   }
 
   const fromStatic = getStaticQuestionBank(schoolId, subjectId);
-  return hasQuestions(fromStatic) ? fromStatic : null;
+  return hasQuestions(fromStatic) ? finalizeLoadedBank(fromStatic) : null;
 }
 
 function shouldMirrorToJson(): boolean {
@@ -45,8 +75,18 @@ function shouldMirrorToJson(): boolean {
   return true;
 }
 
-export async function saveQuestionBank(bank: QuestionBank): Promise<void> {
-  const persisted = await ensureContextImagesPersisted(bank);
+export async function saveQuestionBank(
+  bank: QuestionBank,
+  options?: { skipPrune?: boolean }
+): Promise<void> {
+  const normalized = normalizeQuestionBank(bank);
+  const { bank: pruned, removed } = options?.skipPrune
+    ? { bank: normalized, removed: [] as QuestionBank["questions"] }
+    : pruneQuestionBank(normalized);
+
+  logPrunedQuestions(pruned.schoolId, pruned.subjectId, removed);
+
+  const persisted = await ensureContextImagesPersisted(pruned);
   if (isDbEnabled()) {
     await saveBankToDb(persisted);
   }

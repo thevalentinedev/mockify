@@ -1,0 +1,202 @@
+import { z } from "zod";
+import { difficultyZod } from "@/lib/difficulty";
+import { buildTagsFromTopics } from "@/lib/tags";
+import { isTextGradedQuestion } from "@/lib/question-type";
+import type {
+  AnswerConfidence,
+  Question,
+  QuestionDistractor,
+  QuestionSolution,
+  QuestionType,
+} from "@/types/exam";
+
+export const aiDistractorSchema = z.object({
+  answer: z.string(),
+  reason: z.string(),
+});
+
+export const aiSolutionSchema = z.object({
+  steps: z.array(z.string()).min(1),
+  finalAnswer: z.string().optional(),
+});
+
+export const aiWrongHintSchema = z.object({
+  optionIndex: z.number().int(),
+  hint: z.string(),
+});
+
+export const aiEnrichedQuestionSchema = z.object({
+  id: z.string(),
+  answerConfidence: z.enum(["high", "medium", "low"]),
+  questionType: z
+    .enum(["multiple_choice", "numeric", "short_answer", "true_false"])
+    .optional(),
+  correctIndex: z.number().int().optional(),
+  answer: z.string().optional(),
+  acceptedAnswers: z.array(z.string()).optional(),
+  explanation: z.string(),
+  solution: aiSolutionSchema.optional(),
+  distractors: z.array(aiDistractorSchema).optional(),
+  wrongAnswerHints: z.array(aiWrongHintSchema).optional(),
+  learningObjective: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  topics: z.array(z.string()),
+  difficulty: difficultyZod,
+});
+
+export const aiGeneratedQuestionSchema = aiEnrichedQuestionSchema.omit({ id: true }).extend({
+  text: z.string(),
+  options: z.array(z.string()).min(2).max(6).optional(),
+  contextId: z.string().nullable().optional(),
+});
+
+export type AiEnrichedQuestion = z.infer<typeof aiEnrichedQuestionSchema>;
+export type AiGeneratedQuestion = z.infer<typeof aiGeneratedQuestionSchema>;
+
+export function isPublishableConfidence(
+  confidence: AnswerConfidence | undefined
+): boolean {
+  return confidence === "high";
+}
+
+export function hintsToDistractors(
+  options: string[],
+  correctIndex: number,
+  hints: Record<string, string>
+): QuestionDistractor[] {
+  return Object.entries(hints)
+    .map(([indexKey, reason]) => {
+      const index = Number(indexKey);
+      const answer = options[index];
+      if (!answer?.trim() || !reason?.trim() || index === correctIndex) return null;
+      return { answer, reason: reason.trim() };
+    })
+    .filter((item): item is QuestionDistractor => item !== null);
+}
+
+export function distractorsToHints(
+  options: string[],
+  distractors: QuestionDistractor[]
+): Record<string, string> {
+  const hints: Record<string, string> = {};
+  for (const distractor of distractors) {
+    const index = options.findIndex((option) => option === distractor.answer);
+    if (index >= 0) hints[String(index)] = distractor.reason;
+  }
+  return hints;
+}
+
+function resolveQuestionType(
+  original: Question,
+  enriched: AiEnrichedQuestion
+): QuestionType | undefined {
+  if (original.questionType) return original.questionType;
+  if (enriched.questionType) return enriched.questionType;
+  if (isTextGradedQuestion(original)) return "numeric";
+  if (original.options?.length) return "multiple_choice";
+  return undefined;
+}
+
+export function applyAiEnrichment(
+  original: Question,
+  enriched: AiEnrichedQuestion
+): Question | null {
+  if (!isPublishableConfidence(enriched.answerConfidence)) {
+    return null;
+  }
+
+  const questionType = resolveQuestionType(original, enriched);
+  const isNumeric = questionType === "numeric" || isTextGradedQuestion(original);
+
+  const distractors =
+    enriched.distractors?.length
+      ? enriched.distractors
+      : !isNumeric &&
+          original.options?.length &&
+          enriched.wrongAnswerHints?.length
+        ? enriched.wrongAnswerHints
+            .filter((hint) => hint.optionIndex !== enriched.correctIndex)
+            .map((hint) => ({
+              answer: original.options![hint.optionIndex] ?? "",
+              reason: hint.hint,
+            }))
+            .filter((d) => d.answer && d.reason)
+        : original.distractors;
+
+  const wrongAnswerHints =
+    !isNumeric && original.options?.length && distractors?.length
+      ? distractorsToHints(original.options, distractors)
+      : original.wrongAnswerHints;
+
+  const topics = enriched.topics.length
+    ? enriched.topics
+    : (original.meta?.topics ?? []);
+  const tags =
+    enriched.tags?.length ? enriched.tags : buildTagsFromTopics(topics);
+
+  const solution: QuestionSolution | undefined =
+    enriched.solution?.steps.length
+      ? {
+          steps: enriched.solution.steps,
+          finalAnswer:
+            enriched.solution.finalAnswer ??
+            enriched.answer ??
+            original.answer,
+        }
+      : original.solution;
+
+  const next: Question = {
+    ...original,
+    questionType,
+    explanation: enriched.explanation,
+    solution,
+    distractors,
+    wrongAnswerHints,
+    meta: {
+      ...(original.meta ?? { topics: [], source: "verified" }),
+      topics,
+      tags,
+      learningObjective:
+        enriched.learningObjective ?? original.meta?.learningObjective,
+      difficulty: enriched.difficulty,
+      source: original.meta?.source === "generated" ? "generated" : "verified",
+      verifiedAt: new Date().toISOString(),
+      answerConfidence: enriched.answerConfidence,
+    },
+  };
+
+  if (isNumeric) {
+    next.answer = enriched.answer ?? original.answer;
+    next.acceptedAnswers =
+      enriched.acceptedAnswers ?? original.acceptedAnswers;
+    delete next.options;
+    delete next.correctIndex;
+    delete next.wrongAnswerHints;
+  } else {
+    next.correctIndex = enriched.correctIndex ?? original.correctIndex ?? 0;
+    next.options = original.options;
+  }
+
+  return next;
+}
+
+export function applyAiGeneratedQuestion(
+  base: Omit<Question, "id"> & { id: string },
+  generated: AiGeneratedQuestion
+): Question | null {
+  return applyAiEnrichment(
+    {
+      ...base,
+      meta: base.meta ?? { topics: [], source: "generated" },
+    },
+    { ...generated, id: base.id }
+  );
+}
+
+export const ENRICHMENT_PROMPT_RULES = `Quality rules:
+- answerConfidence must be "high" only when you are certain the answer and reasoning are correct. Use "medium" or "low" if unsure — those questions will be discarded.
+- For numeric/free-response: provide solution.steps (2-5 short steps) and finalAnswer. Include acceptedAnswers for alternate forms (fractions, decimals).
+- For multiple-choice: provide distractors[] with { answer, reason } explaining the student misconception — not just "this is wrong".
+- learningObjective: one specific skill sentence (e.g. "Add fractions with unlike denominators").
+- tags: 2-5 short searchable labels (e.g. fractions, lcd, arithmetic).
+- difficulty: 1=very easy, 2=easy, 3=medium, 4=hard, 5=very hard.`;

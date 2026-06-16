@@ -28,7 +28,10 @@ function isQuestionAnswered(
   answers: ExamAnswer[]
 ): boolean {
   const ans = answers.find((a) => a.questionId === questionId);
-  return ans?.selectedIndex !== null && ans?.selectedIndex !== undefined;
+  return (
+    (ans?.selectedIndex !== null && ans?.selectedIndex !== undefined) ||
+    Boolean(ans?.textAnswer?.trim())
+  );
 }
 
 function tileClassName(state: QuestionTileState): string {

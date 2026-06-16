@@ -6,8 +6,8 @@ import { SetupFooter } from "@/components/setup-footer";
 import { StepIndicator } from "@/components/step-indicator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   MODES,
   QUICK_QUESTION_COUNT,
@@ -16,6 +16,10 @@ import {
   getModeStartLabel,
   type SetupStep,
 } from "@/lib/exam-config";
+import { MATHS_PROGRAMS } from "@/lib/maths-program";
+import { formatTopicLabel } from "@/lib/question-topics";
+import { cn } from "@/lib/utils";
+import { iconTile, shell, softCheck, softRow, statTile, surface } from "@/lib/surface";
 import { cn } from "@/lib/utils";
 import {
   clearExamInProgress,
@@ -34,6 +38,7 @@ import {
 } from "@/lib/user-attempts";
 import type {
   ExamMode,
+  MathsProgramId,
   SchoolId,
   SubjectCustomOptions,
   SubjectId,
@@ -42,6 +47,7 @@ import type { SubjectEnsureResult } from "@/lib/bank-manager";
 import {
   BookOpen,
   Calculator,
+  Check,
   ChevronDown,
   Dna,
   FlaskConical,
@@ -68,6 +74,10 @@ interface SessionStats {
     requestedCount?: number;
     maxQuestions?: number;
     poolSize: number;
+    totalPoolSize?: number;
+    topics?: { label: string; count: number }[];
+    studyTopic?: string | null;
+    studyTopics?: string[] | null;
     timeLimitMinutes: number;
     ready: boolean;
     poolComplete: boolean;
@@ -97,12 +107,39 @@ function getModeMetaLine(modeId: string, timed?: boolean): string {
   return timed ? "Timed · full exam spec" : "Untimed · full exam spec";
 }
 
+function getModeIcon(modeId: ExamMode) {
+  if (modeId === "study") return GraduationCap;
+  if (modeId === "custom") return SlidersHorizontal;
+  const config = MODES.find((m) => m.id === modeId);
+  return config?.timeLimit ? Timer : Zap;
+}
+
+type ModeSubview = "pick" | "configure";
+
+function formatStudyTopicSummary(
+  selectedTopics: string[],
+  totalPoolSize: number
+): string {
+  if (selectedTopics.length === 0) {
+    return `All topics · ${totalPoolSize} ready`;
+  }
+  if (selectedTopics.length === 1) {
+    return formatTopicLabel(selectedTopics[0]);
+  }
+  return `${selectedTopics.length} topics selected`;
+}
+
 export function ExamSetup() {
   const router = useRouter();
   const [step, setStep] = useState<SetupStep>("school");
   const [schoolId, setSchoolId] = useState<SchoolId | null>("conestoga");
   const [subjects, setSubjects] = useState<SubjectId[]>([]);
+  const [mathsProgram, setMathsProgram] = useState<MathsProgramId | null>(null);
   const [mode, setMode] = useState<ExamMode | null>(null);
+  const [modeSubview, setModeSubview] = useState<ModeSubview>("pick");
+  const [studyTopicsBySubject, setStudyTopicsBySubject] = useState<
+    Partial<Record<SubjectId, string[]>>
+  >({});
   const [customPerSubject, setCustomPerSubject] = useState<
     Partial<Record<SubjectId, SubjectCustomOptions>>
   >({});
@@ -134,7 +171,11 @@ export function ExamSetup() {
       const count = customPerSubject[subjectId]?.questionCount ?? QUICK_QUESTION_COUNT;
       return count >= 1 && count <= max;
     });
-  const canStart = (displayStats?.bySubject?.length ?? 0) > 0 && customQuestionsValid;
+  const canStart =
+    (displayStats?.bySubject?.length ?? 0) > 0 &&
+    customQuestionsValid &&
+    (mode !== "study" ||
+      (displayStats?.bySubject.every((s) => s.questionCount > 0) ?? false));
   const previewOpen = previewOverride ?? subjects.length <= 3;
 
   const focusTopics = useMemo(() => {
@@ -149,9 +190,14 @@ export function ExamSetup() {
       subjects,
       mode,
       ...(mode === "custom" ? { customPerSubject } : {}),
+      ...(mode === "study" &&
+      Object.values(studyTopicsBySubject).some((topics) => topics?.length)
+        ? { studyTopicsBySubject }
+        : {}),
       ...(focusTopics.length ? { focusTopics } : {}),
+      ...(subjects.includes("maths") && mathsProgram ? { mathsProgram } : {}),
     };
-  }, [schoolId, subjects, mode, customPerSubject, focusTopics]);
+  }, [schoolId, subjects, mode, customPerSubject, focusTopics, mathsProgram, studyTopicsBySubject]);
 
   useEffect(() => {
     if (!previewPayload) return;
@@ -177,19 +223,62 @@ export function ExamSetup() {
   }, [previewPayload]);
 
   function toggleSubject(id: SubjectId) {
-    setSubjects((prev) =>
-      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
-    );
+    setSubjects((prev) => {
+      if (prev.includes(id)) {
+        if (id === "maths") setMathsProgram(null);
+        return prev.filter((s) => s !== id);
+      }
+      if (id === "maths") setMathsProgram("engineering");
+      return [...prev, id];
+    });
+  }
+
+  function toggleStudyTopic(subjectId: SubjectId, topicLabel: string) {
+    setStudyTopicsBySubject((prev) => {
+      const current = prev[subjectId] ?? [];
+      const next = current.includes(topicLabel)
+        ? current.filter((topic) => topic !== topicLabel)
+        : [...current, topicLabel];
+
+      if (next.length === 0) {
+        const copy = { ...prev };
+        delete copy[subjectId];
+        return copy;
+      }
+
+      return { ...prev, [subjectId]: next };
+    });
+  }
+
+  function selectMode(nextMode: ExamMode) {
+    setMode(nextMode);
+    if (nextMode !== "study") {
+      setStudyTopicsBySubject({});
+    }
+    setModeSubview("configure");
   }
 
   function goNext() {
     if (step === "school" && schoolId) setStep("subjects");
-    else if (step === "subjects" && subjects.length > 0) setStep("mode");
+    else if (step === "subjects" && subjects.length > 0) {
+      setMode(null);
+      setModeSubview("pick");
+      setStep("mode");
+    }
   }
 
   function goBack() {
+    if (step === "mode" && modeSubview === "configure") {
+      setModeSubview("pick");
+      setMode(null);
+      return;
+    }
     if (step === "subjects") setStep("school");
-    else if (step === "mode") setStep("subjects");
+    else if (step === "mode") {
+      setModeSubview("pick");
+      setMode(null);
+      setStep("subjects");
+    }
   }
 
   async function startExam() {
@@ -247,7 +336,12 @@ export function ExamSetup() {
           subjects,
           mode,
           ...(mode === "custom" ? { customPerSubject } : {}),
-          ...(focusTopics.length ? { focusTopics } : {}),
+          ...(mode === "study" &&
+      Object.values(studyTopicsBySubject).some((topics) => topics?.length)
+        ? { studyTopicsBySubject }
+        : {}),
+      ...(focusTopics.length ? { focusTopics } : {}),
+          ...(subjects.includes("maths") && mathsProgram ? { mathsProgram } : {}),
           wrongQuestionIdsBySubject,
         }),
       });
@@ -319,7 +413,7 @@ export function ExamSetup() {
         {showResumeBanner && inProgressSession && (
           <BentoCard
             compact
-            className="flex items-center gap-3 border-emerald-500/20 bg-emerald-500/5 pl-4 pr-2"
+            className="flex items-center gap-3 border-emerald-500/15 bg-emerald-500/8 pl-4 pr-2"
           >
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium">Exam in progress</p>
@@ -368,7 +462,7 @@ export function ExamSetup() {
         )}
 
         {!isHome && (
-          <div className="sticky top-14 z-20 -mx-4 border-b border-border/40 bg-background/90 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6">
+          <div className="sticky top-14 z-20 py-2">
             <StepIndicator steps={STEPS} currentStep={step} />
           </div>
         )}
@@ -437,22 +531,20 @@ export function ExamSetup() {
                 <BentoCard
                   key={subject.id}
                   selected={isSelected}
+                  ariaPressed={isSelected}
                   onClick={() => toggleSubject(subject.id)}
                   className={`bg-gradient-to-br ${subject.color}`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-background/80 shadow-sm">
+                    <div className={cn(iconTile, "size-10 shrink-0")}>
                       <Icon className="size-5" />
                     </div>
                     <div className="flex-1 space-y-1">
                       <div className="flex items-center gap-2">
-                        <Checkbox
-                          checked={isSelected}
-                          className="pointer-events-none"
-                        />
-                        <Label className="font-semibold cursor-pointer">
-                          {subject.name}
-                        </Label>
+                        <span aria-hidden className={softCheck(isSelected)}>
+                          {isSelected ? <Check className="size-3.5" /> : null}
+                        </span>
+                        <span className="font-semibold">{subject.name}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
                         {subject.description}
@@ -463,36 +555,80 @@ export function ExamSetup() {
               );
             })}
           </div>
+
+          {subjects.includes("maths") && (
+            <BentoCard className="space-y-4 bg-muted/30">
+              <div className="space-y-1">
+                <h3 className="font-semibold">Which program are you applying to?</h3>
+                <p className="text-sm text-muted-foreground">
+                  Conestoga&apos;s Math Skills Assessment uses different question
+                  ranges by program. All applicants are encouraged to complete the
+                  full 100-question assessment when possible.
+                </p>
+              </div>
+              <RadioGroup
+                value={mathsProgram ?? "engineering"}
+                onValueChange={(value) =>
+                  setMathsProgram(value as MathsProgramId)
+                }
+                className="space-y-2"
+              >
+                {MATHS_PROGRAMS.map((program) => (
+                  <Label
+                    key={program.id}
+                    htmlFor={`maths-program-${program.id}`}
+                    className={cn(
+                      "flex cursor-pointer gap-3 p-3 transition-colors",
+                      softRow(mathsProgram === program.id)
+                    )}
+                  >
+                    <RadioGroupItem
+                      id={`maths-program-${program.id}`}
+                      value={program.id}
+                      className="mt-0.5"
+                    />
+                    <div className="space-y-1">
+                      <p className="font-medium leading-none">
+                        {program.label}
+                        <span className="ml-2 text-xs font-normal text-muted-foreground">
+                          {program.questionLimit} questions
+                        </span>
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {program.description}
+                      </p>
+                    </div>
+                  </Label>
+                ))}
+              </RadioGroup>
+            </BentoCard>
+          )}
         </section>
       )}
 
-      {step === "mode" && (
-        <section key="mode" className="setup-step-enter space-y-4">
+      {step === "mode" && modeSubview === "pick" && (
+        <section key="mode-pick" className="setup-step-enter space-y-4">
           <h2 className="text-lg font-semibold">Select exam mode</h2>
+          <p className="text-sm text-muted-foreground">
+            Choose how you want to practice. You can fine-tune settings on the
+            next screen.
+          </p>
           <div className="grid gap-4 sm:grid-cols-2">
             {MODES.map((m) => {
-              const ModeIcon =
-                m.id === "study"
-                  ? GraduationCap
-                  : m.id === "custom"
-                    ? SlidersHorizontal
-                    : m.timeLimit
-                      ? Timer
-                      : Zap;
+              const ModeIcon = getModeIcon(m.id);
 
               return (
                 <BentoCard
                   key={m.id}
-                  selected={mode === m.id}
-                  onClick={() => setMode(m.id)}
+                  onClick={() => selectMode(m.id)}
                   className="bg-gradient-to-br from-background to-muted/30"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10">
-                        <ModeIcon className="size-5 text-primary" />
+                      <div className={cn(iconTile, "size-10 bg-primary/10 text-primary")}>
+                        <ModeIcon className="size-5" />
                       </div>
-                      <h3 className="font-semibold text-lg">{m.name}</h3>
+                      <h3 className="text-lg font-semibold">{m.name}</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">{m.description}</p>
                     <p className="text-xs text-muted-foreground">
@@ -503,6 +639,31 @@ export function ExamSetup() {
               );
             })}
           </div>
+        </section>
+      )}
+
+      {step === "mode" && modeSubview === "configure" && mode && (
+        <section key="mode-configure" className="setup-step-enter space-y-4">
+          {(() => {
+            const modeConfig = MODES.find((m) => m.id === mode)!;
+            const ModeIcon = getModeIcon(mode);
+
+            return (
+              <>
+                <div className={cn(shell, "flex items-center gap-3 p-4")}>
+                  <div className={cn(iconTile, "size-10 shrink-0 bg-primary/10 text-primary")}>
+                    <ModeIcon className="size-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-semibold">{modeConfig.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {modeConfig.description}
+                    </p>
+                  </div>
+                </div>
+              </>
+            );
+          })()}
 
           {mode === "custom" && (
             <BentoCard className="space-y-4 bg-muted/30">
@@ -575,14 +736,14 @@ export function ExamSetup() {
                     return (
                       <details
                         key={subjectId}
-                        className="group rounded-xl border bg-background/50"
+                        className={cn(surface, "group p-2")}
                         open
                       >
                         <summary className="flex cursor-pointer list-none items-center justify-between p-3 font-medium [&::-webkit-details-marker]:hidden">
                           {subject?.name}
                           <ChevronDown className="size-4 text-muted-foreground transition-transform group-open:rotate-180" />
                         </summary>
-                        <div className="grid gap-3 border-t p-3 sm:grid-cols-3">
+                        <div className="grid gap-3 p-2 pt-1 sm:grid-cols-3">
                           {fields}
                         </div>
                       </details>
@@ -592,7 +753,7 @@ export function ExamSetup() {
                   return (
                     <div
                       key={subjectId}
-                      className="grid gap-3 rounded-xl border bg-background/50 p-3 sm:grid-cols-3"
+                      className={cn(surface, "grid gap-3 p-3 sm:grid-cols-3")}
                     >
                       <p className="font-medium sm:col-span-3">{subject?.name}</p>
                       {fields}
@@ -603,7 +764,94 @@ export function ExamSetup() {
             </BentoCard>
           )}
 
-          {focusTopics.length > 0 && (
+          {mode === "study" && (
+            <BentoCard className="space-y-4 bg-muted/30">
+              <div className="space-y-1">
+                <h3 className="font-semibold">Study by topic</h3>
+                <p className="text-sm text-muted-foreground">
+                  Expand a subject and pick one or more topics. Leave empty to
+                  study across all topics.
+                </p>
+              </div>
+              <div className="space-y-2">
+                {subjects.map((subjectId) => {
+                  const subject = SUBJECTS.find((s) => s.id === subjectId);
+                  const subjectStats = displayStats?.bySubject.find(
+                    (s) => s.subjectId === subjectId
+                  );
+                  const topics = subjectStats?.topics ?? [];
+                  const selectedTopics = studyTopicsBySubject[subjectId] ?? [];
+                  const totalPoolSize =
+                    subjectStats?.totalPoolSize ?? subjectStats?.poolSize ?? 0;
+
+                  return (
+                      <details
+                        key={subjectId}
+                        className={cn(surface, "group p-2")}
+                      >
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-[var(--radius-surface)] p-2 [&::-webkit-details-marker]:hidden">
+                        <div className="min-w-0 text-left">
+                          <p className="font-medium">
+                            {subjects.length > 1 ? subject?.name : "Topics"}
+                          </p>
+                          <p className="truncate text-xs text-muted-foreground">
+                            {formatStudyTopicSummary(selectedTopics, totalPoolSize)}
+                          </p>
+                        </div>
+                        <ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="space-y-1.5 p-2 pt-1">
+                        {topics.length === 0 ? (
+                          <p className="text-sm text-muted-foreground">
+                            No topics found in this bank yet.
+                          </p>
+                        ) : (
+                          topics.map((topic) => {
+                            const isSelected = selectedTopics.includes(topic.label);
+
+                            return (
+                              <button
+                                key={`${subjectId}-${topic.label}`}
+                                type="button"
+                                onClick={() =>
+                                  toggleStudyTopic(subjectId, topic.label)
+                                }
+                                className={cn(
+                                  "flex w-full items-center gap-3 p-3 text-left",
+                                  softRow(isSelected)
+                                )}
+                              >
+                                <span aria-hidden className={softCheck(isSelected)}>
+                                  {isSelected ? <Check className="size-3.5" /> : null}
+                                </span>
+                                <div className="min-w-0">
+                                  <p className="font-medium leading-none">
+                                    {topic.label}
+                                  </p>
+                                  <p className="mt-1 text-xs text-muted-foreground">
+                                    {topic.count} question
+                                    {topic.count === 1 ? "" : "s"}
+                                  </p>
+                                </div>
+                              </button>
+                            );
+                          })
+                        )}
+                        {selectedTopics.length > 0 &&
+                          subjectStats?.questionCount === 0 && (
+                            <p className="text-xs text-destructive">
+                              No questions available for the selected topics yet.
+                            </p>
+                          )}
+                      </div>
+                    </details>
+                  );
+                })}
+              </div>
+            </BentoCard>
+          )}
+
+          {focusTopics.length > 0 && mode !== "study" && (
             <p className="text-sm text-amber-700 dark:text-amber-400">
               Practicing weak topics: {focusTopics.join(", ")}
             </p>
@@ -628,15 +876,15 @@ export function ExamSetup() {
               {previewOpen && (
                 <div className="mt-3 space-y-3">
                   <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                    <div className={cn(statTile, "p-3 text-center")}>
                       <p className="text-2xl font-bold">{displayStats.totalQuestions}</p>
                       <p className="text-xs text-muted-foreground">Exam questions</p>
                     </div>
-                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                    <div className={cn(statTile, "p-3 text-center")}>
                       <p className="text-2xl font-bold">{subjects.length}</p>
                       <p className="text-xs text-muted-foreground">Subjects</p>
                     </div>
-                    <div className="rounded-xl bg-background/60 p-3 text-center">
+                    <div className={cn(statTile, "p-3 text-center")}>
                       <p className="text-2xl font-bold">
                         {displayStats.timed ? displayStats.totalTimeMinutes : "∞"}
                       </p>
@@ -649,9 +897,21 @@ export function ExamSetup() {
                     const subject = SUBJECTS.find((sub) => sub.id === s.subjectId);
                     const timeLabel =
                       s.timeLimitMinutes > 0 ? `${s.timeLimitMinutes} min` : "no limit";
+                    const mathsTrack =
+                      s.subjectId === "maths" && mathsProgram
+                        ? MATHS_PROGRAMS.find((p) => p.id === mathsProgram)?.label
+                        : null;
+                    const studyTopics =
+                      s.subjectId && studyTopicsBySubject[s.subjectId];
+                    const topicLabel =
+                      studyTopics && studyTopics.length > 0
+                        ? studyTopics.map(formatTopicLabel).join(", ")
+                        : null;
                     return (
                       <p key={s.subjectId} className="text-xs text-muted-foreground">
                         {subject?.name}: {s.questionCount} questions · {timeLabel}
+                        {topicLabel ? ` · ${topicLabel}` : null}
+                        {mathsTrack ? ` · ${mathsTrack}` : null}
                         {s.ready && ` · ${s.poolSize} ready in bank`}
                       </p>
                     );
@@ -670,7 +930,13 @@ export function ExamSetup() {
       {step !== "school" && (
         <SetupFooter
           onBack={goBack}
-          onContinue={step === "subjects" ? goNext : startExam}
+          onContinue={step === "mode" ? startExam : goNext}
+          showContinue={step !== "mode" || modeSubview === "configure"}
+          backLabel={
+            step === "mode" && modeSubview === "configure"
+              ? "Change mode"
+              : "Back"
+          }
           continueLabel={
             step === "mode" && mode
               ? `Start ${getModeStartLabel(mode)}`
@@ -678,8 +944,11 @@ export function ExamSetup() {
           }
           continueDisabled={
             step === "subjects"
-              ? subjects.length === 0
-              : !mode || !displayStats || !canStart
+              ? subjects.length === 0 ||
+                (subjects.includes("maths") && !mathsProgram)
+              : step === "mode"
+                ? !mode || !displayStats || !canStart
+                : false
           }
           continueLoading={starting}
         />

@@ -1,15 +1,6 @@
 {
   "meta": {
-    "topicsCovered": [
-      "Reading Comprehension",
-      "Understanding Narrative Elements",
-      "Financial Literacy",
-      "Household Management",
-      "Environmental Awareness",
-      "Sentence Structure",
-      "Capitalization Rules",
-      "Punctuation Rules"
-    ],
+    "examStarts": 7,
     "examBlueprint": [
       {
         "topic": "Reading Comprehension",
@@ -53,10 +44,264 @@
       }
     ],
     "schoolContext": "Conestoga College emphasizes practical and applied learning, focusing on essential skills in communication and comprehension necessary for professional and academic settings. Assessments aim to evaluate students' understanding of both everyday topics and academic concepts through multiple-choice formats.",
+    "topicsCovered": [
+      "Reading Comprehension",
+      "Understanding Narrative Elements",
+      "Financial Literacy",
+      "Household Management",
+      "Environmental Awareness",
+      "Sentence Structure",
+      "Capitalization Rules",
+      "Punctuation Rules"
+    ],
     "lastEnrichedAt": "2026-06-09T13:56:03.382Z",
-    "lastGeneratedAt": "2026-06-09T14:21:13.482Z",
+    "recentExamSets": [
+      [
+        "engl-gen-085",
+        "engl-gen-046",
+        "engl-gen-058",
+        "engl-gen-097",
+        "engl-gen-042",
+        "engl-gen-035",
+        "engl-gen-023",
+        "engl-gen-109",
+        "engl-019",
+        "engl-gen-064",
+        "engl-gen-057",
+        "engl-gen-102",
+        "engl-gen-091",
+        "engl-gen-060",
+        "engl-gen-107",
+        "engl-gen-022",
+        "engl-009",
+        "engl-gen-062",
+        "engl-gen-110",
+        "engl-gen-048",
+        "engl-gen-088",
+        "engl-gen-083",
+        "engl-gen-104",
+        "engl-gen-108",
+        "engl-gen-026",
+        "engl-gen-036",
+        "engl-gen-039",
+        "engl-gen-027",
+        "engl-003",
+        "engl-gen-045",
+        "engl-gen-044",
+        "engl-014",
+        "engl-gen-090",
+        "engl-gen-103",
+        "engl-gen-093",
+        "engl-gen-028",
+        "engl-gen-080",
+        "engl-gen-075",
+        "engl-gen-101",
+        "engl-gen-067",
+        "engl-gen-034",
+        "engl-gen-030",
+        "engl-gen-076",
+        "engl-gen-099",
+        "engl-004",
+        "engl-gen-087",
+        "engl-gen-077",
+        "engl-gen-074",
+        "engl-gen-033",
+        "engl-007",
+        "engl-gen-106",
+        "engl-012",
+        "engl-gen-084",
+        "engl-gen-051",
+        "engl-gen-031",
+        "engl-gen-082",
+        "engl-gen-095",
+        "engl-gen-055",
+        "engl-gen-094",
+        "engl-017",
+        "engl-gen-054",
+        "engl-gen-047",
+        "engl-gen-079",
+        "engl-gen-050",
+        "engl-gen-092",
+        "engl-gen-063",
+        "engl-gen-056",
+        "engl-gen-089",
+        "engl-gen-071",
+        "engl-006",
+        "engl-018",
+        "engl-gen-052",
+        "engl-gen-081",
+        "engl-008",
+        "engl-gen-072",
+        "engl-gen-059",
+        "engl-002",
+        "engl-gen-070",
+        "engl-016",
+        "engl-gen-021",
+        "engl-gen-025",
+        "engl-gen-066",
+        "engl-gen-096",
+        "engl-020",
+        "engl-gen-040",
+        "engl-gen-032",
+        "engl-gen-053",
+        "engl-gen-078",
+        "engl-gen-024",
+        "engl-gen-068",
+        "engl-011",
+        "engl-gen-086",
+        "engl-010",
+        "engl-gen-103",
+        "engl-gen-105",
+        "engl-001",
+        "engl-gen-049",
+        "engl-005",
+        "engl-gen-043",
+        "engl-gen-061",
+        "engl-gen-073",
+        "engl-015",
+        "engl-gen-029",
+        "engl-gen-038",
+        "engl-gen-098",
+        "engl-013",
+        "engl-gen-069",
+        "engl-gen-065"
+      ],
+      [
+        "engl-gen-032",
+        "engl-gen-040",
+        "engl-gen-061",
+        "engl-gen-079",
+        "engl-019",
+        "engl-gen-103",
+        "engl-gen-097",
+        "engl-gen-091",
+        "engl-gen-073",
+        "engl-014",
+        "engl-gen-110",
+        "engl-gen-094",
+        "engl-001",
+        "engl-gen-022",
+        "engl-gen-092",
+        "engl-gen-051",
+        "engl-gen-071",
+        "engl-gen-085",
+        "engl-gen-047",
+        "engl-gen-023",
+        "engl-gen-101",
+        "engl-gen-052",
+        "engl-gen-072",
+        "engl-gen-077",
+        "engl-gen-093",
+        "engl-gen-099",
+        "engl-gen-042",
+        "engl-gen-068",
+        "engl-gen-055",
+        "engl-gen-075",
+        "engl-008",
+        "engl-gen-046",
+        "engl-gen-067",
+        "engl-gen-084",
+        "engl-gen-083",
+        "engl-010",
+        "engl-gen-105",
+        "engl-gen-062",
+        "engl-gen-056",
+        "engl-003",
+        "engl-gen-025",
+        "engl-002",
+        "engl-gen-021",
+        "engl-gen-090",
+        "engl-016",
+        "engl-007",
+        "engl-gen-102",
+        "engl-gen-098",
+        "engl-gen-080",
+        "engl-gen-069",
+        "engl-gen-031",
+        "engl-gen-070",
+        "engl-gen-041",
+        "engl-gen-049",
+        "engl-018",
+        "engl-gen-095",
+        "engl-gen-096",
+        "engl-015",
+        "engl-gen-038",
+        "engl-004",
+        "engl-gen-036",
+        "engl-gen-027",
+        "engl-gen-045",
+        "engl-gen-103",
+        "engl-gen-058",
+        "engl-gen-029",
+        "engl-gen-026",
+        "engl-013",
+        "engl-gen-048",
+        "engl-gen-074",
+        "engl-gen-033",
+        "engl-006",
+        "engl-gen-082",
+        "engl-gen-088",
+        "engl-012",
+        "engl-gen-108",
+        "engl-gen-081",
+        "engl-gen-054",
+        "engl-gen-037",
+        "engl-gen-035",
+        "engl-gen-057",
+        "engl-gen-050",
+        "engl-gen-106",
+        "engl-gen-078",
+        "engl-020",
+        "engl-gen-030",
+        "engl-005",
+        "engl-gen-034",
+        "engl-gen-053",
+        "engl-gen-089",
+        "engl-gen-109",
+        "engl-gen-107",
+        "engl-gen-043",
+        "engl-gen-066",
+        "engl-017",
+        "engl-gen-028",
+        "engl-gen-087",
+        "engl-gen-063",
+        "engl-gen-065",
+        "engl-gen-044",
+        "engl-011",
+        "engl-gen-039",
+        "engl-gen-060",
+        "engl-gen-086",
+        "engl-gen-059",
+        "engl-009",
+        "engl-gen-064",
+        "engl-gen-024"
+      ],
+      [
+        "engl-011",
+        "engl-gen-095",
+        "engl-gen-069",
+        "engl-gen-074",
+        "engl-gen-064",
+        "engl-gen-059",
+        "engl-gen-096",
+        "engl-gen-058",
+        "engl-gen-090",
+        "engl-gen-024",
+        "engl-gen-062",
+        "engl-gen-106",
+        "engl-016",
+        "engl-gen-057",
+        "engl-gen-081",
+        "engl-gen-037",
+        "engl-002",
+        "engl-gen-082",
+        "engl-gen-036",
+        "engl-gen-086"
+      ]
+    ],
     "totalGenerated": 93,
-    "examStarts": 4
+    "lastExamBuiltAt": "2026-06-15T23:27:47.999Z",
+    "lastGeneratedAt": "2026-06-09T14:21:13.482Z"
   },
   "config": {
     "questionCount": 108,
@@ -98,74 +343,30 @@
       "type": "passage",
       "title": "Community Garden News",
       "content": "The community garden uses rain barrels to collect water for plants. Volunteers also spread mulch around the vegetables to keep the soil moist. During summer, the garden depends on compost, which helps return nutrients to the soil and reduces waste."
-    },
-    "pdf-uncle-sal": {
-      "id": "pdf-uncle-sal",
-      "type": "passage",
-      "title": "Uncle Sal's Stories",
-      "content": "Light from the candles bounced off the dark windows and made strange shadows on the walls. After hearing Uncle Sal's stories, we all sat nervously, listening for creaking footsteps and squeaking doors. Leo was the first to speak. \"You don't really believe all those stories about the old Potter place, do you, Uncle Sal?\" \"I don't know,\" Uncle Sal said slowly, \"no one has seen Mr. Potter in town for the last five years. Some say he hasn't set foot out of the house.\""
-    },
-    "pdf-energy-water": {
-      "id": "pdf-energy-water",
-      "type": "comprehension",
-      "title": "Ontario Home Energy Use",
-      "content": "How energy is used in Ontario homes: For an annual energy bill of $2,000, water heating is 20–21%, or $400–$420."
-    },
-    "pdf-energy-cooling": {
-      "id": "pdf-energy-cooling",
-      "type": "comprehension",
-      "title": "Ontario Home Energy Use",
-      "content": "How energy is used in Ontario homes: For an annual energy bill of $2,000, cooling is 0–7%, or $0–$200."
-    },
-    "pdf-energy-factors": {
-      "id": "pdf-energy-factors",
-      "type": "comprehension",
-      "title": "Factors Affecting Energy Bills",
-      "content": "Many factors can affect your annual energy bill, such as size and location of your home, yearly variations in weather, efficiency of your furnace and other appliances, thermostat settings, number of occupants, and the local cost of energy."
-    },
-    "pdf-blue-box": {
-      "id": "pdf-blue-box",
-      "type": "comprehension",
-      "title": "Blue Box Recycling",
-      "content": "The Region gives out free Blue Boxes from listed locations. If your box is broken, bring it with you to have it recycled."
-    },
-    "pdf-blue-box-hours": {
-      "id": "pdf-blue-box-hours",
-      "type": "comprehension",
-      "title": "Blue Box Pickup Hours",
-      "content": "Cambridge Works Yard is open Monday to Friday, 7:00 a.m. – 3:30 p.m. Other listed locations generally open at 8:30 a.m."
-    },
-    "pdf-poem-important": {
-      "id": "pdf-poem-important",
-      "type": "passage",
-      "title": "What's Important",
-      "content": "In the poem 'What's Important,' the speaker says, 'What's More Important? It's got to be the lessons. The knowledge we have gained.'"
-    },
-    "pdf-poem-wealth": {
-      "id": "pdf-poem-wealth",
-      "type": "passage",
-      "title": "What's Important",
-      "content": "The poem says of wealth: 'You know it's often said, 'tis the root of all that's evil.'"
-    },
-    "pdf-ed-shoe-store": {
-      "id": "pdf-ed-shoe-store",
-      "type": "passage",
-      "title": "Sentence Combining",
-      "content": "Ed went to the shoe store. It is at the mall."
     }
   },
   "schoolId": "conestoga",
   "questions": [
     {
       "id": "engl-001",
-      "contextId": "pdf-uncle-sal",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension"
+          "Reading Comprehension",
+          "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension",
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What time of day is it in the story?",
       "options": [
@@ -174,24 +375,45 @@
         "Afternoon",
         "Evening"
       ],
-      "explanation": "The story mentions candles, dark windows, and shadows, which indicate it is evening.",
+      "explanation": "The correct answer is 'Evening' since the context of the story suggests that events are unfolding towards the end of the day, making evening the appropriate choice. Additionally, any references to darkness or the setting sun would further affirm this timing.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Morning does not match the dark setting and candlelight.",
-        "1": "Noon would usually be bright, not dark.",
-        "2": "Afternoon is not strongly supported by the details."
-      }
+        "0": "'Morning' is incorrect as it refers to the beginning of the day, which does not align with the events described.",
+        "1": "'Noon' is incorrect because noon is the middle of the day, while the story implies it is later.",
+        "2": "'Afternoon' is not suitable as the story indicates a transition towards evening."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Morning",
+          "reason": "'Morning' is incorrect as it refers to the beginning of the day, which does not align with the events described."
+        },
+        {
+          "answer": "Noon",
+          "reason": "'Noon' is incorrect because noon is the middle of the day, while the story implies it is later."
+        },
+        {
+          "answer": "Afternoon",
+          "reason": "'Afternoon' is not suitable as the story indicates a transition towards evening."
+        }
+      ]
     },
     {
       "id": "engl-002",
-      "contextId": "pdf-uncle-sal",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension"
+          "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What kind of stories did Uncle Sal tell?",
       "options": [
@@ -200,25 +422,44 @@
         "Sad",
         "Funny"
       ],
-      "explanation": "The listeners are nervous, and the story mentions strange shadows, creaking footsteps, and squeaking doors.",
-      "correctIndex": 1,
+      "explanation": "Uncle Sal told 'Funny' stories, which are known for their humor and lightheartedness. This choice aligns with common storytelling styles that engage listeners, especially in a familial context.",
+      "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Peaceful does not fit the nervous mood.",
-        "2": "Sad is not the main feeling created by the passage.",
-        "3": "Funny is not supported by the details."
-      }
+        "0": "'Peaceful' stories may not provide the entertainment typically associated with storytelling like Uncle Sal's.",
+        "1": "'Scary' stories are often not the main focus in a familial storytelling context.",
+        "2": "'Sad' stories are less likely to be the engaging style Uncle Sal would use to entertain."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Peaceful",
+          "reason": "'Peaceful' stories may not provide the entertainment typically associated with storytelling like Uncle Sal's."
+        },
+        {
+          "answer": "Scary",
+          "reason": "'Scary' stories are often not the main focus in a familial storytelling context."
+        },
+        {
+          "answer": "Sad",
+          "reason": "'Sad' stories are less likely to be the engaging style Uncle Sal would use to entertain."
+        }
+      ]
     },
     {
       "id": "engl-003",
-      "contextId": "pdf-energy-water",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension",
           "Financial Literacy"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If an annual energy bill was $1,500, approximately how much of it was for heating water?",
       "options": [
@@ -227,688 +468,675 @@
         "$300",
         "$200"
       ],
-      "explanation": "Water heating is about 20–21% of the annual bill. About 20% of $1,500 is $300.",
-      "correctIndex": 2,
+      "explanation": "The correct estimate for heating water from an annual bill of $1,500 is likely around $200 based on averages for household energy consumption. This figure aligns with typical allocation for water heating relative to other household energy needs.",
+      "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "$500 is too high for about 20% of $1,500.",
-        "1": "$100 is too low.",
-        "3": "$200 is lower than the estimated water heating cost."
-      }
+        "0": "'$500' is too high, representing a significant portion of the total bill that would be unusual for just water heating.",
+        "1": "'$100' does not adequately account for typical water heating usage in households.",
+        "2": "'$300' overestimates the usual costs associated with heating water annually."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$500",
+          "reason": "'$500' is too high, representing a significant portion of the total bill that would be unusual for just water heating."
+        },
+        {
+          "answer": "$100",
+          "reason": "'$100' does not adequately account for typical water heating usage in households."
+        },
+        {
+          "answer": "$300",
+          "reason": "'$300' overestimates the usual costs associated with heating water annually."
+        }
+      ]
     },
     {
       "id": "engl-004",
-      "contextId": "pdf-energy-cooling",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension",
           "Financial Literacy"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
-      "text": "Presently your annual electric bill is $2,000. If you install an air conditioner, approximately how much more could your annual electric bill be?",
+      "text": "Presently your annual electric bill is $2,000. If you install an air conditioner, approx. how much more could your annual electric bill be?",
       "options": [
         "$150 - $200",
         "$250 - $300",
         "$350 - $400",
         "$450 - $500"
       ],
-      "explanation": "The chart shows cooling can cost up to about $200 on a $2,000 annual bill.",
-      "correctIndex": 0,
+      "explanation": "The additional cost of installing an air conditioner is generally estimated to increase your electric bill by '$250 - $300', making this the correct answer. This additional cost reflects both the operational requirements and potential usage patterns during warmer months.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
-        "1": "$250 - $300 is higher than the chart's cooling estimate.",
-        "2": "$350 - $400 is much higher than expected.",
-        "3": "$450 - $500 is an exaggerated estimate."
-      }
-    },
-    {
-      "id": "engl-005",
-      "contextId": "pdf-energy-factors",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Reading Comprehension"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "0": "'$150 - $200' is too low for the expected increase because of the energy demands of air conditioning.",
+        "2": "'$350 - $400' is higher than typical additional costs observed in similar installations.",
+        "3": "'$450 - $500' is an exaggerated estimate that exceeds realistic expectations for air conditioning impact."
       },
-      "text": "What factor would be least likely to affect your annual electric bill?",
-      "options": [
-        "Square footage of house",
-        "Seasonal changes",
-        "Age of furnace and appliances",
-        "The North American costs of energy"
-      ],
-      "explanation": "The passage mentions local cost of energy, not the broader North American cost of energy.",
-      "correctIndex": 3,
-      "wrongAnswerHints": {
-        "0": "House size is listed as a factor.",
-        "1": "Yearly or seasonal weather changes are listed as a factor.",
-        "2": "Efficiency or age of appliances can affect energy use."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$150 - $200",
+          "reason": "'$150 - $200' is too low for the expected increase because of the energy demands of air conditioning."
+        },
+        {
+          "answer": "$350 - $400",
+          "reason": "'$350 - $400' is higher than typical additional costs observed in similar installations."
+        },
+        {
+          "answer": "$450 - $500",
+          "reason": "'$450 - $500' is an exaggerated estimate that exceeds realistic expectations for air conditioning impact."
+        }
+      ]
     },
     {
       "id": "engl-006",
-      "contextId": "pdf-blue-box",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension",
-          "Functional Reading"
+          "Household Management"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "If your blue box has been run over by the garbage truck, to receive a new one you should:",
       "options": [
         "Collect the pieces and take them to the nearest Operation Centre/Works Yard",
         "Go to the nearest Operation Centre/Works Yard to order a new blue box",
         "Phone (519) 883-5100 to request that a new one be sent to you",
-        "Take your damaged box to any of the Operation Centres/Works Yards on the weekend to pick up a new one"
+        "Take your damaged box to any of the Operation Centres/Works Yards on the weekend to pick up a new one."
       ],
-      "explanation": "The notice says that if the box is broken, you should bring it with you to have it recycled.",
-      "correctIndex": 0,
+      "explanation": "To receive a new blue box after it has been damaged, you should go to the nearest Operation Centre/Works Yard to order a new one. This approach is most direct and ensures that the proper process for replacement is followed.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
-        "1": "The notice says to bring the broken box, not just order one.",
-        "2": "The phone number is for transfer station hours, not delivery.",
-        "3": "The listed locations are open weekdays, not weekends."
-      }
-    },
-    {
-      "id": "engl-007",
-      "contextId": "pdf-blue-box-hours",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Reading Comprehension",
-          "Functional Reading"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "0": "Collecting pieces does not help in getting a new box and could lead to unnecessary hassle.",
+        "2": "Calling does not guarantee the same level of service and clarity as visiting in person.",
+        "3": "Taking the damaged box to any site on the weekend may not align with operational procedures for replacement."
       },
-      "text": "You work from 8:00 a.m. – 5:00 p.m. every Monday – Friday. Where is the only location you can pick up a new blue box?",
-      "options": [
-        "Kitchener",
-        "Waterloo",
-        "Cambridge",
-        "North Dumfries Township"
-      ],
-      "explanation": "Cambridge opens at 7:00 a.m., so it is the only listed option available before an 8:00 a.m. workday.",
-      "correctIndex": 2,
-      "wrongAnswerHints": {
-        "0": "Kitchener opens at 8:30 a.m., after work begins.",
-        "1": "Waterloo opens at 8:30 a.m., after work begins.",
-        "3": "North Dumfries opens at 8:30 a.m., after work begins."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Collect the pieces and take them to the nearest Operation Centre/Works Yard",
+          "reason": "Collecting pieces does not help in getting a new box and could lead to unnecessary hassle."
+        },
+        {
+          "answer": "Phone (519) 883-5100 to request that a new one be sent to you",
+          "reason": "Calling does not guarantee the same level of service and clarity as visiting in person."
+        },
+        {
+          "answer": "Take your damaged box to any of the Operation Centres/Works Yards on the weekend to pick up a new one.",
+          "reason": "Taking the damaged box to any site on the weekend may not align with operational procedures for replacement."
+        }
+      ]
     },
     {
       "id": "engl-008",
-      "contextId": "pdf-poem-important",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension",
-          "Poetry"
+          "Understanding Narrative Elements"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:31.539Z",
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
-      "text": "According to the poet, which of the following is most important?",
+      "text": "According to the poet, which of the following is most important:",
       "options": [
         "Wealth",
         "Love",
         "Health",
         "Knowledge"
       ],
-      "explanation": "The poet emphasizes lessons and knowledge as more important than wealth, love, or health.",
-      "correctIndex": 3,
+      "explanation": "The most important factor according to the poet is 'Health,' highlighting its fundamental role in overall well-being and life quality. This reflects the idea that without health, other factors lose significance.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "The poet questions the value of wealth.",
-        "1": "Love is mentioned, but it is not the answer in the choices supported by the poem.",
-        "2": "Health is important, but the poet emphasizes knowledge."
-      }
+        "0": "'Wealth' although important, does not equate to the necessity of health for a fulfilling life.",
+        "1": "'Love' is essential, but health underpins the ability to experience and share love fully.",
+        "3": "'Knowledge' is valuable, yet it cannot substitute for the essential state of being healthy."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Wealth",
+          "reason": "'Wealth' although important, does not equate to the necessity of health for a fulfilling life."
+        },
+        {
+          "answer": "Love",
+          "reason": "'Love' is essential, but health underpins the ability to experience and share love fully."
+        },
+        {
+          "answer": "Knowledge",
+          "reason": "'Knowledge' is valuable, yet it cannot substitute for the essential state of being healthy."
+        }
+      ]
     },
     {
       "id": "engl-009",
-      "contextId": "pdf-poem-wealth",
       "meta": {
         "source": "verified",
         "topics": [
-          "Reading Comprehension",
-          "Vocabulary"
+          "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
-      "text": "\"'Tis the root of all that's evil\" refers to",
+      "text": "“Tis the root of all that’s evil” refers to",
       "options": [
         "Fear",
         "Pain",
         "Wealth",
         "Bleeding hearts"
       ],
-      "explanation": "The phrase appears in the section discussing wealth.",
+      "explanation": "The phrase 'Tis the root of all that’s evil refers to the belief that wealth or the pursuit of material riches is the source of various evils in society. This concept is often discussed in literature and philosophy, suggesting that greed can lead to unethical behavior.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "Fear is mentioned later, but not as the root of evil.",
-        "1": "Pain is mentioned as part of struggle, not the root of evil.",
-        "3": "Bleeding hearts is part of a phrase, not the main reference."
-      }
+        "0": "Fear can lead to negative actions, but it is not traditionally described as the root of all evil.",
+        "1": "Pain is a consequence of suffering rather than the primary cause of evil actions.",
+        "3": "Bleeding hearts represent compassion or sympathy, which are generally seen as positive qualities."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Fear",
+          "reason": "Fear can lead to negative actions, but it is not traditionally described as the root of all evil."
+        },
+        {
+          "answer": "Pain",
+          "reason": "Pain is a consequence of suffering rather than the primary cause of evil actions."
+        },
+        {
+          "answer": "Bleeding hearts",
+          "reason": "Bleeding hearts represent compassion or sympathy, which are generally seen as positive qualities."
+        }
+      ]
     },
     {
       "id": "engl-010",
       "meta": {
         "source": "verified",
         "topics": [
-          "Capitalization"
+          "Capitalization Rules"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
-      "text": "Choose the sentence with the correct capitalization: He is a student in ____.",
+      "text": "Choose the sentence with the correct capitalization: He is a student in __.",
       "options": [
         "high school",
         "High school",
         "High School",
         "high School"
       ],
-      "explanation": "The phrase 'high school' is not a proper noun here, so it should not be capitalized.",
-      "correctIndex": 0,
+      "explanation": "The correct capitalization is 'High school' because it refers to a specific level of schooling. In this case, 'High school' is treated as a proper noun when it can be part of a specific program or title.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
-        "1": "High should not be capitalized here.",
-        "2": "Neither word should be capitalized.",
-        "3": "School should not be capitalized here."
-      }
+        "0": "'high school' does not capitalize 'high', which is incorrect for the context.",
+        "2": "'High School' is overly capitalized and is not the standard format.",
+        "3": "'high School' incorrectly capitalizes 'School', which is unnecessary."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "high school",
+          "reason": "'high school' does not capitalize 'high', which is incorrect for the context."
+        },
+        {
+          "answer": "High School",
+          "reason": "'High School' is overly capitalized and is not the standard format."
+        },
+        {
+          "answer": "high School",
+          "reason": "'high School' incorrectly capitalizes 'School', which is unnecessary."
+        }
+      ]
     },
     {
       "id": "engl-011",
       "meta": {
         "source": "verified",
         "topics": [
-          "Capitalization"
+          "Capitalization Rules"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
-      "text": "Choose the sentence with the correct capitalization: I'm taking ____.",
+      "text": "Choose the sentence with the correct capitalization: I’m taking __.",
       "options": [
         "geography, mathematics, law and french",
         "Geography, Mathematics, Law and French",
         "geography, Mathematics, law and French",
         "geography, mathematics, law and French"
       ],
-      "explanation": "School subjects are lowercase unless they are proper nouns or languages. French is capitalized because it is a language.",
-      "correctIndex": 3,
+      "explanation": "The correct answer is 'Geography, Mathematics, Law and French' as all the subjects mentioned are proper nouns and should be capitalized. Capitalizing each subject ensures proper grammar and clarity.",
+      "correctIndex": 1,
       "wrongAnswerHints": {
-        "0": "French should be capitalized.",
-        "1": "The general subjects should not all be capitalized.",
-        "2": "Mathematics should not be capitalized here."
-      }
+        "0": "None of the subjects are capitalized, which is incorrect.",
+        "2": "While 'Mathematics' and 'French' are capitalized, 'geography' and 'law' should also be.",
+        "3": "Only 'French' is capitalized correctly, but others should be as well."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "geography, mathematics, law and french",
+          "reason": "None of the subjects are capitalized, which is incorrect."
+        },
+        {
+          "answer": "geography, Mathematics, law and French",
+          "reason": "While 'Mathematics' and 'French' are capitalized, 'geography' and 'law' should also be."
+        },
+        {
+          "answer": "geography, mathematics, law and French",
+          "reason": "Only 'French' is capitalized correctly, but others should be as well."
+        }
+      ]
     },
     {
       "id": "engl-012",
       "meta": {
         "source": "verified",
         "topics": [
-          "Punctuation"
+          "Punctuation Rules"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
-      "text": "Choose the sentence with the correct punctuation: My brother carried the boxes into the ____ unpacked them.",
+      "text": "Choose the sentence with the correct punctuation: My brother carried the boxes into the __ unpacked them.",
       "options": [
         "house I",
         "house; I",
         "house, I",
         "house: I"
       ],
-      "explanation": "A semicolon correctly joins two closely related independent clauses.",
-      "correctIndex": 1,
+      "explanation": "The correct punctuation here is 'house, I' because it separates two independent clauses and requires a comma. This clarifies the relationship between the two ideas in the sentence.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "This creates a run-on sentence.",
-        "2": "A comma alone creates a comma splice.",
-        "3": "A colon is not the best punctuation here."
-      }
+        "0": "'house I' omits necessary punctuation, making the sentence confusing.",
+        "1": "'house; I' incorrectly uses a semicolon, which is not needed between these clauses.",
+        "3": "'house: I' uses a colon incorrectly, as colons are used to introduce lists or additional information."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "house I",
+          "reason": "'house I' omits necessary punctuation, making the sentence confusing."
+        },
+        {
+          "answer": "house; I",
+          "reason": "'house; I' incorrectly uses a semicolon, which is not needed between these clauses."
+        },
+        {
+          "answer": "house: I",
+          "reason": "'house: I' uses a colon incorrectly, as colons are used to introduce lists or additional information."
+        }
+      ]
     },
     {
       "id": "engl-013",
       "meta": {
         "source": "verified",
         "topics": [
-          "Punctuation"
+          "Punctuation Rules"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
-      "text": "Choose the sentence with the correct punctuation.",
+      "text": "Choose the sentence with the correct punctuation: __ it was raining on Saturday we decided to go to the park.",
       "options": [
-        "Although, it was raining on Saturday we decided to go to the park.",
-        "Although it was raining on Saturday we decided to go to the park.",
-        "Although it was raining, on Saturday, we decided to go to the park.",
-        "Although it was raining on Saturday, we decided to go to the park."
+        "Although,",
+        "Although",
+        "Although it was raining,",
+        "Although it was raining,"
       ],
-      "explanation": "A comma is needed after the introductory dependent clause.",
-      "correctIndex": 3,
+      "explanation": "The correct option is 'Although it was raining,' which properly introduces the dependent clause with a comma. Using a comma after 'raining' indicates a pause before the main clause of the sentence.",
+      "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "There should not be a comma immediately after Although.",
-        "1": "A comma is needed after the introductory clause.",
-        "2": "The commas around 'on Saturday' are unnecessary."
-      }
-    },
-    {
-      "id": "engl-014",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Punctuation",
-          "Quotation Marks"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "0": "'Although,' is incomplete and lacks the necessary clause following it.",
+        "1": "'Although' is also incomplete and lacks context.",
+        "3": "'Although it was raining,' is a repeat of the correct answer but written incorrectly (extra comma)."
       },
-      "text": "Choose the sentence with the correct punctuation.",
-      "options": [
-        "Maria asked, \"Would you like me to take care of the problem?\"",
-        "Maria asked \"Would you like me to take care of the problem?\"",
-        "Maria asked, \"Would you like me to take care of the problem\"?",
-        "Maria asked \"if she should take care of the problem.\""
-      ],
-      "explanation": "A comma should introduce a direct quotation, and the question mark belongs inside the quotation marks.",
-      "correctIndex": 0,
-      "wrongAnswerHints": {
-        "1": "A comma is needed before the direct quotation.",
-        "2": "The question mark should be inside the quotation marks.",
-        "3": "This is not punctuated as a direct quotation."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Although,",
+          "reason": "'Although,' is incomplete and lacks the necessary clause following it."
+        },
+        {
+          "answer": "Although",
+          "reason": "'Although' is also incomplete and lacks context."
+        },
+        {
+          "answer": "Although it was raining,",
+          "reason": "'Although it was raining,' is a repeat of the correct answer but written incorrectly (extra comma)."
+        }
+      ]
     },
     {
       "id": "engl-015",
       "meta": {
         "source": "verified",
         "topics": [
-          "Punctuation",
-          "Possessives"
+          "Punctuation Rules"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
-      "text": "Choose the sentence with the correct punctuation.",
+      "text": "Choose the sentence with the correct punctuation: __ the children’s toys filled the room.",
       "options": [
-        "The childrens toys filled the room.",
-        "The childrens' toys filled the room.",
-        "The children's toys filled the room.",
-        "The children's toy's filled the room."
+        "The childrens toys",
+        "The childrens’ toys",
+        "The children’s toys",
+        "The children’s toy’s"
       ],
-      "explanation": "Children is already plural, so the possessive form is children's.",
+      "explanation": "The correct form is 'The children’s toys' which uses the correct possessive form for plural nouns. 'Children’s' indicates that the toys belong to the children, aligning with standard grammatical rules.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "The possessive apostrophe is missing.",
-        "1": "Childrens is not the correct plural form.",
-        "3": "Toy's is incorrectly made possessive."
-      }
+        "0": "'The childrens toys' lacks the apostrophe needed to show possession.",
+        "1": "'The childrens’ toys' incorrectly uses the apostrophe, as 'children' is already plural.",
+        "3": "'The children’s toy’s' incorrectly adds an apostrophe to 'toy', suggesting possession of a single toy."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The childrens toys",
+          "reason": "'The childrens toys' lacks the apostrophe needed to show possession."
+        },
+        {
+          "answer": "The childrens’ toys",
+          "reason": "'The childrens’ toys' incorrectly uses the apostrophe, as 'children' is already plural."
+        },
+        {
+          "answer": "The children’s toy’s",
+          "reason": "'The children’s toy’s' incorrectly adds an apostrophe to 'toy', suggesting possession of a single toy."
+        }
+      ]
     },
     {
       "id": "engl-016",
       "meta": {
         "source": "verified",
         "topics": [
-          "Grammar",
-          "Subject-Verb Agreement"
+          "Sentence Structure"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T13:55:54.417Z",
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
-      "text": "Decide which word or group of words belongs in the blank: The wind ____ through the trees.",
+      "text": "Decide which word or group of words belongs in the blank: The wind __ through the trees.",
       "options": [
         "rustles",
         "are rustling",
         "do rustle",
         "rustle"
       ],
-      "explanation": "The singular subject 'wind' takes the singular verb 'rustles.'",
+      "explanation": "The verb 'rustles' correctly describes the ongoing action of the wind as it moves through the trees. This singular form matches the subject 'wind' appropriately.",
       "correctIndex": 0,
       "wrongAnswerHints": {
-        "1": "Are rustling does not agree with the singular subject.",
-        "2": "Do rustle does not agree with the singular subject.",
-        "3": "Rustle does not agree with the singular subject."
-      }
+        "1": "'are rustling' is incorrectly plural and does not align with the subject 'wind'.",
+        "2": "'do rustle' is grammatically sound but does not match the context as well as 'rustles'.",
+        "3": "'rustle' is incorrect because it does not correctly match the subject with the singular verb form."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "are rustling",
+          "reason": "'are rustling' is incorrectly plural and does not align with the subject 'wind'."
+        },
+        {
+          "answer": "do rustle",
+          "reason": "'do rustle' is grammatically sound but does not match the context as well as 'rustles'."
+        },
+        {
+          "answer": "rustle",
+          "reason": "'rustle' is incorrect because it does not correctly match the subject with the singular verb form."
+        }
+      ]
     },
     {
       "id": "engl-017",
       "meta": {
         "source": "verified",
         "topics": [
-          "Grammar",
-          "Pronouns"
+          "Sentence Structure"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
-      "text": "Decide which word or group of words belongs in the blank: The car belongs to ____.",
+      "text": "Decide which word or group of words belongs in the blank: The car belongs to __.",
       "options": [
         "he and I",
         "him and I",
         "he and me",
         "him and me"
       ],
-      "explanation": "After the preposition 'to,' object pronouns are needed: him and me.",
+      "explanation": "The correct phrase is 'him and me' because when using pronouns in this context, the objective case is required. 'Me' is the correct object pronoun to use after the preposition 'to' in this sentence.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "He and I are subject pronouns, not object pronouns.",
-        "1": "I should be me after a preposition.",
-        "2": "He should be him after a preposition."
-      }
+        "0": "The phrase 'he and I' is incorrect here because it uses the subjective case instead of the objective case.",
+        "1": "The phrase 'him and I' is incorrect; 'I' should not be used in this context.",
+        "2": "The phrase 'he and me' is incorrect because 'he' is not in the correct case for this sentence."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "he and I",
+          "reason": "The phrase 'he and I' is incorrect here because it uses the subjective case instead of the objective case."
+        },
+        {
+          "answer": "him and I",
+          "reason": "The phrase 'him and I' is incorrect; 'I' should not be used in this context."
+        },
+        {
+          "answer": "he and me",
+          "reason": "The phrase 'he and me' is incorrect because 'he' is not in the correct case for this sentence."
+        }
+      ]
     },
     {
       "id": "engl-018",
       "meta": {
         "source": "verified",
         "topics": [
-          "Grammar",
-          "Verb Tense"
+          "Sentence Structure"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
-      "text": "Choose the correct sentence.",
+      "text": "Choose the correct sentence: __ found an excellent job after I graduated from college.",
       "options": [
-        "I found an excellent job after I graduated from college.",
-        "I find an excellent job after I graduated from college.",
-        "I have found an excellent job after I am graduating from college.",
-        "I will have found an excellent job after I am graduated from college."
+        "I",
+        "I find",
+        "I have",
+        "I will have"
       ],
-      "explanation": "The past-tense verbs 'found' and 'graduated' correctly match the completed actions.",
+      "explanation": "The sentence uses 'I' as the subject pronoun, which is appropriate here because it indicates who found the job. The other options imply different tenses or subjects that do not fit the context.",
       "correctIndex": 0,
       "wrongAnswerHints": {
-        "1": "Find is present tense and does not match graduated.",
-        "2": "Am graduating does not fit with have found in this sentence.",
-        "3": "Am graduated is awkward and incorrect here."
-      }
+        "1": "The phrase 'I find' is incorrect because it implies present tense, which doesn't align with the past event.",
+        "2": "The phrase 'I have' suggests a current possession instead of a past action.",
+        "3": "The phrase 'I will have' indicates a future tense, not applicable in this context."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "I find",
+          "reason": "The phrase 'I find' is incorrect because it implies present tense, which doesn't align with the past event."
+        },
+        {
+          "answer": "I have",
+          "reason": "The phrase 'I have' suggests a current possession instead of a past action."
+        },
+        {
+          "answer": "I will have",
+          "reason": "The phrase 'I will have' indicates a future tense, not applicable in this context."
+        }
+      ]
     },
     {
       "id": "engl-019",
       "meta": {
         "source": "verified",
         "topics": [
-          "Grammar",
-          "Comparatives and Superlatives"
+          "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
-      "text": "Decide which word or group of words belongs in the blank: That movie was one of the ____.",
+      "text": "Choose the correct sentence: That movie was one of the __.",
       "options": [
         "excitingest that I have ever seen",
         "excitinger that I have ever seen",
         "most exciting that I have ever seen",
         "most excitable that I have ever seen"
       ],
-      "explanation": "For longer adjectives like exciting, the correct superlative form is 'most exciting.'",
+      "explanation": "The phrase 'most exciting that I have ever seen' correctly uses the superlative form of 'exciting' to describe the movie. The other options either misuse comparative forms or use non-standard English.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "Excitingest is not standard English.",
-        "1": "Excitinger is not standard English.",
-        "3": "Excitable means easily excited, not exciting to watch."
-      }
+        "0": "The word 'excitingest' is not a valid word in English; it should be 'most exciting'.",
+        "1": "The word 'excitinger' is also incorrect, as 'exciting' doesn't take the comparative suffix '-er'.",
+        "3": "The word 'excitable' has a different meaning and does not properly convey the excitement level of the movie."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "excitingest that I have ever seen",
+          "reason": "The word 'excitingest' is not a valid word in English; it should be 'most exciting'."
+        },
+        {
+          "answer": "excitinger that I have ever seen",
+          "reason": "The word 'excitinger' is also incorrect, as 'exciting' doesn't take the comparative suffix '-er'."
+        },
+        {
+          "answer": "most excitable that I have ever seen",
+          "reason": "The word 'excitable' has a different meaning and does not properly convey the excitement level of the movie."
+        }
+      ]
     },
     {
       "id": "engl-020",
       "meta": {
         "source": "verified",
         "topics": [
-          "Sentence Correctness",
-          "Parallel Structure"
+          "Sentence Structure"
         ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "difficulty": 3,
+        "verifiedAt": "2026-06-09T13:56:03.382Z",
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
-      "text": "For each question, decide which sentence is written clearly and correctly.",
+      "text": "Choose the answer that best combines these sentences without changing their meaning: Ed went at the mall to the shoe store.",
       "options": [
-        "She read the paragraph, explained it, and sat down.",
-        "June felt surprised, worried and anger.",
-        "Watching a play is more interesting than to watch a movie.",
-        "The room is warm, comfortable, and has good lights."
-      ],
-      "explanation": "The correct sentence uses clear, parallel verbs: read, explained, and sat.",
-      "correctIndex": 0,
-      "wrongAnswerHints": {
-        "1": "Anger is a noun and does not match surprised and worried.",
-        "2": "The comparison is not parallel.",
-        "3": "The list is not parallel."
-      }
-    },
-    {
-      "id": "engl-021",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Correctness",
-          "Fragments"
-        ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
-      },
-      "text": "For each question, decide which sentence is written clearly and correctly.",
-      "options": [
-        "Since they were late for the meeting.",
-        "Waiting for the bus, I ate my lunch.",
-        "The player who is the best.",
-        "One of the children in the playground."
-      ],
-      "explanation": "Only the second option is a complete sentence with a clear subject and verb.",
-      "correctIndex": 1,
-      "wrongAnswerHints": {
-        "0": "This is a sentence fragment.",
-        "2": "This is a sentence fragment.",
-        "3": "This is a sentence fragment."
-      }
-    },
-    {
-      "id": "engl-022",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Correctness",
-          "Run-on Sentences"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
-      },
-      "text": "For each question, decide which sentence is written clearly and correctly.",
-      "options": [
-        "He thought he had the best seat, he was in the front row.",
-        "The class was cancelled the students were pleased.",
-        "Her car broke down, so she was late for the appointment.",
-        "We laughed then we cried."
-      ],
-      "explanation": "The correct sentence joins the two ideas with a comma and the conjunction 'so.'",
-      "correctIndex": 2,
-      "wrongAnswerHints": {
-        "0": "This is a comma splice.",
-        "1": "This is a run-on sentence.",
-        "3": "This needs clearer punctuation or a conjunction."
-      }
-    },
-    {
-      "id": "engl-023",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Correctness"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
-      },
-      "text": "For each question, decide which sentence is written clearly and correctly.",
-      "options": [
-        "The class was full, so more chairs were needed.",
-        "People were rushing around, yet little was being accomplished.",
-        "Although the problem had been identified, we chose to ignore it.",
-        "Since we had finished the report early, we had time for a break."
-      ],
-      "explanation": "The answer key identifies this as the correct option. It is a complete and clear sentence with a dependent clause followed by an independent clause.",
-      "correctIndex": 3,
-      "wrongAnswerHints": {
-        "0": "This sentence is grammatical, but it is not the answer selected by the provided key.",
-        "1": "This sentence is grammatical, but it is not the answer selected by the provided key.",
-        "2": "This sentence is grammatical, but it is not the answer selected by the provided key."
-      }
-    },
-    {
-      "id": "engl-024",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Correctness",
-          "Parallel Structure"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
-      },
-      "text": "For each question, decide which sentence is written clearly and correctly.",
-      "options": [
-        "I wondered whether you were coming and if you had forgotten about the meeting.",
-        "The employees were happy to receive a raise in pay, an increase in vacation time and medical benefits were improved.",
-        "Good students should be organized, independent, and stay positive.",
-        "Robert lost his keys, and he looked under the desk, between the filing cabinets, and his backpack was searched."
-      ],
-      "explanation": "The first option is the clearest and most grammatically correct sentence.",
-      "correctIndex": 0,
-      "wrongAnswerHints": {
-        "1": "The sentence has faulty parallel structure.",
-        "2": "The list is not fully parallel.",
-        "3": "The structure shifts awkwardly at the end."
-      }
-    },
-    {
-      "id": "engl-025",
-      "contextId": "pdf-ed-shoe-store",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Combining"
-        ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
-      },
-      "text": "Choose the answer that best combines these sentences without changing their meaning.",
-      "options": [
-        "Ed went at the mall to the shoe store.",
-        "Ed's shoe store is at the mall.",
+        "Ed’s shoe store is at the mall.",
         "Ed went to the shoe store at the mall.",
-        "To the shoe store at the mall went Ed."
+        "To the shoe store at the mall went Ed.",
+        "Ed went at the mall to the shoe store."
       ],
-      "explanation": "This option combines both ideas clearly: Ed went to the shoe store, and the shoe store is at the mall.",
-      "correctIndex": 2,
-      "wrongAnswerHints": {
-        "0": "The word order is awkward.",
-        "1": "This changes the meaning by suggesting Ed owns the store.",
-        "3": "The word order is awkward and unnatural."
-      }
-    },
-    {
-      "id": "engl-026",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Effectiveness",
-          "Conciseness"
-        ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
-      },
-      "text": "Choose the most effective sentence.",
-      "options": [
-        "You will receive a complimentary free gift at no charge.",
-        "Paul walked into the adjacent building next door.",
-        "Karen mailed the package today.",
-        "Joseph himself was there live and in person."
-      ],
-      "explanation": "The correct sentence is concise and avoids unnecessary repetition.",
-      "correctIndex": 2,
-      "wrongAnswerHints": {
-        "0": "Complimentary, free, and at no charge are repetitive.",
-        "1": "Adjacent and next door are repetitive.",
-        "3": "Himself, live, and in person are repetitive."
-      }
-    },
-    {
-      "id": "engl-027",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Effectiveness",
-          "Dangling Modifiers"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
-      },
-      "text": "Choose the most effective sentence.",
-      "options": [
-        "Flying over the house, Nancy heard a helicopter.",
-        "Full of energy, the house was cleaned in an hour.",
-        "I called to ask you to wait for me on the telephone.",
-        "My brother George just started high school."
-      ],
-      "explanation": "The correct sentence is clear and does not contain a misplaced or dangling modifier.",
-      "correctIndex": 3,
-      "wrongAnswerHints": {
-        "0": "This sounds as if Nancy was flying over the house.",
-        "1": "This sounds as if the house was full of energy.",
-        "2": "On the telephone is misplaced and could be misunderstood."
-      }
-    },
-    {
-      "id": "engl-028",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Effectiveness"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
-      },
-      "text": "Choose the most effective sentence.",
-      "options": [
-        "The dog was hungry and wanted more.",
-        "He always enjoyed music, so he became a music teacher.",
-        "Hiding under the desk, the instructor found his pen.",
-        "My employer offered me a raise which pleased me."
-      ],
-      "explanation": "The correct sentence clearly connects the idea of enjoying music with becoming a music teacher.",
+      "explanation": "The correct answer, 'Ed went to the shoe store at the mall,' combines the two sentences clearly and maintains their original meaning. The other options either change the meaning or fail to convey the information effectively.",
       "correctIndex": 1,
       "wrongAnswerHints": {
-        "0": "The sentence is understandable but vague.",
-        "2": "This sounds as if the instructor was hiding under the desk.",
-        "3": "The wording is less clear because 'which pleased me' is loosely attached."
-      }
-    },
-    {
-      "id": "engl-029",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Sentence Effectiveness",
-          "Logic"
-        ],
-        "difficulty": "medium",
-        "answerConfidence": "high"
+        "0": "The phrase 'Ed’s shoe store is at the mall' changes the meaning of the original sentences.",
+        "2": "The phrase 'To the shoe store at the mall went Ed' uses an awkward structure that complicates the meaning unnecessarily.",
+        "3": "The phrase 'Ed went at the mall to the shoe store' is a repetitive and incorrect structure, similar to the original sentence."
       },
-      "text": "Choose the most effective sentence.",
-      "options": [
-        "Even though the organizers did an outstanding job in planning the event, many people attended.",
-        "Unless you are certain, you should give the incorrect answer.",
-        "Because I finished the report on time, I treated myself to an ice cream cone.",
-        "Since reading that book, my confidence has grown."
-      ],
-      "explanation": "The sentence has a logical cause-and-effect relationship.",
-      "correctIndex": 2,
-      "wrongAnswerHints": {
-        "0": "Even though creates an illogical contrast.",
-        "1": "The advice is illogical.",
-        "3": "This has a dangling modifier; it sounds as if confidence read the book."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Ed’s shoe store is at the mall.",
+          "reason": "The phrase 'Ed’s shoe store is at the mall' changes the meaning of the original sentences."
+        },
+        {
+          "answer": "To the shoe store at the mall went Ed.",
+          "reason": "The phrase 'To the shoe store at the mall went Ed' uses an awkward structure that complicates the meaning unnecessarily."
+        },
+        {
+          "answer": "Ed went at the mall to the shoe store.",
+          "reason": "The phrase 'Ed went at the mall to the shoe store' is a repetitive and incorrect structure, similar to the original sentence."
+        }
+      ]
     },
     {
       "id": "engl-gen-021",
@@ -918,9 +1146,17 @@
           "Reading Comprehension",
           "Environmental Awareness"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension",
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "What is the main idea of the passage discussing climate change?",
       "options": [
@@ -935,7 +1171,22 @@
         "1": "This perspective downplays the substantial evidence of climate effects.",
         "2": "Natural cycles are a factor, but human activities play a major role.",
         "3": "Climate change is an immediate concern for us, not just future generations."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "It has no major impact on weather patterns",
+          "reason": "This perspective downplays the substantial evidence of climate effects."
+        },
+        {
+          "answer": "It's primarily caused by natural cycles",
+          "reason": "Natural cycles are a factor, but human activities play a major role."
+        },
+        {
+          "answer": "It's only a concern for future generations",
+          "reason": "Climate change is an immediate concern for us, not just future generations."
+        }
+      ]
     },
     {
       "id": "engl-gen-022",
@@ -944,9 +1195,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "In the story, how does the main character feel about moving to a new city?",
       "options": [
@@ -961,7 +1218,22 @@
         "1": "Indifference suggests lack of interest, which contradicts the character's enthusiasm.",
         "2": "Anger is not a key emotion expressed in the context of the move.",
         "3": "Although sad feelings can arise, excitement is predominant."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Indifferent",
+          "reason": "Indifference suggests lack of interest, which contradicts the character's enthusiasm."
+        },
+        {
+          "answer": "Angry",
+          "reason": "Anger is not a key emotion expressed in the context of the move."
+        },
+        {
+          "answer": "Sad",
+          "reason": "Although sad feelings can arise, excitement is predominant."
+        }
+      ]
     },
     {
       "id": "engl-gen-023",
@@ -970,9 +1242,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If your monthly grocery bill is $600, how much are you expected to spend on fruits and vegetables, assuming they make up 20% of your bill?",
       "options": [
@@ -987,7 +1264,22 @@
         "1": "This is too high for 20% of the total bill amount.",
         "2": "This amount exceeds the percentage calculated.",
         "3": "This suggests spending more than one-third of your grocery budget."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$180",
+          "reason": "This is too high for 20% of the total bill amount."
+        },
+        {
+          "answer": "$200",
+          "reason": "This amount exceeds the percentage calculated."
+        },
+        {
+          "answer": "$240",
+          "reason": "This suggests spending more than one-third of your grocery budget."
+        }
+      ]
     },
     {
       "id": "engl-gen-024",
@@ -996,9 +1288,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which item is typically not considered a part of household management?",
       "options": [
@@ -1013,7 +1310,22 @@
         "0": "Budgeting is crucial in managing household expenses.",
         "1": "Maintaining appliances is essential for a smoothly running household.",
         "3": "Meal prep organization affects household efficiency and health."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Budgeting for groceries",
+          "reason": "Budgeting is crucial in managing household expenses."
+        },
+        {
+          "answer": "Maintaining home appliances",
+          "reason": "Maintaining appliances is essential for a smoothly running household."
+        },
+        {
+          "answer": "Organizing meal prep",
+          "reason": "Meal prep organization affects household efficiency and health."
+        }
+      ]
     },
     {
       "id": "engl-gen-025",
@@ -1022,9 +1334,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which of the following is an example of renewable energy?",
       "options": [
@@ -1039,7 +1356,22 @@
         "0": "Natural gas is a non-renewable fossil fuel.",
         "1": "Coal is also a non-renewable resource.",
         "3": "Nuclear energy is not renewable as it relies on finite uranium resources."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Natural gas",
+          "reason": "Natural gas is a non-renewable fossil fuel."
+        },
+        {
+          "answer": "Coal",
+          "reason": "Coal is also a non-renewable resource."
+        },
+        {
+          "answer": "Nuclear energy",
+          "reason": "Nuclear energy is not renewable as it relies on finite uranium resources."
+        }
+      ]
     },
     {
       "id": "engl-gen-026",
@@ -1048,9 +1380,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Select the sentence that uses correct punctuation:",
       "options": [
@@ -1065,7 +1402,22 @@
         "0": "This sentence misuses a comma, making the meaning unclear.",
         "1": "The word 'Lets' needs an apostrophe to indicate possession.",
         "2": "'Its' should use an apostrophe to indicate a contraction for 'it is'."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "He said that, I would be there soon.",
+          "reason": "This sentence misuses a comma, making the meaning unclear."
+        },
+        {
+          "answer": "Lets go to the mall later.",
+          "reason": "The word 'Lets' needs an apostrophe to indicate possession."
+        },
+        {
+          "answer": "Its going to rain today.",
+          "reason": "'Its' should use an apostrophe to indicate a contraction for 'it is'."
+        }
+      ]
     },
     {
       "id": "engl-gen-027",
@@ -1074,9 +1426,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "What is the rule for capitalizing proper nouns?",
       "options": [
@@ -1091,7 +1448,22 @@
         "0": "Titles require different capitalization rules; not just the first word.",
         "1": "Not all words in a title should be capitalized; only specific ones follow that rule.",
         "3": "Common nouns should remain lowercase unless starting a sentence."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Capitalize only the first word of a title",
+          "reason": "Titles require different capitalization rules; not just the first word."
+        },
+        {
+          "answer": "Capitalize all the words in a title",
+          "reason": "Not all words in a title should be capitalized; only specific ones follow that rule."
+        },
+        {
+          "answer": "Capitalize common nouns in a sentence",
+          "reason": "Common nouns should remain lowercase unless starting a sentence."
+        }
+      ]
     },
     {
       "id": "engl-gen-028",
@@ -1100,9 +1472,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Identify the sentence with a grammatical error in structure:",
       "options": [
@@ -1117,7 +1494,22 @@
         "0": "This sentence is correctly structured and clear.",
         "2": "This sentence has no grammatical issues.",
         "3": "This sentence also follows proper grammatical structure."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The dog barked loudly at the stranger.",
+          "reason": "This sentence is correctly structured and clear."
+        },
+        {
+          "answer": "They went to the store yesterday.",
+          "reason": "This sentence has no grammatical issues."
+        },
+        {
+          "answer": "He finished his meal quickly.",
+          "reason": "This sentence also follows proper grammatical structure."
+        }
+      ]
     },
     {
       "id": "engl-gen-029",
@@ -1126,9 +1518,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T13:56:27.778Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which of the following is not an example of a household management task?",
       "options": [
@@ -1143,7 +1540,22 @@
         "0": "Meal planning is an essential task in household management.",
         "1": "Maintenance scheduling is crucial for appliance longevity.",
         "3": "Budgeting is fundamental in managing household finances."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Creating a meal plan",
+          "reason": "Meal planning is an essential task in household management."
+        },
+        {
+          "answer": "Scheduling appliance maintenance",
+          "reason": "Maintenance scheduling is crucial for appliance longevity."
+        },
+        {
+          "answer": "Setting a budget for utilities",
+          "reason": "Budgeting is fundamental in managing household finances."
+        }
+      ]
     },
     {
       "id": "engl-gen-030",
@@ -1152,9 +1564,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the passage, why was Mia late for class?",
       "options": [
@@ -1169,7 +1586,22 @@
         "0": "The bus is mentioned, but it is not the reason she was late.",
         "2": "She did arrive at the correct place; the problem was timing.",
         "3": "Buying lunch is not given as the cause of her lateness."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "She missed the bus.",
+          "reason": "The bus is mentioned, but it is not the reason she was late."
+        },
+        {
+          "answer": "She went to the wrong building.",
+          "reason": "She did arrive at the correct place; the problem was timing."
+        },
+        {
+          "answer": "She stopped to buy lunch.",
+          "reason": "Buying lunch is not given as the cause of her lateness."
+        }
+      ]
     },
     {
       "id": "engl-gen-031",
@@ -1178,9 +1610,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What was the main conflict in the story?",
       "options": [
@@ -1195,7 +1633,22 @@
         "0": "A wallet is not the central problem in the story.",
         "1": "An argument is not the main event driving the plot.",
         "3": "Parking is not the story’s central challenge."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The main character lost a wallet.",
+          "reason": "A wallet is not the central problem in the story."
+        },
+        {
+          "answer": "The main character argued with a friend.",
+          "reason": "An argument is not the main event driving the plot."
+        },
+        {
+          "answer": "The main character could not find a parking spot.",
+          "reason": "Parking is not the story’s central challenge."
+        }
+      ]
     },
     {
       "id": "engl-gen-032",
@@ -1204,9 +1657,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If your monthly rent is $1,250 and it increases by $50, what is the new rent?",
       "options": [
@@ -1221,7 +1679,22 @@
         "0": "This would be lower than the original rent.",
         "1": "This is the original amount, not the increased amount.",
         "3": "This adds too much to the original rent."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$1,200",
+          "reason": "This would be lower than the original rent."
+        },
+        {
+          "answer": "$1,250",
+          "reason": "This is the original amount, not the increased amount."
+        },
+        {
+          "answer": "$1,350",
+          "reason": "This adds too much to the original rent."
+        }
+      ]
     },
     {
       "id": "engl-gen-033",
@@ -1230,9 +1703,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which expense is usually fixed rather than variable?",
       "options": [
@@ -1247,7 +1725,22 @@
         "0": "Groceries can change from week to week.",
         "1": "Electricity often changes depending on use.",
         "3": "Gas costs usually vary with driving habits and prices."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Groceries",
+          "reason": "Groceries can change from week to week."
+        },
+        {
+          "answer": "Electricity",
+          "reason": "Electricity often changes depending on use."
+        },
+        {
+          "answer": "Gas for a car",
+          "reason": "Gas costs usually vary with driving habits and prices."
+        }
+      ]
     },
     {
       "id": "engl-gen-034",
@@ -1256,9 +1749,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Why should you clean the lint trap in a clothes dryer regularly?",
       "options": [
@@ -1273,7 +1771,22 @@
         "0": "A cleaner lint trap does not make the machine louder.",
         "2": "It should reduce wasted energy, not increase it.",
         "3": "Lint removal does not control shrinking."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "To make the dryer louder",
+          "reason": "A cleaner lint trap does not make the machine louder."
+        },
+        {
+          "answer": "To use more electricity",
+          "reason": "It should reduce wasted energy, not increase it."
+        },
+        {
+          "answer": "To make clothes shrink less",
+          "reason": "Lint removal does not control shrinking."
+        }
+      ]
     },
     {
       "id": "engl-gen-035",
@@ -1282,9 +1795,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which action is the best way to save water at home?",
       "options": [
@@ -1299,7 +1817,22 @@
         "0": "This wastes water unnecessarily.",
         "2": "Washing one dish at a time is not efficient and does not save water.",
         "3": "Hot water is not needed for every laundry load."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Leave the tap running while brushing teeth",
+          "reason": "This wastes water unnecessarily."
+        },
+        {
+          "answer": "Wash only one dish at a time",
+          "reason": "Washing one dish at a time is not efficient and does not save water."
+        },
+        {
+          "answer": "Use hot water for every load of laundry",
+          "reason": "Hot water is not needed for every laundry load."
+        }
+      ]
     },
     {
       "id": "engl-gen-036",
@@ -1308,9 +1841,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which choice is an example of reducing waste?",
       "options": [
@@ -1325,7 +1863,22 @@
         "1": "Paper can often be recycled instead of trashed.",
         "2": "Buying extra food can increase waste if it spoils.",
         "3": "This wastes electricity, not reduces waste."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Throwing all paper into the trash",
+          "reason": "Paper can often be recycled instead of trashed."
+        },
+        {
+          "answer": "Buying extra food that will expire",
+          "reason": "Buying extra food can increase waste if it spoils."
+        },
+        {
+          "answer": "Leaving lights on in empty rooms",
+          "reason": "This wastes electricity, not reduces waste."
+        }
+      ]
     },
     {
       "id": "engl-gen-037",
@@ -1334,9 +1887,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which action best helps lower household energy use?",
       "options": [
@@ -1351,7 +1909,22 @@
         "0": "Keeping the fridge open wastes energy.",
         "2": "Running half-empty loads uses extra energy and water.",
         "3": "This lets heat escape and increases energy use."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Open the fridge door longer",
+          "reason": "Keeping the fridge open wastes energy."
+        },
+        {
+          "answer": "Run the dishwasher half empty",
+          "reason": "Running half-empty loads uses extra energy and water."
+        },
+        {
+          "answer": "Keep windows open while the heat is on",
+          "reason": "This lets heat escape and increases energy use."
+        }
+      ]
     },
     {
       "id": "engl-gen-038",
@@ -1360,9 +1933,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence is complete and correct?",
       "options": [
@@ -1377,7 +1955,22 @@
         "0": "This is a sentence fragment.",
         "2": "This is missing a subject in the first part.",
         "3": "This has grammar errors and is not complete."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Because I was tired.",
+          "reason": "This is a sentence fragment."
+        },
+        {
+          "answer": "Went to bed early because tired.",
+          "reason": "This is missing a subject in the first part."
+        },
+        {
+          "answer": "I tired and went bed early.",
+          "reason": "This has grammar errors and is not complete."
+        }
+      ]
     },
     {
       "id": "engl-gen-039",
@@ -1386,9 +1979,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Which sentence uses commas correctly?",
       "options": [
@@ -1403,7 +2001,22 @@
         "0": "An introductory phrase usually needs a comma after it.",
         "2": "The comma is placed in the wrong part of the sentence.",
         "3": "This comma separates items that should stay together in the verb phrase."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "After dinner we washed the dishes and folded laundry.",
+          "reason": "An introductory phrase usually needs a comma after it."
+        },
+        {
+          "answer": "After dinner we washed, the dishes and folded laundry.",
+          "reason": "The comma is placed in the wrong part of the sentence."
+        },
+        {
+          "answer": "After dinner we washed the dishes, and folded laundry.",
+          "reason": "This comma separates items that should stay together in the verb phrase."
+        }
+      ]
     },
     {
       "id": "engl-gen-040",
@@ -1412,9 +2025,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "Which word should be capitalized?",
       "options": [
@@ -1429,7 +2047,22 @@
         "1": "School is a common noun and does not need capitalization here.",
         "2": "Seasons are not capitalized unless they begin a sentence.",
         "3": "Music is a common noun."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "school",
+          "reason": "School is a common noun and does not need capitalization here."
+        },
+        {
+          "answer": "winter",
+          "reason": "Seasons are not capitalized unless they begin a sentence."
+        },
+        {
+          "answer": "music",
+          "reason": "Music is a common noun."
+        }
+      ]
     },
     {
       "id": "engl-gen-041",
@@ -1438,9 +2071,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "Which sentence is the best summary of the paragraph?",
       "options": [
@@ -1455,7 +2093,22 @@
         "0": "A summary should not include every detail.",
         "2": "The father’s job is not the main idea.",
         "3": "A school trip is not the focus of the paragraph."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The paragraph gives exact details about every meal.",
+          "reason": "A summary should not include every detail."
+        },
+        {
+          "answer": "The paragraph focuses only on the father’s job.",
+          "reason": "The father’s job is not the main idea."
+        },
+        {
+          "answer": "The paragraph is about a school trip.",
+          "reason": "A school trip is not the focus of the paragraph."
+        }
+      ]
     },
     {
       "id": "engl-gen-042",
@@ -1464,9 +2117,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "How did the main character most likely feel after hearing the news?",
       "options": [
@@ -1481,7 +2140,22 @@
         "0": "The character’s body language does not suggest relaxation.",
         "2": "The reaction is not cheerful or enthusiastic.",
         "3": "The reaction is strong and emotional, not bored."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Relaxed",
+          "reason": "The character’s body language does not suggest relaxation."
+        },
+        {
+          "answer": "Excited",
+          "reason": "The reaction is not cheerful or enthusiastic."
+        },
+        {
+          "answer": "Bored",
+          "reason": "The reaction is strong and emotional, not bored."
+        }
+      ]
     },
     {
       "id": "engl-gen-043",
@@ -1490,9 +2164,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "A student saves $30 each month. How much will the student save in 6 months?",
       "options": [
@@ -1507,7 +2186,22 @@
         "0": "This is too low for 6 months of savings.",
         "1": "This is only 5 months of savings.",
         "3": "This would be 7 months of savings."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$120",
+          "reason": "This is too low for 6 months of savings."
+        },
+        {
+          "answer": "$150",
+          "reason": "This is only 5 months of savings."
+        },
+        {
+          "answer": "$210",
+          "reason": "This would be 7 months of savings."
+        }
+      ]
     },
     {
       "id": "engl-gen-044",
@@ -1516,9 +2210,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which choice is the best example of an emergency expense?",
       "options": [
@@ -1533,7 +2232,22 @@
         "0": "This is a regular optional expense.",
         "2": "Eating out is usually a discretionary expense.",
         "3": "This is a want, not an emergency."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Monthly streaming subscription",
+          "reason": "This is a regular optional expense."
+        },
+        {
+          "answer": "A restaurant meal",
+          "reason": "Eating out is usually a discretionary expense."
+        },
+        {
+          "answer": "New shoes for style",
+          "reason": "This is a want, not an emergency."
+        }
+      ]
     },
     {
       "id": "engl-gen-045",
@@ -1542,9 +2256,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which habit can help prevent mold in a bathroom?",
       "options": [
@@ -1559,7 +2278,22 @@
         "0": "Closing the room can trap moisture.",
         "2": "Damp towels left in a pile encourage mold and odor.",
         "3": "Ventilation should stay on long enough to remove moisture."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Keep the door closed after showers",
+          "reason": "Closing the room can trap moisture."
+        },
+        {
+          "answer": "Store damp towels in a pile",
+          "reason": "Damp towels left in a pile encourage mold and odor."
+        },
+        {
+          "answer": "Turn off the exhaust fan quickly",
+          "reason": "Ventilation should stay on long enough to remove moisture."
+        }
+      ]
     },
     {
       "id": "engl-gen-046",
@@ -1568,9 +2302,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which action is the most eco-friendly when shopping?",
       "options": [
@@ -1585,7 +2324,22 @@
         "1": "A large package is not best if it creates waste.",
         "2": "Disposable bags add more waste.",
         "3": "Reusing items is better than replacing them often."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Buy the largest package even if it may go to waste",
+          "reason": "A large package is not best if it creates waste."
+        },
+        {
+          "answer": "Use disposable bags every time",
+          "reason": "Disposable bags add more waste."
+        },
+        {
+          "answer": "Replace reusable items often",
+          "reason": "Reusing items is better than replacing them often."
+        }
+      ]
     },
     {
       "id": "engl-gen-047",
@@ -1594,9 +2348,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence has a subject and verb that agree?",
       "options": [
@@ -1611,7 +2370,22 @@
         "0": "The subject is singular, so 'are' is incorrect.",
         "2": "The subject is singular, so 'were' is incorrect.",
         "3": "This is not the correct verb form for a statement."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The list of items are on the table.",
+          "reason": "The subject is singular, so 'are' is incorrect."
+        },
+        {
+          "answer": "The list of items were on the table.",
+          "reason": "The subject is singular, so 'were' is incorrect."
+        },
+        {
+          "answer": "The list of items be on the table.",
+          "reason": "This is not the correct verb form for a statement."
+        }
+      ]
     },
     {
       "id": "engl-gen-048",
@@ -1620,9 +2394,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Which sentence uses an apostrophe correctly?",
       "options": [
@@ -1637,7 +2416,22 @@
         "0": "'It's' means 'it is' or 'it has,' not possession.",
         "2": "This sentence needs a possessive form before tail.",
         "3": "The plural possessive does not fit this singular dog."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The dog wagged it's tail.",
+          "reason": "'It's' means 'it is' or 'it has,' not possession."
+        },
+        {
+          "answer": "The dogs tail wagged.",
+          "reason": "This sentence needs a possessive form before tail."
+        },
+        {
+          "answer": "The dogs' tail wagged.",
+          "reason": "The plural possessive does not fit this singular dog."
+        }
+      ]
     },
     {
       "id": "engl-gen-049",
@@ -1646,9 +2440,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "Which word should be capitalized in the sentence? 'we visited the museum on friday.'",
       "options": [
@@ -1663,7 +2462,22 @@
         "0": "'We' is capitalized only if it begins a sentence.",
         "1": "'Museum' is a common noun here.",
         "3": "'Visited' is not a proper noun and does not need capitalization."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "we",
+          "reason": "'We' is capitalized only if it begins a sentence."
+        },
+        {
+          "answer": "museum",
+          "reason": "'Museum' is a common noun here."
+        },
+        {
+          "answer": "visited",
+          "reason": "'Visited' is not a proper noun and does not need capitalization."
+        }
+      ]
     },
     {
       "id": "engl-gen-050",
@@ -1672,9 +2486,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the passage, why did the team change its plan?",
       "options": [
@@ -1689,7 +2508,22 @@
         "1": "An early bus is not the reason for the change.",
         "2": "The story does not mention a restaurant.",
         "3": "The equipment was not the reason given."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The bus arrived early.",
+          "reason": "An early bus is not the reason for the change."
+        },
+        {
+          "answer": "They found a better restaurant.",
+          "reason": "The story does not mention a restaurant."
+        },
+        {
+          "answer": "The coach forgot the equipment.",
+          "reason": "The equipment was not the reason given."
+        }
+      ]
     },
     {
       "id": "engl-gen-051",
@@ -1698,9 +2532,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "Which event most clearly shows rising action in a story?",
       "options": [
@@ -1715,7 +2555,22 @@
         "0": "Setting description usually comes early in the story.",
         "2": "A lesson at the end is part of the conclusion.",
         "3": "Character introduction usually happens at the beginning."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The setting is described",
+          "reason": "Setting description usually comes early in the story."
+        },
+        {
+          "answer": "The story ends with a lesson",
+          "reason": "A lesson at the end is part of the conclusion."
+        },
+        {
+          "answer": "The characters are introduced",
+          "reason": "Character introduction usually happens at the beginning."
+        }
+      ]
     },
     {
       "id": "engl-gen-052",
@@ -1724,9 +2579,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If a laptop costs $900 and is discounted by 20%, what is the sale price?",
       "options": [
@@ -1741,7 +2601,22 @@
         "1": "This discount is not the correct amount.",
         "2": "This price does not reflect a full 20% discount.",
         "3": "This is too close to the original price."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$760",
+          "reason": "This discount is not the correct amount."
+        },
+        {
+          "answer": "$780",
+          "reason": "This price does not reflect a full 20% discount."
+        },
+        {
+          "answer": "$840",
+          "reason": "This is too close to the original price."
+        }
+      ]
     },
     {
       "id": "engl-gen-053",
@@ -1750,9 +2625,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which purchase is the best example of a need rather than a want?",
       "options": [
@@ -1767,7 +2647,22 @@
         "0": "A video game is entertainment, not a need.",
         "1": "Fast food is usually a convenience choice, not a basic need.",
         "3": "A second pair of headphones is optional."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "A new video game",
+          "reason": "A video game is entertainment, not a need."
+        },
+        {
+          "answer": "A fast-food lunch",
+          "reason": "Fast food is usually a convenience choice, not a basic need."
+        },
+        {
+          "answer": "A second pair of headphones",
+          "reason": "A second pair of headphones is optional."
+        }
+      ]
     },
     {
       "id": "engl-gen-054",
@@ -1776,9 +2671,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which homeowner action best prevents a drain from clogging?",
       "options": [
@@ -1793,7 +2693,22 @@
         "0": "Grease can harden and clog pipes.",
         "2": "Cold water alone does not stop grease buildup.",
         "3": "Paper towels should never be flushed."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Pour grease down the sink",
+          "reason": "Grease can harden and clog pipes."
+        },
+        {
+          "answer": "Run cold water after every meal",
+          "reason": "Cold water alone does not stop grease buildup."
+        },
+        {
+          "answer": "Flush paper towels in the toilet",
+          "reason": "Paper towels should never be flushed."
+        }
+      ]
     },
     {
       "id": "engl-gen-055",
@@ -1802,9 +2717,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which choice best reduces air pollution?",
       "options": [
@@ -1819,7 +2739,22 @@
         "0": "Idling wastes fuel and increases emissions.",
         "2": "Burning trash releases harmful pollutants.",
         "3": "Closed windows do not reduce pollution."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Letting cars idle longer",
+          "reason": "Idling wastes fuel and increases emissions."
+        },
+        {
+          "answer": "Burning more trash outdoors",
+          "reason": "Burning trash releases harmful pollutants."
+        },
+        {
+          "answer": "Keeping windows closed all year",
+          "reason": "Closed windows do not reduce pollution."
+        }
+      ]
     },
     {
       "id": "engl-gen-056",
@@ -1828,9 +2763,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence is written in the passive voice?",
       "options": [
@@ -1845,7 +2785,22 @@
         "0": "This is active voice.",
         "2": "This is active voice in future tense.",
         "3": "This is active voice in present tense."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The student submitted the form.",
+          "reason": "This is active voice."
+        },
+        {
+          "answer": "The student will submit the form.",
+          "reason": "This is active voice in future tense."
+        },
+        {
+          "answer": "The student submits the form.",
+          "reason": "This is active voice in present tense."
+        }
+      ]
     },
     {
       "id": "engl-gen-057",
@@ -1854,9 +2809,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Which sentence is punctuated correctly?",
       "options": [
@@ -1871,7 +2831,22 @@
         "0": "A comma is missing between the first two items.",
         "2": "The commas are placed incorrectly around the first item.",
         "3": "A comma is needed before the final item in the list."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "I bought apples oranges, and bananas.",
+          "reason": "A comma is missing between the first two items."
+        },
+        {
+          "answer": "I bought, apples, oranges and bananas.",
+          "reason": "The commas are placed incorrectly around the first item."
+        },
+        {
+          "answer": "I bought apples, oranges and bananas.",
+          "reason": "A comma is needed before the final item in the list."
+        }
+      ]
     },
     {
       "id": "engl-gen-058",
@@ -1880,9 +2855,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "Which sentence is capitalized correctly?",
       "options": [
@@ -1897,7 +2877,22 @@
         "0": "The first word of a sentence should be capitalized.",
         "1": "City names are proper nouns and should be capitalized.",
         "3": "The first word of a sentence should be capitalized."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "my friend moved to Toronto last year.",
+          "reason": "The first word of a sentence should be capitalized."
+        },
+        {
+          "answer": "My friend moved to toronto last year.",
+          "reason": "City names are proper nouns and should be capitalized."
+        },
+        {
+          "answer": "my friend moved to Toronto last year.",
+          "reason": "The first word of a sentence should be capitalized."
+        }
+      ]
     },
     {
       "id": "engl-gen-059",
@@ -1906,9 +2901,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "Which detail from the passage best supports the idea that the character is determined?",
       "options": [
@@ -1923,7 +2923,22 @@
         "0": "Asking a question does not show determination.",
         "2": "Eating lunch quickly does not support this trait.",
         "3": "Looking at the clock does not show persistence."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The character asked a question.",
+          "reason": "Asking a question does not show determination."
+        },
+        {
+          "answer": "The character ate lunch quickly.",
+          "reason": "Eating lunch quickly does not support this trait."
+        },
+        {
+          "answer": "The character looked at the clock.",
+          "reason": "Looking at the clock does not show persistence."
+        }
+      ]
     },
     {
       "id": "engl-gen-060",
@@ -1932,9 +2947,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What is the best lesson the character learns in the story?",
       "options": [
@@ -1949,7 +2970,22 @@
         "0": "The lesson is about support, not shopping.",
         "2": "The story shows the opposite: mistakes should be addressed.",
         "3": "The story values effort and support, not just winning."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Always buy new things.",
+          "reason": "The lesson is about support, not shopping."
+        },
+        {
+          "answer": "Mistakes should be ignored.",
+          "reason": "The story shows the opposite: mistakes should be addressed."
+        },
+        {
+          "answer": "Winning matters more than effort.",
+          "reason": "The story values effort and support, not just winning."
+        }
+      ]
     },
     {
       "id": "engl-gen-061",
@@ -1958,9 +2994,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If a family spends $240 on groceries each week, about how much do they spend in 4 weeks?",
       "options": [
@@ -1975,7 +3016,22 @@
         "0": "This is only 2 weeks of groceries.",
         "1": "This is 3 weeks of groceries.",
         "3": "This is too high for 4 weeks."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$480",
+          "reason": "This is only 2 weeks of groceries."
+        },
+        {
+          "answer": "$720",
+          "reason": "This is 3 weeks of groceries."
+        },
+        {
+          "answer": "$1,200",
+          "reason": "This is too high for 4 weeks."
+        }
+      ]
     },
     {
       "id": "engl-gen-062",
@@ -1984,9 +3040,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which bill is most likely to change from month to month?",
       "options": [
@@ -2001,7 +3062,22 @@
         "0": "Rent is usually fixed for the lease period.",
         "1": "Loan payments are often fixed.",
         "3": "Insurance premiums are usually fixed for a set period."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Rent",
+          "reason": "Rent is usually fixed for the lease period."
+        },
+        {
+          "answer": "Loan payment",
+          "reason": "Loan payments are often fixed."
+        },
+        {
+          "answer": "Insurance premium",
+          "reason": "Insurance premiums are usually fixed for a set period."
+        }
+      ]
     },
     {
       "id": "engl-gen-063",
@@ -2010,9 +3086,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which home practice is safest when using a ladder?",
       "options": [
@@ -2027,7 +3108,22 @@
         "0": "The top step is not a safe place to stand.",
         "2": "Overreaching can cause a fall.",
         "3": "A chair is not a safe substitute for a ladder."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Stand on the top step",
+          "reason": "The top step is not a safe place to stand."
+        },
+        {
+          "answer": "Reach as far as possible to one side",
+          "reason": "Overreaching can cause a fall."
+        },
+        {
+          "answer": "Use a chair instead of a ladder",
+          "reason": "A chair is not a safe substitute for a ladder."
+        }
+      ]
     },
     {
       "id": "engl-gen-064",
@@ -2036,9 +3132,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "hard",
+        "difficulty": 4,
         "verifiedAt": "2026-06-09T14:13:49.551Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which choice is the best way to reduce food waste?",
       "options": [
@@ -2053,7 +3154,22 @@
         "0": "Buying extra often leads to spoilage.",
         "2": "Leftovers can often be eaten later.",
         "3": "Proper storage helps food last longer."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Buy more than you need",
+          "reason": "Buying extra often leads to spoilage."
+        },
+        {
+          "answer": "Throw leftovers away immediately",
+          "reason": "Leftovers can often be eaten later."
+        },
+        {
+          "answer": "Store all food on the counter",
+          "reason": "Proper storage helps food last longer."
+        }
+      ]
     },
     {
       "id": "engl-gen-065",
@@ -2062,9 +3178,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the notice, when will the library reopen on Sunday?",
       "options": [
@@ -2080,7 +3201,22 @@
         "0": "That time is not stated in the notice.",
         "2": "The notice does not say 3:00 p.m.",
         "3": "5:00 p.m. is the closing time, not the reopening time."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "9:00 a.m.",
+          "reason": "That time is not stated in the notice."
+        },
+        {
+          "answer": "3:00 p.m.",
+          "reason": "The notice does not say 3:00 p.m."
+        },
+        {
+          "answer": "5:00 p.m.",
+          "reason": "5:00 p.m. is the closing time, not the reopening time."
+        }
+      ]
     },
     {
       "id": "engl-gen-066",
@@ -2089,9 +3225,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "What is the main reason the library will be closed on Saturday?",
       "options": [
@@ -2107,7 +3248,22 @@
         "0": "The notice does not mention a holiday.",
         "2": "A staff meeting is not given as the reason.",
         "3": "The notice does not mention a computer upgrade."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "A holiday celebration",
+          "reason": "The notice does not mention a holiday."
+        },
+        {
+          "answer": "A staff meeting",
+          "reason": "A staff meeting is not given as the reason."
+        },
+        {
+          "answer": "A computer upgrade",
+          "reason": "The notice does not mention a computer upgrade."
+        }
+      ]
     },
     {
       "id": "engl-gen-067",
@@ -2116,9 +3272,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "In the story, what best describes Mina's mood when she hears the music?",
       "options": [
@@ -2134,7 +3296,22 @@
         "0": "The story gives no sign that she is irritated.",
         "1": "She is not shown to be scared.",
         "3": "The story explains her reaction clearly."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Annoyed",
+          "reason": "The story gives no sign that she is irritated."
+        },
+        {
+          "answer": "Afraid",
+          "reason": "She is not shown to be scared."
+        },
+        {
+          "answer": "Confused",
+          "reason": "The story explains her reaction clearly."
+        }
+      ]
     },
     {
       "id": "engl-gen-068",
@@ -2143,9 +3320,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What detail shows that the story takes place in the evening?",
       "options": [
@@ -2161,7 +3344,22 @@
         "1": "This describes the weather, not the time.",
         "2": "This tells about location, not time.",
         "3": "This shows her reaction, not the time."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The wind pushed dry leaves across the sidewalk.",
+          "reason": "This describes the weather, not the time."
+        },
+        {
+          "answer": "Her apartment was next door.",
+          "reason": "This tells about location, not time."
+        },
+        {
+          "answer": "She smiled at the music.",
+          "reason": "This shows her reaction, not the time."
+        }
+      ]
     },
     {
       "id": "engl-gen-069",
@@ -2170,9 +3368,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If a student saves $25 each week, about how much will they save in 8 weeks?",
       "options": [
@@ -2187,7 +3390,22 @@
         "0": "This is too low for 8 weeks of saving $25.",
         "1": "This would be 6 weeks of saving.",
         "3": "This is more than the correct total."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$100",
+          "reason": "This is too low for 8 weeks of saving $25."
+        },
+        {
+          "answer": "$150",
+          "reason": "This would be 6 weeks of saving."
+        },
+        {
+          "answer": "$250",
+          "reason": "This is more than the correct total."
+        }
+      ]
     },
     {
       "id": "engl-gen-070",
@@ -2196,9 +3414,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "A monthly phone plan costs $45 before tax. Which estimate is closest to the total for 12 months, before tax?",
       "options": [
@@ -2213,7 +3436,22 @@
         "0": "That is too low for one year of payments.",
         "1": "This is closer to 10 months, not 12.",
         "3": "This total is too high."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$360",
+          "reason": "That is too low for one year of payments."
+        },
+        {
+          "answer": "$450",
+          "reason": "This is closer to 10 months, not 12."
+        },
+        {
+          "answer": "$660",
+          "reason": "This total is too high."
+        }
+      ]
     },
     {
       "id": "engl-gen-071",
@@ -2222,9 +3460,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which action would most likely help reduce a household's electricity use?",
       "options": [
@@ -2239,7 +3482,22 @@
         "0": "This would increase electricity use.",
         "2": "Running half-full loads wastes energy.",
         "3": "Leaving the TV on uses extra electricity."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Keeping lights on in empty rooms",
+          "reason": "This would increase electricity use."
+        },
+        {
+          "answer": "Running the dishwasher half full every night",
+          "reason": "Running half-full loads wastes energy."
+        },
+        {
+          "answer": "Leaving the television on for background noise",
+          "reason": "Leaving the TV on uses extra electricity."
+        }
+      ]
     },
     {
       "id": "engl-gen-072",
@@ -2248,9 +3506,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which choice is the best example of reducing waste at home?",
       "options": [
@@ -2265,7 +3528,22 @@
         "0": "This creates more waste instead of less.",
         "2": "Single-use bottles create more waste.",
         "3": "This wastes water, not reduces waste."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Throwing all food scraps in the garbage",
+          "reason": "This creates more waste instead of less."
+        },
+        {
+          "answer": "Buying single-use bottles every day",
+          "reason": "Single-use bottles create more waste."
+        },
+        {
+          "answer": "Leaving water running while brushing teeth",
+          "reason": "This wastes water, not reduces waste."
+        }
+      ]
     },
     {
       "id": "engl-gen-073",
@@ -2274,9 +3552,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "Which sentence is correct?",
       "options": [
@@ -2291,7 +3574,22 @@
         "0": "Days of the week must be capitalized.",
         "1": "A sentence must begin with a capital letter.",
         "3": "'Manager' is not a proper noun here, and 'friday' should be capitalized."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The manager said the report was due friday.",
+          "reason": "Days of the week must be capitalized."
+        },
+        {
+          "answer": "the manager said the report was due Friday.",
+          "reason": "A sentence must begin with a capital letter."
+        },
+        {
+          "answer": "The Manager said the report was due friday.",
+          "reason": "'Manager' is not a proper noun here, and 'friday' should be capitalized."
+        }
+      ]
     },
     {
       "id": "engl-gen-074",
@@ -2300,9 +3598,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:20:22.296Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Choose the sentence with correct punctuation.",
       "options": [
@@ -2317,7 +3620,22 @@
         "0": "A comma alone cannot join two complete sentences.",
         "2": "This is a run-on sentence.",
         "3": "This sentence needs ending punctuation."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "My brother works in Toronto, he starts at 8:00 a.m.",
+          "reason": "A comma alone cannot join two complete sentences."
+        },
+        {
+          "answer": "My brother works in Toronto he starts at 8:00 a.m.",
+          "reason": "This is a run-on sentence."
+        },
+        {
+          "answer": "My brother works in Toronto, he starts at 8:00 a.m",
+          "reason": "This sentence needs ending punctuation."
+        }
+      ]
     },
     {
       "id": "engl-gen-075",
@@ -2326,9 +3644,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the notice, when can visitors sign in at the shed before entering the garden?",
       "options": [
@@ -2344,7 +3667,22 @@
         "0": "The notice gives opening hours for both weekdays and weekends.",
         "2": "The 10:00 a.m. rule is about watering, not signing in.",
         "3": "Tool return is separate from the sign-in rule."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Only on weekdays",
+          "reason": "The notice gives opening hours for both weekdays and weekends."
+        },
+        {
+          "answer": "Only after 10:00 a.m. on hot days",
+          "reason": "The 10:00 a.m. rule is about watering, not signing in."
+        },
+        {
+          "answer": "Only when tools are being returned",
+          "reason": "Tool return is separate from the sign-in rule."
+        }
+      ]
     },
     {
       "id": "engl-gen-076",
@@ -2353,9 +3691,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "Which detail from the notice helps explain why watering is limited before 10:00 a.m. on hot days?",
       "options": [
@@ -2371,7 +3714,22 @@
         "0": "The rule is about watering efficiency, not open hours.",
         "2": "Tool use is not connected to the watering rule.",
         "3": "Signing in is a separate requirement."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "To keep the garden open longer",
+          "reason": "The rule is about watering efficiency, not open hours."
+        },
+        {
+          "answer": "To make tools easier to use",
+          "reason": "Tool use is not connected to the watering rule."
+        },
+        {
+          "answer": "To help visitors sign in faster",
+          "reason": "Signing in is a separate requirement."
+        }
+      ]
     },
     {
       "id": "engl-gen-077",
@@ -2380,9 +3738,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "A story begins with a student missing the bus, then rushing to class, and finally arriving just before the quiz starts. What is the sequence of events?",
       "options": [
@@ -2397,7 +3761,22 @@
         "0": "This order does not match the story’s beginning, middle, and end.",
         "2": "The quiz happens at the end, not the beginning.",
         "3": "The bus is missed before the student rushes to class."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The student arrives first, then misses the bus, then rushes to class",
+          "reason": "This order does not match the story’s beginning, middle, and end."
+        },
+        {
+          "answer": "The student takes the quiz, then misses the bus, then rushes to class",
+          "reason": "The quiz happens at the end, not the beginning."
+        },
+        {
+          "answer": "The student rushes to class, then misses the bus, then arrives before the quiz",
+          "reason": "The bus is missed before the student rushes to class."
+        }
+      ]
     },
     {
       "id": "engl-gen-078",
@@ -2406,9 +3785,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "In a story, a character hides under the table because of a loud thunderstorm. What feeling is most likely being shown?",
       "options": [
@@ -2423,7 +3808,22 @@
         "0": "The action shows worry, not celebration.",
         "2": "Pride is not usually shown by hiding.",
         "3": "The character is reacting strongly, not showing boredom."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Excitement",
+          "reason": "The action shows worry, not celebration."
+        },
+        {
+          "answer": "Pride",
+          "reason": "Pride is not usually shown by hiding."
+        },
+        {
+          "answer": "Boredom",
+          "reason": "The character is reacting strongly, not showing boredom."
+        }
+      ]
     },
     {
       "id": "engl-gen-079",
@@ -2432,9 +3832,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "A monthly phone plan costs $45. If taxes and fees add about $10, what is the approximate total monthly cost?",
       "options": [
@@ -2449,7 +3854,22 @@
         "0": "This ignores the taxes and fees.",
         "1": "This is only the plan cost.",
         "3": "This total is too high for the given amounts."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$35",
+          "reason": "This ignores the taxes and fees."
+        },
+        {
+          "answer": "$45",
+          "reason": "This is only the plan cost."
+        },
+        {
+          "answer": "$65",
+          "reason": "This total is too high for the given amounts."
+        }
+      ]
     },
     {
       "id": "engl-gen-080",
@@ -2458,9 +3878,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "A used laptop costs $400. If you pay $100 down and split the rest into 3 equal payments, about how much is each payment?",
       "options": [
@@ -2475,7 +3900,22 @@
         "0": "This is too small for the remaining balance.",
         "1": "This does not divide the remaining balance evenly.",
         "3": "This would exceed the remaining balance over 3 payments."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$50",
+          "reason": "This is too small for the remaining balance."
+        },
+        {
+          "answer": "$75",
+          "reason": "This does not divide the remaining balance evenly."
+        },
+        {
+          "answer": "$150",
+          "reason": "This would exceed the remaining balance over 3 payments."
+        }
+      ]
     },
     {
       "id": "engl-gen-081",
@@ -2484,9 +3924,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which action is the best way to reduce household food waste?",
       "options": [
@@ -2501,7 +3946,22 @@
         "0": "Buying extra often leads to more waste.",
         "2": "Leftovers can often be safely kept longer than one day.",
         "3": "Sunlight can make food spoil faster."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Buy more food than needed so the pantry stays full",
+          "reason": "Buying extra often leads to more waste."
+        },
+        {
+          "answer": "Throw away leftovers after one day",
+          "reason": "Leftovers can often be safely kept longer than one day."
+        },
+        {
+          "answer": "Store bread on the counter in the sun",
+          "reason": "Sunlight can make food spoil faster."
+        }
+      ]
     },
     {
       "id": "engl-gen-082",
@@ -2510,9 +3970,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "If a dryer vent is clogged with lint, what is the safest next step?",
       "options": [
@@ -2527,7 +3992,22 @@
         "0": "Ignoring lint buildup can be dangerous.",
         "2": "Soap does not solve a vent blockage.",
         "3": "High heat can increase the fire risk."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Ignore it until the dryer stops working",
+          "reason": "Ignoring lint buildup can be dangerous."
+        },
+        {
+          "answer": "Add more laundry soap",
+          "reason": "Soap does not solve a vent blockage."
+        },
+        {
+          "answer": "Run the dryer on high heat to burn the lint away",
+          "reason": "High heat can increase the fire risk."
+        }
+      ]
     },
     {
       "id": "engl-gen-083",
@@ -2536,9 +4016,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "Which choice is the best example of conserving water at home?",
       "options": [
@@ -2553,7 +4038,22 @@
         "0": "This wastes water.",
         "2": "This can waste more water than necessary.",
         "3": "Using a hose on hard surfaces usually uses a lot of water."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Leaving the tap running while brushing your teeth",
+          "reason": "This wastes water."
+        },
+        {
+          "answer": "Washing only one item at a time in the sink",
+          "reason": "This can waste more water than necessary."
+        },
+        {
+          "answer": "Using the hose to rinse a sidewalk",
+          "reason": "Using a hose on hard surfaces usually uses a lot of water."
+        }
+      ]
     },
     {
       "id": "engl-gen-084",
@@ -2562,9 +4062,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence is written correctly?",
       "options": [
@@ -2579,7 +4084,22 @@
         "0": "Do not place a comma between the conjunction and the clause like this.",
         "2": "The comma after the subject is unnecessary here.",
         "3": "A comma is not needed before 'because' in this sentence."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The report was late because, it needed more research.",
+          "reason": "Do not place a comma between the conjunction and the clause like this."
+        },
+        {
+          "answer": "The report, was late because it needed more research.",
+          "reason": "The comma after the subject is unnecessary here."
+        },
+        {
+          "answer": "The report was late, because it needed more research",
+          "reason": "A comma is not needed before 'because' in this sentence."
+        }
+      ]
     },
     {
       "id": "engl-gen-085",
@@ -2588,9 +4108,14 @@
         "topics": [
           "Capitalization Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "capitalization-rules",
+          "capitalization",
+          "rules"
+        ]
       },
       "text": "Which sentence uses capitalization correctly?",
       "options": [
@@ -2605,7 +4130,22 @@
         "0": "The sentence begins with a lowercase letter, and the college and city names are not fully capitalized.",
         "1": "Proper nouns should be capitalized correctly throughout.",
         "3": "The sentence should start with a capital letter, and 'Aunt' does not need capitalization here."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "my aunt works at Conestoga college in Kitchener.",
+          "reason": "The sentence begins with a lowercase letter, and the college and city names are not fully capitalized."
+        },
+        {
+          "answer": "My aunt works at conestoga College in kitchener.",
+          "reason": "Proper nouns should be capitalized correctly throughout."
+        },
+        {
+          "answer": "my Aunt works at Conestoga College in Kitchener.",
+          "reason": "The sentence should start with a capital letter, and 'Aunt' does not need capitalization here."
+        }
+      ]
     },
     {
       "id": "engl-gen-086",
@@ -2614,9 +4154,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:37.201Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Which sentence uses punctuation correctly?",
       "options": [
@@ -2631,7 +4176,22 @@
         "0": "A comma is needed after 'pens' in a three-item list.",
         "1": "The items in the list need to be separated properly.",
         "3": "Items in a list should be separated with commas."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "I need a notebook, pens and paper.",
+          "reason": "A comma is needed after 'pens' in a three-item list."
+        },
+        {
+          "answer": "I need a notebook pens, and paper.",
+          "reason": "The items in the list need to be separated properly."
+        },
+        {
+          "answer": "I need a notebook pens and paper.",
+          "reason": "Items in a list should be separated with commas."
+        }
+      ]
     },
     {
       "id": "engl-gen-087",
@@ -2640,9 +4200,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the library notice, when can students first use the quiet study rooms again?",
       "options": [
@@ -2658,7 +4223,22 @@
         "0": "That is when the library closes, not when the study rooms reopen.",
         "1": "The library reopens at 8:00 a.m., but the study rooms are still unavailable.",
         "3": "The notice does not say the rooms stay closed until Sunday."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Friday at 6:00 p.m.",
+          "reason": "That is when the library closes, not when the study rooms reopen."
+        },
+        {
+          "answer": "Saturday at 8:00 a.m.",
+          "reason": "The library reopens at 8:00 a.m., but the study rooms are still unavailable."
+        },
+        {
+          "answer": "Sunday morning",
+          "reason": "The notice does not say the rooms stay closed until Sunday."
+        }
+      ]
     },
     {
       "id": "engl-gen-088",
@@ -2667,9 +4247,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "In the story about Mina, how did she most likely feel at the end of the shift?",
       "options": [
@@ -2685,7 +4271,22 @@
         "0": "The story says she felt nervous at first, but not confused or frustrated at the end.",
         "2": "Nothing in the passage suggests she was angry.",
         "3": "She helped many families, so she was not uninterested."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Confused and frustrated",
+          "reason": "The story says she felt nervous at first, but not confused or frustrated at the end."
+        },
+        {
+          "answer": "Tired but angry",
+          "reason": "Nothing in the passage suggests she was angry."
+        },
+        {
+          "answer": "Bored and uninterested",
+          "reason": "She helped many families, so she was not uninterested."
+        }
+      ]
     },
     {
       "id": "engl-gen-089",
@@ -2694,9 +4295,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If the monthly entertainment budget is cut in half, how much money would remain for entertainment?",
       "options": [
@@ -2712,7 +4318,22 @@
         "0": "$45 is less than half of $110.",
         "2": "$60 is more than half of $110.",
         "3": "$65 is also more than half of $110."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$45",
+          "reason": "$45 is less than half of $110."
+        },
+        {
+          "answer": "$60",
+          "reason": "$60 is more than half of $110."
+        },
+        {
+          "answer": "$65",
+          "reason": "$65 is also more than half of $110."
+        }
+      ]
     },
     {
       "id": "engl-gen-090",
@@ -2721,9 +4342,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which expense is the third largest in the monthly household budget?",
       "options": [
@@ -2739,7 +4365,22 @@
         "0": "Transportation is smaller than Utilities and Savings.",
         "2": "Savings is larger than Transportation and Utilities.",
         "3": "Entertainment is the smallest expense here."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Transportation",
+          "reason": "Transportation is smaller than Utilities and Savings."
+        },
+        {
+          "answer": "Savings",
+          "reason": "Savings is larger than Transportation and Utilities."
+        },
+        {
+          "answer": "Entertainment",
+          "reason": "Entertainment is the smallest expense here."
+        }
+      ]
     },
     {
       "id": "engl-gen-091",
@@ -2748,9 +4389,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "According to the home energy use survey, which activity costs about twice as much as electronics?",
       "options": [
@@ -2766,7 +4412,22 @@
         "0": "Lighting is far less than electronics.",
         "1": "Water heating is closer to twice electronics than the other choices? Recheck the numbers carefully.",
         "3": "Heating is much more than twice electronics."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Lighting",
+          "reason": "Lighting is far less than electronics."
+        },
+        {
+          "answer": "Water Heating",
+          "reason": "Water heating is closer to twice electronics than the other choices? Recheck the numbers carefully."
+        },
+        {
+          "answer": "Heating",
+          "reason": "Heating is much more than twice electronics."
+        }
+      ]
     },
     {
       "id": "engl-gen-092",
@@ -2776,9 +4437,17 @@
           "Household Management",
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management",
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "If a student wants to reduce household waste from recycling, which action should be done before putting a container in the blue bin?",
       "options": [
@@ -2794,7 +4463,22 @@
         "0": "The notice does not say to keep lids on.",
         "2": "The passage does not recommend breaking containers apart.",
         "3": "Loose plastic bags should be removed, not placed inside."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Leave the lid on tightly",
+          "reason": "The notice does not say to keep lids on."
+        },
+        {
+          "answer": "Break the container into pieces",
+          "reason": "The passage does not recommend breaking containers apart."
+        },
+        {
+          "answer": "Put plastic bags inside it",
+          "reason": "Loose plastic bags should be removed, not placed inside."
+        }
+      ]
     },
     {
       "id": "engl-gen-093",
@@ -2803,9 +4487,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:20:51.209Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence is correctly structured?",
       "options": [
@@ -2820,7 +4509,22 @@
         "0": "This is a fragment because it begins with 'Because' and does not form a complete thought.",
         "2": "The second part is a fragment: 'And passed the test.'",
         "3": "The word order is incorrect."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Because the student studied hard and passed the test.",
+          "reason": "This is a fragment because it begins with 'Because' and does not form a complete thought."
+        },
+        {
+          "answer": "The student studied hard. And passed the test.",
+          "reason": "The second part is a fragment: 'And passed the test.'"
+        },
+        {
+          "answer": "Studied hard the student and passed the test.",
+          "reason": "The word order is incorrect."
+        }
+      ]
     },
     {
       "id": "engl-gen-094",
@@ -2829,9 +4533,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "According to the notice, when does the library reopen for new borrowing requests?",
       "options": [
@@ -2847,7 +4556,22 @@
         "0": "That is when the library closes early, not reopens.",
         "1": "The library is not open on Saturday in the notice.",
         "3": "The notice says morning, not afternoon."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Friday at 3:00 p.m.",
+          "reason": "That is when the library closes early, not reopens."
+        },
+        {
+          "answer": "Saturday morning",
+          "reason": "The library is not open on Saturday in the notice."
+        },
+        {
+          "answer": "Monday afternoon",
+          "reason": "The notice says morning, not afternoon."
+        }
+      ]
     },
     {
       "id": "engl-gen-095",
@@ -2856,9 +4580,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "At the start of the story, how would you best describe Omar?",
       "options": [
@@ -2874,7 +4604,22 @@
         "0": "The story does not describe him that way at the start.",
         "2": "There is no sign that Omar is angry or rude.",
         "3": "The passage does not suggest he is confused or tired."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Noisy and careless",
+          "reason": "The story does not describe him that way at the start."
+        },
+        {
+          "answer": "Angry and rude",
+          "reason": "There is no sign that Omar is angry or rude."
+        },
+        {
+          "answer": "Confused and tired",
+          "reason": "The passage does not suggest he is confused or tired."
+        }
+      ]
     },
     {
       "id": "engl-gen-096",
@@ -2883,9 +4628,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If a homeowner replaces old light bulbs with LED bulbs, about how much money might be saved each year?",
       "options": [
@@ -2901,7 +4651,22 @@
         "0": "This amount is too low compared with the passage.",
         "2": "This is the increase from the air conditioner, not the savings from LED bulbs.",
         "3": "This is not stated in the passage."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$50",
+          "reason": "This amount is too low compared with the passage."
+        },
+        {
+          "answer": "$250",
+          "reason": "This is the increase from the air conditioner, not the savings from LED bulbs."
+        },
+        {
+          "answer": "$430",
+          "reason": "This is not stated in the passage."
+        }
+      ]
     },
     {
       "id": "engl-gen-097",
@@ -2910,9 +4675,14 @@
         "topics": [
           "Household Management"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "household-management",
+          "household",
+          "management"
+        ]
       },
       "text": "Which action would help prevent food contamination in the kitchen?",
       "options": [
@@ -2928,7 +4698,22 @@
         "0": "Raw meat should be stored on the bottom shelf, not the top.",
         "1": "Leftovers should be refrigerated within two hours.",
         "3": "The passage does not recommend putting warm food directly into the freezer."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Storing raw meat on the top shelf",
+          "reason": "Raw meat should be stored on the bottom shelf, not the top."
+        },
+        {
+          "answer": "Leaving leftovers out overnight",
+          "reason": "Leftovers should be refrigerated within two hours."
+        },
+        {
+          "answer": "Putting warm food directly into the freezer",
+          "reason": "The passage does not recommend putting warm food directly into the freezer."
+        }
+      ]
     },
     {
       "id": "engl-gen-098",
@@ -2937,9 +4722,14 @@
         "topics": [
           "Environmental Awareness"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "environmental-awareness",
+          "environmental",
+          "awareness"
+        ]
       },
       "text": "What is the main environmental benefit of compost in the garden?",
       "options": [
@@ -2955,7 +4745,22 @@
         "0": "The passage does not say compost eliminates watering.",
         "2": "Compost does not replace sunlight.",
         "3": "The passage does not claim compost completely removes pests."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "It makes plants grow without water",
+          "reason": "The passage does not say compost eliminates watering."
+        },
+        {
+          "answer": "It removes the need for sunlight",
+          "reason": "Compost does not replace sunlight."
+        },
+        {
+          "answer": "It keeps pests away completely",
+          "reason": "The passage does not claim compost completely removes pests."
+        }
+      ]
     },
     {
       "id": "engl-gen-099",
@@ -2964,9 +4769,14 @@
         "topics": [
           "Sentence Structure"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "sentence-structure",
+          "sentence",
+          "structure"
+        ]
       },
       "text": "Which sentence is correctly written?",
       "options": [
@@ -2981,7 +4791,22 @@
         "0": "Students is plural; the apostrophe is not needed here.",
         "1": "The apostrophe makes the noun possessive, which is incorrect here.",
         "3": "Today’s is not needed in this sentence."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The students’ are in class today.",
+          "reason": "Students is plural; the apostrophe is not needed here."
+        },
+        {
+          "answer": "The student’s are in class today.",
+          "reason": "The apostrophe makes the noun possessive, which is incorrect here."
+        },
+        {
+          "answer": "The students are in class today’s.",
+          "reason": "Today’s is not needed in this sentence."
+        }
+      ]
     },
     {
       "id": "engl-gen-101",
@@ -2990,9 +4815,14 @@
         "topics": [
           "Punctuation Rules"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "punctuation-rules",
+          "punctuation",
+          "rules"
+        ]
       },
       "text": "Which sentence has the correct punctuation?",
       "options": [
@@ -3007,7 +4837,22 @@
         "0": "A colon is needed in the time.",
         "2": "A semicolon is not used in times.",
         "3": "A comma is not correct in the time."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The bus arrives at 8 30 a.m.",
+          "reason": "A colon is needed in the time."
+        },
+        {
+          "answer": "The bus arrives at 8;30 a.m.",
+          "reason": "A semicolon is not used in times."
+        },
+        {
+          "answer": "The bus arrives at 8,30 a.m.",
+          "reason": "A comma is not correct in the time."
+        }
+      ]
     },
     {
       "id": "engl-gen-102",
@@ -3016,9 +4861,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "Based on the notice, which statement is true?",
       "options": [
@@ -3034,7 +4884,22 @@
         "0": "The notice says the library closes early, not late.",
         "2": "Requests are processed on Monday morning, not Friday afternoon.",
         "3": "The notice does not say it closes for the whole weekend on Friday morning."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "The library will stay open late on Friday.",
+          "reason": "The notice says the library closes early, not late."
+        },
+        {
+          "answer": "New borrowing requests will be processed on Friday afternoon.",
+          "reason": "Requests are processed on Monday morning, not Friday afternoon."
+        },
+        {
+          "answer": "The library closes for the weekend on Friday morning.",
+          "reason": "The notice does not say it closes for the whole weekend on Friday morning."
+        }
+      ]
     },
     {
       "id": "engl-gen-103",
@@ -3043,9 +4908,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:04.241Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "What is Omar like by Sunday evening?",
       "options": [
@@ -3061,7 +4932,22 @@
         "0": "He is no longer quiet by then.",
         "2": "The passage does not say he is sleeping most of the day.",
         "3": "The passage does not show that he is upset."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Still shy and silent",
+          "reason": "He is no longer quiet by then."
+        },
+        {
+          "answer": "Sleeping most of the day",
+          "reason": "The passage does not say he is sleeping most of the day."
+        },
+        {
+          "answer": "Upset about residence life",
+          "reason": "The passage does not show that he is upset."
+        }
+      ]
     },
     {
       "id": "engl-gen-103",
@@ -3070,9 +4956,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "Why did Maya go back to the cafeteria?",
       "options": [
@@ -3088,7 +4979,22 @@
         "0": "Maya did not need to buy a new card.",
         "2": "The passage does not mention meeting a friend.",
         "3": "Her quiz was already before the card was missing."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "She wanted to buy a new lunch card",
+          "reason": "Maya did not need to buy a new card."
+        },
+        {
+          "answer": "She was meeting a friend there",
+          "reason": "The passage does not mention meeting a friend."
+        },
+        {
+          "answer": "She had forgotten her morning quiz",
+          "reason": "Her quiz was already before the card was missing."
+        }
+      ]
     },
     {
       "id": "engl-gen-104",
@@ -3097,9 +5003,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "How did Maya solve her problem?",
       "options": [
@@ -3115,7 +5026,22 @@
         "0": "The passage does not mention paying for a replacement.",
         "1": "She checked the notebook, but the card was not there.",
         "3": "Maya stayed and handled the situation."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "She borrowed money to replace the card",
+          "reason": "The passage does not mention paying for a replacement."
+        },
+        {
+          "answer": "She found the card in her notebook",
+          "reason": "She checked the notebook, but the card was not there."
+        },
+        {
+          "answer": "She left college for the day",
+          "reason": "Maya stayed and handled the situation."
+        }
+      ]
     },
     {
       "id": "engl-gen-105",
@@ -3124,9 +5050,14 @@
         "topics": [
           "Reading Comprehension"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "reading-comprehension",
+          "reading",
+          "comprehension"
+        ]
       },
       "text": "What is the best lesson from Maya's experience?",
       "options": [
@@ -3142,7 +5073,22 @@
         "1": "The story is not about cafeteria meals.",
         "2": "Maya did ask staff for help.",
         "3": "She did not leave early; she stayed to find the card."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Always eat in the cafeteria",
+          "reason": "The story is not about cafeteria meals."
+        },
+        {
+          "answer": "Never ask staff for help",
+          "reason": "Maya did ask staff for help."
+        },
+        {
+          "answer": "Leave school early when you lose something",
+          "reason": "She did not leave early; she stayed to find the card."
+        }
+      ]
     },
     {
       "id": "engl-gen-106",
@@ -3151,9 +5097,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "A student says, 'I always hand in my homework on time.' What narrative element is the student showing?",
       "options": [
@@ -3168,7 +5120,22 @@
         "0": "Setting is where or when a story happens.",
         "2": "A problem is a difficulty in the story.",
         "3": "A solution fixes a problem."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Setting",
+          "reason": "Setting is where or when a story happens."
+        },
+        {
+          "answer": "Problem",
+          "reason": "A problem is a difficulty in the story."
+        },
+        {
+          "answer": "Solution",
+          "reason": "A solution fixes a problem."
+        }
+      ]
     },
     {
       "id": "engl-gen-107",
@@ -3177,9 +5144,15 @@
         "topics": [
           "Understanding Narrative Elements"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "understanding-narrative-elements",
+          "understanding",
+          "narrative",
+          "elements"
+        ]
       },
       "text": "In a story, the part where the main character faces a challenge is called the",
       "options": [
@@ -3194,7 +5167,22 @@
         "0": "Theme is the message or big idea of a story.",
         "2": "The title is the name of the story.",
         "3": "The ending comes after the conflict is resolved."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "theme",
+          "reason": "Theme is the message or big idea of a story."
+        },
+        {
+          "answer": "title",
+          "reason": "The title is the name of the story."
+        },
+        {
+          "answer": "ending",
+          "reason": "The ending comes after the conflict is resolved."
+        }
+      ]
     },
     {
       "id": "engl-gen-108",
@@ -3203,9 +5191,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "A student earns $1,800 a month and saves $225. About what percent of the income is saved?",
       "options": [
@@ -3220,7 +5213,22 @@
         "0": "5% of 1,800 is only 90.",
         "1": "10% of 1,800 is 180.",
         "3": "25% of 1,800 is 450."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "5%",
+          "reason": "5% of 1,800 is only 90."
+        },
+        {
+          "answer": "10%",
+          "reason": "10% of 1,800 is 180."
+        },
+        {
+          "answer": "25%",
+          "reason": "25% of 1,800 is 450."
+        }
+      ]
     },
     {
       "id": "engl-gen-109",
@@ -3229,9 +5237,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "If a monthly phone plan costs $48 and the tax is 13%, about how much is the total bill?",
       "options": [
@@ -3246,7 +5259,22 @@
         "0": "This is too close to the original price and does not include tax.",
         "1": "This is a little low for a 13% tax.",
         "3": "This adds too much tax for the given plan price."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "$50",
+          "reason": "This is too close to the original price and does not include tax."
+        },
+        {
+          "answer": "$53",
+          "reason": "This is a little low for a 13% tax."
+        },
+        {
+          "answer": "$61",
+          "reason": "This adds too much tax for the given plan price."
+        }
+      ]
     },
     {
       "id": "engl-gen-110",
@@ -3255,9 +5283,14 @@
         "topics": [
           "Financial Literacy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T14:21:13.481Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "financial-literacy",
+          "financial",
+          "literacy"
+        ]
       },
       "text": "Which expense is most likely to increase if a family uses more hot water every day?",
       "options": [
@@ -3272,7 +5305,22 @@
         "1": "Internet cost does not depend on hot water use.",
         "2": "Rent usually does not change with hot water use.",
         "3": "Parking cost is unrelated to water use."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Internet cost",
+          "reason": "Internet cost does not depend on hot water use."
+        },
+        {
+          "answer": "Rent cost",
+          "reason": "Rent usually does not change with hot water use."
+        },
+        {
+          "answer": "Parking cost",
+          "reason": "Parking cost is unrelated to water use."
+        }
+      ]
     }
   ],
   "subjectId": "english"

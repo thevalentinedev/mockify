@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No question bank found. Import a PDF first." }, { status: 404 });
     }
 
-    const { bank: enriched, enrichedCount, skippedCount } =
+    const { bank: enriched, enrichedCount, skippedCount, removedCount } =
       await enrichQuestionBankDetailed(bank);
     await saveQuestionBank(enriched);
 
@@ -31,6 +31,7 @@ export async function POST(request: Request) {
       questionCount: enriched.questions.length,
       enrichedCount,
       skippedCount,
+      removedCount,
       topics: enriched.meta?.topicsCovered ?? [],
       blueprint: enriched.meta?.examBlueprint ?? [],
       lastEnrichedAt: enriched.meta?.lastEnrichedAt,

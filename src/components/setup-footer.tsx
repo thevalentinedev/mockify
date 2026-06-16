@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 
 export interface SetupFooterProps {
   showBack?: boolean;
+  showContinue?: boolean;
   backLabel?: string;
   continueLabel?: string;
   backDisabled?: boolean;
@@ -18,6 +19,7 @@ export interface SetupFooterProps {
 
 export function SetupFooter({
   showBack = true,
+  showContinue = true,
   backLabel = "Back",
   continueLabel = "Continue",
   backDisabled = false,
@@ -30,7 +32,7 @@ export function SetupFooter({
   return (
     <div
       className={cn(
-        "fixed inset-x-0 bottom-0 z-40 border-t border-border/50 bg-background/80 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]",
+        "fixed inset-x-0 bottom-0 z-40 soft-chrome pb-[env(safe-area-inset-bottom)]",
         className
       )}
     >
@@ -50,22 +52,26 @@ export function SetupFooter({
           <div />
         )}
 
-        <Button
-          type="button"
-          onClick={onContinue}
-          disabled={continueDisabled || continueLoading}
-          className="gap-2"
-          size="lg"
-        >
-          {continueLoading ? (
-            <Loader2 className="size-4 animate-spin" />
-          ) : (
-            <>
-              {continueLabel}
-              <ArrowRight className="size-4" />
-            </>
-          )}
-        </Button>
+        {showContinue ? (
+          <Button
+            type="button"
+            onClick={onContinue}
+            disabled={continueDisabled || continueLoading}
+            className="gap-2"
+            size="lg"
+          >
+            {continueLoading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <>
+                {continueLabel}
+                <ArrowRight className="size-4" />
+              </>
+            )}
+          </Button>
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

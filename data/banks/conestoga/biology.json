@@ -1,21 +1,6 @@
 {
   "meta": {
-    "topicsCovered": [
-      "Human circulatory system and heart anatomy",
-      "Genetics and chromosomes",
-      "Thermoregulation and endothermy",
-      "Nervous system basics",
-      "Acid-base balance and pH",
-      "Protein structure and enzymes",
-      "Cell organelles and protein synthesis",
-      "Cellular respiration",
-      "Cell membrane transport and selective permeability",
-      "Mitosis and cell division",
-      "Biological scale and levels of organization",
-      "Human body spatial anatomy",
-      "Cell structure and nucleus location",
-      "Pressure and movement of blood"
-    ],
+    "examStarts": 3,
     "examBlueprint": [
       {
         "topic": "Human circulatory system and heart anatomy",
@@ -89,10 +74,23 @@
       }
     ],
     "schoolContext": "Conestoga College pre-assessment biology appears to be a short, multiple-choice placement-style test focused on foundational high school biology concepts. The sample questions emphasize factual recall, basic vocabulary, and simple understanding of human anatomy, cells, and biomolecules rather than application or lab-based reasoning.",
+    "topicsCovered": [
+      "Human circulatory system and heart anatomy",
+      "Genetics and chromosomes",
+      "Thermoregulation and endothermy",
+      "Nervous system basics",
+      "Acid-base balance and pH",
+      "Protein structure and enzymes",
+      "Cell organelles and protein synthesis",
+      "Cellular respiration",
+      "Cell membrane transport and selective permeability",
+      "Mitosis and cell division",
+      "Biological scale and levels of organization",
+      "Human body spatial anatomy",
+      "Cell structure and nucleus location",
+      "Pressure and movement of blood"
+    ],
     "lastEnrichedAt": "2026-06-09T15:11:59.838Z",
-    "lastGeneratedAt": "2026-06-09T15:12:19.293Z",
-    "totalGenerated": 16,
-    "examStarts": 1,
     "recentExamSets": [
       [
         "biol-gen-030",
@@ -125,9 +123,65 @@
         "biol-002",
         "biol-004",
         "biol-gen-025"
+      ],
+      [
+        "biol-gen-020",
+        "biol-gen-016",
+        "biol-gen-022",
+        "biol-005",
+        "biol-001",
+        "biol-003",
+        "biol-gen-021",
+        "biol-gen-027",
+        "biol-013",
+        "biol-gen-028",
+        "biol-gen-025",
+        "biol-002",
+        "biol-010",
+        "biol-gen-018",
+        "biol-gen-023",
+        "biol-gen-017",
+        "biol-014",
+        "biol-012",
+        "biol-006",
+        "biol-gen-030",
+        "biol-007",
+        "biol-gen-029",
+        "biol-011",
+        "biol-gen-019",
+        "biol-009",
+        "biol-015",
+        "biol-008",
+        "biol-gen-030",
+        "biol-004",
+        "biol-gen-024"
+      ],
+      [
+        "biol-003",
+        "biol-006",
+        "biol-012",
+        "biol-013",
+        "biol-gen-016",
+        "biol-008",
+        "biol-gen-017",
+        "biol-gen-030",
+        "biol-gen-024",
+        "biol-004",
+        "biol-gen-023",
+        "biol-001",
+        "biol-gen-019",
+        "biol-009",
+        "biol-gen-022",
+        "biol-gen-021",
+        "biol-gen-020",
+        "biol-002",
+        "biol-gen-025",
+        "biol-015"
       ]
     ],
-    "lastExamBuiltAt": "2026-06-09T15:12:19.517Z"
+    "totalGenerated": 16,
+    "lastExamBuiltAt": "2026-06-15T23:13:06.721Z",
+    "lastGeneratedAt": "2026-06-09T15:12:19.293Z"
   },
   "config": {
     "questionCount": 30,
@@ -140,11 +194,24 @@
       "meta": {
         "source": "verified",
         "topics": [
-          "Human Anatomy",
-          "Circulatory System"
+          "Human circulatory system and heart anatomy",
+          "Pressure and movement of blood"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T15:11:53.206Z",
+        "answerConfidence": "high",
+        "tags": [
+          "human-circulatory-system-and-heart-anatomy",
+          "human",
+          "circulatory",
+          "system",
+          "heart",
+          "anatomy",
+          "pressure-and-movement-of-blood",
+          "pressure",
+          "movement",
+          "blood"
+        ]
       },
       "text": "Blood flows directly from the right ventricle in the human heart to the:",
       "options": [
@@ -153,24 +220,50 @@
         "lungs",
         "right atrium"
       ],
-      "explanation": "The right ventricle pumps deoxygenated blood to the lungs through the pulmonary arteries.",
+      "explanation": "Blood leaving the right ventricle is pumped into the pulmonary artery and then travels to the lungs for oxygenation. This is part of the pulmonary circulation, which carries deoxygenated blood from the heart to the lungs.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "Blood does not flow directly from the right ventricle to the left atrium.",
-        "1": "The ventricles are not directly connected.",
-        "3": "Blood enters the right ventricle from the right atrium, not the reverse."
-      }
+        "0": "The left atrium receives oxygenated blood from the lungs, not blood directly from the right ventricle.",
+        "1": "The left ventricle receives blood from the left atrium and pumps it to the body.",
+        "3": "The right atrium receives blood returning from the body, not blood from the right ventricle."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "left atrium",
+          "reason": "The left atrium receives oxygenated blood from the lungs, not blood directly from the right ventricle."
+        },
+        {
+          "answer": "left ventricle",
+          "reason": "The left ventricle receives blood from the left atrium and pumps it to the body."
+        },
+        {
+          "answer": "right atrium",
+          "reason": "The right atrium receives blood returning from the body, not blood from the right ventricle."
+        }
+      ]
     },
     {
       "id": "biol-002",
       "meta": {
         "source": "verified",
         "topics": [
-          "Genetics",
-          "Cell Biology"
+          "Genetics and chromosomes",
+          "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T15:11:53.206Z",
+        "answerConfidence": "high",
+        "tags": [
+          "genetics-and-chromosomes",
+          "genetics",
+          "chromosomes",
+          "cell-structure-and-nucleus-location",
+          "cell",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "Genes are located in (on) the:",
       "options": [
@@ -179,24 +272,44 @@
         "endoplasmic reticulum",
         "chromosomes"
       ],
-      "explanation": "Genes are segments of DNA located on chromosomes.",
+      "explanation": "Genes are segments of DNA located on chromosomes. Chromosomes package and organize genetic material, making them the structures that carry genes within the nucleus.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Centrioles assist in cell division but do not contain genes.",
-        "1": "Mitochondria contain some DNA but genes are primarily located on chromosomes.",
-        "2": "The endoplasmic reticulum helps synthesize proteins and lipids."
-      }
+        "0": "Centrioles help organize cell division, but they do not contain genes.",
+        "1": "Mitochondria contain their own DNA, but the standard answer for where genes are located is chromosomes.",
+        "2": "The endoplasmic reticulum helps with synthesis and transport, but genes are not located there."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "centriole",
+          "reason": "Centrioles help organize cell division, but they do not contain genes."
+        },
+        {
+          "answer": "mitochondrion",
+          "reason": "Mitochondria contain their own DNA, but the standard answer for where genes are located is chromosomes."
+        },
+        {
+          "answer": "endoplasmic reticulum",
+          "reason": "The endoplasmic reticulum helps with synthesis and transport, but genes are not located there."
+        }
+      ]
     },
     {
       "id": "biol-003",
       "meta": {
         "source": "verified",
         "topics": [
-          "Physiology",
-          "Homeostasis"
+          "Thermoregulation and endothermy"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T15:11:53.206Z",
+        "answerConfidence": "high",
+        "tags": [
+          "thermoregulation-and-endothermy",
+          "thermoregulation",
+          "endothermy"
+        ]
       },
       "text": "A constant body temperature is characteristic of:",
       "options": [
@@ -205,23 +318,45 @@
         "mammals only",
         "mammals and birds"
       ],
-      "explanation": "Mammals and birds are endothermic animals that regulate their body temperature internally.",
+      "explanation": "Mammals and birds are endotherms, meaning they regulate and maintain a relatively constant internal body temperature. Reptiles are ectotherms, so their body temperature varies more with the environment.",
       "correctIndex": 3,
       "wrongAnswerHints": {
-        "0": "Reptiles are ectothermic and rely on environmental heat.",
-        "1": "Birds maintain body temperature, reptiles do not.",
-        "2": "Birds also maintain a constant body temperature."
-      }
+        "0": "Reptiles do not maintain a constant internal body temperature like mammals do.",
+        "1": "Reptiles are not endothermic and therefore do not keep a constant body temperature.",
+        "2": "Mammals are endothermic, but reptiles are not."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "mammals and reptiles",
+          "reason": "Reptiles do not maintain a constant internal body temperature like mammals do."
+        },
+        {
+          "answer": "birds and reptiles",
+          "reason": "Reptiles are not endothermic and therefore do not keep a constant body temperature."
+        },
+        {
+          "answer": "mammals only",
+          "reason": "Mammals are endothermic, but reptiles are not."
+        }
+      ]
     },
     {
       "id": "biol-004",
       "meta": {
         "source": "verified",
         "topics": [
-          "Nervous System"
+          "Nervous system basics"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T15:11:53.206Z",
+        "answerConfidence": "high",
+        "tags": [
+          "nervous-system-basics",
+          "nervous",
+          "system",
+          "basics"
+        ]
       },
       "text": "The basic functional unit of the nervous system is the:",
       "options": [
@@ -230,24 +365,45 @@
         "nerve",
         "dendrite"
       ],
-      "explanation": "The neuron is the fundamental cell responsible for transmitting nerve impulses.",
+      "explanation": "The neuron is the basic functional unit of the nervous system. Neurons are specialized cells that transmit electrical signals and communicate information throughout the body.",
       "correctIndex": 0,
       "wrongAnswerHints": {
-        "1": "The spinal cord is composed of many neurons.",
-        "2": "A nerve is a bundle of neuron fibers.",
-        "3": "A dendrite is only one part of a neuron."
-      }
+        "1": "The spinal cord is a major nervous system structure, but it is made of many neurons and other tissues.",
+        "2": "A nerve is a bundle of axons, not the basic individual functional unit.",
+        "3": "A dendrite is only part of a neuron, not the whole functional unit."
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "spinal cord",
+          "reason": "The spinal cord is a major nervous system structure, but it is made of many neurons and other tissues."
+        },
+        {
+          "answer": "nerve",
+          "reason": "A nerve is a bundle of axons, not the basic individual functional unit."
+        },
+        {
+          "answer": "dendrite",
+          "reason": "A dendrite is only part of a neuron, not the whole functional unit."
+        }
+      ]
     },
     {
       "id": "biol-005",
       "meta": {
         "source": "verified",
         "topics": [
-          "Chemistry",
-          "Homeostasis"
+          "Acid-base balance and pH"
         ],
-        "difficulty": "easy",
-        "answerConfidence": "high"
+        "difficulty": 2,
+        "verifiedAt": "2026-06-09T15:11:53.206Z",
+        "answerConfidence": "high",
+        "tags": [
+          "acid-base-balance-and-ph",
+          "acid",
+          "base",
+          "balance"
+        ]
       },
       "text": "The pH of blood is slightly basic. Which of the following would be most appropriate?",
       "options": [
@@ -256,39 +412,28 @@
         "7.4",
         "13.8"
       ],
-      "explanation": "Human blood normally has a pH of approximately 7.35–7.45.",
+      "explanation": "Normal blood pH is slightly basic, usually around 7.4. This narrow range is important because enzymes and body processes depend on stable pH conditions.",
       "correctIndex": 2,
       "wrongAnswerHints": {
-        "0": "6.4 is acidic.",
-        "1": "4.6 is strongly acidic.",
-        "3": "13.8 is extremely basic and incompatible with life."
-      }
-    },
-    {
-      "id": "biol-006",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Protein structure and enzymes"
-        ],
-        "difficulty": "hard",
-        "verifiedAt": "2026-06-09T15:11:53.206Z",
-        "answerConfidence": "medium"
+        "0": "6.4 is acidic, not slightly basic.",
+        "1": "4.6 is strongly acidic and far outside the normal blood pH range.",
+        "3": "13.8 is extremely basic and would be incompatible with normal blood function."
       },
-      "text": "Which aspect of a protein determines whether it will function as an enzyme?",
-      "options": [
-        "interior",
-        "surface",
-        "weight",
-        "colour"
-      ],
-      "explanation": "An enzyme’s function depends on its 3D shape, especially the shape of its active site. The question’s options are awkward, but “interior” is the best match because the enzyme’s internal folding and active-site arrangement determine what it can bind and catalyze.",
-      "correctIndex": 0,
-      "wrongAnswerHints": {
-        "1": "The surface alone does not determine enzyme specificity; the functional active site depends on overall protein folding.",
-        "2": "Weight does not determine whether a protein acts as an enzyme.",
-        "3": "Colour has no role in enzyme function."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "6.4",
+          "reason": "6.4 is acidic, not slightly basic."
+        },
+        {
+          "answer": "4.6",
+          "reason": "4.6 is strongly acidic and far outside the normal blood pH range."
+        },
+        {
+          "answer": "13.8",
+          "reason": "13.8 is extremely basic and would be incompatible with normal blood function."
+        }
+      ]
     },
     {
       "id": "biol-007",
@@ -297,9 +442,16 @@
         "topics": [
           "Cell organelles and protein synthesis"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:53.206Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-organelles-and-protein-synthesis",
+          "cell",
+          "organelles",
+          "protein",
+          "synthesis"
+        ]
       },
       "text": "Granules which are the sites of protein synthesis within a cell are:",
       "options": [
@@ -314,7 +466,22 @@
         "0": "Chloroplasts carry out photosynthesis, not protein synthesis.",
         "1": "Mitochondria are mainly responsible for cellular respiration and ATP production.",
         "2": "The endoplasmic reticulum can help with protein processing, but ribosomes are the actual protein-synthesizing granules."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "chloroplasts",
+          "reason": "Chloroplasts carry out photosynthesis, not protein synthesis."
+        },
+        {
+          "answer": "mitochondria",
+          "reason": "Mitochondria are mainly responsible for cellular respiration and ATP production."
+        },
+        {
+          "answer": "endoplasmic reticula",
+          "reason": "The endoplasmic reticulum can help with protein processing, but ribosomes are the actual protein-synthesizing granules."
+        }
+      ]
     },
     {
       "id": "biol-008",
@@ -324,9 +491,19 @@
           "Cellular respiration",
           "Cell organelles and protein synthesis"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:53.206Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cellular-respiration",
+          "cellular",
+          "respiration",
+          "cell-organelles-and-protein-synthesis",
+          "cell",
+          "organelles",
+          "protein",
+          "synthesis"
+        ]
       },
       "text": "Organelles associated with cellular respiration are called:",
       "options": [
@@ -341,7 +518,22 @@
         "1": "The Golgi apparatus modifies and packages proteins, but it does not perform cellular respiration.",
         "2": "Chloroplasts carry out photosynthesis in plant cells, not cellular respiration.",
         "3": "Lysosomes digest and recycle materials, but they are not the main site of respiration."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Golgi apparatus",
+          "reason": "The Golgi apparatus modifies and packages proteins, but it does not perform cellular respiration."
+        },
+        {
+          "answer": "chloroplasts",
+          "reason": "Chloroplasts carry out photosynthesis in plant cells, not cellular respiration."
+        },
+        {
+          "answer": "lysosomes",
+          "reason": "Lysosomes digest and recycle materials, but they are not the main site of respiration."
+        }
+      ]
     },
     {
       "id": "biol-009",
@@ -351,9 +543,21 @@
           "Cell membrane transport and selective permeability",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-membrane-transport-and-selective-permeability",
+          "cell",
+          "membrane",
+          "transport",
+          "selective",
+          "permeability",
+          "cell-structure-and-nucleus-location",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "The ability of cell membrane to allow certain substances to enter or leave the cell is called:",
       "options": [
@@ -368,7 +572,22 @@
         "0": "Diffusion is the movement of particles from high to low concentration, not the membrane property itself.",
         "1": "This is not a standard biology term for membrane transport.",
         "2": "Osmosis is the diffusion of water specifically, not the general membrane property."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "diffusion",
+          "reason": "Diffusion is the movement of particles from high to low concentration, not the membrane property itself."
+        },
+        {
+          "answer": "purposeful passage",
+          "reason": "This is not a standard biology term for membrane transport."
+        },
+        {
+          "answer": "osmosis",
+          "reason": "Osmosis is the diffusion of water specifically, not the general membrane property."
+        }
+      ]
     },
     {
       "id": "biol-010",
@@ -378,9 +597,19 @@
           "Mitosis and cell division",
           "Cell organelles and protein synthesis"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "mitosis-and-cell-division",
+          "mitosis",
+          "cell",
+          "division",
+          "cell-organelles-and-protein-synthesis",
+          "organelles",
+          "protein",
+          "synthesis"
+        ]
       },
       "text": "The most common method of cell division in the body is called:",
       "options": [
@@ -395,7 +624,22 @@
         "0": "Osmosis is movement of water across a membrane, not cell division.",
         "2": "Meiosis makes sex cells (gametes), not most body cells.",
         "3": "Halitosis means bad breath, so it is unrelated to cell division."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "osmosis",
+          "reason": "Osmosis is movement of water across a membrane, not cell division."
+        },
+        {
+          "answer": "meiosis",
+          "reason": "Meiosis makes sex cells (gametes), not most body cells."
+        },
+        {
+          "answer": "halitosis",
+          "reason": "Halitosis means bad breath, so it is unrelated to cell division."
+        }
+      ]
     },
     {
       "id": "biol-011",
@@ -405,9 +649,20 @@
           "Biological scale and levels of organization",
           "Nervous system basics"
         ],
-        "difficulty": "medium",
+        "difficulty": 3,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "biological-scale-and-levels-of-organization",
+          "biological",
+          "scale",
+          "levels",
+          "organization",
+          "nervous-system-basics",
+          "nervous",
+          "system",
+          "basics"
+        ]
       },
       "text": "A nerve cell is smaller than a(n):",
       "options": [
@@ -422,34 +677,22 @@
         "0": "A virus is generally smaller than a cell, so a neuron is not smaller than a virus.",
         "1": "An atom is much smaller than a cell, so this cannot be correct.",
         "2": "A proton is smaller than an atom and far smaller than a cell."
-      }
-    },
-    {
-      "id": "biol-012",
-      "meta": {
-        "source": "verified",
-        "topics": [
-          "Human body spatial anatomy",
-          "Human circulatory system and heart anatomy"
-        ],
-        "difficulty": "easy",
-        "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "medium"
       },
-      "text": "A person standing facing you has his heart located:",
-      "options": [
-        "above the stomach",
-        "above the brain",
-        "behind the spinal cord",
-        "below the ovary"
-      ],
-      "explanation": "The heart is located in the chest, above the stomach. In anatomical terms, it lies superior to the stomach and within the thoracic cavity.",
-      "correctIndex": 0,
-      "wrongAnswerHints": {
-        "1": "The heart is not above the brain; it is in the chest.",
-        "2": "The heart is in front of the spinal cord, not behind it.",
-        "3": "The heart is not below the ovary; the ovary is in the pelvic region."
-      }
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "virus",
+          "reason": "A virus is generally smaller than a cell, so a neuron is not smaller than a virus."
+        },
+        {
+          "answer": "atom",
+          "reason": "An atom is much smaller than a cell, so this cannot be correct."
+        },
+        {
+          "answer": "proton",
+          "reason": "A proton is smaller than an atom and far smaller than a cell."
+        }
+      ]
     },
     {
       "id": "biol-013",
@@ -459,9 +702,20 @@
           "Cell organelles and protein synthesis",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-organelles-and-protein-synthesis",
+          "cell",
+          "organelles",
+          "protein",
+          "synthesis",
+          "cell-structure-and-nucleus-location",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "The cell nucleus is located:",
       "options": [
@@ -476,7 +730,22 @@
         "0": "The nucleus is not outside the cell membrane; it is inside the cell.",
         "1": "Mitochondria are separate organelles and do not contain the nucleus.",
         "2": "Protons and neutrons are found in atoms, not inside cells."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "outside the cell membrane",
+          "reason": "The nucleus is not outside the cell membrane; it is inside the cell."
+        },
+        {
+          "answer": "inside the mitochondria",
+          "reason": "Mitochondria are separate organelles and do not contain the nucleus."
+        },
+        {
+          "answer": "next to the protons and neutrons",
+          "reason": "Protons and neutrons are found in atoms, not inside cells."
+        }
+      ]
     },
     {
       "id": "biol-014",
@@ -486,9 +755,21 @@
           "Biological scale and levels of organization",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "biological-scale-and-levels-of-organization",
+          "biological",
+          "scale",
+          "levels",
+          "organization",
+          "cell-structure-and-nucleus-location",
+          "cell",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "Which of the following is the highest level of complexity in the human body?",
       "options": [
@@ -503,7 +784,22 @@
         "0": "A molecule is smaller and less complex than a cell or tissue.",
         "1": "A cell is a basic unit of life, but it is less complex than an organ.",
         "3": "Tissue is made of similar cells, so it is below the level of organ."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "molecule",
+          "reason": "A molecule is smaller and less complex than a cell or tissue."
+        },
+        {
+          "answer": "cell",
+          "reason": "A cell is a basic unit of life, but it is less complex than an organ."
+        },
+        {
+          "answer": "tissue",
+          "reason": "Tissue is made of similar cells, so it is below the level of organ."
+        }
+      ]
     },
     {
       "id": "biol-015",
@@ -513,9 +809,21 @@
           "Pressure and movement of blood",
           "Human circulatory system and heart anatomy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:11:59.681Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "pressure-and-movement-of-blood",
+          "pressure",
+          "movement",
+          "blood",
+          "human-circulatory-system-and-heart-anatomy",
+          "human",
+          "circulatory",
+          "system",
+          "heart",
+          "anatomy"
+        ]
       },
       "text": "Your blood flows throughout your body because of a(n):",
       "options": [
@@ -530,7 +838,22 @@
         "0": "Temperature differences do not directly drive blood flow through the body.",
         "2": "Concentration gradients help move some substances, but they are not the main force moving blood.",
         "3": "Electrical gradients are important in nerve and muscle activity, not the main cause of blood flow."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "temperature gradient",
+          "reason": "Temperature differences do not directly drive blood flow through the body."
+        },
+        {
+          "answer": "concentration gradient",
+          "reason": "Concentration gradients help move some substances, but they are not the main force moving blood."
+        },
+        {
+          "answer": "electrical gradient",
+          "reason": "Electrical gradients are important in nerve and muscle activity, not the main cause of blood flow."
+        }
+      ]
     },
     {
       "id": "biol-gen-016",
@@ -540,9 +863,21 @@
           "Human circulatory system and heart anatomy",
           "Pressure and movement of blood"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:05.702Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "human-circulatory-system-and-heart-anatomy",
+          "human",
+          "circulatory",
+          "system",
+          "heart",
+          "anatomy",
+          "pressure-and-movement-of-blood",
+          "pressure",
+          "movement",
+          "blood"
+        ]
       },
       "text": "Which chamber of the human heart pumps oxygen-rich blood to the body through the aorta?",
       "options": [
@@ -557,7 +892,22 @@
         "0": "The right atrium receives deoxygenated blood from the body.",
         "2": "The right ventricle pumps blood to the lungs, not to the body.",
         "3": "The left atrium receives oxygenated blood from the lungs."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "right atrium",
+          "reason": "The right atrium receives deoxygenated blood from the body."
+        },
+        {
+          "answer": "right ventricle",
+          "reason": "The right ventricle pumps blood to the lungs, not to the body."
+        },
+        {
+          "answer": "left atrium",
+          "reason": "The left atrium receives oxygenated blood from the lungs."
+        }
+      ]
     },
     {
       "id": "biol-gen-017",
@@ -567,9 +917,19 @@
           "Genetics and chromosomes",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:05.702Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "genetics-and-chromosomes",
+          "genetics",
+          "chromosomes",
+          "cell-structure-and-nucleus-location",
+          "cell",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "A gene is best described as a segment of DNA located on a:",
       "options": [
@@ -584,7 +944,22 @@
         "1": "Ribosomes make proteins, but they do not contain genes.",
         "2": "The cell membrane controls what enters and leaves the cell.",
         "3": "Lysosomes contain digestive enzymes, not genes."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "ribosome",
+          "reason": "Ribosomes make proteins, but they do not contain genes."
+        },
+        {
+          "answer": "cell membrane",
+          "reason": "The cell membrane controls what enters and leaves the cell."
+        },
+        {
+          "answer": "lysosome",
+          "reason": "Lysosomes contain digestive enzymes, not genes."
+        }
+      ]
     },
     {
       "id": "biol-gen-018",
@@ -593,9 +968,14 @@
         "topics": [
           "Thermoregulation and endothermy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:05.702Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "thermoregulation-and-endothermy",
+          "thermoregulation",
+          "endothermy"
+        ]
       },
       "text": "Which type of organism is an endotherm?",
       "options": [
@@ -610,7 +990,22 @@
         "1": "Frogs are ectotherms and depend on environmental heat.",
         "2": "Snakes are ectotherms.",
         "3": "Fish are ectotherms."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "frog",
+          "reason": "Frogs are ectotherms and depend on environmental heat."
+        },
+        {
+          "answer": "snake",
+          "reason": "Snakes are ectotherms."
+        },
+        {
+          "answer": "fish",
+          "reason": "Fish are ectotherms."
+        }
+      ]
     },
     {
       "id": "biol-gen-019",
@@ -619,9 +1014,16 @@
         "topics": [
           "Cell organelles and protein synthesis"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:05.702Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-organelles-and-protein-synthesis",
+          "cell",
+          "organelles",
+          "protein",
+          "synthesis"
+        ]
       },
       "text": "Which cell part is the main site of protein synthesis?",
       "options": [
@@ -636,7 +1038,22 @@
         "1": "The nucleus contains DNA and controls cell activities.",
         "2": "Vacuoles mainly store water and other materials.",
         "3": "The Golgi apparatus packages and modifies proteins after they are made."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "nucleus",
+          "reason": "The nucleus contains DNA and controls cell activities."
+        },
+        {
+          "answer": "vacuole",
+          "reason": "Vacuoles mainly store water and other materials."
+        },
+        {
+          "answer": "Golgi apparatus",
+          "reason": "The Golgi apparatus packages and modifies proteins after they are made."
+        }
+      ]
     },
     {
       "id": "biol-gen-020",
@@ -645,9 +1062,15 @@
         "topics": [
           "Acid-base balance and pH"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:05.702Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "acid-base-balance-and-ph",
+          "acid",
+          "base",
+          "balance"
+        ]
       },
       "text": "What is the normal pH range of human blood?",
       "options": [
@@ -662,7 +1085,22 @@
         "1": "A pH of 2.0 is strongly acidic and far too low for blood.",
         "2": "A pH of 9.5 is too basic for normal blood.",
         "3": "A pH of 5.0 is acidic and not normal for blood."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "about 2.0",
+          "reason": "A pH of 2.0 is strongly acidic and far too low for blood."
+        },
+        {
+          "answer": "about 9.5",
+          "reason": "A pH of 9.5 is too basic for normal blood."
+        },
+        {
+          "answer": "about 5.0",
+          "reason": "A pH of 5.0 is acidic and not normal for blood."
+        }
+      ]
     },
     {
       "id": "biol-gen-021",
@@ -672,9 +1110,21 @@
           "Human circulatory system and heart anatomy",
           "Pressure and movement of blood"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:11.267Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "human-circulatory-system-and-heart-anatomy",
+          "human",
+          "circulatory",
+          "system",
+          "heart",
+          "anatomy",
+          "pressure-and-movement-of-blood",
+          "pressure",
+          "movement",
+          "blood"
+        ]
       },
       "text": "Which chamber of the heart receives oxygen-rich blood from the lungs before it is pumped to the rest of the body?",
       "options": [
@@ -689,7 +1139,22 @@
         "0": "This chamber receives oxygen-poor blood from the body.",
         "2": "This chamber pumps blood to the lungs.",
         "3": "This chamber pumps blood out to the body, but it does not receive blood from the lungs first."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Right atrium",
+          "reason": "This chamber receives oxygen-poor blood from the body."
+        },
+        {
+          "answer": "Right ventricle",
+          "reason": "This chamber pumps blood to the lungs."
+        },
+        {
+          "answer": "Left ventricle",
+          "reason": "This chamber pumps blood out to the body, but it does not receive blood from the lungs first."
+        }
+      ]
     },
     {
       "id": "biol-gen-022",
@@ -699,9 +1164,19 @@
           "Genetics and chromosomes",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:11.267Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "genetics-and-chromosomes",
+          "genetics",
+          "chromosomes",
+          "cell-structure-and-nucleus-location",
+          "cell",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "A gene is a segment of DNA found on a(n):",
       "options": [
@@ -716,7 +1191,22 @@
         "0": "Ribosomes help make proteins, but they do not carry genes.",
         "2": "Vacuoles store materials in the cell.",
         "3": "The cell membrane controls what enters and leaves the cell."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "ribosome",
+          "reason": "Ribosomes help make proteins, but they do not carry genes."
+        },
+        {
+          "answer": "vacuole",
+          "reason": "Vacuoles store materials in the cell."
+        },
+        {
+          "answer": "cell membrane",
+          "reason": "The cell membrane controls what enters and leaves the cell."
+        }
+      ]
     },
     {
       "id": "biol-gen-023",
@@ -725,9 +1215,14 @@
         "topics": [
           "Thermoregulation and endothermy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:11.267Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "thermoregulation-and-endothermy",
+          "thermoregulation",
+          "endothermy"
+        ]
       },
       "text": "Sweating helps the human body cool down. This is an example of:",
       "options": [
@@ -742,7 +1237,22 @@
         "0": "Digestion is the breakdown of food.",
         "2": "Photosynthesis occurs in plants, not in human temperature control.",
         "3": "Fertilization is the joining of sex cells."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "digestion",
+          "reason": "Digestion is the breakdown of food."
+        },
+        {
+          "answer": "photosynthesis",
+          "reason": "Photosynthesis occurs in plants, not in human temperature control."
+        },
+        {
+          "answer": "fertilization",
+          "reason": "Fertilization is the joining of sex cells."
+        }
+      ]
     },
     {
       "id": "biol-gen-024",
@@ -751,9 +1261,15 @@
         "topics": [
           "Nervous system basics"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:11.267Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "nervous-system-basics",
+          "nervous",
+          "system",
+          "basics"
+        ]
       },
       "text": "Which part of a neuron usually carries impulses away from the cell body?",
       "options": [
@@ -768,7 +1284,22 @@
         "1": "The nucleus controls the cell, but it does not carry impulses.",
         "2": "Animal cells do not have cell walls.",
         "3": "A synapse is the gap between neurons where signals are passed."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "nucleus",
+          "reason": "The nucleus controls the cell, but it does not carry impulses."
+        },
+        {
+          "answer": "cell wall",
+          "reason": "Animal cells do not have cell walls."
+        },
+        {
+          "answer": "synapse",
+          "reason": "A synapse is the gap between neurons where signals are passed."
+        }
+      ]
     },
     {
       "id": "biol-gen-025",
@@ -777,9 +1308,15 @@
         "topics": [
           "Acid-base balance and pH"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:11.267Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "acid-base-balance-and-ph",
+          "acid",
+          "base",
+          "balance"
+        ]
       },
       "text": "Which pH value would best represent a strongly acidic substance?",
       "options": [
@@ -794,7 +1331,22 @@
         "1": "A pH of 7 is neutral.",
         "2": "A pH above 7 is basic.",
         "3": "A pH of 10 is basic, not acidic."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "7",
+          "reason": "A pH of 7 is neutral."
+        },
+        {
+          "answer": "8",
+          "reason": "A pH above 7 is basic."
+        },
+        {
+          "answer": "10",
+          "reason": "A pH of 10 is basic, not acidic."
+        }
+      ]
     },
     {
       "id": "biol-gen-027",
@@ -804,9 +1356,19 @@
           "Genetics and chromosomes",
           "Cell structure and nucleus location"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:17.397Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "genetics-and-chromosomes",
+          "genetics",
+          "chromosomes",
+          "cell-structure-and-nucleus-location",
+          "cell",
+          "structure",
+          "nucleus",
+          "location"
+        ]
       },
       "text": "During cell division, chromosomes are duplicated so that each new cell receives a complete set of genetic material. Where are chromosomes found in a human cell?",
       "options": [
@@ -821,7 +1383,22 @@
         "0": "The cytoplasm contains many cell structures, but not chromosomes.",
         "1": "The cell membrane surrounds the cell.",
         "3": "Ribosomes build proteins."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Cytoplasm",
+          "reason": "The cytoplasm contains many cell structures, but not chromosomes."
+        },
+        {
+          "answer": "Cell membrane",
+          "reason": "The cell membrane surrounds the cell."
+        },
+        {
+          "answer": "Ribosome",
+          "reason": "Ribosomes build proteins."
+        }
+      ]
     },
     {
       "id": "biol-gen-028",
@@ -830,9 +1407,14 @@
         "topics": [
           "Thermoregulation and endothermy"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:17.397Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "thermoregulation-and-endothermy",
+          "thermoregulation",
+          "endothermy"
+        ]
       },
       "text": "Which body process helps mammals keep a stable internal temperature when the environment gets cold?",
       "options": [
@@ -847,7 +1429,22 @@
         "0": "Sweating helps cool the body, not warm it.",
         "2": "The heart rate does not stop during normal thermoregulation.",
         "3": "Mammals do not change into ectotherms."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Sweating more",
+          "reason": "Sweating helps cool the body, not warm it."
+        },
+        {
+          "answer": "Reducing heart rate to zero",
+          "reason": "The heart rate does not stop during normal thermoregulation."
+        },
+        {
+          "answer": "Changing into ectotherms",
+          "reason": "Mammals do not change into ectotherms."
+        }
+      ]
     },
     {
       "id": "biol-gen-029",
@@ -856,9 +1453,16 @@
         "topics": [
           "Cell organelles and protein synthesis"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:17.397Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-organelles-and-protein-synthesis",
+          "cell",
+          "organelles",
+          "protein",
+          "synthesis"
+        ]
       },
       "text": "Which cell structure assembles proteins from amino acids?",
       "options": [
@@ -873,7 +1477,22 @@
         "1": "The Golgi apparatus modifies and packages proteins.",
         "2": "Lysosomes break down materials in the cell.",
         "3": "Mitochondria release energy during cellular respiration."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "Golgi apparatus",
+          "reason": "The Golgi apparatus modifies and packages proteins."
+        },
+        {
+          "answer": "Lysosome",
+          "reason": "Lysosomes break down materials in the cell."
+        },
+        {
+          "answer": "Mitochondrion",
+          "reason": "Mitochondria release energy during cellular respiration."
+        }
+      ]
     },
     {
       "id": "biol-gen-030",
@@ -882,9 +1501,17 @@
         "topics": [
           "Cell membrane transport and selective permeability"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:17.397Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "cell-membrane-transport-and-selective-permeability",
+          "cell",
+          "membrane",
+          "transport",
+          "selective",
+          "permeability"
+        ]
       },
       "text": "Which statement best describes selective permeability of the cell membrane?",
       "options": [
@@ -899,7 +1526,22 @@
         "0": "If everything passed freely, the membrane would not control transport.",
         "2": "Water can cross, but many other substances can also move in or out.",
         "3": "Cells need movement across the membrane to survive."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "It allows all substances to enter and leave freely",
+          "reason": "If everything passed freely, the membrane would not control transport."
+        },
+        {
+          "answer": "It only allows water to cross",
+          "reason": "Water can cross, but many other substances can also move in or out."
+        },
+        {
+          "answer": "It prevents any movement across the membrane",
+          "reason": "Cells need movement across the membrane to survive."
+        }
+      ]
     },
     {
       "id": "biol-gen-030",
@@ -909,9 +1551,21 @@
           "Human circulatory system and heart anatomy",
           "Pressure and movement of blood"
         ],
-        "difficulty": "easy",
+        "difficulty": 2,
         "verifiedAt": "2026-06-09T15:12:19.293Z",
-        "answerConfidence": "high"
+        "answerConfidence": "high",
+        "tags": [
+          "human-circulatory-system-and-heart-anatomy",
+          "human",
+          "circulatory",
+          "system",
+          "heart",
+          "anatomy",
+          "pressure-and-movement-of-blood",
+          "pressure",
+          "movement",
+          "blood"
+        ]
       },
       "text": "Which structure in the heart receives oxygen-rich blood from the lungs before it is pumped to the body?",
       "options": [
@@ -926,7 +1580,22 @@
         "0": "This chamber receives oxygen-poor blood from the body.",
         "2": "This chamber pumps oxygen-poor blood to the lungs.",
         "3": "This chamber pumps oxygen-rich blood out to the body."
-      }
+      },
+      "questionType": "multiple_choice",
+      "distractors": [
+        {
+          "answer": "right atrium",
+          "reason": "This chamber receives oxygen-poor blood from the body."
+        },
+        {
+          "answer": "right ventricle",
+          "reason": "This chamber pumps oxygen-poor blood to the lungs."
+        },
+        {
+          "answer": "left ventricle",
+          "reason": "This chamber pumps oxygen-rich blood out to the body."
+        }
+      ]
     }
   ],
   "subjectId": "biology"

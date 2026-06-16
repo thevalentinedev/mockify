@@ -1,14 +1,21 @@
 import { openai } from "@ai-sdk/openai";
 import { generateText, Output } from "ai";
 import { z } from "zod";
+import {
+  ENRICHMENT_PROMPT_RULES,
+  aiEnrichedQuestionSchema,
+  applyAiEnrichment,
+} from "@/lib/ai/question-schema";
 import { AI_MODEL } from "@/lib/ai/model";
+import { pruneIneligibleQuestions } from "@/lib/question-eligibility";
 import {
   getUnenrichedQuestions,
   isQuestionEnriched,
 } from "@/lib/question-enrichment";
+import { isTextGradedQuestion } from "@/lib/question-type";
 import type { BankMeta, Question, QuestionBank, SchoolId, SubjectId } from "@/types/exam";
 
-const CHUNK_SIZE = 8;
+const CHUNK_SIZE = 6;
 
 const blueprintSchema = z.object({
   schoolContext: z.string(),
@@ -23,30 +30,35 @@ const blueprintSchema = z.object({
 });
 
 const enrichChunkSchema = z.object({
-  questions: z.array(
-    z.object({
-      id: z.string(),
-      correctIndex: z.number().int(),
-      answerConfidence: z.enum(["high", "medium", "low"]),
-      explanation: z.string(),
-      wrongAnswerHints: z.array(
-        z.object({
-          optionIndex: z.number().int(),
-          hint: z.string(),
-        })
-      ),
-      topics: z.array(z.string()),
-      difficulty: z.enum(["easy", "medium", "hard"]),
-    })
-  ),
+  questions: z.array(aiEnrichedQuestionSchema),
 });
+
+function formatQuestionForEnrich(question: Question): object {
+  const numeric = isTextGradedQuestion(question);
+  return {
+    id: question.id,
+    text: question.text,
+    questionType: numeric ? "numeric" : "multiple_choice",
+    options: numeric ? undefined : question.options,
+    currentCorrectIndex: question.correctIndex,
+    answer: question.answer,
+    acceptedAnswers: question.acceptedAnswers,
+    contextId: question.contextId,
+  };
+}
 
 export async function analyzeExamBlueprint(
   bank: QuestionBank
 ): Promise<BankMeta> {
   const sample = bank.questions
     .slice(0, 15)
-    .map((q, i) => `${i + 1}. ${q.text}\n   Options: ${q.options.join(" | ")}`)
+    .map((q, i) => {
+      const numeric = isTextGradedQuestion(q);
+      if (numeric) {
+        return `${i + 1}. [numeric] ${q.text}\n   Answer: ${q.answer ?? "?"}`;
+      }
+      return `${i + 1}. ${q.text}\n   Options: ${(q.options ?? []).join(" | ")}`;
+    })
     .join("\n\n");
 
   const { output } = await generateText({
@@ -81,26 +93,21 @@ async function enrichQuestionChunk(
   subjectId: SubjectId,
   topics: string[]
 ): Promise<z.infer<typeof enrichChunkSchema>["questions"]> {
-  const payload = questions.map((q) => ({
-    id: q.id,
-    text: q.text,
-    options: q.options,
-    currentCorrectIndex: q.correctIndex,
-  }));
+  const payload = questions.map(formatQuestionForEnrich);
 
   const { output } = await generateText({
     model: openai(AI_MODEL),
     output: Output.object({ schema: enrichChunkSchema }),
-    prompt: `You are a ${schoolId} ${subjectId} pre-assessment tutor. Verify and enrich these MCQ questions.
+    prompt: `You are a ${schoolId} ${subjectId} pre-assessment tutor. Verify and enrich these questions for a study app.
 
 For EACH question:
-1. Solve it. Set correctIndex (0-based). Flag answerConfidence.
-2. Write a clear explanation (2-3 sentences) for the correct answer.
-3. For EACH wrong option, write a short wrongAnswerHints entry explaining why it's wrong.
-4. Assign 1-2 topics from: ${topics.join(", ")}
-5. Set difficulty: easy | medium | hard
+1. Solve it carefully. Fix correctIndex or numeric answer if wrong.
+2. Numeric questions: questionType "numeric", solution.steps (2-5 steps), finalAnswer, acceptedAnswers.
+3. Multiple-choice: keep 4 options, provide distractors[] with misconception reasons.
+4. Write learningObjective (one specific skill) and 2-5 tags.
+5. Assign 1-2 topics from: ${topics.join(", ")}
 
-Be accurate. If currentCorrectIndex is wrong, fix it.
+${ENRICHMENT_PROMPT_RULES}
 
 QUESTIONS:
 ${JSON.stringify(payload, null, 2)}`,
@@ -110,39 +117,13 @@ ${JSON.stringify(payload, null, 2)}`,
   return output.questions;
 }
 
-function applyEnrichmentResult(
-  original: Question,
-  enriched: z.infer<typeof enrichChunkSchema>["questions"][number]
-): Question {
-  const wrongAnswerHints: Record<string, string> = {};
-  for (const hint of enriched.wrongAnswerHints) {
-    if (hint.optionIndex !== enriched.correctIndex) {
-      wrongAnswerHints[String(hint.optionIndex)] = hint.hint;
-    }
-  }
-
-  return {
-    ...original,
-    correctIndex: enriched.correctIndex,
-    explanation: enriched.explanation,
-    wrongAnswerHints,
-    meta: {
-      topics: enriched.topics,
-      difficulty: enriched.difficulty,
-      source: original.meta?.source === "generated" ? "generated" : "verified",
-      verifiedAt: new Date().toISOString(),
-      answerConfidence: enriched.answerConfidence,
-    },
-  };
-}
-
 export interface EnrichQuestionBankResult {
   bank: QuestionBank;
   enrichedCount: number;
   skippedCount: number;
+  removedCount: number;
 }
 
-/** Enrich only questions missing explanations — saved banks skip repeat AI calls */
 export interface EnrichOptions {
   force?: boolean;
   onProgress?: (bank: QuestionBank) => void | Promise<void>;
@@ -165,15 +146,18 @@ export async function enrichQuestionBankDetailed(
     ? bank.questions
     : getUnenrichedQuestions(bank.questions);
   const skippedCount = bank.questions.length - toEnrich.length;
+  let removedCount = 0;
 
   if (toEnrich.length === 0) {
     const meta = bank.meta?.topicsCovered?.length
       ? bank.meta
       : await analyzeExamBlueprint(bank);
+    const pruned = pruneIneligibleQuestions(bank.questions);
 
     return {
       bank: {
         ...bank,
+        questions: pruned.kept,
         meta: {
           ...meta,
           lastEnrichedAt: bank.meta?.lastEnrichedAt ?? new Date().toISOString(),
@@ -182,6 +166,7 @@ export async function enrichQuestionBankDetailed(
       },
       enrichedCount: 0,
       skippedCount,
+      removedCount: pruned.removed.length,
     };
   }
 
@@ -189,7 +174,7 @@ export async function enrichQuestionBankDetailed(
     ? bank.meta
     : await analyzeExamBlueprint(bank);
 
-  const enrichedById = new Map<string, Question>();
+  const enrichedById = new Map<string, Question | null>();
 
   for (let i = 0; i < toEnrich.length; i += CHUNK_SIZE) {
     const chunk = toEnrich.slice(i, i + CHUNK_SIZE);
@@ -206,41 +191,52 @@ export async function enrichQuestionBankDetailed(
         enrichedById.set(original.id, original);
         continue;
       }
-      enrichedById.set(original.id, applyEnrichmentResult(original, enriched));
+      const applied = applyAiEnrichment(original, enriched);
+      if (!applied) {
+        enrichedById.set(original.id, null);
+        removedCount++;
+      } else {
+        enrichedById.set(original.id, applied);
+      }
     }
 
     if (options?.onProgress) {
-      const questions = bank.questions.map((question) => {
-        if (!force && isQuestionEnriched(question)) return question;
-        return enrichedById.get(question.id) ?? question;
+      const questions = bank.questions.flatMap((question) => {
+        if (!force && isQuestionEnriched(question)) return [question];
+        const next = enrichedById.get(question.id);
+        if (next === null) return [];
+        return [next ?? question];
       });
       await options.onProgress({
         ...bank,
         questions,
-        meta: {
-          ...meta,
-          totalGenerated: meta.totalGenerated ?? 0,
-        },
+        meta: { ...meta, totalGenerated: meta.totalGenerated ?? 0 },
       });
     }
   }
 
-  const questions = bank.questions.map((question) => {
-    if (!force && isQuestionEnriched(question)) return question;
-    return enrichedById.get(question.id) ?? question;
+  const questions = bank.questions.flatMap((question) => {
+    if (!force && isQuestionEnriched(question)) return [question];
+    const next = enrichedById.get(question.id);
+    if (next === null) return [];
+    return [next ?? question];
   });
+
+  const pruned = pruneIneligibleQuestions(questions);
+  removedCount += pruned.removed.length;
 
   return {
     bank: {
       ...bank,
-      questions,
+      questions: pruned.kept,
       meta: {
         ...meta,
         lastEnrichedAt: new Date().toISOString(),
         totalGenerated: meta.totalGenerated ?? 0,
       },
     },
-    enrichedCount: toEnrich.length,
+    enrichedCount: toEnrich.length - removedCount,
     skippedCount,
+    removedCount,
   };
 }
