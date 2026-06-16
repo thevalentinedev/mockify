@@ -13,18 +13,18 @@ import { SUBJECTS } from "@/lib/exam-config";
 import { getAllQuestions, normalizeSession } from "@/lib/exam-sections";
 import { savePracticeTopics } from "@/lib/learning-history";
 import { loadResult } from "@/lib/exam-session";
+import {
+  getScoreMessage,
+  practiceFocusAction,
+  practiceFocusHeading,
+  scoreRingClass,
+} from "@/lib/motivation";
 import { cn } from "@/lib/utils";
 import { divider, surface } from "@/lib/surface";
 import type { ExamResult, SubjectId } from "@/types/exam";
-import { RotateCcw, Target } from "lucide-react";
+import { RotateCcw, Sparkles, Target } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-
-function scoreRingClass(percentage: number): string {
-  if (percentage >= 70) return "bg-emerald-500/10 text-emerald-600";
-  if (percentage >= 50) return "bg-amber-500/10 text-amber-600";
-  return "bg-red-500/10 text-red-600";
-}
 
 export function ExamResults() {
   const router = useRouter();
@@ -183,6 +183,11 @@ export function ExamResults() {
       : 0;
   const hasPracticeFocus = stats.practiceFocus.length > 0;
   const usingObjectives = stats.focusObjectives.length > 0;
+  const scoreMessage = getScoreMessage(
+    stats.correct,
+    stats.total,
+    stats.percentage
+  );
 
   return (
     <>
@@ -197,8 +202,14 @@ export function ExamResults() {
             <span className="text-2xl font-bold sm:text-3xl">{stats.percentage}%</span>
           </div>
           <div className="space-y-1">
-            <h1 className="text-xl font-bold sm:text-2xl">Exam Complete</h1>
-            <p className="text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-2">
+              {scoreMessage.tone === "celebration" && (
+                <Sparkles className="size-5 text-emerald-500" />
+              )}
+              <h1 className="text-xl font-bold sm:text-2xl">{scoreMessage.title}</h1>
+            </div>
+            <p className="text-sm text-muted-foreground">{scoreMessage.subtitle}</p>
+            <p className="text-xs text-muted-foreground">
               {stats.correct} / {stats.total} correct · {stats.durationMin}m{" "}
               {stats.durationSec}s
             </p>
@@ -224,7 +235,7 @@ export function ExamResults() {
           {hasPracticeFocus ? (
             <div className="space-y-2 pt-1">
               <p className="text-xs text-muted-foreground">
-                {usingObjectives ? "Skills to practice" : "Topics to practice"}
+                {practiceFocusHeading(usingObjectives)}
               </p>
               <div className="flex flex-wrap justify-center gap-1.5">
                 {stats.practiceFocus.slice(0, 4).map((item) => (
@@ -240,7 +251,7 @@ export function ExamResults() {
               </div>
               <Button onClick={practiceWeakTopics} className="gap-2" size="lg">
                 <Target className="size-4" />
-                {usingObjectives ? "Practice weak skills" : "Practice weak topics"}
+                {practiceFocusAction(usingObjectives)}
               </Button>
             </div>
           ) : (

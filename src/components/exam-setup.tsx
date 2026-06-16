@@ -851,8 +851,8 @@ export function ExamSetup() {
           )}
 
           {focusTopics.length > 0 && mode !== "study" && (
-            <p className="text-sm text-amber-700 dark:text-amber-400">
-              Practicing weak topics: {focusTopics.join(", ")}
+            <p className="text-sm text-violet-700 dark:text-violet-300">
+              Leveling up: {focusTopics.join(", ")}
             </p>
           )}
 

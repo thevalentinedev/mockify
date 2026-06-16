@@ -10,6 +10,12 @@ import {
 import { SolutionSteps } from "@/components/solution-steps";
 import { getRemediationReason } from "@/lib/distractors";
 import { FormatMathText } from "@/lib/format-math-text";
+import {
+  answerFeedback,
+  insightSectionTitle,
+  remediationLabel,
+  solutionLabel,
+} from "@/lib/motivation";
 import { divider, shell } from "@/lib/surface";
 import { hasSolutionContent } from "@/lib/solution";
 import type { ExamAnswer, ShuffledQuestion } from "@/types/exam";
@@ -18,7 +24,7 @@ import {
   CheckCircle2,
   ChevronDown,
   Lightbulb,
-  XCircle,
+  Sparkles,
 } from "lucide-react";
 
 export interface ResultQuestionRowProps {
@@ -52,11 +58,28 @@ export function ResultQuestionRow({
         {isCorrect ? (
           <CheckCircle2 className="size-5 shrink-0 text-emerald-500" />
         ) : (
-          <XCircle className="size-5 shrink-0 text-red-500" />
+          <Lightbulb className="size-5 shrink-0 text-violet-500" />
         )}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-sm font-medium">Question {index + 1}</span>
+            {!isCorrect && (
+              <Badge
+                variant="outline"
+                className="border-violet-500/25 bg-violet-500/8 text-xs text-violet-700 dark:text-violet-300"
+              >
+                Review
+              </Badge>
+            )}
+            {isCorrect && (
+              <Badge
+                variant="outline"
+                className="border-emerald-500/25 bg-emerald-500/8 text-xs text-emerald-700 dark:text-emerald-400"
+              >
+                <Sparkles className="mr-1 size-3" />
+                Got it
+              </Badge>
+            )}
             {question.learningObjective ? (
               <Badge variant="outline" className="text-xs">
                 {question.learningObjective}
@@ -97,17 +120,15 @@ export function ResultQuestionRow({
               <p
                 className={cn(
                   "rounded-[var(--radius-surface)] px-3 py-2",
-                  isCorrect
-                    ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                    : "bg-red-500/10 text-red-700 dark:text-red-400"
+                  isCorrect ? answerFeedback.correct : answerFeedback.incorrect
                 )}
               >
                 Your answer:{" "}
                 <FormatMathText>{answer?.textAnswer ?? "—"}</FormatMathText>
               </p>
               {!isCorrect && (
-                <p className="rounded-[var(--radius-surface)] bg-emerald-500/10 px-3 py-2 text-emerald-700 dark:text-emerald-400">
-                  Correct answer:{" "}
+                <p className={cn("rounded-[var(--radius-surface)] px-3 py-2", answerFeedback.correct)}>
+                  Answer:{" "}
                   <FormatMathText>{formatCorrectAnswer(question)}</FormatMathText>
                 </p>
               )}
@@ -123,18 +144,17 @@ export function ResultQuestionRow({
                     key={i}
                     className={cn(
                       "exam-option rounded-[var(--radius-surface)] px-3 py-2",
-                      isCorrectOpt &&
-                        "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+                      isCorrectOpt && answerFeedback.correct,
                       isSelected &&
                         !isCorrectOpt &&
-                        "bg-red-500/10 text-red-700 dark:text-red-400",
+                        answerFeedback.incorrect,
                       !isCorrectOpt && !isSelected && "text-muted-foreground"
                     )}
                   >
                     {String.fromCharCode(65 + i)}.{" "}
                     <FormatMathText>{opt}</FormatMathText>
                     {isCorrectOpt && " ✓"}
-                    {isSelected && !isCorrectOpt && " (your answer)"}
+                    {isSelected && !isCorrectOpt && " (your pick)"}
                   </p>
                 );
               })}
@@ -144,24 +164,24 @@ export function ResultQuestionRow({
             <div
               className={cn(
                 "space-y-2 rounded-[var(--radius-surface)] p-4 text-sm",
-                isCorrect ? "bg-emerald-500/10" : "bg-amber-500/10"
+                isCorrect ? answerFeedback.celebratePanel : answerFeedback.growthPanel
               )}
             >
               <div className="flex items-center gap-2 font-medium">
                 <Lightbulb className="size-4" />
-                {isCorrect ? "Why this is correct" : "Learn from this"}
+                {insightSectionTitle(isCorrect)}
               </div>
               {!isCorrect && remediation && (
                 <p className="text-muted-foreground">
                   <span className="font-medium text-foreground">
-                    {isTextInput ? "Why this is wrong: " : "Your mistake: "}
+                    {remediationLabel(isTextInput)}
                   </span>
                   <FormatMathText>{remediation}</FormatMathText>
                 </p>
               )}
               <SolutionSteps
                 question={question}
-                label={isCorrect ? "Solution" : "Correct solution"}
+                label={solutionLabel(isCorrect)}
               />
             </div>
           )}

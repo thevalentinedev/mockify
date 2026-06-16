@@ -139,7 +139,7 @@ export const MODES: ModeConfig[] = [
   {
     id: "study",
     name: "Study",
-    description: "Answer each question, then reveal the correct answer and explanation before moving on.",
+    description: "Learn at your pace — answer, reveal, and celebrate each step forward.",
     timeLimit: false,
   },
   {

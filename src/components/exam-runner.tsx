@@ -55,6 +55,7 @@ import { Home, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import { answerFeedback } from "@/lib/motivation";
 import { softRow } from "@/lib/surface";
 
 interface ExamRunnerProps {
@@ -629,8 +630,8 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
                   studyMode &&
                     isAnswerRevealed &&
                     (isAnswerCorrect(current, currentAnswer)
-                      ? "border-emerald-500/40 bg-emerald-500/10"
-                      : "border-red-500/40 bg-red-500/10")
+                      ? answerFeedback.correctBorder
+                      : answerFeedback.incorrectBorder)
                 )}
                 placeholder="Enter your answer"
               />
@@ -643,7 +644,9 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
                       : "text-muted-foreground"
                   )}
                 >
-                  Correct answer:{" "}
+                  {isAnswerCorrect(current, currentAnswer)
+                    ? "Answer: "
+                    : "Here's the answer: "}
                   <FormatMathText>{current.answer ?? ""}</FormatMathText>
                 </p>
               )}
@@ -673,9 +676,9 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
                         !studyMode || !isAnswerRevealed
                           ? softRow(isSelected)
                           : isCorrectOpt
-                            ? "rounded-[var(--radius-surface)] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                            ? answerFeedback.correct
                             : isWrongSelected
-                              ? "rounded-[var(--radius-surface)] bg-red-500/10 text-red-700 dark:text-red-400"
+                              ? answerFeedback.incorrect
                               : "soft-row text-muted-foreground",
                         studyMode && isAnswerRevealed && "cursor-default"
                       )}
@@ -691,7 +694,7 @@ function ExamRunnerInner({ session: rawSession, initialProgress }: ExamRunnerPro
                       <span className="exam-option">
                         <FormatMathText>{option}</FormatMathText>
                         {isCorrectOpt && " ✓"}
-                        {isWrongSelected && " (your answer)"}
+                        {isWrongSelected && " (your pick)"}
                       </span>
                     </Label>
                   </div>

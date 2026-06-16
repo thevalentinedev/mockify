@@ -46,8 +46,8 @@ export function ResultsFooter({
               size="lg"
             >
               <Target className="size-4" />
-              <span className="hidden sm:inline">Practice weak topics</span>
-              <span className="sm:hidden">Practice</span>
+              <span className="hidden sm:inline">Level up practice</span>
+              <span className="sm:hidden">Level up</span>
             </Button>
           )}
           <Button
